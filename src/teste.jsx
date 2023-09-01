@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
@@ -21,6 +21,8 @@ import SchoolIcon from '@mui/icons-material/School';
 import EmailIcon from '@mui/icons-material/Email';
 import ProfileIcon from '@mui/icons-material/AccountBox';
 import App from './App.css';
+import { Link } from "react-router-dom";
+import Search from "./Search";
 
 const drawerWidth = 240;
 
@@ -104,19 +106,19 @@ export default function MiniDrawer() {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={{
-              marginRight: 0,
-              marginLeft: 10,
-              ...(open && { display: 'none' }),
-            }}
-          >
-            <MenuIcon className='menu' />
-          </IconButton>
+      <IconButton
+        color="inherit"
+        aria-label="open drawer"
+        onClick={handleDrawerOpen}
+        edge="start"
+        sx={{
+          marginRight: 0,
+          marginLeft: 10,
+          ...(open && { display: 'none' }),
+        }}
+      >
+        <MenuIcon className='menu' />
+      </IconButton>
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
@@ -141,7 +143,8 @@ export default function MiniDrawer() {
                     justifyContent: 'center',
                   }}
                 >
-                <IconIndex index={index}/>
+                  <RouteIndex index={index} />
+                  <IconIndex index={index} />
                 </ListItemIcon>
                 <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
@@ -166,7 +169,7 @@ export default function MiniDrawer() {
                     justifyContent: 'center',
                   }}
                 >
-                  <IconIndex index={index} />
+                  <RouteIndex index={index} />
                 </ListItemIcon>
                 <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
@@ -178,17 +181,24 @@ export default function MiniDrawer() {
   );
 }
 
-function IconIndex({index}) {
-    switch (index) {
+function IconIndex({ index }) {
+  switch (index) {
     case 0:
-        return <HomeIcon />;
+      return <HomeIcon />;
     case 1:
-        return <SchoolIcon />
+      return <SchoolIcon />
     case 2:
-        return <EmailIcon />
+      return <EmailIcon />
     case 3:
-        return <ProfileIcon />
+      return <ProfileIcon />
     default:
-        return <EmailIcon />;
-    }
+      return <EmailIcon />;
   }
+}
+
+function RouteIndex({ index }) {
+  switch (index) {
+    case 0:
+      return <Link to={Search} />
+  }
+}
