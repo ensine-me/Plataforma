@@ -1,15 +1,15 @@
 import React from "react";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import SearchBar from "../Search";
-import MiniDrawer from "../teste";
+import Template from "../pages/Template";
 
 const Routering = () => {
     return (
         <Router>
             <Routes>
-                <Route path="/" exact element={MiniDrawer}/>
-                <Route path="../Search" element={SearchBar} />
+                <Route path="/" element={<Template />}/>
+                <Route path="/minhas-aulas" element={''}/>
+                <Route path="/minhas-aulas" element={''}/>
             </Routes>
         </Router>
     );

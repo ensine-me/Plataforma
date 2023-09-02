@@ -1,7 +1,6 @@
 import logo from './logo.svg';
-import './App.css';
-import MiniDrawer from './teste';
-import CustomizedHook from './Search';
+import MiniDrawer from './components/SideBar';
+import CustomizedHook from './search';
 import Routering from './routes/routes';
 
 function App() {
