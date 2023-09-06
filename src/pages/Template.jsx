@@ -1,4 +1,5 @@
 import MiniDrawer from "../components/SideBar"
+import MarcarAula from "../components/marcarAula";
 import sPlat from "../style/template.module.css"
 
 const Template = () => {
@@ -6,9 +7,7 @@ const Template = () => {
         <>
             <MiniDrawer />
             <div className={sPlat.box}>
-                <h3>Front alheio a sidebar</h3>
-                <p>Arquivo: Template.jsx</p>
-                <p>Css: template.module.css</p>
+                <MarcarAula/>
             </div>
         </>
     )
