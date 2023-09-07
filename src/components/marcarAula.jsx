@@ -1,10 +1,12 @@
 import cssPoggers from "../style/marcarAula.module.css"
 import DateTimePickerComponent from "../components/DateTimePickerComponent"
 import MultiTextField from "../components/MultiTextField"
+import GoogleLoginAgenda from "../GoogleLoginAgenda"
+import BasicTextField from "./BasicTextField"
 import Swal from "sweetalert2"
-const nomeAula = "Aula de biologia";
-const nomeProf = "Elvis Presley";
 
+const nomeAula = "Aula de Fisica";
+const nomeProf = "Oppenheimer";
 const chamaSwal = () => {
     document.getElementById("quadradoCinza").style.display = "none";
     Swal.fire({
@@ -32,8 +34,7 @@ const chamaSwal = () => {
             });
         }
     });
- }
-
+  }
 
 const MarcarAula = () => {
     return (
@@ -41,9 +42,9 @@ const MarcarAula = () => {
             <div id="quadradoCinza" className={cssPoggers.quadradoCinza}>
                 <div className={cssPoggers.marcarAulaColuna}>
                     <p className={cssPoggers.paragrafoMarcarAula}>Data de Inicio:</p>
-                    <DateTimePickerComponent className={cssPoggers.dateTimePickerColor} />
+                    <DateTimePickerComponent onChange={GoogleLoginAgenda.setStart} value={GoogleLoginAgenda.start}/>
                     <p className={cssPoggers.paragrafoMarcarAula}>Data de Fim:</p>
-                    <DateTimePickerComponent />
+                    <DateTimePickerComponent onChange={GoogleLoginAgenda.setEnd} value={GoogleLoginAgenda.end}/>
                     <p className={cssPoggers.paragrafoMarcarAula}>Aula Privada:</p>
                     <select>
                         <option value="1">Privado</option>
@@ -59,14 +60,15 @@ const MarcarAula = () => {
                     </select>
                 </div>
                 <div className={cssPoggers.marcarAulaColunaDireita}>
-                    <h3>{nomeAula}</h3>
+                <p className={cssPoggers.paragrafoMarcarAula}>Titulo da aula:</p>
+                <BasicTextField  onChange={(e) => GoogleLoginAgenda.setEventName(e.target.value)}/>
                     <h4>{nomeProf}</h4>
-                    <p className={cssPoggers.paragrafoMarcarAula}>Assunto:</p>
-                    <MultiTextField/>
+                    <MultiTextField onChange={(e) => GoogleLoginAgenda.setEventDescription(e.target.value)}/>
+                    
                     <button onClick={chamaSwal} className={cssPoggers.botaoMarcarAula}>Marcar Aula</button>
                 </div>
             </div>
-        </>
+        </> 
     )
 }
 export default MarcarAula

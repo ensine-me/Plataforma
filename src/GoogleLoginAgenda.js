@@ -3,8 +3,41 @@ import './style/app.module.css'
 import { useSession, useSupabaseClient, useSessionContext } from '@supabase/auth-helpers-react';
 import DateTimePicker from 'react-datetime-picker';
 import {useState} from 'react';
+import Swal from "sweetalert2"
+
+const chamaSwal = () => {
+  document.getElementById("quadradoCinza").style.display = "none";
+  Swal.fire({
+      icon: 'success',
+      title: 'Aula aceita',
+      text: 'Verifique seu Google Agenda',
+      showCancelButton: false,
+      showConfirmButton: true,
+      confirmButtonText: 'Ver minhas aulas',
+      confirmButtonColor: '#28a745',
+  }).then((result) => {
+      // Redirecione ou adicione ação do botão "Ver minhas aulas" aqui
+      if (result.isConfirmed) {
+          // Você pode redirecionar o usuário para a página de suas aulas ou executar alguma outra ação
+          // Neste exemplo, apenas exibimos uma mensagem
+          Swal.fire({
+              icon: 'info',
+              title: 'Redirecionando...',
+              timer: 2000, // Tempo em milissegundos
+              showConfirmButton: false,
+              onClose: () => {
+                  // Redirecionar o usuário após 2 segundos
+                  window.location.href = 'sua_pagina_de_aulas.html';
+              }
+          });
+      }
+  });
+}
+
 
 function GoogleLoginAgenda() {
+
+ 
   const [ start, setStart ] = useState(new Date());
   const [ end, setEnd ] = useState(new Date());
   const [ eventName, setEventName ] = useState("");
@@ -36,6 +69,7 @@ function GoogleLoginAgenda() {
   }
   const conferenceId = "qsz-pkbc-tnx";
   async function createCalendarEvent(){
+    chamaSwal();
     console.log("Creating calendar event");
     const event = {
       'summary': eventName,
