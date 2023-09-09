@@ -1,13 +1,11 @@
 import * as React from 'react';
-import dayjs from 'dayjs';
 import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
-import { createCalendarEvent } from '../GoogleLoginAgenda';
 
-export default function ResponsiveDateTimePickers() {
-    
+export default function ResponsiveDateTimePickers({onChange, value}) {
+
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoContainer
@@ -17,9 +15,8 @@ export default function ResponsiveDateTimePickers() {
       >
         <DemoItem>
           <DateTimePicker 
-          defaultValue={dayjs('2023-09-09T21:30')} 
-          onChange={(createCalendarEvent.setStart)}
-          value={createCalendarEvent.start}
+          onChange={onChange}
+          value={value}
           />
         </DemoItem> 
       </DemoContainer>

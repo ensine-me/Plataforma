@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createClient } from '@supabase/supabase-js'
 import { SessionContextProvider } from '@supabase/auth-helpers-react'
-import GoogleLoginAgenda from './GoogleLoginAgenda';
+
 const supabase = createClient(
   "https://bvvqclcnpatzwoayfxqr.supabase.co",
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ2dnFjbGNucGF0endvYXlmeHFyIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTE5NzA1NjksImV4cCI6MjAwNzU0NjU2OX0.3us7hsaFfLswFrxMrRQe7Xu8g6FJg7doniJnVJuYLTU"
