@@ -1,0 +1,36 @@
+.logoContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: min-content;
+}
+
+.logoContainer img {
+    width: 50%;
+}
+
+.linkHome {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.linkHome a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.linkHome a h2 {
+    color: var(--verde-logo);
+
+}
+
+.linkHome :hover {
+    color: var(--verde-claro);
+}
+
+
