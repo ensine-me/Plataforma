@@ -1,9 +1,0 @@
-.box {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    color: aquamarine;
-    background-color: black;
-    margin-left: 65px;
-    padding: 40px;
-}

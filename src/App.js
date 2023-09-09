@@ -1,13 +1,11 @@
-import logo from './logo.svg';
-import MiniDrawer from './components/SideBar';
-import CustomizedHook from './search';
-import Routering from './routes/routes';
+import './App.css';
+import ProfessorDashBoard from './pages/professorDashBoard/ProfessorDashBoard';
 
 function App() {
-  return ( 
-    <>
-      <Routering />
-    </>
+  return (
+    <div>
+      <ProfessorDashBoard/>
+    </div>
   );
 }
 
