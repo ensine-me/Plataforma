@@ -1,34 +1,26 @@
-.general{
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-}
-
-.content{
+.contentOpenSearch{
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     height: 100vh;
-    padding: 30px;
 }
 
-.content .boxSearch{
-    height: 20%;
+.contentOpenSearch .boxOpenSearch{
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.content .boxesProcured{
+.contentOpenSearch .boxesProcuredOpenSearch{
     width: 100%;
     height: 80%;
     display: flex;
     flex-direction: row;
 }
 
-.boxesProcured .box{
+.boxesProcuredOpenSearch .boxOpenSearch{
     width: 50%;
     display: flex;
     justify-content: center;
@@ -37,9 +29,7 @@
     flex-direction: column;
 }
 
-.box .listCards{
-    width: 80%;
-    height: 80%;
+.boxOpenSearch .listCardsOpenSearch{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -48,7 +38,7 @@
     padding: 10px;
 }
 
-.listCards .contentList{
+.listCardsOpenSearch .contentListOpenSearch{
     overflow-x: hidden;
     overflow-y: scroll;
     display: flex;
@@ -56,6 +46,6 @@
     gap: 20px;
 }
 
-.contentList::-webkit-scrollbar{
+.contentListOpenSearch::-webkit-scrollbar{
     display: none;
 }

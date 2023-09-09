@@ -7,17 +7,17 @@ import CardAula from "../../components/cardAula/CardAula"
 
 function OpenSearch() {
     return (
-        <div className="general">
+        <>
             <SideBar />
-            <div className="content">
-                <div className="boxSearch">
+            <div className="contentOpenSearch">
+                <div className="boxOpenSearch">
                     <Search />
                 </div>
-                <div className="boxesProcured">
-                    <div className="box">
+                <div className="boxesProcuredOpenSearch">
+                    <div className="boxOpenSearch">
                         <h1>Professores</h1>
-                        <div className="listCards">
-                            <div className="contentList">
+                        <div className="listCardsOpenSearch">
+                            <div className="contentListOpenSearch">
                                 <CardProfessor />
                                 <CardProfessor />
                                 <CardProfessor />
@@ -25,10 +25,10 @@ function OpenSearch() {
                             </div>
                         </div>
                     </div>
-                    <div className="box">
+                    <div className="boxOpenSearch">
                         <h1>Aulas</h1>
-                        <div className="listCards">
-                            <div className="contentList">
+                        <div className="listCardsOpenSearch">
+                            <div className="contentListOpenSearch">
                                 <CardAula />
                                 <CardAula />
                                 <CardAula />
@@ -39,7 +39,8 @@ function OpenSearch() {
                     </div>
                 </div>
             </div>
-        </div>
+        </>
+     
     )
 }
 

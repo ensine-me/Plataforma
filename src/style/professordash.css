@@ -1,54 +1,49 @@
-.general{
-    width: 100vw;
-    height: 100vh;
+.contentProfessorDashboard{
     display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    margin-left: 100px;
 }
 
-.content{
-    background-color: #efefef;
-    height: 100%;
-    width: 87%;
-}
-
-.content .boxSearch{
-    height: 20%;
+.contentProfessorDashboard .boxSearchProfessorDashboard{
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.content .boxesDash{
+.contentProfessorDashboard .boxesDashProfessorDashboard{
     width: 100%;
     height: 80%;
     display: flex;
     flex-direction: column;
 }
 
-.boxesDash .boxe{
-    width: 100%;
-    height: 50%;
+.boxesDashProfessorDashboard .boxProfessorDashboard{
     display: flex;
     flex-direction: column;
-    padding: 10px;
 }
 
-.boxesDash .boxe .listCards{
-    display: flex;
-    align-items: center;
-    width: 95%;
-    height: 70%;
-    overflow: hidden;
-}
-
-.boxesDash .boxe .listCards .contentList{
-    overflow-y: hidden;
+.boxesDasProfessorDashboard .boxProfessorDashboard .listCardsProfessorDashboard .contentListProfessorDashboard{
+    overflow-y: scroll;
     overflow-x: scroll;
     display: flex;
     flex-direction: row;
     gap: 20px;
 }
 
-.contentList.contentList::-webkit-scrollbar{
+.contentListProfessorDashboard {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+.contentListProfessorDashboard .cardAula {
+    margin-bottom: 50px;
+}
+
+.contentListProfessorDashboard::-webkit-scrollbar{
     display: none;
 }

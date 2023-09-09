@@ -1,13 +1,12 @@
 .carProfessor{
-    background-color: white;
-    height: 20vh;
-    width: 22vw;
+    width: 400px;
     border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     justify-content: space-evenly;
     padding: 10px;
+    box-shadow: var(--shadow);
 }
 
 .apresetationUser{

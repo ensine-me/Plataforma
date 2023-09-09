@@ -1,7 +1,6 @@
 .campSearch{
     background-color: rgb(194, 194, 194);
-    width: 35vw;
-    height: 4vh;
+    width: 600px;
     border-radius: 8px;
     display: flex;
     align-items: center;
