@@ -1,0 +1,54 @@
+.general{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+
+.content{
+    background-color: #efefef;
+    height: 100%;
+    width: 87%;
+}
+
+.content .boxSearch{
+    height: 20%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content .boxesDash{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+.boxesDash .boxe{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.boxesDash .boxe .listCards{
+    display: flex;
+    align-items: center;
+    width: 95%;
+    height: 70%;
+    overflow: hidden;
+}
+
+.boxesDash .boxe .listCards .contentList{
+    overflow-y: hidden;
+    overflow-x: scroll;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.contentList.contentList::-webkit-scrollbar{
+    display: none;
+}

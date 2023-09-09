@@ -1,0 +1,41 @@
+.carProfessor{
+    background-color: white;
+    height: 20vh;
+    width: 22vw;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 10px;
+}
+
+.apresetationUser{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.boxesInfoUser{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+}
+
+.boxesInfoUser .box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+    width: 100%;
+}
+
+.boxesInfoUser .box strong{
+    font-size: 20px;
+}
