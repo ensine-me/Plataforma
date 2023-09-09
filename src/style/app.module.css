@@ -1,4 +1,10 @@
-iframe#webpack-dev-server-client-overlay{display:none!important}
+:root {
+  --verdeClaro: #87EE97;
+  --verdeEscuro: #077533;
+  --cinza: #D9D9D9;
+  --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadowInvertida: inset 0 0 5px rgba(45, 45, 45, 0.5);
+}
 
 a {
   text-decoration: none;
