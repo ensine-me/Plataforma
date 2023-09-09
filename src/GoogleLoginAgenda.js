@@ -35,6 +35,13 @@ export const chamaSwal = () => {
 
 export async function createCalendarEvent() {
   console.log("Creating calendar event");
+  console.log("Start:",GoogleLoginAgenda.start);
+  console.log("setStart:",GoogleLoginAgenda.setStart);
+  console.log("end:",GoogleLoginAgenda.end);
+  console.log("setEnd:",GoogleLoginAgenda.setEnd);
+  console.log("eventName:",GoogleLoginAgenda.eventName);
+
+
   const event = {
     'summary': GoogleLoginAgenda.eventName,
     'description': GoogleLoginAgenda.eventDescription,
@@ -75,7 +82,6 @@ export async function createCalendarEvent() {
 
 
 export const GoogleLoginAgenda = () => {
-
   const [start, setStart] = useState(new Date());
   const [end, setEnd] = useState(new Date());
   const [eventName, setEventName] = useState("");
