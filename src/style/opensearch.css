@@ -5,13 +5,12 @@
 }
 
 .content{
-    background-color: #efefef;
-    height: 100%;
-    width: 87%;
     display: flex;
+    align-items: center;
     justify-content: center;
     flex-direction: column;
-    align-items: center;
+    height: 100vh;
+    padding: 30px;
 }
 
 .content .boxSearch{

@@ -1,7 +1,7 @@
 import React from "react";
 import "../../style/cardaula.css"
 import GroupIcon from '@mui/icons-material/Group';
-import Image from "../../img/pessoa-autentica-1024x717.jpg"
+import Image from "../images/png/logo-black.png"
 import Avatar from '@mui/material/Avatar';
 
 const AvatarImage = () => {

@@ -1,6 +1,6 @@
 import React from "react";
 import "../../style/schedules.css"
-import Image from "../../img/pessoa-autentica-1024x717.jpg"
+import Image from "../images/png/logo-black.png"
 import Avatar from '@mui/material/Avatar';
 
 const AvatarImage = () => {

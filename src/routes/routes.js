@@ -17,7 +17,7 @@ const Routering = () => {
                 <Route path="/minhas-aulas" element={''}/>
                 <Route path="/minhas-aulas" element={''}/>
                 <Route path="/pesquisa" element={<OpenSearch/>}/>
-                <Route path="/pesquisa" element={<ProfessorDashBoard/>}/>
+                <Route path="/pesquisa2" element={<ProfessorDashBoard/>}/>
                 <Route path="/google-login" element={<GoogleLogin/>}/>
             </Routes>
         </Router>
