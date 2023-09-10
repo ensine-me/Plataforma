@@ -26,12 +26,10 @@ const chamaSwal = () => {
       Swal.fire({
         icon: 'info',
         title: 'Redirecionando...',
-        timer: 2000,
+        timer: 500,
         showConfirmButton: false,
-        onClose: () => {
-          // Redireciona para a página certa aqui!!!!
-          window.location.href = 'sua_pagina_de_aulas.html';
-        }
+      }).then((result) => {
+        window.location.href = "/minhas-aulas";
       });
     }
   });
@@ -89,7 +87,7 @@ const MarcarAula = () => {
       console.log(data);
     });
     chamaSwal();
-    document.getElementById("marcarAulaContainer").style.display = "none";
+    document.getElementById("marcarAulaContainer").style.visibility = "hidden";
   }
 
   return (

@@ -5,7 +5,7 @@ import MateriaProfessor from "../components/materiaProfessor"
 import MarcarAula from "../components/marcarAula"
 
 const chamaMarcarAula = () => {
-    document.getElementById("marcarAulaContainer").style.display = "flex";
+    document.getElementById("marcarAulaContainer").style.visibility = "visible";
 }
 
 const PerfilProfessor = () => {
