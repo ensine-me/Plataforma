@@ -1,9 +1,12 @@
-import sPerfil from "../styles/Perfil.module.css"
+import MiniDrawer from "../components/SideBar"
+import sPerfil from "../style/perfil.module.css"
 
 const PerfilAluno = () => {
     return (
         <>
+            <MiniDrawer />
             <div className={sPerfil.box}>
+                <div className={sPerfil.pesquisa}>Barra de pesquisa</div>
                 <div className={sPerfil.quadrados}>
                     <div className={sPerfil.quadrado}>
                         <div className={sPerfil.fotoNivel}>

@@ -1,5 +1,5 @@
 import React from "react";
-import sFormacaoCard from "../styles/FormacaoCard.module.css"
+import sFormacaoCard from "../style/formacaoCard.module.css"
 
 const FormacaoCard = ({instituicao, tipo, periodo}) => {
     return (

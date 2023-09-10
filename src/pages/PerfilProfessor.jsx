@@ -1,11 +1,14 @@
-import sPerfil from "../styles/PerfilProfessor.module.css"
+import MiniDrawer from "../components/SideBar"
+import sPerfil from "../style/perfilProfessor.module.css"
 import FormacaoCard from "../components/FormacaoCard"
-import MateriaProfessor from "../components/MateriaProfessor"
+import MateriaProfessor from "../components/materiaProfessor"
 
 const PerfilProfessor = () => {
     return (
         <>
+            <MiniDrawer />
             <div className={sPerfil.box}>
+                <div className={sPerfil.pesquisa}>Barra de pesquisa</div>
                 <div className={sPerfil.quadrados}>
                     <div className={sPerfil.infosBotoes}>
                         <div className={sPerfil.quadrado}>
