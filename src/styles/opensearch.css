@@ -1,0 +1,53 @@
+.contentOpenSearch{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.contentOpenSearch .boxOpenSearch{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contentOpenSearch .boxesProcuredOpenSearch{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: row;
+}
+
+.boxesProcuredOpenSearch .boxOpenSearch{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+}
+
+.boxOpenSearch .listCardsOpenSearch{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 10px;
+}
+
+.listCardsOpenSearch .contentListOpenSearch{
+    overflow-x: hidden;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-sizing: border-box;
+    padding: 5px;
+}
+
+.contentListOpenSearch::-webkit-scrollbar{
+    display: none;
+}

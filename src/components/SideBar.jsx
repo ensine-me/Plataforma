@@ -17,9 +17,9 @@ import SchoolIcon from '@mui/icons-material/School';
 import EmailIcon from '@mui/icons-material/Email';
 import ProfileIcon from '@mui/icons-material/AccountBox';
 
-import sSideBar from '../style/sidebar.module.css'
-import '../style/app.module.css'
-import Logo from '../components/logo'
+import sSideBar from '../styles/Sidebar.module.css'
+import '../styles/App.module.css'
+import Logo from '../components/Logo'
 
 const drawerWidth = 240;
 

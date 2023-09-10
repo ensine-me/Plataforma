@@ -1,5 +1,5 @@
 import React from "react";
-import sMateriaProfessor from '../style/materiaProfessor.module.css'
+import sMateriaProfessor from '../styles/MateriaProfessor.module.css'
 
 const MateriaProfessor = ({materia}) => {
     return (

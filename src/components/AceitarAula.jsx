@@ -1,4 +1,4 @@
-import cssPoggers from "../style/marcarAula.module.css"
+import cssPoggers from "../styles/MarcarAula.module.css"
 import DateTimePickerComponent from "../components/DateTimePickerComponent"
 import MultiTextField from "../components/MultiTextField"
 import Swal from "sweetalert2"

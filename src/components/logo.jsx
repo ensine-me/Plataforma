@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 
-import sLogo from '../style/logo.module.css'
+import sLogo from '../styles/Logo.module.css'
 
-import LogoSvg from './images/svg/icon-modified.svg'
+import LogoSvg from '../assets/images/svg/icon-modified.svg'
 
 const Logo = () => {
     return <div className={sLogo.logoContainer}>
