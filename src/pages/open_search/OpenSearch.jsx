@@ -74,6 +74,7 @@ function OpenSearch() {
                     </div>
                 </div>
 
+                
                 <h1>Professores</h1>
                 <div className="boxesProcuredOpenSearch">
                     <div className="boxOpenSearch">
@@ -85,6 +86,7 @@ function OpenSearch() {
                                             key={index}
                                             nome={professor.nome}
                                             materias={professor.materias}
+                                            id={professor.id}
                                         />
                                     )
                                 })}
