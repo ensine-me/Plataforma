@@ -6,15 +6,8 @@ import Image from "../images/png/logo-black.png"
 import Rating from '@mui/material/Rating';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
+import DisciplinaDoProfessor from '../DisciplinaDoProfessor';
 
-const MattersUser = () => {
-    return (
-        <Stack direction="row" spacing={1}>
-          <Chip label="Matemática" />
-          <Chip label="Fisíca"/>
-        </Stack>
-      );
-}
 
 const LevelUser = () => {
     return (
@@ -55,7 +48,7 @@ const AvatarImage = () => {
     )
 }
 
-function CardProfessor() {
+function CardProfessor({nome, materias, preco}) {
     
     return(
         <div className="carProfessor">
@@ -65,11 +58,15 @@ function CardProfessor() {
             </div>
             <div className="boxesInfoUser">
                 <div className="box">
-                    <strong>Mauru César</strong>
+                    <strong>{nome}</strong>
                     <LevelUser/>
                 </div>
                 <div className="box">
-                    <MattersUser/>
+                    {materias.map((disciplina, index) => {
+                        return (
+                            <DisciplinaDoProfessor key={index} disciplina={disciplina.nome} />
+                        )
+                    })}
                 </div>
                 <div className="box">
                     <span><b>Hora Aula: R$20,00</b></span>
