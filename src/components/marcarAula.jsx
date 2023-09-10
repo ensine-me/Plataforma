@@ -48,8 +48,6 @@ const MarcarAula = () => {
     console.log("eventDescription:", eventDescription)
   }, [start, end, eventName, eventDescription])
 
-
-
   async function createCalendarEvent() {
 
     const event = {

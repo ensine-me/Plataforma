@@ -14,7 +14,6 @@ const PerfilProfessor = () => {
             <MarcarAula />
             <MiniDrawer />
             <div className={sPerfil.box}>
-                <div className={sPerfil.pesquisa}>Barra de pesquisa</div>
                 <div className={sPerfil.quadrados}>
                     <div className={sPerfil.infosBotoes}>
                         <div className={sPerfil.quadrado}>
