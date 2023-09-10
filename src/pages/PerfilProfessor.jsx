@@ -2,10 +2,16 @@ import MiniDrawer from "../components/SideBar"
 import sPerfil from "../style/perfilProfessor.module.css"
 import FormacaoCard from "../components/FormacaoCard"
 import MateriaProfessor from "../components/materiaProfessor"
+import MarcarAula from "../components/marcarAula"
+
+const chamaMarcarAula = () => {
+    document.getElementById("marcarAulaContainer").style.display = "flex";
+}
 
 const PerfilProfessor = () => {
     return (
         <>
+            <MarcarAula />
             <MiniDrawer />
             <div className={sPerfil.box}>
                 <div className={sPerfil.pesquisa}>Barra de pesquisa</div>
@@ -22,7 +28,7 @@ const PerfilProfessor = () => {
                         </div>
                         <div className={sPerfil.quadrado}>
                             <div className={sPerfil.buttons}>
-                                <button className={sPerfil.button}>Solicitar aula</button>
+                                <button onClick={chamaMarcarAula} className={sPerfil.button}>Solicitar aula</button>
                                 <button className={sPerfil.button}>Entrar em contato</button>
                             </div>
                             <div className={sPerfil.horaAula}>
@@ -35,11 +41,11 @@ const PerfilProfessor = () => {
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus.
                         </div>
                         <div className={sPerfil.materias}>
-                            <MateriaProfessor materia={"Geografia"}/>
-                            <MateriaProfessor materia={"Matemática"}/>
-                            <MateriaProfessor materia={"História"}/>
-                            <MateriaProfessor materia={"Artes"}/>
-                            <MateriaProfessor materia={"Biologia"}/>
+                            <MateriaProfessor materia={"Geografia"} />
+                            <MateriaProfessor materia={"Matemática"} />
+                            <MateriaProfessor materia={"História"} />
+                            <MateriaProfessor materia={"Artes"} />
+                            <MateriaProfessor materia={"Biologia"} />
                         </div>
                     </div>
                     <div className={sPerfil.divisor}></div>

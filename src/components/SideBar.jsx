@@ -20,6 +20,7 @@ import ProfileIcon from '@mui/icons-material/AccountBox';
 import sSideBar from '../style/sidebar.module.css'
 import '../style/app.module.css'
 import Logo from '../components/logo'
+import SearchIcon from '@mui/icons-material/Search';
 
 const drawerWidth = 240;
 
@@ -89,7 +90,7 @@ export default function MiniDrawer() {
         </DrawerHeader>
         <Divider />
         <List>
-          {['Home', 'Minhas aulas', 'Mensagens', 'Perfil'].map((text, index) => (
+          {['Home', 'Minhas aulas', 'Mensagens', 'Perfil', 'Pesquisa'].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
               <Link to={getLinkByIndex(index)}>
                 <ListItemButton
@@ -130,6 +131,8 @@ function IconIndex({ index }) {
       return <EmailIcon />
     case 3:
       return <ProfileIcon />
+    case 4:
+      return <SearchIcon />
     default:
       return <EmailIcon />;
   }
@@ -145,6 +148,8 @@ function getLinkByIndex(index) {
       return "/mensagens";
     case 3:
       return "/perfil";
+    case 4:
+      return "/pesquisa-aberta";
     default:
       return "/";
   }
