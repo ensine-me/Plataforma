@@ -26,8 +26,8 @@ const Routering = () => {
                         <Route path="pesquisa-aberta" element={<OpenSearch />} />
                         <Route path="pesquisa" element={<ProfessorDashBoard />} />
                         <Route path="google-login" element={<GoogleLogin />} />
-                        <Route path="escolher-materias" element={<EscolherMaterias />} />
                     </Route>
+                    <Route path="escolher-materias" element={<EscolherMaterias />} />
                 </Routes>
             </SessionChecker>
         </Router>

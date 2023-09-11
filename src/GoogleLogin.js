@@ -1,4 +1,5 @@
 import { useSession, useSupabaseClient, useSessionContext } from '@supabase/auth-helpers-react';
+import { useNavigate } from "react-router-dom";
 
 // FAVOR NÃO MEXER NESTE ARQUIVO DA SILVA
 // Ele é o arquivo do Login
@@ -7,6 +8,7 @@ import { useSession, useSupabaseClient, useSessionContext } from '@supabase/auth
   const session = useSession(); // user, quando a sessão existir temos um usuario.
   const supabase = useSupabaseClient(); // talk to supabase;
   const { isLoading } = useSessionContext();
+  const navigate = useNavigate();
 
   if(isLoading){
     return <></>
@@ -22,6 +24,8 @@ import { useSession, useSupabaseClient, useSessionContext } from '@supabase/auth
     if(error){
       alert("Error loggin into google provider with supabase");
       console.log(error);
+    } else {
+      navigate("/escolher-materias");
     }
   }
 
@@ -29,7 +33,7 @@ import { useSession, useSupabaseClient, useSessionContext } from '@supabase/auth
     await supabase.auth.signOut();
   }
 
-  console.log(session);
+  // console.log(session);
 
   return (
     <div className="GoogleLogin">

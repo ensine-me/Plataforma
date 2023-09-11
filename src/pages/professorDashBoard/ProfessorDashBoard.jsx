@@ -3,7 +3,6 @@ import "../../style/professordash.css"
 import SideBar from "../../components/SideBar";
 import Search from "../../components/search/Search";
 import CardAula from "../../components/cardAula/CardAula";
-import SchedulesClasses from "../../components/scheduleClasses/SchedulesClasses";
 
 function ProfessorDashBoard() {
     return (

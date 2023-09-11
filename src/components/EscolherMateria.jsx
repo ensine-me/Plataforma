@@ -3,9 +3,14 @@ import styles from '../style/escolherMaterias.module.css'
 import HomeIcon from '@mui/icons-material/Home';
 import BotaoDisciplina from '../components/BotaoDisciplina';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useSession } from '@supabase/auth-helpers-react';
+import { login } from '../functions/login';
 
 const EscolherMaterias = () => {
+  const session = useSession();
+  const navigate = useNavigate();
+
   const [isCheckedMatematica, setIsCheckedMatematica] = useState(false);
   const [isCheckedPortugues, setIsCheckedPortugues] = useState(false);
   const [isCheckedIngles, setIsCheckedIngles] = useState(false);
@@ -18,6 +23,7 @@ const EscolherMaterias = () => {
   const [isCheckedSociologia, setIsCheckedSociologia] = useState(false);
   const [isCheckedArtes, setIsCheckedArtes] = useState(false);
 
+  // função que cadastra o usuário no banco
   const handleSubmit = () => {
     const checkedDisciplinas = [];
     if (isCheckedMatematica) checkedDisciplinas.push('Matematica');
@@ -31,7 +37,36 @@ const EscolherMaterias = () => {
     if (isCheckedFilosofia) checkedDisciplinas.push('Filosofia');
     if (isCheckedSociologia) checkedDisciplinas.push('Sociologia');
     if (isCheckedArtes) checkedDisciplinas.push('Artes');
-    console.log(checkedDisciplinas);
+
+    const materiasFormatoJSON = checkedDisciplinas.map((disciplina) => {
+      return {
+        "nome": disciplina
+      }
+    })
+
+    const objUsuario = {
+      "nome": session.user.user_metadata.full_name,
+      "email": session.user.email,
+      "senha": session.user.email,
+      "materias": materiasFormatoJSON
+    }
+
+    const url = "http://localhost:8080/usuarios/cadastrar";
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(objUsuario)
+    }).then((response) => {
+
+      if (response.ok) {
+        //logando
+        login(session.user.email, session.user.email);
+        //indo pra home
+        navigate("/");
+      }
+    });
   }
 
   return (
