@@ -1,10 +1,7 @@
 import React from "react";
 import "../../style/opensearch.css";
 import SideBar from "../../components/SideBar";
-import Search from "../../components/search/Search";
 import CardProfessor from "../../components/carProfessor/CardProfessor"
-import CardAula from "../../components/cardAula/CardAula"
-import "../../style/search.css"
 import SearchIcon from '@mui/icons-material/Search';
 import { useState } from 'react';
 
@@ -73,8 +70,6 @@ function OpenSearch() {
                         <SearchIcon fontSize="large" color="success" />
                     </div>
                 </div>
-
-
                 <h1>Professores</h1>
                 <div className="boxesProcuredOpenSearch">
                     <div className="boxOpenSearch">

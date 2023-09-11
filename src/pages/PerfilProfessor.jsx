@@ -1,8 +1,7 @@
-import React from "react"
+import React, { useEffect } from "react"
 import MiniDrawer from "../components/SideBar"
 import sPerfil from "../style/perfilProfessor.module.css"
 import FormacaoCard from "../components/FormacaoCard"
-import MateriaProfessor from "../components/materiaProfessor"
 import MarcarAula from "../components/marcarAula"
 import DisciplinaDoProfessor from "../components/DisciplinaDoProfessor"
 import { useState } from "react"
@@ -19,33 +18,40 @@ const PerfilProfessor = () => {
     const idProfessor = url.searchParams.get('id');
     const [professor, setProfessor] = useState();
     const [materias, setMaterias] = useState([]);
-    const nome = professor.nome;
+    const [formacoes, setFormacoes] = useState([]);
 
-    fetch('http://localhost:8080/usuarios/professor/busca?id=' + idProfessor, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtcmJlYXN0MUBlbWFpbC5jb20iLCJpYXQiOjE2OTM2MTkyMzgsImV4cCI6MTY5NzIxOTIzOH0.Pu3oSmnC6iTZZ_-NQXezwwj4IiG6rle59zOdbwucfEXAgHy-N77JjNZomOdWPO7hflO0V7IopaDUNRrprn-qtw'
-        },
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Erro na requisição');
-            }
-            return response.json();
+    useEffect(() => {
+        fetch('http://localhost:8080/usuarios/professor/busca?id=' + idProfessor, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtcmJlYXN0MUBlbWFpbC5jb20iLCJpYXQiOjE2OTM2MTkyMzgsImV4cCI6MTY5NzIxOTIzOH0.Pu3oSmnC6iTZZ_-NQXezwwj4IiG6rle59zOdbwucfEXAgHy-N77JjNZomOdWPO7hflO0V7IopaDUNRrprn-qtw'
+            },
         })
-        .then(data => {
-            // Faça algo com os dados da resposta
-            setProfessor(data);
-            setMaterias(data.materias);
-        })
-        .catch(error => {
-            // Lide com erros
-            console.error(error);
-        });
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro na requisição');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Faça algo com os dados da resposta
+                setProfessor(data);
+                setMaterias(data.materias);
+                setFormacoes(data.formacoes);
+            })
+            .catch(error => {
+                // Lide com erros
+                console.error(error);
+            }); 
+    }, [idProfessor]);
     return (
         <>
-            <MarcarAula />
+            <MarcarAula nomeProfessor={professor && professor.nome}
+                idProfessor={professor && professor.id}
+                emailProfessor={professor && professor.email}
+                materias={materias}
+            />
             <MiniDrawer />
             <div className={sPerfil.box}>
                 <div className={sPerfil.quadrados}>
@@ -55,8 +61,7 @@ const PerfilProfessor = () => {
                                 fotonivel
                             </div>
                             <div className={sPerfil.estrelas}>
-                                <p>{nome}</p>
-                                estrelas
+                                <h3>{professor && professor.nome}</h3>
                             </div>
                         </div>
                         <div className={sPerfil.quadrado}>
@@ -71,7 +76,8 @@ const PerfilProfessor = () => {
                     </div>
                     <div className={sPerfil.retangulo}>
                         <div className={sPerfil.descricao}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus.
+                            <h4>Descrição</h4>
+                            {professor && professor.descricao}
                         </div>
                         <div className={sPerfil.perfilMaterias}>
                             {materias.map((disciplina, index) => {
@@ -83,23 +89,20 @@ const PerfilProfessor = () => {
                     </div>
                     <div className={sPerfil.divisor}></div>
                     <div className={sPerfil.retangulo}>
-                        Formações
+                        <h5>Formações</h5>
                         <div className={sPerfil.formacoes}>
-                            <FormacaoCard
-                                instituicao={"Universidade Presbiteriana Mackenzie"}
-                                tipo={"Bacharelado em matemática"}
-                                periodo={"2010 - 2014"}
-                            />
-                            <FormacaoCard
-                                instituicao={"Faculdade de tecnologia bandeirantes"}
-                                tipo={"Bacharelado em Ciência da computação"}
-                                periodo={"2015 - 2019"}
-                            />
-                            <FormacaoCard
-                                instituicao={"Instituto de matemática e estatística da Universidade de São Paulo"}
-                                tipo={"Licenciatura em matemática"}
-                                periodo={"2018 - 2022"}
-                            />
+                            {formacoes.map((formacao, index) => {
+                                return (
+                                    <FormacaoCard
+                                        key={index}
+                                        instituicao={formacao.instituicao}
+                                        nomeCurso={formacao.nomeCurso}
+                                        tipoFormacao={formacao.tipoFormacao}
+                                        dataInicio={formacao.dtInicio}
+                                        dataTermino={formacao.dtTermino}
+                                    />
+                                )
+                            })}
                         </div>
                     </div>
                 </div>

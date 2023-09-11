@@ -6,6 +6,18 @@
   --shadowInvertida: inset 0 0 5px rgba(45, 45, 45, 0.5);
 }
 
+body::-webkit-scrollbar {
+  width: 1em;
+}
+
+body::-webkit-scrollbar-track {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgba(14, 204, 93, 0.17);
+}
+
 a {
   text-decoration: none;
   color: black;
