@@ -1,7 +1,6 @@
 import React from 'react'
 import styles from '../style/CardAula.module.css'
 import GroupsIcon from '@mui/icons-material/Groups';
-import '../style/reset.css'
 
 const CardAula = ({
   disciplina,
