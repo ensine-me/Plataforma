@@ -23,7 +23,7 @@ function OpenSearch() {
             })
                 .then(response => {
                     if (!response.ok) {
-                    throw new Error('Erro na requisição');
+                        throw new Error('Erro na requisição');
                     }
                     return response.json();
                 })
@@ -31,7 +31,7 @@ function OpenSearch() {
                     // Faça algo com os dados da resposta
                     setProfessores(data);
 
-                    
+
                 })
                 .catch(error => {
                     // Lide com erros
@@ -47,7 +47,7 @@ function OpenSearch() {
             })
                 .then(response => {
                     if (!response.ok) {
-                    throw new Error('Erro na requisição');
+                        throw new Error('Erro na requisição');
                     }
                     return response.json();
                 })
@@ -55,7 +55,7 @@ function OpenSearch() {
                     // Faça algo com os dados da resposta
                     setProfessores(data);
 
-                    
+
                 })
                 .catch(error => {
                     // Lide com erros
@@ -74,7 +74,7 @@ function OpenSearch() {
                     </div>
                 </div>
 
-                
+
                 <h1>Professores</h1>
                 <div className="boxesProcuredOpenSearch">
                     <div className="boxOpenSearch">

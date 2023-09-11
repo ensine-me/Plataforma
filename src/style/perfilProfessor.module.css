@@ -97,7 +97,7 @@
     width: 60%;
 }
 
-.materias {
+.perfilMaterias {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
