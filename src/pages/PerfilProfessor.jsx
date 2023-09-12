@@ -25,7 +25,7 @@ const PerfilProfessor = () => {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtcmJlYXN0MUBlbWFpbC5jb20iLCJpYXQiOjE2OTM2MTkyMzgsImV4cCI6MTY5NzIxOTIzOH0.Pu3oSmnC6iTZZ_-NQXezwwj4IiG6rle59zOdbwucfEXAgHy-N77JjNZomOdWPO7hflO0V7IopaDUNRrprn-qtw'
+                'Authorization': 'Bearer '+JSON.parse(sessionStorage.getItem("usuario")).token
             },
         })
             .then(response => {

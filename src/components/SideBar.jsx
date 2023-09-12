@@ -1,6 +1,7 @@
 import React from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import { Link } from "react-router-dom";
+import '../style/app.module.css'
 
 import MuiDrawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
@@ -18,9 +19,9 @@ import EmailIcon from '@mui/icons-material/Email';
 import ProfileIcon from '@mui/icons-material/AccountBox';
 
 import sSideBar from '../style/sidebar.module.css'
-import '../style/app.module.css'
 import Logo from '../components/logo'
 import SearchIcon from '@mui/icons-material/Search';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const drawerWidth = 240;
 
@@ -116,6 +117,32 @@ export default function MiniDrawer() {
           ))}
         </List>
         <Divider />
+        <List>
+          {['logout'].map((text, index) => (
+            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
+              <Link to={getLinkByIndexTwo(index)}>
+                <ListItemButton
+                  sx={{
+                    minHeight: 48,
+                    justifyContent: open ? 'initial' : 'center',
+                    px: 2.5,
+                  }}
+                >
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : 'auto',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    <IconIndexTwo index={index} />
+                  </ListItemIcon>
+                  <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+                </ListItemButton>
+              </Link>
+            </ListItem>
+          ))}
+        </List>
       </Drawer>
     </>
   );
@@ -150,6 +177,26 @@ function getLinkByIndex(index) {
       return "/perfil";
     case 4:
       return "/pesquisa-aberta";
+    case 5:
+      return "/google-login";
+    default:
+      return "/";
+  }
+}
+
+function IconIndexTwo({ index }) {
+  switch (index) {
+    case 0:
+      return <LogoutIcon />;
+    default:
+      return <LogoutIcon />;
+  }
+}
+
+function getLinkByIndexTwo(index) {
+  switch (index) {
+    case 0:
+      return "/google-login";
     default:
       return "/";
   }

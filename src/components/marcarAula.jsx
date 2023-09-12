@@ -50,6 +50,7 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias }) =>
   const startUTC = new Date(start.toISOString());
   startUTC.setUTCHours(startUTC.getUTCHours() - 3);
   const dataFormatada = startUTC.toISOString();
+  
   async function createCalendarEvent() {
     if (nomeProfessor != null && emailProfessor != null) {
       const bodyJsonData = {
