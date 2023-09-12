@@ -34,8 +34,8 @@ const chamaSwal = () => {
 }
 
 const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias }) => {
-  const [start, setStart] = useState(dayjs('2023-09-09T21:30'))
-  const [end, setEnd] = useState(dayjs('2023-09-09T21:30'))
+  const [start, setStart] = useState(dayjs()) // marcando o horário de agora apartir do Google
+  const [end, setEnd] = useState(dayjs())
   const [eventName, setEventName] = useState("");
   const [eventDescription, setEventDescription] = useState("");
 
