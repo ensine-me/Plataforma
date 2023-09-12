@@ -47,6 +47,9 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias }) =>
     console.log("eventName:", eventName)
     console.log("eventDescription:", eventDescription)
   }, [start, end, eventName, eventDescription])
+  const startUTC = new Date(start.toISOString());
+  startUTC.setUTCHours(startUTC.getUTCHours() - 3);
+  const dataFormatada = startUTC.toISOString();
   async function createCalendarEvent() {
     if (nomeProfessor != null && emailProfessor != null) {
       const bodyJsonData = {
@@ -58,7 +61,7 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias }) =>
         "materia": {
           "nome": document.getElementById("selectMateria").value
         },
-        "dataHora": start.toISOString().replace(/\.\d{3}Z$/, ''),
+        "dataHora": dataFormatada,
         "limiteParticipantes": parseInt(document.getElementById("maxParticipantes").value, 10),
         "alunos": [{
           "id": JSON.parse(sessionStorage.getItem("usuario")).userId
