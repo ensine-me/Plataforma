@@ -52,7 +52,6 @@ const PerfilProfessor = () => {
                 emailProfessor={professor && professor.email}
                 materias={materias}
             />
-            <MiniDrawer />
             <div className={sPerfil.box}>
                 <div className={sPerfil.quadrados}>
                     <div className={sPerfil.infosBotoes}>

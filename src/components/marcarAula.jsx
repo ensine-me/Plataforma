@@ -13,7 +13,7 @@ const chamaSwal = () => {
   // acredito que nem precise.
   Swal.fire({
     icon: 'success',
-    title: 'Aula aceita',
+    title: 'Aula solicitada',
     text: 'Verifique seu Google Agenda',
     showCancelButton: false,
     showConfirmButton: true,
@@ -47,7 +47,6 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias }) =>
     console.log("eventName:", eventName)
     console.log("eventDescription:", eventDescription)
   }, [start, end, eventName, eventDescription])
-
   async function createCalendarEvent() {
     if (nomeProfessor != null && emailProfessor != null) {
       const bodyJsonData = {
@@ -59,10 +58,10 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias }) =>
         "materia": {
           "nome": document.getElementById("selectMateria").value
         },
-        "dataHora": start.toISOString(),
-        "qtdAlunos": document.getElementById("maxParticipantes").value,
+        "dataHora": start.toISOString().replace(/\.\d{3}Z$/, ''),
+        "limiteParticipantes": parseInt(document.getElementById("maxParticipantes").value, 10),
         "alunos": [{
-          "id": 2
+          "id": JSON.parse(sessionStorage.getItem("usuario")).userId
         }],
         "status": "SOLICITADO",
         "duracaoSegundos": "3600"
@@ -71,7 +70,7 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias }) =>
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtcmJlYXN0MUBlbWFpbC5jb20iLCJpYXQiOjE2OTQzOTAxMzMsImV4cCI6MTY5Nzk5MDEzM30.oOXhoKnvMVmXfnn7Q59WEsp17VdY96qnA7INVXVvuqGf93Je3nsAKL9hkOrVllWvc9xvR7OLucMMzC5Gl0uQsA'
+            'Authorization': 'Bearer '+JSON.parse(sessionStorage.getItem("usuario")).token
         },
         body: JSON.stringify(bodyJsonData)
       })
@@ -87,13 +86,13 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias }) =>
           console.error(error);
         });
     }
+    const emailFormatado = ""+emailProfessor+"";
 
     const event = {
       'summary': eventName,
       'description': eventDescription,
       'attendees': [
-        { 'email': 'jvsalss@gmail.com'},
-        //{ 'email': { emailProfessor }} // - Email do professor, comentado pq o e-mail nao existe no google
+        { 'email': emailFormatado}
       ],
       'start': {
         'dateTime': start.toISOString(),
