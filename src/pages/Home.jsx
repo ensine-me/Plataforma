@@ -60,7 +60,7 @@ const Home = () => {
 
   //buscando os professores
   useEffect(() => {
-    if (loginOk && disciplinas.length > 0) {
+    if (loginOk && isVariableInSessionStorage("usuario") && disciplinas.length > 0) {
       let urlProfessores = `http://localhost:8080/usuarios/professores-recomendados?disciplinas=${disciplinas[0]}`;
       for (let i = 1; i < disciplinas.length; i++) {
         urlProfessores += `&disciplinas=${disciplinas[i]}`;
