@@ -18,8 +18,8 @@ export function login(email, senha) {
     }).then((response) => {
         if (response.ok) {
             response.json().then((data) => {
-                console.log("Login feito com sucesso")
-                console.log("Data: ", data);
+                // console.log("Login feito com sucesso")
+                // console.log("Data: ", data);
                 sessionStorage.setItem("usuario", JSON.stringify(data));
                 return true;
             })

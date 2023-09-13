@@ -1,5 +1,5 @@
 .container_card_aula {
-    width: 250px;
+    width: 300px;
     height: 180px;
     border: 1px solid #E5E5E5;
     box-shadow: 1px 1px 5px;
@@ -96,4 +96,5 @@
     background-color: #cecece;
     background-size: cover;
     background-position: center;
+    flex-shrink: 0;
 }

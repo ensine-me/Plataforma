@@ -1,5 +1,4 @@
 import { useSession, useSupabaseClient, useSessionContext } from '@supabase/auth-helpers-react';
-import { useNavigate } from "react-router-dom";
 
 // FAVOR NÃO MEXER NESTE ARQUIVO DA SILVA
 // Ele é o arquivo do Login
@@ -8,7 +7,6 @@ function GoogleLogin() {
   const session = useSession(); // user, quando a sessão existir temos um usuario.
   const supabase = useSupabaseClient(); // talk to supabase;
   const { isLoading } = useSessionContext();
-  const navigate = useNavigate();
 
   if (isLoading) {
     return <></>
