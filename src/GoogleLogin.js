@@ -29,11 +29,9 @@ function GoogleLogin() {
 
   async function signOut() {
     await supabase.auth.signOut();
-    window.location.href = "https://www.google.com"
+    window.location.href = "http://localhost:3001"
   }
 
-  // console.log(session);
-  // session ? signOut() : si
   return (
     <>
       {session ? signOut() : googleSignIn()}

@@ -1,5 +1,4 @@
 import React, { useEffect } from "react"
-import MiniDrawer from "../components/SideBar"
 import sPerfil from "../style/perfilProfessor.module.css"
 import FormacaoCard from "../components/FormacaoCard"
 import MarcarAula from "../components/marcarAula"
