@@ -45,8 +45,8 @@ function GoogleLogin() {
         console.error(error);
       });
 
+      window.location.href = "http://localhost:3001"
     await supabase.auth.signOut();
-    window.location.href = "http://localhost:3001"
   }
 
   return (
