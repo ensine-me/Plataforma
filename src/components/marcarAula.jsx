@@ -2,6 +2,7 @@ import cssPoggers from "../style/marcarAula.module.css"
 import DateTimePickerComponent from "./DateTimePickerComponent"
 import MultiTextField from "./MultiTextField"
 import BasicTextField from "./BasicTextField"
+import CloseIcon from '@mui/icons-material/Close';
 import Swal from "sweetalert2"
 import { useEffect, useState } from "react"
 import dayjs from "dayjs"
@@ -11,6 +12,7 @@ const chamaSwal = () => {
   // talvez e só talvez, seja necessário dar um none no quadradoCinza que é o nome do campo no css
   // que some com esse componente, tirei isso pq estava dando um erro de resize e como vai ir pra outra tela
   // acredito que nem precise.
+ 
   Swal.fire({
     icon: 'success',
     title: 'Aula solicitada',
@@ -50,7 +52,7 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias }) =>
   const startUTC = new Date(start.toISOString());
   startUTC.setUTCHours(startUTC.getUTCHours() - 3);
   const dataFormatada = startUTC.toISOString();
-  
+
   async function createCalendarEvent() {
     if (nomeProfessor != null && emailProfessor != null) {
       const bodyJsonData = {
@@ -74,7 +76,7 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias }) =>
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-            'Authorization': 'Bearer '+JSON.parse(sessionStorage.getItem("usuario")).token
+          'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("usuario")).token
         },
         body: JSON.stringify(bodyJsonData)
       })
@@ -90,13 +92,13 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias }) =>
           console.error(error);
         });
     }
-    const emailFormatado = ""+emailProfessor+"";
+    const emailFormatado = "" + emailProfessor + "";
 
     const event = {
       'summary': eventName,
       'description': eventDescription,
       'attendees': [
-        { 'email': emailFormatado}
+        { 'email': emailFormatado }
       ],
       'start': {
         'dateTime': start.toISOString(),
@@ -127,12 +129,17 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias }) =>
       console.log(data);
     });
     chamaSwal();
+    fechaModal();
+  }
+
+  const fechaModal = () => {
     document.getElementById("marcarAulaContainer").style.visibility = "hidden";
   }
 
   return (
     <>
-      <div id="marcarAulaContainer" className={cssPoggers.marcarAulaContainer}>
+      <div id="marcarAulaContainer" onClick={fechaModal} className={cssPoggers.marcarAulaContainer}>
+        <div className={cssPoggers.closeIcon}><CloseIcon sx={{ color: "#fff" }} /></div>
         <div id="quadradoCinza" className={cssPoggers.quadradoCinza}>
           <div className={cssPoggers.marcarAulaColuna}>
             <p className={cssPoggers.paragrafoMarcarAula}>Data de Inicio:</p>
