@@ -18,6 +18,8 @@ const PerfilProfessor = () => {
     const [professor, setProfessor] = useState();
     const [materias, setMaterias] = useState([]);
     const [formacoes, setFormacoes] = useState([]);
+    const [foto, setFoto] = useState([]);
+    const [preco, setPreco] = useState([]);
 
     useEffect(() => {
         fetch('http://localhost:8080/usuarios/professor/busca?id=' + idProfessor, {
@@ -38,6 +40,8 @@ const PerfilProfessor = () => {
                 setProfessor(data);
                 setMaterias(data.materias);
                 setFormacoes(data.formacoes);
+                setFoto(data.foto);
+                setPreco(data.precoHoraAula);
             })
             .catch(error => {
                 // Lide com erros
@@ -55,8 +59,8 @@ const PerfilProfessor = () => {
                 <div className={sPerfil.quadrados}>
                     <div className={sPerfil.infosBotoes}>
                         <div className={sPerfil.quadrado}>
-                            <div className={sPerfil.fotoNivel}>
-                                fotonivel
+                            <div style={{backgroundImage:`url(${foto})`}} className={sPerfil.fotoNivel}>
+                                
                             </div>
                             <div className={sPerfil.estrelas}>
                                 <h3>{professor && professor.nome}</h3>
@@ -68,7 +72,7 @@ const PerfilProfessor = () => {
                                 <button className={sPerfil.button}>Entrar em contato</button>
                             </div>
                             <div className={sPerfil.horaAula}>
-                                Hora aula: R$15,00
+                                Hora aula: R${preco}
                             </div>
                         </div>
                     </div>

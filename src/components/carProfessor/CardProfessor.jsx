@@ -8,7 +8,7 @@ import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import DisciplinaDoProfessor from '../DisciplinaDoProfessor';
 import { Link } from "react-router-dom";
-
+import { useState } from 'react';
 
 const LevelUser = () => {
     return (
@@ -37,24 +37,20 @@ const RatingUser = () => {
     );
 }
 
-const AvatarImage = () => {
-    return(
-        <div>
-            <Avatar
-                sx={{ width: 90, height: 90 }} 
-                src={Image} 
-                variant="rounded"
-            />
-        </div>
-    )
-}
 
-function CardProfessor({nome, materias, preco, id}) {
+function CardProfessor({nome, materias, preco, id, foto}) {
+    console.log(foto);
     return(
         <div className="carProfessor">
             <Link to={'/professor?id=' + id}>
                 <div className="apresetationUser">
-                    <AvatarImage/>
+                    <div>
+                        <Avatar
+                            sx={{ width: 90, height: 90 }} 
+                            src={foto} 
+                            variant="rounded"
+                        />
+                    </div>
                     <RatingUser/>
                 </div>
                 <div className="boxesInfoUser">
@@ -70,7 +66,7 @@ function CardProfessor({nome, materias, preco, id}) {
                         })}
                     </div>
                     <div className="box">
-                        <span><b>Hora Aula: R$20,00</b></span>
+                        <span><b>Hora Aula: R${preco}</b></span>
                     </div>
                 </div>
                 

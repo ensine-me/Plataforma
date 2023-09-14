@@ -54,6 +54,7 @@ const EscolherMaterias = () => {
       "nome": session.user.user_metadata.full_name,
       "email": session.user.email,
       "senha": session.user.email,
+      "foto": session.user.user_metadata.avatar_url,
       "materias": materiasFormatoJSON
     }
 
