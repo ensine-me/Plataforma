@@ -11,7 +11,6 @@ import { isVariableInSessionStorage } from '../functions/isVariableInSessionStor
 const Home = () => {
   const { isLoading, session } = useSessionContext();
   const navigate = useNavigate();
-  const [disciplinas, setDisciplinas] = useState([]);
   const [professores, setProfessores] = useState([]);
   const [loginOk, setLoginOk] = useState(false);
   const [aulas, setAulas] = useState([]);
@@ -41,7 +40,6 @@ const Home = () => {
   //pegando as disciplinas do usuário logado
   useEffect(() => {
     if (loginOk && isVariableInSessionStorage("usuario")) {
-      // console.log("usuário da sessão: " + sessionStorage.getItem("usuario"));
       const url = `http://localhost:8080/usuarios/buscar-por-id?id=${JSON.parse(sessionStorage.getItem("usuario")).userId}`;
       fetch(url, {
         method: 'GET',
@@ -53,40 +51,31 @@ const Home = () => {
         .then((response) => {
           if (response.status === 200) {
             response.json().then((data) => {
-              // console.log("data: " + JSON.stringify  (data));
-              setDisciplinas(data.materias.map(materia => materia.nome));
+
+              // Fetch professores here
+              let urlProfessores = `http://localhost:8080/usuarios/professores-recomendados?disciplinas=${data.materias[0].nome}`;
+              for (let i = 1; i < data.materias.length; i++) {
+                urlProfessores += `&disciplinas=${data.materias[i].nome}`;
+              };
+              fetch(urlProfessores, {
+                method: 'GET',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("usuario")).token
+                }
+              })
+                .then((response) => {
+                  if (response.status === 200) {
+                    response.json().then((data) => {
+                      setProfessores(data);
+                    });
+                  }
+                });
             });
           }
         });
     }
   }, [loginOk]);
-
-  //buscando os professores
-  useEffect(() => {
-    if (loginOk && isVariableInSessionStorage("usuario") && disciplinas.length > 0) {
-      let urlProfessores = `http://localhost:8080/usuarios/professores-recomendados?disciplinas=${disciplinas[0]}`;
-      for (let i = 1; i < disciplinas.length; i++) {
-        urlProfessores += `&disciplinas=${disciplinas[i]}`;
-      };
-      fetch(urlProfessores, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("usuario")).token
-        }
-      })
-        .then((response) => {
-          // console.log("response: " + response.status);
-          // console.log("disciplinas: " + disciplinas);
-          if (response.status === 200) {
-            response.json().then((data) => {  
-              setProfessores(data);
-              // console.log(professores);
-            });
-          }
-        });
-    }
-  }, [disciplinas, loginOk]);
 
   useEffect(() => {
     if (loginOk && isVariableInSessionStorage("usuario")) {
@@ -137,7 +126,7 @@ const Home = () => {
         Aulas abertas
       </h1>
       <div className={styles.home_aulas_abertas_container}>
-      {
+        {
           aulas.length === 0 ? (
             <p className={styles.home_nenhuma_aula}>Nenhuma aula encontrada</p>
           ) : (
