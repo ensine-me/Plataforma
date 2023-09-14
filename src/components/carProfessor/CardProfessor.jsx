@@ -39,7 +39,6 @@ const RatingUser = () => {
 
 
 function CardProfessor({nome, materias, preco, id, foto}) {
-    console.log(foto);
     return(
         <div className="carProfessor">
             <Link to={'/professor?id=' + id}>

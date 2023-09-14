@@ -116,6 +116,7 @@ const Home = () => {
                   avaliacao={4.5}
                   preco={professor.precoHoraAula}
                   disciplinas={professor.materias.map(materia => materia.nome)}
+                  id={professor.id}
                 />
               )
             })

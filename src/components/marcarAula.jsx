@@ -138,8 +138,8 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias }) =>
 
   return (
     <>
-      <div id="marcarAulaContainer" onClick={fechaModal} className={cssPoggers.marcarAulaContainer}>
-        <div className={cssPoggers.closeIcon}><CloseIcon sx={{ color: "#fff" }} /></div>
+      <div id="marcarAulaContainer" className={cssPoggers.marcarAulaContainer}>
+        <div className={cssPoggers.closeIcon} onClick={fechaModal}><CloseIcon sx={{ color: "#fff" }} /></div>
         <div id="quadradoCinza" className={cssPoggers.quadradoCinza}>
           <div className={cssPoggers.marcarAulaColuna}>
             <p className={cssPoggers.paragrafoMarcarAula}>Data de Inicio:</p>
