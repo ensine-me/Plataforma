@@ -1,19 +1,21 @@
 import MiniDrawer from "../components/SideBar"
 import sPerfil from "../style/perfil.module.css"
+import { useSession } from "@supabase/auth-helpers-react"
 
 const PerfilAluno = () => {
+    console.log(sessionStorage.getItem("usuario").nome);
     return (
         <>
             <MiniDrawer />
             <div className={sPerfil.box}>
-                <div className={sPerfil.pesquisa}>Barra de pesquisa</div>
                 <div className={sPerfil.quadrados}>
                     <div className={sPerfil.quadrado}>
-                        <div className={sPerfil.fotoNivel}>
-                            fotonivel
+                        <div className={sPerfil.fotoNivel}
+                    style={{ backgroundImage: JSON.parse(sessionStorage.getItem("usuario")).foto !== undefined ? `url(${JSON.parse(sessionStorage.getItem("usuario")).foto})` : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsCorUM2rzb77_a8FOOOBD-7UW6BdQR2Mhw40LOuc&s" }}
+                >
                         </div>
                         <div className={sPerfil.estrelas}>
-                            <p>Rodrigo Silva</p>
+                            <p>{JSON.parse(sessionStorage.getItem("usuario")).nome}</p>
                             estrelas
                         </div>
                     </div>
