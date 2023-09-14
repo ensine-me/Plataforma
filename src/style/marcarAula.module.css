@@ -2,8 +2,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    height: 100vh;
+    width: 90%;
+    height: 100%;
     backdrop-filter: blur(3px);
     position: absolute;
     visibility: hidden;
@@ -79,4 +79,24 @@
 
 .nomeAula {
     width: 100%;
+}
+
+.closeIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    background-color: rgba(255, 0, 0, 0.793);
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    margin-right: 650px;
+    margin-bottom: 450px;
+}
+
+
+.closeIcon:hover{
+    background-color: rgba(241, 67, 67, 0.793);
+    border: 1px solid var(--cinza);
 }

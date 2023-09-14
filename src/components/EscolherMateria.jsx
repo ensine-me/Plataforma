@@ -38,6 +38,12 @@ const EscolherMaterias = () => {
     if (isCheckedSociologia) checkedDisciplinas.push('Sociologia');
     if (isCheckedArtes) checkedDisciplinas.push('Artes');
 
+    if(checkedDisciplinas.length === 0) {
+      alert("Por favor, escolha ao menos uma disciplina");
+      return;
+    }
+
+
     const materiasFormatoJSON = checkedDisciplinas.map((disciplina) => {
       return {
         "nome": disciplina

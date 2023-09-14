@@ -24,7 +24,7 @@ const Home = () => {
       fetch(url).then((response) => {
         response.json().then((data) => {
           if (data) { //checa se estou cadastrado
-            if(!isVariableInSessionStorage("usuario")) { //checa se estou logado
+            if (!isVariableInSessionStorage("usuario")) { //checa se estou logado
               login(session.user.email, session.user.email); //loga!!
             }
             setLoginOk(true);
@@ -39,7 +39,7 @@ const Home = () => {
 
   //pegando as disciplinas do usuário logado
   useEffect(() => {
-    if (loginOk && isVariableInSessionStorage('usuario')) {
+    if (loginOk && isVariableInSessionStorage("usuario")) {
       // console.log("usuário da sessão: " + sessionStorage.getItem("usuario"));
       const url = `http://localhost:8080/usuarios/buscar-por-id?id=${JSON.parse(sessionStorage.getItem("usuario")).userId}`;
       fetch(url, {
@@ -50,10 +50,12 @@ const Home = () => {
         }
       })
         .then((response) => {
-          response.json().then((data) => {
-            // console.log("data: " + JSON.stringify  (data));
-            setDisciplinas(data.materias.map(materia => materia.nome));
-          });
+          if (response.status === 200) {
+            response.json().then((data) => {
+              // console.log("data: " + JSON.stringify  (data));
+              setDisciplinas(data.materias.map(materia => materia.nome));
+            });
+          }
         });
     }
   }, [loginOk]);

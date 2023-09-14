@@ -28,8 +28,25 @@ function GoogleLogin() {
   }
 
   async function signOut() {
+    fetch('http://localhost:8080/usuarios/logoff/'+ session.user.email, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("usuario")).token
+      },
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Erro na requisição');
+        }
+        return response.json();
+      })
+      .catch(error => {
+        console.error(error);
+      });
+
+      window.location.href = "http://localhost:3001"
     await supabase.auth.signOut();
-    //window.location.href = "http://localhost:3001"
   }
 
   return (
