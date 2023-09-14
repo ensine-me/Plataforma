@@ -21,6 +21,7 @@ export function login(email, senha) {
                 // console.log("Login feito com sucesso")
                 // console.log("Data: ", data);
                 sessionStorage.setItem("usuario", JSON.stringify(data));
+                console.log(sessionStorage.getItem("usuario"));
                 return true;
             })
         } else {

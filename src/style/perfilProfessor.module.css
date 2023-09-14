@@ -42,6 +42,8 @@
     height: 200px;
     border-radius: 16px;
     color: white;
+    background-size: cover;     
+    background-position: center;
 }
 
 .pesquisa {

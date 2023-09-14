@@ -29,7 +29,7 @@ function GoogleLogin() {
 
   async function signOut() {
     await supabase.auth.signOut();
-    window.location.href = "http://localhost:3001"
+    //window.location.href = "http://localhost:3001"
   }
 
   return (

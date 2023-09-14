@@ -39,8 +39,8 @@ const Home = () => {
 
   //pegando as disciplinas do usuário logado
   useEffect(() => {
-    if (loginOk) {
-      // console.log("usuário da sessão: " + sessionStorage.getItem("usuario"));
+    if (loginOk && sessionStorage.getItem("usuario") != null) {
+      console.log("usuário da sessão: " + sessionStorage.getItem("usuario"));
       const url = `http://localhost:8080/usuarios/buscar-por-id?id=${JSON.parse(sessionStorage.getItem("usuario")).userId}`;
       fetch(url, {
         method: 'GET',
@@ -74,7 +74,7 @@ const Home = () => {
       })
         .then((response) => {
           if (response.status === 200) {
-            response.json().then((data) => {
+            response.json().then((data) => {  
               setProfessores(data);
               // console.log(professores);
             });
@@ -94,10 +94,11 @@ const Home = () => {
             <p className={styles.home_nenhum_professor}>Nenhum professor encontrado</p>
           ) : (
             professores.map((professor) => {
+              console.log(professor.foto);
               return (
                 <CardProfessorHome
                   key={professor.id}
-                  urlFoto='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsCorUM2rzb77_a8FOOOBD-7UW6BdQR2Mhw40LOuc&s'
+                  urlFoto={professor.foto}
                   nome={professor.nome}
                   avaliacao={4.5}
                   preco={professor.precoHoraAula}
