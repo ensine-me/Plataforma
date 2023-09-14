@@ -50,10 +50,6 @@ const PerfilProfessor = () => {
                 console.error(error);
             });
     }, [idProfessor]);
-    console.log("Hora aula: " + professor && professor.precoHoraAula);
-    if (professor && professor.precoHoraAula === null) {
-        professor.precoHoraAula = "Não informado";
-    }
     return (
         <>
             <MarcarAula nomeProfessor={professor && professor.nome}
@@ -90,7 +86,6 @@ const PerfilProfessor = () => {
                                 })}
                             </div>
                             <div className={sPerfil.horaAula}>
-                                Hora aula: {professor && professor.precoHoraAula}
                                 Hora aula: R${preco}
                             </div>
                         </div>
