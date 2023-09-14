@@ -14,7 +14,7 @@ const CardProfessorHome = ({
         <div className={styles.card_professor}>
             <div
                 className={styles.card_professor_foto_container}
-                style={{ backgroundImage: `url(${urlFoto})` }}
+                style={{ backgroundImage: urlFoto !== undefined ? `url(${urlFoto})` : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsCorUM2rzb77_a8FOOOBD-7UW6BdQR2Mhw40LOuc&s" }}
             >
 
             </div>

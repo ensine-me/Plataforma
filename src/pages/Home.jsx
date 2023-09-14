@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from '../style/Home.module.css'
 import CardProfessorHome from '../components/CardProfessorHome'
-import CardAula from '../components/cardAula/CardAula'
+import CardAula from '../components/CardAula'
 import { useSessionContext } from "@supabase/auth-helpers-react";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -14,6 +14,7 @@ const Home = () => {
   const [disciplinas, setDisciplinas] = useState([]);
   const [professores, setProfessores] = useState([]);
   const [loginOk, setLoginOk] = useState(false);
+  const [aulas, setAulas] = useState([]);
 
   //verificando se o usuário está cadastrado no banco
   useEffect(() => {
@@ -75,6 +76,8 @@ const Home = () => {
         }
       })
         .then((response) => {
+          // console.log("response: " + response.status);
+          // console.log("disciplinas: " + disciplinas);
           if (response.status === 200) {
             response.json().then((data) => {  
               setProfessores(data);
@@ -84,6 +87,26 @@ const Home = () => {
         });
     }
   }, [disciplinas, loginOk]);
+
+  useEffect(() => {
+    if (loginOk && isVariableInSessionStorage("usuario")) {
+      const urlAulas = `http://localhost:8080/aulas/privacidade/PUBLICA`;
+      fetch(urlAulas, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("usuario")).token
+        }
+      })
+        .then((response) => {
+          if (response.status === 200) {
+            response.json().then((data) => {
+              setAulas(data);
+            });
+          }
+        });
+    }
+  }, [loginOk]);
 
   return (
     <div className={styles.home_container}>
@@ -96,7 +119,6 @@ const Home = () => {
             <p className={styles.home_nenhum_professor}>Nenhum professor encontrado</p>
           ) : (
             professores.map((professor) => {
-              console.log(professor.foto);
               return (
                 <CardProfessorHome
                   key={professor.id}
@@ -115,78 +137,26 @@ const Home = () => {
         Aulas abertas
       </h1>
       <div className={styles.home_aulas_abertas_container}>
-        <CardAula
-          disciplina='Matemática'
-          alunosCadastrados='3'
-          maxAlunos='6'
-          assunto='Gaussianas'
-          data='14/09/2021'
-          nomeProfessor='Maruse'
-          urlFotoProfessor='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFCdBM4y9bciDDNPr1vCnxg6j3ZUw3YfwHt3YG2_ucqg&s'
-        />
-        <CardAula
-          disciplina='Matemática'
-          alunosCadastrados='3'
-          maxAlunos='6'
-          assunto='Gaussianas'
-          data='14/09/2021'
-          nomeProfessor='Maruse'
-          urlFotoProfessor='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFCdBM4y9bciDDNPr1vCnxg6j3ZUw3YfwHt3YG2_ucqg&s'
-        />
-        <CardAula
-          disciplina='Matemática'
-          alunosCadastrados='3'
-          maxAlunos='6'
-          assunto='Gaussianas'
-          data='14/09/2021'
-          nomeProfessor='Maruse'
-          urlFotoProfessor='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFCdBM4y9bciDDNPr1vCnxg6j3ZUw3YfwHt3YG2_ucqg&s'
-        />
-        <CardAula
-          disciplina='Matemática'
-          alunosCadastrados='3'
-          maxAlunos='6'
-          assunto='Gaussianas'
-          data='14/09/2021'
-          nomeProfessor='Maruse'
-          urlFotoProfessor='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFCdBM4y9bciDDNPr1vCnxg6j3ZUw3YfwHt3YG2_ucqg&s'
-        />
-        <CardAula
-          disciplina='Matemática'
-          alunosCadastrados='3'
-          maxAlunos='6'
-          assunto='Gaussianas'
-          data='14/09/2021'
-          nomeProfessor='Maruse'
-          urlFotoProfessor='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFCdBM4y9bciDDNPr1vCnxg6j3ZUw3YfwHt3YG2_ucqg&s'
-        />
-        <CardAula
-          disciplina='Matemática'
-          alunosCadastrados='3'
-          maxAlunos='6'
-          assunto='Gaussianas'
-          data='14/09/2021'
-          nomeProfessor='Maruse'
-          urlFotoProfessor='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFCdBM4y9bciDDNPr1vCnxg6j3ZUw3YfwHt3YG2_ucqg&s'
-        />
-        <CardAula
-          disciplina='Matemática'
-          alunosCadastrados='3'
-          maxAlunos='6'
-          assunto='Gaussianas'
-          data='14/09/2021'
-          nomeProfessor='Maruse'
-          urlFotoProfessor='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFCdBM4y9bciDDNPr1vCnxg6j3ZUw3YfwHt3YG2_ucqg&s'
-        />
-        <CardAula
-          disciplina='Matemática'
-          alunosCadastrados='3'
-          maxAlunos='6'
-          assunto='Gaussianas'
-          data='14/09/2021'
-          nomeProfessor='Maruse'
-          urlFotoProfessor='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFCdBM4y9bciDDNPr1vCnxg6j3ZUw3YfwHt3YG2_ucqg&s'
-        />
+      {
+          aulas.length === 0 ? (
+            <p className={styles.home_nenhuma_aula}>Nenhuma aula encontrada</p>
+          ) : (
+            aulas.map((aula) => {
+              return (
+                <CardAula
+                  key={aula.id}
+                  disciplina={aula.materia.nome}
+                  alunosCadastrados={aula.alunos.length}
+                  maxAlunos={aula.limiteParticipantes}
+                  assunto={aula.titulo}
+                  data={aula.dataHora.split("T")[0].split("-").reverse().join("/")}
+                  nomeProfessor={aula.professor.nome}
+                  urlFotoProfessor={aula.professor.foto}
+                />
+              )
+            })
+          )
+        }
       </div>
     </div>
   )
