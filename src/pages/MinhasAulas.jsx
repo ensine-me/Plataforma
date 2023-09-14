@@ -43,7 +43,7 @@ const MinhasAulas = () => {
                 assunto={aula.titulo}
                 data={aula.dataHora.split("T")[0]}
                 nomeProfessor={aula.professor.nome}
-                urlFotoProfessor='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsCorUM2rzb77_a8FOOOBD-7UW6BdQR2Mhw40LOuc&s'
+                urlFotoProfessor={aula.professor.foto}
               />
             )
           }

@@ -39,7 +39,7 @@ const Home = () => {
 
   //pegando as disciplinas do usuário logado
   useEffect(() => {
-    if (loginOk) {
+    if (loginOk && isVariableInSessionStorage('usuario')) {
       // console.log("usuário da sessão: " + sessionStorage.getItem("usuario"));
       const url = `http://localhost:8080/usuarios/buscar-por-id?id=${JSON.parse(sessionStorage.getItem("usuario")).userId}`;
       fetch(url, {
