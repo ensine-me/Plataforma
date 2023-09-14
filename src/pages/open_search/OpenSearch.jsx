@@ -69,23 +69,17 @@ function OpenSearch() {
                     </div>
                 </div>
                 <h1>Professores</h1>
-                <div className="boxesProcuredOpenSearch">
-                    <div className="boxOpenSearch">
-                        <div className="listCardsOpenSearch">
-                            <div className="contentListOpenSearch">
-                                {professores.map((professor, index) => {
-                                    return (
-                                        <CardProfessor
-                                            key={index}
-                                            nome={professor.nome}
-                                            materias={professor.materias}
-                                            id={professor.id}
-                                        />
-                                    )
-                                })}
-                            </div>
-                        </div>
-                    </div>
+                <div className="contentListOpenSearch">
+                    {professores.map((professor, index) => {
+                        return (
+                            <CardProfessor
+                                key={index}
+                                nome={professor.nome}
+                                materias={professor.materias}
+                                id={professor.id}
+                            />
+                        )
+                    })}
                 </div>
             </div>
         </>
