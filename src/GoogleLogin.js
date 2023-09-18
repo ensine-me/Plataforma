@@ -28,7 +28,7 @@ function GoogleLogin() {
   }
 
   async function signOut() {
-    fetch('http://localhost:8080/usuarios/logoff/'+ session.user.email, {
+    fetch('http://localhost:8080/usuarios/logoff/' + session.user.email, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -44,9 +44,8 @@ function GoogleLogin() {
       .catch(error => {
         console.error(error);
       });
-
-      window.location.href = "http://localhost:3001"
     await supabase.auth.signOut();
+    window.location.href = "http://localhost:3001"
   }
 
   return (

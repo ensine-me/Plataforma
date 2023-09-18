@@ -16,7 +16,6 @@ const PerfilAluno = () => {
                         </div>
                         <div className={sPerfil.estrelas}>
                             <p>{JSON.parse(sessionStorage.getItem("usuario")).nome}</p>
-                            estrelas
                         </div>
                     </div>
                     <div className={sPerfil.retangulo}>
