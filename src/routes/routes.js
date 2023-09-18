@@ -25,11 +25,13 @@ const Routering = () => {
                         <Route path="minhas-aulas" element={<MinhasAulas />} />
                         <Route path="pesquisa-aberta" element={<OpenSearch />} />
                         <Route path="pesquisa" element={<ProfessorDashBoard />} />
-                        <Route path="google-login" element={<GoogleLogin />} />
                     </Route>
                     <Route path="escolher-materias" element={<EscolherMaterias />} />
                 </Routes>
             </SessionChecker>
+            <Routes>
+                <Route path="google-login" element={<GoogleLogin />} />
+            </Routes>
         </Router>
     );
 }

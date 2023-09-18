@@ -1,4 +1,5 @@
 import { useSession, useSupabaseClient, useSessionContext } from '@supabase/auth-helpers-react';
+import { useEffect, useCallback } from 'react';
 
 // FAVOR NÃO MEXER NESTE ARQUIVO DA SILVA
 // Ele é o arquivo do Login
@@ -8,11 +9,7 @@ function GoogleLogin() {
   const supabase = useSupabaseClient(); // talk to supabase;
   const { isLoading } = useSessionContext();
 
-  if (isLoading) {
-    return <></>
-  }
-
-  async function googleSignIn() {
+  const googleSignIn = useCallback(async () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
@@ -20,40 +17,42 @@ function GoogleLogin() {
       }
     });
     if (error) {
-      alert("Error loggin into google provider with supabase");
+      alert("Error logging into the Google provider with Supabase");
       console.log(error);
-    } else {
-      //navigate("/escolher-materias");
     }
-  }
+  }, [supabase]);
 
-  async function signOut() {
-    fetch('http://localhost:8080/usuarios/logoff/'+ session.user.email, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("usuario")).token
-      },
-    })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Erro na requisição');
-        }
-        return response.json();
-      })
-      .catch(error => {
-        console.error(error);
+  const signOut = useCallback(async () => {
+    try {
+      await fetch('http://localhost:8080/usuarios/logoff/'+ session.user.email, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("usuario")).token
+        },
       });
 
-      window.location.href = "http://localhost:3001"
-    await supabase.auth.signOut();
-  }
+      // Sign out do Supabase
+      await supabase.auth.signOut();
 
-  return (
-    <>
-      {session ? signOut() : googleSignIn()}
-    </>
-  );
+      // Redirecionando para o institucional
+      window.location.href = "http://localhost:3001";
+    } catch (error) {
+      console.error(error);
+    }
+  }, [session, supabase]);
+
+  useEffect(() => {
+    if (!isLoading) {
+      if (session) {
+        signOut();
+      } else {
+        googleSignIn();
+      }
+    }
+  }, [isLoading, session, signOut, googleSignIn]);
+
+  return null;
 }
 
 export default GoogleLogin;

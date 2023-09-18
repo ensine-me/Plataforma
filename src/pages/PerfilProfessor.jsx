@@ -77,8 +77,8 @@ const PerfilProfessor = () => {
                                 <h4>Disponibilidade</h4>
                                 {disponibilidades.map((disponibilidade, index) => {
                                     return (
-                                        <div className={sPerfil.disponibilidadeConteudo}>
-                                            <li key={index}>
+                                        <div className={sPerfil.disponibilidadeConteudo} key={index}>
+                                            <li>
                                                 {disponibilidade.diaDaSemana} - {disponibilidade.horarioInicio} às {disponibilidade.horarioFim}
                                             </li>
                                         </div>

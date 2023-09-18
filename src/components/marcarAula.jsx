@@ -150,7 +150,7 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias }) =>
             <select id="selectMateria">
               {materias.map((materia, index) => {
                 return (
-                  <option value={materia.nome}>{materia.nome}</option>
+                  <option key={index} value={materia.nome}>{materia.nome}</option>
                 )
               })}
             </select>

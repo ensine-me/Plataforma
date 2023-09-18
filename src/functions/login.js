@@ -4,9 +4,9 @@
 // console.log("email: " + JSON.parse(sessionStorage.getItem("usuario")).email);
 // console.log("token: " + JSON.parse(sessionStorage.getItem("usuario")).token);
 
-export function login(email, senha) {
+export async function login(email, senha) {
     const urlLogin = "http://localhost:8080/usuarios/login";
-    fetch(urlLogin, {
+    const response = await fetch(urlLogin, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -15,18 +15,17 @@ export function login(email, senha) {
             "email": email,
             "senha": senha
         })
-    }).then((response) => {
-        if (response.ok) {
-            response.json().then((data) => {
-                // console.log("Login feito com sucesso")
-                // console.log("Data: ", data);
-                sessionStorage.setItem("usuario", JSON.stringify(data));
-                console.log(sessionStorage.getItem("usuario"));
-                return true;
-            })
-        } else {
-            console.log("Erro ao fazer login");
-            return false;
-        }
-    })
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        // console.log("Login feito com sucesso")
+        // console.log("Data: ", data);
+        sessionStorage.setItem("usuario", JSON.stringify(data));
+        // console.log(sessionStorage.getItem("usuario"));
+        return true;
+    } else {
+        console.log("Erro ao fazer login");
+        return false;
+    }
 }
