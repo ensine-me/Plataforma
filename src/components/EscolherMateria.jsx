@@ -2,6 +2,7 @@ import React from 'react'
 import styles from '../style/escolherMaterias.module.css'
 import HomeIcon from '@mui/icons-material/Home';
 import BotaoDisciplina from '../components/BotaoDisciplina';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSession } from '@supabase/auth-helpers-react';
@@ -85,7 +86,7 @@ const EscolherMaterias = () => {
             <h3>Selecione as disciplinas em que você possui dificuldades</h3>
           </div>
           <div className={styles.escolher_materias_header_icons}>
-            <Link to="/" className='custom_link'><HomeIcon style={{ fontSize: 60, cursor: 'pointer' }} /></Link>
+            <Link to="http://localhost:3001" className='custom_link'><ArrowBackIcon style={{ fontSize: 60, cursor: 'pointer' }} /></Link>
           </div>
         </div>
         <div className={styles.escolher_materias_botoes_container}>
