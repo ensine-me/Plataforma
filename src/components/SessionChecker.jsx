@@ -22,15 +22,12 @@ const SessionChecker = ({ children }) => {
         if (responseExisteJson) { // checks if user is registered
           if (!isVariableInSessionStorage("usuario")) { // checks if not logged in
             await login(email, email); // login
-          } else {
-            // console.log("CHECKER usuário: " + sessionStorage.getItem("usuario"));
-            // console.log("CHECKER sessão: " + session);
           }
+          setIsReady(true);
         } else { // if not registered, navigate to registration page
           navigate("/escolher-materias");
         }
         // Set the state to indicate that the check is complete
-        setIsReady(true);
       }
     }
 

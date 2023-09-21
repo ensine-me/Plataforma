@@ -3,12 +3,14 @@ import styles from '../style/Home.module.css'
 import CardProfessorHome from '../components/CardProfessorHome'
 import CardAula from '../components/CardAula'
 import { useEffect, useState } from "react";
+import { isVariableInSessionStorage } from '../functions/isVariableInSessionStorage';
 
 const Home = () => {
   const [professores, setProfessores] = useState([]);
   const [aulas, setAulas] = useState([]);
 
   useEffect(() => {
+    if(!isVariableInSessionStorage("usuario") || professores.length !== 0) return;
     const disciplinas = JSON.parse(sessionStorage.getItem("usuario")).disciplinas;
 
     let urlProfessores = `http://localhost:8080/usuarios/professores-recomendados?disciplinas=${disciplinas[0].nome}`;
@@ -47,7 +49,7 @@ const Home = () => {
           });
         }
       });
-  }, []);
+  });
 
   return (
     <div className={styles.home_container}>

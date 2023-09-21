@@ -26,10 +26,10 @@ const Routering = () => {
                         <Route path="pesquisa-aberta" element={<OpenSearch />} />
                         <Route path="pesquisa" element={<ProfessorDashBoard />} />
                     </Route>
-                    <Route path="escolher-materias" element={<EscolherMaterias />} />
                 </Routes>
             </SessionChecker>
             <Routes>
+                <Route path="escolher-materias" element={<EscolherMaterias />} />
                 <Route path="google-login" element={<GoogleLogin />} />
             </Routes>
         </Router>
