@@ -6,7 +6,7 @@ import Image from "../images/png/logo-black.png"
 import Rating from '@mui/material/Rating';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
-import DisciplinaDoProfessor from '../DisciplinaDoProfessor';
+import DisciplinaDoProfessor from './DisciplinaDoProfessor';
 import { Link } from "react-router-dom";
 import { useState } from 'react';
 

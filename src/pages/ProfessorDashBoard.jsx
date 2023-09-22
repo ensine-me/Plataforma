@@ -1,6 +1,6 @@
 import React from "react";
 import "../../style/professordash.css"
-import SideBar from "../../components/SideBar";
+import SideBar from "../components/SideBar";
 import Search from "../../components/search/Search";
 import CardAula from "../../components/cardAula/CardAula";
 
