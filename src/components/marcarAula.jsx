@@ -54,6 +54,7 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias }) =>
   const dataFormatada = startUTC.toISOString();
 
   async function createCalendarEvent() {
+    let foi = true;
     if (nomeProfessor != null && emailProfessor != null) {
       const bodyJsonData = {
         "professor": {
@@ -84,6 +85,7 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias }) =>
           console.log(bodyJsonData)
           if (!response.ok) {
             throw new Error('Erro na requisição');
+            foi = false;
           }
           return response.json();
         })
@@ -91,9 +93,21 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias }) =>
           // Lide com erros
           console.error(error);
         });
-    }
+      }
     const emailFormatado = "" + emailProfessor + "";
 
+    if (foi == false) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Aula não foi marcada',
+        text: 'Tente novamente ou contate um desenvolvedor',
+        showCancelButton: false,
+        showConfirmButton: true,
+        confirmButtonText: 'Ok',
+        confirmButtonColor: '#FF0000',
+      });
+    }
+    else {
     const event = {
       'summary': eventName,
       'description': eventDescription,
@@ -131,7 +145,7 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias }) =>
     chamaSwal();
     fechaModal();
   }
-
+}
   const fechaModal = () => {
     document.getElementById("marcarAulaContainer").style.visibility = "hidden";
   }

@@ -12,6 +12,7 @@ import Layout from "../components/Layout";
 import MinhasAulas from "../pages/MinhasAulas"
 import SessionChecker from "../components/SessionChecker";
 
+
 const Routering = () => {
     return (
         <Router>

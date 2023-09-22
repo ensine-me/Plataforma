@@ -4,6 +4,7 @@ import { useEffect, useCallback } from 'react';
 // FAVOR NÃO MEXER NESTE ARQUIVO DA SILVA
 // Ele é o arquivo do Login
 // Tem de colocar ele junto do login no institucional
+
 function GoogleLogin() {
   const session = useSession(); // user, quando a sessão existir temos um usuario.
   const supabase = useSupabaseClient(); // talk to supabase;
@@ -36,7 +37,7 @@ function GoogleLogin() {
       await supabase.auth.signOut();
 
       // Redirecionando para o institucional
-      window.location.href = "http://localhost:3001";
+      // window.location.href = "http://localhost:3001";
     } catch (error) {
       console.error(error);
     }
