@@ -12,7 +12,7 @@ const chamaSwal = () => {
   // talvez e só talvez, seja necessário dar um none no quadradoCinza que é o nome do campo no css
   // que some com esse componente, tirei isso pq estava dando um erro de resize e como vai ir pra outra tela
   // acredito que nem precise.
- 
+
   Swal.fire({
     icon: 'success',
     title: 'Aula solicitada',
@@ -73,79 +73,73 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias }) =>
         "status": "SOLICITADO",
         "duracaoSegundos": "3600"
       }
-      fetch('http://localhost:8080/aulas', {
+      const response = await fetch('http://localhost:8080/aulas', { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("usuario")).token
+          'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("usuario")).token 
         },
         body: JSON.stringify(bodyJsonData)
       })
-        .then(response => {
-          console.log(bodyJsonData)
-          if (!response.ok) {
-            throw new Error('Erro na requisição');
-            foi = false;
-          }
-          return response.json();
-        })
-        .catch(error => {
-          // Lide com erros
-          console.error(error);
+      console.log(bodyJsonData)
+      console.log("Response: " + response)
+      if (!response.ok) {
+        foi = false;
+        console.log("FOI : " + foi)
+      }
+      const emailFormatado = "" + emailProfessor + "";
+      console.log("Foi 2:" + foi)
+      if (!foi) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Aula não foi marcada',
+          text: 'Tente novamente ou contate um desenvolvedor',
+          showCancelButton: false,
+          showConfirmButton: true,
+          confirmButtonText: 'Ok',
+          confirmButtonColor: '#FF0000',
         });
       }
-    const emailFormatado = "" + emailProfessor + "";
+      else {
+        const event = {
+          'summary': eventName,
+          'description': eventDescription,
+          'attendees': [
+            { 'email': emailFormatado }
+          ],
+          'start': {
+            'dateTime': start.toISOString(),
+            'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone
+          },
+          'end': {
+            'dateTime': end.toISOString(), // Date.toISOString() ->
+            'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone
+          },
+          'conferenceData': {
+            'conferenceDataVersion': 1,
+            'createRequest': {
+              'requestId': 'sample123',
+              'conferenceSolutionKey': { 'type': 'hangoutsMeet' },
+            },
+          }
+        }
 
-    if (foi == false) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Aula não foi marcada',
-        text: 'Tente novamente ou contate um desenvolvedor',
-        showCancelButton: false,
-        showConfirmButton: true,
-        confirmButtonText: 'Ok',
-        confirmButtonColor: '#FF0000',
-      });
-    }
-    else {
-    const event = {
-      'summary': eventName,
-      'description': eventDescription,
-      'attendees': [
-        { 'email': emailFormatado }
-      ],
-      'start': {
-        'dateTime': start.toISOString(),
-        'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone
-      },
-      'end': {
-        'dateTime': end.toISOString(), // Date.toISOString() ->
-        'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone
-      },
-      'conferenceData': {
-        'conferenceDataVersion': 1,
-        'createRequest': {
-          'requestId': 'sample123',
-          'conferenceSolutionKey': { 'type': 'hangoutsMeet' },
-        },
+        await fetch("https://www.googleapis.com/calendar/v3/calendars/primary/events", {
+          method: "POST",
+          headers: {
+            'Authorization': 'Bearer ' + session.provider_token
+          },
+          body: JSON.stringify(event)
+        }).then((data) => {
+          return data.json();
+        }).then((data) => {
+          console.log(data);
+        });
+        chamaSwal();
+        fechaModal();
       }
     }
-
-    await fetch("https://www.googleapis.com/calendar/v3/calendars/primary/events", {
-      method: "POST",
-      headers: {
-        'Authorization': 'Bearer ' + session.provider_token
-      },
-      body: JSON.stringify(event)
-    }).then((data) => {
-      return data.json();
-    }).then((data) => {
-      console.log(data);
-    });
-    chamaSwal();
-    fechaModal();
   }
-}
   const fechaModal = () => {
     document.getElementById("marcarAulaContainer").style.visibility = "hidden";
   }
