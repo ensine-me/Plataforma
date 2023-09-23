@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styles from '../style/botaoDisciplina.module.css';
+import styles from '../assets/styles/botaoDisciplina.module.css';
 
 const BotaoDisciplina = ({ disciplina, isChecked, setIsChecked }) => {
   const [containerClass, setContainerClass] = useState(styles.btn_disciplina_container);

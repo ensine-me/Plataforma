@@ -1,0 +1,42 @@
+.footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--preto);
+    padding: 2%;
+}
+
+.footerLogo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.companyLink {
+    display: flex;
+    flex-direction: row;
+}
+
+.companyLink img {
+    padding: 5px;
+    width: 30px;
+    height: 30px;
+}
+
+.footerLinks {
+    display: flex;
+    justify-content: center;
+}
+
+.footerCopyright {
+    text-align: center;
+}
+
+.footerLinks a {
+    color: var(--preto);
+    text-decoration: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+}

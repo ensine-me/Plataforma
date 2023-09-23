@@ -1,0 +1,36 @@
+.carrosselContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carrosselButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+}
+
+.carrosselSlides {
+  display: flex;
+  overflow-x: hidden;
+}
+
+.carrosselSlide {
+  flex: 0 0 33.33%; /* Ajuste o tamanho dos slides conforme necessário */
+  padding: 1rem;
+  transition: transform 0.3s ease-in-out;
+}
+
+.carrosselSlide.active {
+  transform: scale(1.2); /* Ajuste o tamanho do slide ativo conforme necessário */
+}
+
+.carrosselButton.prev {
+  margin-right: 1rem;
+}
+
+.carrosselButton.next {
+  margin-left: 1rem;
+}

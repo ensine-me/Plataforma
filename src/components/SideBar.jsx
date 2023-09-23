@@ -1,7 +1,7 @@
 import React from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import { Link } from "react-router-dom";
-import '../style/app.module.css'
+import '../assets/styles/app.module.css'
 
 import MuiDrawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
@@ -18,7 +18,7 @@ import SchoolIcon from '@mui/icons-material/School';
 import EmailIcon from '@mui/icons-material/Email';
 import ProfileIcon from '@mui/icons-material/AccountBox';
 
-import sSideBar from '../style/sidebar.module.css'
+import sSideBar from '../assets/styles/sidebar.module.css'
 import Logo from '../components/logo'
 import SearchIcon from '@mui/icons-material/Search';
 import LogoutIcon from '@mui/icons-material/Logout';

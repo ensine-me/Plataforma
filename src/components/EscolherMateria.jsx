@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../style/escolherMaterias.module.css'
+import styles from '../assets/styles/escolherMaterias.module.css'
 import HomeIcon from '@mui/icons-material/Home';
 import BotaoDisciplina from '../components/BotaoDisciplina';
 import { useState } from 'react';

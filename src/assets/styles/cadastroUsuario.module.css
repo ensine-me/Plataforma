@@ -1,0 +1,238 @@
+
+.page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1%;
+    padding-bottom: 7%;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    height: 700px;
+    width: 40%;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.menuLogoContainer {
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.formulario p {
+    margin-bottom: 30px;
+}
+
+.buttons {
+    padding-top: 3%;
+}
+
+.button {
+    margin-top: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--verde-claro);
+    width: 160px;
+    height: 30px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+    transition: 300ms;
+}
+
+.button:hover {
+    box-shadow: 0 2px 30px 0 rgba(0, 0, 0, 0.2);
+    border: solid 1px;
+}
+
+.googleButtonContainer {
+    margin-top: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 160px;
+    height: 30px;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    font-size: 80%;
+    transition: 300ms;
+}
+
+.googleButtonContainer:hover {
+    box-shadow: 0 2px 30px 0 rgba(0, 0, 0, 0.2);
+    border: solid 1px;
+}
+
+.googleButton {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.googleButton img {
+    width: 10%;
+}
+
+.paragrafo i {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 15px;
+    color: var(--preto);
+}
+
+.paragrafo a {
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+.paragrafo a:hover {
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
+}
+
+.input {
+    width: 150%;
+    background-color: none;
+    border: none;
+    padding-top: 0;
+    border-radius: 3px;
+    cursor: text;
+    outline: none;
+    border-bottom: 2px solid rgb(200, 200, 200);
+}
+
+.inputNames {
+    display: flex;
+    justify-content: left;
+    width: 100%;
+}
+
+.titleLabel {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 3px;
+    width: 150%;
+}
+
+.titleLabel1 {
+    padding-bottom: 3px;
+    padding-top: 40px;
+    width: 150%;
+}
+
+.titleLabel2 {
+    padding-bottom: 3px;
+    margin-top: 40px;
+}
+
+.titleLabel3 {
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+
+}
+
+.titleLabel3:hover {
+    color: var(--verde-claro);
+}
+
+@media screen and (max-width: 450px) {
+    .card {
+        width: 80%;
+        height: 800px;
+        font-size: 10%;
+    }
+    
+    .input {
+        width: 100%;
+    }
+
+    .titleLabel {
+        width: 100%;
+    }
+    
+    .titleLabel1 {
+        width: 100%;
+    }
+}
+
+
+@media screen and (min-width: 850px) {
+    .card {
+        height: 750px;
+    }
+
+    .paragrafo {
+        padding: 20px;
+    }
+
+    .paragrafo i {
+        display: flex;
+        flex-wrap: wrap;
+        font-size: 100%;
+    }
+
+    .titleLabel2 {
+        margin-top: 30px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .card {
+        width: 60%;
+        font-size: 100%;
+        height: 670px;
+    }
+
+    input {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .card {
+        width: 60%;
+        font-size: 100%;
+        height: 670px;
+    }
+
+    input {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 1350px) {
+    .card {
+        width: 40%;
+        height: 700px;
+    }
+}
+
+@media screen and (min-width: 1850px) {
+    .card {
+        width: 30%;
+        font-size: 100%;
+    }
+}

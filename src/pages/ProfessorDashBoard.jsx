@@ -1,17 +1,13 @@
 import React from "react";
-import "../../style/professordash.css"
+import "../assets/styles/professordash.css"
 import SideBar from "../components/SideBar";
-import Search from "../../components/search/Search";
-import CardAula from "../../components/cardAula/CardAula";
+import CardAula from "../components/CardAula";
 
 function ProfessorDashBoard() {
     return (
         <>
             <SideBar />
             <div className="contentProfessorDashboard">
-                <div className="boxSearchProfessorDashboard">
-                    <Search />
-                </div>
                 <div className="boxesDashProfessorDashboard">
                     <div className="boxProfessorDashboard">
                         <h1>Aulas Pendentes</h1>

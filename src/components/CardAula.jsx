@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../style/CardAula.module.css'
+import styles from '../assets/styles/CardAula.module.css'
 import GroupsIcon from '@mui/icons-material/Groups';
 
 const CardAula = ({

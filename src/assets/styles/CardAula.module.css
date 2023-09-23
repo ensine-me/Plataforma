@@ -1,0 +1,100 @@
+.container_card_aula {
+    width: 300px;
+    height: 180px;
+    border: 1px solid #E5E5E5;
+    box-shadow: 1px 1px 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 1rem;
+    cursor: pointer;
+    border-radius: 15px;
+    flex-shrink: 0;
+}
+
+.container_card_aula h1,
+.container_card_aula h2,
+.container_card_aula p {
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+.card_aula_disciplina_qtd {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.card_aula_qtd_icon {
+    font-size: 1.5rem;
+}
+
+.card_aula_disciplina {
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.card_aula_qtd {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.card_aula_assunto {
+    padding: 10px;
+    font-weight: 600;
+    font-size: 1.3rem;
+    color: #4F4F4F;
+    text-align: center;
+    position: relative;
+}
+
+.card_aula_assunto::before,
+.card_aula_assunto::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    /* Adjust the height of the borders as needed */
+    background-color: #077533;
+    /* Adjust the color as needed */
+}
+
+.card_aula_assunto::before {
+    top: 0;
+}
+
+.card_aula_assunto::after {
+    bottom: 0;
+}
+
+.card_aula_professor {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.card_aula_data_professor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card_aula_img_professor {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-color: #cecece;
+    background-size: cover;
+    background-position: center;
+    flex-shrink: 0;
+}

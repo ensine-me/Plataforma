@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import CardAula from '../components/CardAula'
-import styles from '../style/MinhasAulas.module.css';
+import styles from '../assets/styles/MinhasAulas.module.css';
 
 const MinhasAulas = () => {
   const [aulas, setAulas] = useState([]);

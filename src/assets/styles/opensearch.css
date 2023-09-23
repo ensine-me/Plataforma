@@ -1,0 +1,10 @@
+.contentOpenSearch {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.contentListOpenSearch {
+    gap: 10px;
+}

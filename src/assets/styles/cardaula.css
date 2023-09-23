@@ -1,0 +1,54 @@
+.cardAula{
+    width: 300px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 10px;
+    box-shadow: var(--shadow);
+}
+
+.cardAula .boxesAula{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.boxesAula .box{
+    display: flex;
+    justify-content: center;
+    justify-content: space-around;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+
+.boxesAula .box strong{
+    font-size: 25px;
+    display: flex;
+}
+
+.boxesAula .box span {
+    gap: 10px;
+    display: flex;
+}
+
+.boxesAula .centerBox{
+    border-top: 1px solid green;
+    border-bottom: 1px solid green;
+    width: 80%;
+    height: 35%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.centerBox span{
+    font-size: 18px;
+}

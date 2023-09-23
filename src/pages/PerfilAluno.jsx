@@ -1,5 +1,5 @@
 import MiniDrawer from "../components/SideBar"
-import sPerfil from "../style/perfil.module.css"
+import sPerfil from "../assets/styles/perfil.module.css"
 import { useSession } from "@supabase/auth-helpers-react"
 
 const PerfilAluno = () => {

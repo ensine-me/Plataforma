@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../style/DisciplinaDoProfessor.module.css'
+import styles from '../assets/styles/DisciplinaDoProfessor.module.css'
 
 const DisciplinaDoProfessor = ({ disciplina }) => {
   return (

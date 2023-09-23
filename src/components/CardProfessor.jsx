@@ -1,8 +1,6 @@
 import React from "react";
-import "../../style/cardprofessor.css"
+import "../assets/styles/cardprofessor.css"
 import Avatar from '@mui/material/Avatar';
-//import Image from "../../img/pessoa-autentica-1024x717.jpg"
-import Image from "../images/png/logo-black.png"
 import Rating from '@mui/material/Rating';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';

@@ -1,5 +1,5 @@
 import React from "react";
-import "../../style/opensearch.css";
+import "../assets/styles/opensearch.css";
 import CardProfessor from "../components/CardProfessor"
 import SearchIcon from '@mui/icons-material/Search';
 import { useState } from 'react';
