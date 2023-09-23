@@ -35,7 +35,7 @@ const chamaSwal = () => {
   });
 }
 
-const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias }) => {
+const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias, disponibilidades }) => {
   const [start, setStart] = useState(dayjs()) // marcando o horário de agora apartir do Google
   const [end, setEnd] = useState(dayjs())
   const [eventName, setEventName] = useState("");
@@ -73,11 +73,11 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias }) =>
         "status": "SOLICITADO",
         "duracaoSegundos": "3600"
       }
-      const response = await fetch('http://localhost:8080/aulas', { 
+      const response = await fetch('http://localhost:8080/aulas', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("usuario")).token 
+          'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("usuario")).token
         },
         body: JSON.stringify(bodyJsonData)
       })
@@ -93,7 +93,7 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias }) =>
         Swal.fire({
           icon: 'error',
           title: 'Aula não foi marcada',
-          text: 'Tente novamente ou contate um desenvolvedor',
+          text: 'Verifique se a aula está sendo marcada dentro da disponibilidade.\n Caso o erro persista, entre em contato com um desenvolvedor.',
           showCancelButton: false,
           showConfirmButton: true,
           confirmButtonText: 'Ok',
@@ -116,12 +116,20 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias }) =>
             'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone
           },
           'conferenceData': {
-            'conferenceDataVersion': 1,
             'createRequest': {
               'requestId': 'sample123',
               'conferenceSolutionKey': { 'type': 'hangoutsMeet' },
             },
-          }
+          }, 'entryPoints': [
+            {
+              'entryPointType': 'video',
+              'pin': '1234',
+              'accessCode': '1234',
+              'meetingCode': '1234',
+              'passcode': '1234',
+              'password': '1234'
+            }
+          ]
         }
 
         await fetch("https://www.googleapis.com/calendar/v3/calendars/primary/events", {
@@ -178,6 +186,18 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias }) =>
             <MultiTextField onChange={(e) => setEventDescription(e.target.value)} />
             <button onClick={createCalendarEvent} className={cssPoggers.botaoMarcarAula}>Marcar Aula</button>
           </div>
+        </div>
+        <div className={cssPoggers.quadradinCinza}>
+          <h5>Disponibilidade:</h5>
+          {disponibilidades.map((disponibilidade, index) => {
+            return (
+              <div className={cssPoggers.disponibilidadeCont} key={index}>
+                <li>
+                  {disponibilidade.diaDaSemana} - {disponibilidade.horarioInicio} às {disponibilidade.horarioFim}
+                </li>
+              </div>
+            )
+          })}
         </div>
       </div>
     </>
