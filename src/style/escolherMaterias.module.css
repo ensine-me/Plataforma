@@ -8,13 +8,14 @@
     /* Remove default padding */
     /* Optionally, you can set other styles like background-color, etc. */
     background: rgb(63, 225, 79);
-    background: linear-gradient(180deg, rgba(63, 225, 79, 1) 10%, rgba(255, 255, 255, 1) 50%);
+    background: linear-gradient(180deg, rgba(63, 225, 79, 0.781) 10%, rgba(255, 255, 255, 0.712) 50%);
     display: flex;
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
 }
 
 .escolher_materias_container {
+    display: grid;
     width: 85%;
     height: 85%;
 }
@@ -37,7 +38,7 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 10px;
-    filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.50));
+    filter: drop-shadow(0px 0px 8px rgba(0, 0, 0, 0.50));
     overflow: hidden;
     overflow-y: auto;
 }
@@ -48,11 +49,13 @@
 }
 
 .escolher_materias_cadastrar_button {
-    background-color: rgb(63, 225, 79);
+    background-color: rgba(63, 225, 79, 0.726);
     padding: 15px;
-    border: 1px solid #000000;
+    border: 1px solid #000000af;
     border-radius: 5px;
     cursor: pointer;
+    transition: 200ms;
+    max-height: 50px;
 }
 
 .escolher_materias_cadastrar_button:hover {
