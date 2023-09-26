@@ -17,6 +17,8 @@
     overflow: hidden;
     overflow-x: auto;
     margin-bottom: 2rem;
+    padding: 20px;
+    height: 500px;
 }
 
 .home_aulas_abertas_container {

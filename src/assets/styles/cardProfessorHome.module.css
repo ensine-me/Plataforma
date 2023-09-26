@@ -1,7 +1,7 @@
 .card_professor {
     width: 250px;
     height: 400px;
-    box-shadow: 2px 2px 5px;
+    box-shadow: var(--shadow);
     border-radius: 15px;
     display: flex;
     flex-direction: column;
@@ -34,7 +34,7 @@
 }
 
 .card_professor_nome_container {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 700;
 }
 
@@ -45,5 +45,6 @@
 .card_professor_disciplinas_container {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 10px;
 }
