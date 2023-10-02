@@ -6,7 +6,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSession } from '@supabase/auth-helpers-react';
-import { login } from '../functions/login';
+import { login, loginFirebase } from '../functions/login';
 import Add from "./images/chat/addAvatar.png";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db, storage } from "../firebase";
@@ -67,6 +67,8 @@ const EscolherMaterias = () => {
       "files": session.user.files
     }
 
+
+
     try {
       const displayName = objUsuario.nome
       const email = objUsuario.email;
@@ -77,6 +79,8 @@ const EscolherMaterias = () => {
       const res = await createUserWithEmailAndPassword(auth, email, password);
 
       //Create a unique image name
+      console.log("Usuario"+ objUsuario)
+
       const date = new Date().getTime();
       const storageRef = ref(storage, `${displayName + date}`);
 
@@ -98,9 +102,7 @@ const EscolherMaterias = () => {
 
             //create empty user chats on firestore
             await setDoc(doc(db, "userChats", res.user.uid), {});
-            navigate("/");
           } catch (err) {
-            console.log(err);
             setErr(true);
             setLoading(false);
           }
@@ -125,10 +127,13 @@ const EscolherMaterias = () => {
     if (response.ok) {
       //logando
       login(session.user.email, session.user.email);
+      loginFirebase(session.user.email, session.user.email);      
       //indo pra home
       navigate("/");
     }
   });
+
+
 }else{
   <alert>EROOOOOOOOOOOOOOOOOO</alert>
 }
