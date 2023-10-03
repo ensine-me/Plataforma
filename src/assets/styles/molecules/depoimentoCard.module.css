@@ -1,12 +1,14 @@
 .depoimentoCardContainer {
     background-color: rgba(131, 211, 131, 0.733);
     padding: 5%;
-    border-radius: 10px;
+    border-radius: 16px;
 }
 
 .depoimentoCardTexto span {
     text-shadow: var(--shadow);
     width: 100%;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 .depoimentoCardContainer img {
@@ -18,12 +20,14 @@
 .userInfo {
     display: flex;
     flex-direction: row;
-    text-align: center;
+    text-align: justify;
+    width: 100%;
 }
 
 .userInfo p {
     display: flex;
     flex-wrap: wrap;
     padding: 50px;
+    padding-top: 0;
     width: 500px;
 }

@@ -16,12 +16,13 @@
 .companyLink {
     display: flex;
     flex-direction: row;
+    justify-content: center;
 }
 
 .companyLink img {
     padding: 5px;
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
 }
 
 .footerLinks {
@@ -34,6 +35,8 @@
 }
 
 .footerLinks a {
+    display: flex;
+    align-items: center;
     color: var(--preto);
     text-decoration: none;
     padding-left: 10px;

@@ -36,7 +36,7 @@ function GoogleLogin() {
       await supabase.auth.signOut();
 
       // Redirecionando para o institucional
-      window.location.href = "http://localhost:3001";
+      window.location.href = "/institutional";
     } catch (error) {
       console.error(error);
     }

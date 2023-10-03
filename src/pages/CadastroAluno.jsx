@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import sUsuariocad from '../assets/styles/cadastroUsuario.module.css';
 import sCadastro from "../assets/styles/cadastro.module.css"
 
-import Logo from 'components/atoms/logo';
+import Logo from 'components/logo';
 
 import googleLogo from 'assets/img/icons/googleLogo.png'
 

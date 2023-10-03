@@ -7,7 +7,7 @@ import sCadastro from "../assets/styles/cadastro.module.css"
 import { useNavigate } from 'react-router-dom'
 import UrlUsuarios from 'authProvider/urlUsuarios';
 
-import Logo from 'components/atoms/logo';
+import Logo from 'components/logo';
 
 import googleLogo from 'assets/img/icons/googleLogo.png'
 

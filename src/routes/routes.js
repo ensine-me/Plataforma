@@ -6,7 +6,7 @@ import ProfessorDashBoard from "pages/ProfessorDashBoard";
 import GoogleLogin from "../GoogleLogin";
 import PerfilAluno from "../pages/PerfilAluno"
 import PerfilProfessor from "pages/PerfilProfessor";
-import EscolherMaterias from "../components/EscolherMateria";
+import EscolherMaterias from "../pages/EscolherMateria";
 import PaginaInicialAluno from "../pages/PaginaInicialAluno";
 import Layout from "../components/Layout";
 import MinhasAulas from "../pages/MinhasAulas"
@@ -24,7 +24,6 @@ const Routering = () => {
                 <Routes>
                     <Route path="/" element={<Layout />}>
                         <Route path="/inicial-aluno" element={<PaginaInicialAluno />} />
-                        <Route path="marcar-aula" element={<Template />} />
                         <Route path="perfil" element={<PerfilAluno />} />
                         <Route path="professor" element={<PerfilProfessor />} />
                         <Route path="minhas-aulas" element={<MinhasAulas />} />
@@ -35,7 +34,7 @@ const Routering = () => {
             </SessionChecker>
             <Routes>
                 <Route path="/login" element={<Login />} />
-                <Route path="/" index element={<PaginaInicialInstitucional />} />
+                <Route path="/institucional" index element={<PaginaInicialInstitucional />} />
                 <Route path="/cadastro" element={<Cadastro />} />
                 <Route path="/cadastro/alunocad" element={<CadastroAluno />} />
                 <Route path="/cadastro/professorcad" element={<CadastroProfessor />} />

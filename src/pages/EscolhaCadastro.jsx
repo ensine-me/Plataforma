@@ -1,7 +1,7 @@
 import { React } from 'react';
 import { Link } from 'react-router-dom';
 
-import Logo from 'components/atoms/logo';
+import Logo from 'components/logo';
 
 import { Player } from '@lottiefiles/react-lottie-player';
 

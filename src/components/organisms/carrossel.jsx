@@ -1,18 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import 'bootstrap/dist/css/bootstrap.css';
 import sCarrossel from '../../assets/styles/organisms/carrossel.module.css'
-import Carousel from 'react-bootstrap/Carousel';
-
+import Carousel from '../../../node_modules/react-material-ui-carousel/dist/index';
 const Carrossel = ({ cards }) => {
     return (
         <div className={sCarrossel.carrosselContainer}>
             <Carousel>
                 {cards.map((card, index) => (
-                    <Carousel.Item interval={4000} key={index}>
+                    <div style={{width: '100%'}} key={index}>
                         {card}
-                    </Carousel.Item>
+                    </div>
                 ))}
             </Carousel>
         </div>

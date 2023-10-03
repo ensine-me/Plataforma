@@ -1,7 +1,7 @@
 import sFooter from '../../assets/styles/organisms/footer.module.css';
 
 import SimpleText from 'components/atoms/simpleText';
-import Logo from 'components/atoms/logo';
+import Logo from 'components/logo';
 import GitLogoWhite from 'assets/img/icons/githubLogoDark.png';
 import LinkedinLogoBlue from 'assets/img/icons/linkedinLogoBlue.png'
 

@@ -1,5 +1,5 @@
 import UlElementList from "components/molecules/ulElementList.jsx";
-import Logo from '../atoms/logo.jsx'
+import Logo from '../logo.jsx'
 
 import sMenu from '../../assets/styles/organisms/menu.module.css';
 
@@ -24,7 +24,7 @@ const Menu = () => {
                 <div className={styles.googleButtonContainer}>
                     <div className={styles.googleButton} onClick={HandleSubmit}>
                         <img src={googleLogo} />
-                        Login com google
+                        Acessar plataforma
                     </div>
                 </div>
 

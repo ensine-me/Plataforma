@@ -1,7 +1,6 @@
 import React from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import { Link } from "react-router-dom";
-import '../assets/styles/app.module.css'
 
 import MuiDrawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
@@ -168,7 +167,7 @@ function IconIndex({ index }) {
 function getLinkByIndex(index) {
   switch (index) {
     case 0:
-      return "/";
+      return "/inicial-aluno";
     case 1:
       return "/minhas-aulas";
     case 2:
