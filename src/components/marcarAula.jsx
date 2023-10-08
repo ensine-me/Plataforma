@@ -100,7 +100,8 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias, disp
           confirmButtonColor: '#FF0000',
         });
       }
-      else {       
+      else {     
+        const requestIdRandom = 'requestID'+ Math.floor(Math.random() * 100000);
         const event = {
           'summary': eventName,
           'description': eventDescription,
@@ -117,14 +118,14 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias, disp
           },
           'conferenceData': {
             'createRequest': {
-              'requestId': 'sample123',
+              'requestId': requestIdRandom,
               'conferenceSolutionKey': { 'type': 'hangoutsMeet' },
             },
           }
         }
-        await fetch("https://www.googleapis.com/calendar/v3/calendars/primary/events?conferenceDataVersion=1", {     // https://developers.google.com/calendar/api/v3/reference/events/insert?hl=pt-br&apix_params=%7B"calendarId"%3A"primary"%2C"conferenceDataVersion"%3A1%2C"maxAttendees"%3A2%2C"sendNotifications"%3Atrue%2C"sendUpdates"%3A"all"%2C"supportsAttachments"%3Atrue%2C"resource"%3A%7B"end"%3A%7B%7D%2C"start"%3A%7B%7D%7D%7D#examples
-          method: "POST",                                                                    // https://developers.google.com/resources/api-libraries/documentation/calendar/v3/java/latest/com/google/api/services/calendar/model/ConferenceData.html#setCreateRequest-com.google.api.services.calendar.model.CreateConferenceRequest-
-          headers: {                                                                         // https://www.youtube.com/watch?v=Qd64idiKZWw
+        await fetch("https://www.googleapis.com/calendar/v3/calendars/primary/events?conferenceDataVersion=1", {     
+          method: "POST",                                                                    
+          headers: {                                                                         
             'Authorization': 'Bearer ' + session.provider_token
           },
           body: JSON.stringify(event)
@@ -132,6 +133,7 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias, disp
           return data.json();
         }).then((data) => {
           console.log(data);
+          console.log("eventId: "+ data.id);
         });
         chamaSwal();
         fechaModal();
