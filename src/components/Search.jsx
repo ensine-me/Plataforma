@@ -12,12 +12,21 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase";
 import { AuthContext } from "../context/AuthContext";
+import { SessionCheckerContext } from "./SessionChecker";
+import { useSession, useSupabaseClient, useSessionContext } from '@supabase/auth-helpers-react';
+
 const Search = () => {
   const [username, setUsername] = useState("");
   const [user, setUser] = useState(null);
   const [err, setErr] = useState(false);
 
-  const { currentUser } = useContext(AuthContext);
+  const session = useSession();
+
+  const currentUser = {
+    "displayName": session.user.user_metadata.full_name,
+    "uid": session.user.id,
+    "photoURL": session.user.user_metadata.avatar_url,
+  }
 
   const handleSearch = async () => {
     const q = query(

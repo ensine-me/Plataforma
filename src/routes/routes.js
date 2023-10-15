@@ -11,6 +11,7 @@ import Home from "../pages/Home";
 import Layout from "../components/Layout";
 import MinhasAulas from "../pages/MinhasAulas"
 import SessionChecker from "../components/SessionChecker";
+import Mensagens from "../components/Mensagens";
 
 const Routering = () => {
     return (
@@ -21,6 +22,7 @@ const Routering = () => {
                         <Route index element={<Home />} />
                         <Route path="marcar-aula" element={<Template />} />
                         <Route path="perfil" element={<PerfilAluno />} />
+                        <Route path="mensagens" element={<Mensagens />} />
                         <Route path="professor" element={<PerfilProfessor />} />
                         <Route path="minhas-aulas" element={<MinhasAulas />} />
                         <Route path="pesquisa-aberta" element={<OpenSearch />} />

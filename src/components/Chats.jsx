@@ -3,11 +3,19 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { ChatContext } from "../context/ChatContext";
 import { db } from "../firebase";
+import { SessionCheckerContext } from "./SessionChecker";
+import { useSession } from "@supabase/auth-helpers-react";
 
 const Chats = () => {
   const [chats, setChats] = useState([]);
 
-  const { currentUser } = useContext(AuthContext);
+  const session = useSession();
+
+  const currentUser = {
+    "displayName": session.user.user_metadata.full_name,
+    "uid": session.user.id,
+    "photoURL": session.user.user_metadata.avatar_url,
+  }
   const { dispatch } = useContext(ChatContext);
 
   useEffect(() => {
