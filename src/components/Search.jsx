@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import {
   collection,
   query,
@@ -11,9 +11,7 @@ import {
   getDoc,
 } from "firebase/firestore";
 import { db } from "../firebase";
-import { AuthContext } from "../context/AuthContext";
-import { SessionCheckerContext } from "./SessionChecker";
-import { useSession, useSupabaseClient, useSessionContext } from '@supabase/auth-helpers-react';
+import { useSession } from '@supabase/auth-helpers-react';
 
 const Search = () => {
   const [username, setUsername] = useState("");

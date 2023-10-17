@@ -1,15 +1,8 @@
-import {
-  createContext,
-  useContext,
-  useReducer,
-} from "react";
-import { AuthContext } from "./AuthContext";
-import { SessionCheckerContext } from "../components/SessionChecker";
+import { useReducer } from "react";
 import { useSession } from "@supabase/auth-helpers-react";
 
-export const ChatContext = createContext();
 
-export const ChatContextProvider = ({ children }) => {
+export function ChatProvider(arg) {
   const session = useSession();
 
   const currentUser = {
@@ -17,8 +10,9 @@ export const ChatContextProvider = ({ children }) => {
     "uid": session.user.id,
     "photoURL": session.user.user_metadata.avatar_url,
   }
+  console.log("USSSSSSSSSSER"+currentUser)
   const INITIAL_STATE = {
-    chatId: "null",
+    chatId: "0",
     user: {},
   };
 
@@ -39,10 +33,15 @@ export const ChatContextProvider = ({ children }) => {
   };
 
   const [state, dispatch] = useReducer(chatReducer, INITIAL_STATE);
+  if(arg == null){
+    return(
+      state
+    )
+  }
 
-  return (
-    <ChatContext.Provider value={{ data:state, dispatch }}>
-      {children}
-    </ChatContext.Provider>
-  );
+  else {
+    return (
+      dispatch
+    );
+  }
 };

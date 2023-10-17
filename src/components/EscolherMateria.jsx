@@ -1,13 +1,11 @@
 import React from 'react'
 import styles from '../style/escolherMaterias.module.css'
-import HomeIcon from '@mui/icons-material/Home';
 import BotaoDisciplina from '../components/BotaoDisciplina';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSession } from '@supabase/auth-helpers-react';
 import { login, loginFirebase } from '../functions/login';
-import Add from "./images/chat/addAvatar.png";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db, storage } from "../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";

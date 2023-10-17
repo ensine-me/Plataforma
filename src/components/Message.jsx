@@ -1,10 +1,16 @@
-import React, { useContext, useEffect, useRef } from "react";
-import { AuthContext } from "../context/AuthContext";
-import { ChatContext } from "../context/ChatContext";
+import React, { useEffect, useRef } from "react";
+import { ChatProvider } from "../context/ChatContext";
+import { useSession } from "@supabase/auth-helpers-react";
 
 const Message = ({ message }) => {
-  const { currentUser } = useContext(AuthContext);
-  const { data } = useContext(ChatContext);
+  const session = useSession();
+
+  const currentUser = {
+    "displayName": session.user.user_metadata.full_name,
+    "uid": session.user.id,
+    "photoURL": session.user.user_metadata.avatar_url,
+  }  
+  const  data  = ChatProvider();
 
   const ref = useRef();
 

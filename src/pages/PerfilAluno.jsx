@@ -1,6 +1,5 @@
 import MiniDrawer from "../components/SideBar"
 import sPerfil from "../style/perfil.module.css"
-import { useSession } from "@supabase/auth-helpers-react"
 
 const PerfilAluno = () => {
     console.log(sessionStorage.getItem("usuario").nome);

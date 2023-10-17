@@ -1,8 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import Img from "./images/chat/img.png";
 import Attach from "./images/chat/attach.png";
-import { AuthContext } from "../context/AuthContext";
-import { ChatContext } from "../context/ChatContext";
+import { ChatProvider } from "../context/ChatContext";
 import {
   arrayUnion,
   doc,
@@ -13,13 +12,21 @@ import {
 import { db, storage } from "../firebase";
 import { v4 as uuid } from "uuid";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { useSession } from "@supabase/auth-helpers-react";
 
 const Input = () => {
   const [text, setText] = useState("");
   const [img, setImg] = useState(null);
 
-  const { currentUser } = useContext(AuthContext);
-  const { data } = useContext(ChatContext);
+  const session = useSession();
+
+  const currentUser = {
+    "displayName": session.user.user_metadata.full_name,
+    "uid": session.user.id,
+    "photoURL": session.user.user_metadata.avatar_url,
+  }
+  const  data  = ChatProvider();
+  console.log("DATAAAAAAAAAAAAAAAAAAAAAAAAAA "+data)
 
   const handleSend = async () => {
     if (img) {
@@ -62,7 +69,7 @@ const Input = () => {
       },
       [data.chatId + ".date"]: serverTimestamp(),
     });
-
+    console.log("CHEGOOOOOOOOOU AQ "+data)
     await updateDoc(doc(db, "userChats", data.user.uid), {
       [data.chatId + ".lastMessage"]: {
         text,

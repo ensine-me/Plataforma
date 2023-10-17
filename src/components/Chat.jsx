@@ -1,13 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import Cam from "./images/chat/cam.png";
 import Add from "./images/chat/add.png";
 import More from "./images/chat/more.png";
 import Messages from "./Messages";
 import Input from "./Input";
-import { ChatContext } from "../context/ChatContext";
+import { ChatProvider } from "../context/ChatContext";
 
 const Chat = () => {
-  const { data } = useContext(ChatContext);
+  const data  = ChatProvider();
 
   return (
     <div className="chat">
