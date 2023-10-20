@@ -11,7 +11,7 @@ import Home from "../pages/Home";
 import Layout from "../components/Layout";
 import MinhasAulas from "../pages/MinhasAulas"
 import SessionChecker from "../components/SessionChecker";
-
+import HomeProfessor from "../pages/homeProfessor"
 
 const Routering = () => {
     return (
@@ -26,6 +26,7 @@ const Routering = () => {
                         <Route path="minhas-aulas" element={<MinhasAulas />} />
                         <Route path="pesquisa-aberta" element={<OpenSearch />} />
                         <Route path="pesquisa" element={<ProfessorDashBoard />} />
+                        <Route path="home-professor" element={<HomeProfessor />} />
                     </Route>
                 </Routes>
             </SessionChecker>

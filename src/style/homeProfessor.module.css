@@ -1,0 +1,34 @@
+.box {
+    display: flex;
+    flex-direction: row;
+    padding: 30px;
+    height: 100vh;
+}
+
+.colunaEsquerda {
+    width: 60%;
+    height: 90%;
+    border: 3px red solid;
+    display: flex;
+    flex-direction: column;
+}
+
+.objetosEsquerdaAcima {
+    width: 100%;
+    border: green 2px solid;
+    height:25%;
+}
+
+.objetosEsquerdaAbaixo {
+    width: 100%;
+    border: rgb(0, 0, 0) 2px solid;
+    height:75%;
+}
+
+.colunaDireita {
+    width: 40%;
+    height: 90%;
+    border: 3px blue solid;
+}
+
+
