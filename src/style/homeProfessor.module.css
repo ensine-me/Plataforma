@@ -1,3 +1,7 @@
+body {
+    background-color: #e2e2e2;
+}
+
 .box {
     display: flex;
     flex-direction: row;
@@ -8,27 +12,192 @@
 .colunaEsquerda {
     width: 60%;
     height: 90%;
-    border: 3px red solid;
     display: flex;
     flex-direction: column;
+    background-color: #e2e2e2;
 }
 
 .objetosEsquerdaAcima {
     width: 100%;
-    border: green 2px solid;
-    height:25%;
+    height: 25%;
+}
+
+.quadradoAcimaEsquerda {
+    width: 100%;
+    height: 95%;
+    background-color: white;
+    box-shadow: 5px 5px 5px #888888;
+}
+
+.tituloEstatisticas {
+    width: 100%;
+    height: 20%;
+}
+
+.tituloEstatisticas h3 {
+    margin: 0;
+    margin-left: 10px;
+}
+
+.estatisticasQuadrados {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: row;
+}
+
+.quadrado {
+    width: 33.3%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.quadradoDentroEsquerda {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.iconLaptop {
+    color: #388b2e;
+}
+
+.quadradoDentroDireita {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.quadradoDentroDireita h3 {
+    margin: 0;
+}
+
+.quadradoDentroDireita p {
+    margin: 0;
 }
 
 .objetosEsquerdaAbaixo {
     width: 100%;
-    border: rgb(0, 0, 0) 2px solid;
-    height:75%;
+    height: 75%;
+    display: flex;
+    align-items: flex-end;
+}
+
+.quadradoAbaixoEsquerda {
+    height: 95%;
+    width: 100%;
+    background-color: white;
+    box-shadow: 5px 5px 5px #888888;
+}
+
+.tituloProxAula {
+    height: 15%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tituloProxAula h3 {
+    margin: 0;
+    padding: 0;
+}
+
+.tabela {
+    width: 100%;
+    height: 85%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tabelaMenor {
+    width: 95%;
+    height: 90%;
+    overflow: scroll;
 }
 
 .colunaDireita {
     width: 40%;
     height: 90%;
-    border: 3px blue solid;
+    display: flex;
+    justify-content: flex-end;
+    background-color: #e2e2e2;
 }
 
+.quadradoDireita {
+    height: 100%;
+    width: 92.5%;
+    background-color: white;
+    box-shadow: 5px 5px 5px #888888;
+    display: flex;
+    flex-direction: column;
+}
 
+.tituloRankingSemanal {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tituloRankingSemanal h2 {
+    margin: 0;
+}
+
+.seuRanking {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+}
+
+.posicaoAtual {
+    width: 70%;
+    height: 100%;
+    background-color: #388b2e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+}
+
+.pequenoEspaco {
+    width: 100%;
+    height: 5%;
+}
+
+.posicionamento {
+    height: 75%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.primeiraPosicao {
+    width: 70%;
+    height: 15%;
+    background-color:#e2e2e2;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.primeiraPosicao p{
+    margin: 0;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+}
