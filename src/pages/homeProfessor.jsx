@@ -7,38 +7,88 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import ScheduleIcon from '@mui/icons-material/Schedule';
 import MuiReactTable from '../components/MuiReactTable';
 
-const chamaSwal = () => {
+const HomeProfessor = () => {
 
-    Swal.fire({
-        icon: 'success',
-        title: 'Aula solicitada',
-        text: 'Verifique seu Google Agenda',
-        showCancelButton: false,
-        showConfirmButton: true,
-        confirmButtonText: 'Ver minhas aulas',
-        confirmButtonColor: '#28a745',
-    }).then((result) => {
-        if (result.isConfirmed) {
-            Swal.fire({
-                icon: 'info',
-                title: 'Redirecionando...',
-                timer: 500,
-                showConfirmButton: false,
-            }).then((result) => {
-                window.location.href = "/minhas-aulas";
+
+    // Pega o valor do parâmetro 'id' da URL
+    const idProfessor = JSON.parse(sessionStorage.getItem("usuario")).userId;
+    const [qtdAulas, setQtdAulas] = useState();
+    const [qtdAulasConcluidas, setQtdAulasConcluidas] = useState();
+    const [qtdAulasAgendadas, setQtdAulasAgendadas] = useState();
+   
+    console.log('idProfessor:' + idProfessor);
+    console.log('session storage:' + JSON.stringify(sessionStorage));
+
+    useEffect(() => {
+        // fetch('http://localhost:8080/aulas/conta-aulas-professor-id?id=' + idProfessor, {  // trocar para este após conseguir logar como professor
+        fetch('http://localhost:8080/aulas/conta-aulas-professor-id?id=1', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("usuario")).token
+            },
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro na requisição');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Faça algo com os dados da resposta
+                setQtdAulas(data);
+            })
+            .catch(error => {
+                // Lide com erros
+                console.error(error);
             });
-        }
-    });
-}
+            
+            // 'http://localhost:8080/aulas/conta-aulas-professorid-concluida?id=' + idProfessor
+            fetch('http://localhost:8080/aulas/conta-aulas-professorid-concluida?id=1', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("usuario")).token
+            },
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro na requisição');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Faça algo com os dados da resposta
+                setQtdAulasConcluidas(data);
+            })
+            .catch(error => {
+                // Lide com erros
+                console.error(error);
+            });
 
-
-
-const fechaModal = () => {
-    document.getElementById("marcarAulaContainer").style.visibility = "hidden";
-}
-
-const homeProfessor = () => {
-
+            // 'http://localhost:8080/aulas/conta-aulas-professorid-agendada?id=' + idProfessor
+            fetch('http://localhost:8080/aulas/conta-aulas-professorid-agendada?id=1', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("usuario")).token
+            },
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro na requisição');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Faça algo com os dados da resposta
+                setQtdAulasAgendadas(data);
+            })
+            .catch(error => {
+                // Lide com erros
+                console.error(error);
+            });
+    }, [idProfessor]);
 
     return (
         <>
@@ -56,7 +106,7 @@ const homeProfessor = () => {
                                     </div>
                                     <div id="quadradoDireita" className={cssPoggers.quadradoDentroDireita}>
                                         <p>Total de aulas</p>
-                                        <h3>30</h3>
+                                        <h3>{qtdAulas}</h3>
                                     </div>
                                 </div>
                                 <div id="segundoQuadrado" className={cssPoggers.quadrado}>
@@ -65,7 +115,7 @@ const homeProfessor = () => {
                                     </div>
                                     <div id="quadradoDireita" className={cssPoggers.quadradoDentroDireita}>
                                         <p>Aulas Feitas</p>
-                                        <h3>10</h3>
+                                        <h3>{qtdAulasConcluidas}</h3>
                                     </div>
                                 </div>
                                 <div id="terceiroQuadrado" className={cssPoggers.quadrado}>
@@ -74,7 +124,7 @@ const homeProfessor = () => {
                                     </div>
                                     <div id="quadradoDireita" className={cssPoggers.quadradoDentroDireita}>
                                         <p>Aulas Marcadas</p>
-                                        <h3>5</h3>
+                                        <h3>{qtdAulasAgendadas}</h3>
                                     </div>
                                 </div>
                             </div>
@@ -130,4 +180,4 @@ const homeProfessor = () => {
         </>
     )
 }
-export default homeProfessor;
+export default HomeProfessor;
