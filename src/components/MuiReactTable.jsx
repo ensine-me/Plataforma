@@ -41,6 +41,8 @@ const rows = [
 ];
 
 export default function CustomizedTables() {
+
+  
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 600 }} aria-label="customized table">

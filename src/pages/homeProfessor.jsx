@@ -88,7 +88,32 @@ const HomeProfessor = () => {
                 // Lide com erros
                 console.error(error);
             });
+
+            // 'http://localhost:8080/aulas/encontra-aulas-id-professor?id=' + idProfessor
+            fetch('http://localhost:8080/aulas/encontra-aulas-id-professor?id=1', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("usuario")).token
+            },
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro na requisição');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Faça algo com os dados da resposta
+                setQtdAulasAgendadas(data);
+            })
+            .catch(error => {
+                // Lide com erros
+                console.error(error);
+            });
     }, [idProfessor]);
+
+    
 
     return (
         <>
@@ -133,7 +158,7 @@ const HomeProfessor = () => {
                     <div id="objetosAbaixo" className={cssPoggers.objetosEsquerdaAbaixo}>
                         <div id="quadradoAbaixoEsquerda" className={cssPoggers.quadradoAbaixoEsquerda}>
                             <div id="tituloProxAula" className={cssPoggers.tituloProxAula}>
-                                <h3>Próximas Aulas</h3>
+                                <h3>Próximas aulas solicitadas</h3>
                             </div>
                             <div id="tabela" className={cssPoggers.tabela}>
                                 <div id="tabelaMenor" className={cssPoggers.tabelaMenor}>
