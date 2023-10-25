@@ -89,6 +89,7 @@ const Home = () => {
               return (
                 <CardAula
                   key={aula.id}
+                  id={aula.id}
                   disciplina={aula.materia.nome}
                   alunosCadastrados={aula.alunos.length}
                   maxAlunos={aula.limiteParticipantes}
