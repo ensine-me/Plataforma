@@ -18,6 +18,7 @@ import CadastroProfessor from "pages/CadastroProfessor"
 import LogOut from "pages/LogOut";
 import DetalhesAula from "../pages/DetalhesAula";
 import EscolhaCadastro from "../pages/EscolhaCadastro";
+import HomeProfessor from "../pages/homeProfessor"
 
 const Routering = () => {
     return (
@@ -31,6 +32,7 @@ const Routering = () => {
                     <Route path="pesquisa-aberta" element={<SessionChecker><OpenSearch /></SessionChecker>} />
                     <Route path="pesquisa" element={<SessionChecker><ProfessorDashBoard /></SessionChecker>} />
                     <Route path="aula" element={<DetalhesAula/>} />
+                        <Route path="home-professor" element={<HomeProfessor />} />
                 </Route>
             </Routes>
             <Routes>
