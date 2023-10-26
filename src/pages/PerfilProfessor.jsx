@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import sPerfil from "../style/perfilProfessor.module.css"
+import sPerfil from "../assets/styles/perfilProfessor.module.css"
 import FormacaoCard from "../components/FormacaoCard"
 import MarcarAula from "../components/marcarAula"
 import DisciplinaDoProfessor from "../components/DisciplinaDoProfessor"

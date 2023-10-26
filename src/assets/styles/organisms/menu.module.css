@@ -1,0 +1,62 @@
+.menu {
+    background-color: var(--branco);
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    box-shadow: var(--shadow);
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.menu li :hover {
+    color: var(--verde-logo);
+}
+
+.menu ul {
+    margin-left: 50px;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+@media screen and (min-width: 750px) {
+    .menu {
+        padding-left: 100px;
+        padding-right: 100px;
+    }
+
+    .buttons {
+        display: flex;
+        align-items: center;
+    }
+
+    .buttons a {
+        color: var(--preto);
+        text-decoration: none;
+        font-size: 120%;
+    }
+}
+
+@media screen and (max-width: 1090px) {
+    .menu ul {
+        display: none;
+    }
+
+    .menu {
+        justify-content: space-between;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .menu {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .buttons {
+        width: 50%;
+    }
+}

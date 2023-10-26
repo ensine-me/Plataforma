@@ -1,0 +1,32 @@
+.btn_disciplina_container {
+    padding: 10px;
+    background-color: #ffffff50;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 100px;
+    user-select: none;
+    border-radius: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease, font-size 0.3s ease;
+    cursor: pointer;
+}
+
+.btn_disciplina_container:hover {
+    background-color: #ffffffcb;
+    color: #000000; 
+}
+
+.btn_disciplina_checkbox {
+    display: none;
+}
+
+.checked {
+    background-color: rgba(63, 225, 79, 0.726);
+    color: #ffffffe1;
+}
+
+.checked:hover {
+    background-color: rgba(63, 225, 79, 0.726);
+    color: #ffffffe1;
+}

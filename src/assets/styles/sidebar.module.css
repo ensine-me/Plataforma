@@ -1,0 +1,10 @@
+.drawer {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.drawer h2 {
+    margin-right: 55px;
+
+}

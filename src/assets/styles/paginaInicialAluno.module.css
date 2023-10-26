@@ -1,0 +1,32 @@
+.home_container {
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.home_title {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.home_professores_recomendados_container {
+    margin-top: 2rem;
+    display: flex;
+    gap: 15px;
+    box-sizing: border-box;
+    padding: 1px;
+    overflow: hidden;
+    overflow-x: auto;
+    margin-bottom: 2rem;
+    padding: 20px;
+    height: 500px;
+}
+
+.home_aulas_abertas_container {
+    margin-top: 15px;
+    display: flex;
+    gap: 15px;
+    box-sizing: border-box;
+    padding: 1px;
+    overflow: hidden;
+    overflow-x: auto;
+}

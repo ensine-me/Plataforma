@@ -1,5 +1,6 @@
 import { useSession, useSupabaseClient, useSessionContext } from '@supabase/auth-helpers-react';
 import { useEffect, useCallback } from 'react';
+import { useNavigate } from "react-router-dom";
 
 // FAVOR NÃO MEXER NESTE ARQUIVO DA SILVA
 // Ele é o arquivo do Login
@@ -10,11 +11,14 @@ function GoogleLogin() {
   const supabase = useSupabaseClient(); // talk to supabase;
   const { isLoading } = useSessionContext();
 
+  const navigate = useNavigate();
+
   const googleSignIn = useCallback(async () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        scopes: 'https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events'
+        scopes: 'https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events',
+        redirectTo: 'http://localhost:3000/inicial-aluno'
       }
     });
     if (error) {
@@ -46,12 +50,13 @@ function GoogleLogin() {
   useEffect(() => {
     if (!isLoading) {
       if (session) {
-        signOut();
+        // signOut();
+        navigate('/sign-out')
       } else {
         googleSignIn();
       }
     }
-  }, [isLoading, session, signOut, googleSignIn]);
+  }, [isLoading, session, googleSignIn, navigate]);
 
   return null;
 }

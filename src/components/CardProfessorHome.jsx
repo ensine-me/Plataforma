@@ -1,6 +1,6 @@
 import React from 'react'
 import Rating from '@mui/material/Rating';
-import styles from '../style/cardProfessorHome.module.css'
+import styles from '../assets/styles/cardProfessorHome.module.css'
 import DisciplinaDoProfessor from '../components/DisciplinaDoProfessor';
 import { Link } from "react-router-dom";
 
