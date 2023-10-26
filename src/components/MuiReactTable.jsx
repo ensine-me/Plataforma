@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useEffect } from 'react';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -7,6 +8,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { sleep } from '@supabase/gotrue-js/dist/module/lib/helpers';
 
 var array1 = JSON.parse(sessionStorage.getItem("array1"));
 var array2 = JSON.parse(sessionStorage.getItem("array2"));
@@ -37,14 +39,21 @@ function createData(name, calories, fat, carbs) {
   return { name, calories, fat, carbs };
 }
 
-  const rows = array1.map((_, index) => {
-    return createData(array1[index], array2[index], array3[index], array4[index]);
-  });
-  
+  // const rows = array1.map((_, index) => {
+  //   return createData(array1[index], array2[index], 'R$: '+array3[index], array4[index]);
+  // });
+
+  const rows = [
+    createData('Marcelo', '20/10/2023 - 19h30', 'R$20,00', 'Matemática'),
+    createData('Vannucchi', '20/10/2023 - 19h30', 'R$20,00', 'Matemática'),
+    createData('Marcelo', '20/10/2023 - 19h30', 'R$20,00', 'Matemática'),
+    createData('Marcelo', '20/10/2023 - 19h30', 'R$20,00', 'Matemática'),
+    createData('Marcelo', '20/10/2023 - 19h30', 'R$20,00', 'Matemática'),
+  ];
+
+
 
 export default function CustomizedTables() {
-
-  
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 600 }} aria-label="customized table">

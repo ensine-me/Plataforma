@@ -30,7 +30,7 @@ const HomeProfessor = () => {
 
     useEffect(() => {
         // fetch('http://localhost:8080/aulas/conta-aulas-professor-id?id=' + idProfessor, {  // trocar para este após conseguir logar como professor
-        fetch('http://localhost:8080/aulas/conta-aulas-professor-id?id=1', {
+        fetch('http://localhost:8080/aulas/conta-aulas-professor-id?id=' + idProfessor, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ const HomeProfessor = () => {
             });
 
         // 'http://localhost:8080/aulas/conta-aulas-professorid-concluida?id=' + idProfessor
-        fetch('http://localhost:8080/aulas/conta-aulas-professorid-concluida?id=1', {
+        fetch('http://localhost:8080/aulas/conta-aulas-professorid-concluida?id=' + idProfessor, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ const HomeProfessor = () => {
             });
 
         // 'http://localhost:8080/aulas/conta-aulas-professorid-agendada?id=1' + idProfessor
-        fetch('http://localhost:8080/aulas/conta-aulas-professorid-agendada?id=1', {
+        fetch('http://localhost:8080/aulas/conta-aulas-professorid-agendada?id=' + idProfessor, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -99,7 +99,7 @@ const HomeProfessor = () => {
             });
         // AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         // 'http://localhost:8080/aulas/busca-professor-id-solicitado?id=' + idProfessor
-        fetch('http://localhost:8080/aulas/busca-professor-id-solicitado?id=1', {
+        fetch('http://localhost:8080/aulas/busca-professor-id-solicitado?id=' + idProfessor, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
