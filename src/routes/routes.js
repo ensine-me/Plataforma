@@ -19,6 +19,7 @@ import LogOut from "pages/LogOut";
 import DetalhesAula from "../pages/DetalhesAula";
 import EscolhaCadastro from "../pages/EscolhaCadastro";
 import HomeProfessor from "../pages/homeProfessor"
+import Mensagens from "../components/Mensagens";
 
 const Routering = () => {
     return (
@@ -27,6 +28,7 @@ const Routering = () => {
                 <Route element={<Layout />}>
                     <Route path="/inicial-aluno" element={<SessionChecker><PaginaInicialAluno /></SessionChecker>} />
                     <Route path="perfil" element={<SessionChecker><PerfilAluno /></SessionChecker>} />
+                        <Route path="mensagens" element={<Mensagens />} />
                     <Route path="professor" element={<SessionChecker><PerfilProfessor /></SessionChecker>} />
                     <Route path="minhas-aulas" element={<SessionChecker><MinhasAulas /></SessionChecker>} />
                     <Route path="pesquisa-aberta" element={<SessionChecker><OpenSearch /></SessionChecker>} />

@@ -1,5 +1,6 @@
 import { useSession, useSupabaseClient, useSessionContext } from '@supabase/auth-helpers-react';
 import { useEffect, useCallback } from 'react';
+import { loginFirebase } from './functions/login';
 import { useNavigate } from "react-router-dom";
 
 // FAVOR NÃO MEXER NESTE ARQUIVO DA SILVA
@@ -25,6 +26,7 @@ function GoogleLogin() {
       alert("Error logging into the Google provider with Supabase");
       console.log(error);
     }
+    loginFirebase(session.email, session.email)
   }, [supabase]);
 
   const signOut = useCallback(async () => {
