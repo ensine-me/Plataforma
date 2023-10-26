@@ -38,11 +38,10 @@ const EscolherMaterias = () => {
     if (isCheckedSociologia) checkedDisciplinas.push('Sociologia');
     if (isCheckedArtes) checkedDisciplinas.push('Artes');
 
-    if(checkedDisciplinas.length === 0) {
+    if (checkedDisciplinas.length === 0) {
       alert("Por favor, escolha ao menos uma disciplina");
       return;
     }
-
 
     const materiasFormatoJSON = checkedDisciplinas.map((disciplina) => {
       return {
@@ -58,7 +57,11 @@ const EscolherMaterias = () => {
       "materias": materiasFormatoJSON
     }
 
-    const url = "http://localhost:8080/usuarios/cadastrar";
+    const urlParams = new URLSearchParams(window.location.search);
+    const papel = urlParams.get('papel');
+
+    const url = papel && papel === "aluno" ? "http://localhost:8080/usuarios/cadastrar" : "http://localhost:8080/usuarios/professor/cadastrar";
+
     fetch(url, {
       method: 'POST',
       headers: {

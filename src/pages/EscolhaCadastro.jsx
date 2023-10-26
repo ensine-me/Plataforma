@@ -17,7 +17,7 @@ const paginaCadastro = () => {
                         <Logo />
                     </div>
                     <div className={sCadastro.options}>
-                        <Link to="/cadastro/professorcad">
+                        <Link to="/escolher-materias?papel=professor">
                             <div className={sCadastro.option}>
                                 <p>
                                     <SimpleText text='Quero ser professor' size={'xlarge'} />
@@ -31,7 +31,7 @@ const paginaCadastro = () => {
                                 </Player>
                             </div>
                         </Link>
-                        <Link to="/cadastro/alunocad">
+                        <Link to="/escolher-materias?papel=aluno">
                             <div className={sCadastro.option}>
                                 <p>
                                     <SimpleText text='Quero ser aluno' size={'xlarge'} />

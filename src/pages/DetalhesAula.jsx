@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from "react";
-import styles from "../style/DetalhesAula.module.css";
+import styles from "../assets/styles/DetalhesAula.module.css";
 import FormacaoCard from "../components/FormacaoCard";
 
 const DetalhesAula = () => {

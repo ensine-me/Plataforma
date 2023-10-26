@@ -6,7 +6,6 @@ import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import DisciplinaDoProfessor from './DisciplinaDoProfessor';
 import { Link } from "react-router-dom";
-import { useState } from 'react';
 
 const LevelUser = () => {
     return (

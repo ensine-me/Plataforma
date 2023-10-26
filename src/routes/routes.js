@@ -17,6 +17,7 @@ import CadastroAluno from "pages/CadastroAluno"
 import CadastroProfessor from "pages/CadastroProfessor"
 import LogOut from "pages/LogOut";
 import DetalhesAula from "../pages/DetalhesAula";
+import EscolhaCadastro from "../pages/EscolhaCadastro";
 
 const Routering = () => {
     return (
@@ -39,6 +40,7 @@ const Routering = () => {
                 <Route path="/cadastro/alunocad" element={<CadastroAluno />} />
                 <Route path="/cadastro/professorcad" element={<CadastroProfessor />} />
                 <Route path="escolher-materias" element={<EscolherMaterias />} />
+                <Route path="escolher-papel" element={<EscolhaCadastro />} />
                 <Route path="google-login" element={<GoogleLogin />} />
                 <Route path="sign-out" element={<LogOut />} />
             </Routes>

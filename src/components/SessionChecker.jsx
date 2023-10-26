@@ -25,7 +25,7 @@ const SessionChecker = ({ children }) => {
           }
           setIsReady(true);
         } else { // if not registered, navigate to registration page
-          navigate("/escolher-materias");
+          navigate("/escolher-papel");
         }
         // Set the state to indicate that the check is complete
       }

@@ -14,13 +14,13 @@ const Footer = () => {
             <div className={sFooter.footerLinks}>
                 <div className={sFooter.companyLink}>
                     <a href="https://github.com/orgs/ensine-me/repositories">
-                        <img src={GitLogoWhite}></img>
+                        <img src={GitLogoWhite} alt='Logo do GitHub'></img>
                         <SimpleText text='Github' color={'white'} />
                     </a>
                 </div>
                 <div className={sFooter.companyLink}>
                     <a href="https://www.linkedin.com">
-                        <img src={LinkedinLogoBlue}></img>
+                        <img src={LinkedinLogoBlue} alt='Logo do LinkedIn'></img>
                         <SimpleText text='LinkedIn' color={'white'} />
                     </a>
                 </div>

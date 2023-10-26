@@ -8,10 +8,6 @@ import googleLogo from 'assets/img/icons/googleLogo.png'
 
 import { Link } from "react-router-dom";
 
-const HandleSubmit = async (event) => {
-    window.location.href = "http://localhost:3000/inicial-aluno"
-}
-
 const Menu = () => {
     return (
         <div className={sMenu.menu}>
@@ -26,7 +22,7 @@ const Menu = () => {
                 <div className={styles.googleButtonContainer}>
                     <Link to="/google-login">
                         <div className={styles.googleButton}>
-                            <img src={googleLogo} />
+                            <img src={googleLogo} alt="Login da Google" />
                             Acessar plataforma
                         </div>
                     </Link>

@@ -1,8 +1,6 @@
 import api from "./api";
 
 export default class UrlUsuarios {
-    constructor() {
-    }
 
     async login(dados) {
         const {data} = await api.post(`/login`, dados);
@@ -19,7 +17,7 @@ export default class UrlUsuarios {
     }
 
     usuarioAutenticado() {
-        return sessionStorage.getItem('token') != undefined ? true : false
+        return sessionStorage.getItem('token') !== undefined ? true : false
     }
 
     async logout() {
