@@ -10,7 +10,7 @@ function OpenSearch() {
     function searchKeyEnter(event) {
         const inputValue = event.target.value;
         if (inputValue.length === 3) {
-            fetch('http://localhost:8080/usuarios/professor/busca/lista?nome=' + inputValue, {
+            fetch('http://44.217.177.131:8080/usuarios/professor/busca/lista?nome=' + inputValue, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ function OpenSearch() {
                     console.error(error);
                 });
         } else if (inputValue.length > 3) {
-            fetch('http://localhost:8080/usuarios/professor/busca/lista/letra?nome=' + inputValue, {
+            fetch('http://44.217.177.131:8080/usuarios/professor/busca/lista/letra?nome=' + inputValue, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
