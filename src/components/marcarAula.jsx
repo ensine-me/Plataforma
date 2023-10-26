@@ -1,4 +1,4 @@
-import cssPoggers from "../style/marcarAula.module.css"
+import cssPoggers from "../assets/styles/marcarAula.module.css"
 import DateTimePickerComponent from "./DateTimePickerComponent"
 import MultiTextField from "./MultiTextField"
 import BasicTextField from "./BasicTextField"
@@ -9,10 +9,6 @@ import dayjs from "dayjs"
 import { useSession } from "@supabase/auth-helpers-react"
 
 const chamaSwal = () => {
-  // talvez e só talvez, seja necessário dar um none no quadradoCinza que é o nome do campo no css
-  // que some com esse componente, tirei isso pq estava dando um erro de resize e como vai ir pra outra tela
-  // acredito que nem precise.
- 
   Swal.fire({
     icon: 'success',
     title: 'Aula solicitada',

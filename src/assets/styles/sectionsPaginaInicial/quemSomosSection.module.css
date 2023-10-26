@@ -1,0 +1,46 @@
+.quemSomos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: auto;
+    background-image: url("assets/img/stock/aula-online.jpg");
+    background-size: 100% auto;
+    background-position: center;
+}
+
+.quemSomosContainer {
+    padding: 5%;
+    backdrop-filter: blur(50px);
+    box-shadow: var(--shadow);
+}
+
+.quemSomosTitulo, .subtitulo {
+    font-size: 1.5em;
+}
+
+@media screen and (min-width: 1024px) {
+    .quemSomos {
+        padding: 5em;
+    }
+    .quemSomosTitulo {
+        margin-bottom: .5em;
+    }
+    .p {
+        font-size: 1.7em;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .quemSomos h2 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .quemSomos p {
+        display: flex;
+        text-align: justify;
+        font-size: 1.0em;
+        padding: 10%;
+    }
+    
+}
