@@ -1,6 +1,6 @@
 import React from 'react';
 
-import style from '../assets/styles/index.module.css'
+import '../assets/styles/index.module.css'
 
 import Menu from 'components/organisms/menu';
 import FirstSection from 'components/sectionsPaginaInicial/firstSection';

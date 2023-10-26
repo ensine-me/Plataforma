@@ -4,20 +4,14 @@ import styles from '../assets/styles/login.module.css'
 import googleLogo from 'assets/img/icons/googleLogo.png'
 import { validarEmail, validarSenha } from 'authProvider/validadores';
 
-import {useNavigate} from 'react-router-dom'
-
 import Logo from 'components/logo';
-import UrlUsuarios from 'authProvider/urlUsuarios';
 
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
-const apiUsuarios = new UrlUsuarios();
-
 const Login = () => {
     
-    const [loading, setLoading] = useState()
+    const [loading] = useState()
     const [form, setForm] = useState([]);
-    const navigate = new useNavigate()
 
     const HandleSubmit = async (event) => {
         window.location.href = "http://localhost:3000"
@@ -74,7 +68,7 @@ const Login = () => {
                         </button>
                             <div className={styles.googleButtonContainer}>
                                 <div className={styles.googleButton} onClick={HandleSubmit}>
-                                    <img src={googleLogo} />
+                                    <img src={googleLogo} alt='Google logo' />
                                     Login com google
                                 </div>
                             </div>

@@ -6,8 +6,10 @@ import sMenu from '../../assets/styles/organisms/menu.module.css';
 import styles from '../../assets/styles/login.module.css'
 import googleLogo from 'assets/img/icons/googleLogo.png'
 
+import { Link } from "react-router-dom";
+
 const HandleSubmit = async (event) => {
-    window.location.href = "http://localhost:3000"
+    window.location.href = "http://localhost:3000/inicial-aluno"
 }
 
 const Menu = () => {
@@ -22,10 +24,12 @@ const Menu = () => {
             />
             <div className={sMenu.buttons}>
                 <div className={styles.googleButtonContainer}>
-                    <div className={styles.googleButton} onClick={HandleSubmit}>
-                        <img src={googleLogo} />
-                        Acessar plataforma
-                    </div>
+                    <Link to="/google-login">
+                        <div className={styles.googleButton}>
+                            <img src={googleLogo} />
+                            Acessar plataforma
+                        </div>
+                    </Link>
                 </div>
 
             </div>

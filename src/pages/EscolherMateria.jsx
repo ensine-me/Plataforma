@@ -71,7 +71,7 @@ const EscolherMaterias = () => {
         //logando
         login(session.user.email, session.user.email);
         //indo pra home
-        navigate("/");
+        navigate("/inicial-aluno");
       }
     });
   }
