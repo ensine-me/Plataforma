@@ -7,7 +7,7 @@ import { auth } from "../firebase";
 // console.log("token: " + JSON.parse(sessionStorage.getItem("usuario")).token);
 
 export async function login(email, senha) {
-    const urlLogin = "http://localhost:8080/usuarios/login";
+    const urlLogin = "http://44.217.177.131:8080/usuarios/login";
     const response = await fetch(urlLogin, {
         method: 'POST',
         headers: {

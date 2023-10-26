@@ -1,6 +1,6 @@
 import MiniDrawer from "../components/SideBar"
 import MarcarAula from "../components/marcarAula";
-import sPlat from "../style/template.module.css"
+import sPlat from "../assets/styles/template.module.css"
 
 const Template = () => {
     return (

@@ -16,7 +16,7 @@ const SessionChecker = ({ children }) => {
       }
       if (!isLoading && session) {
         const email = session.user.email;
-        const urlExiste = `http://localhost:8080/usuarios/existe-por-email?emailUsuario=${email}`;
+        const urlExiste = `http://44.217.177.131:8080/usuarios/existe-por-email?emailUsuario=${email}`;
         const responseExiste = await fetch(urlExiste);
         const responseExisteJson = await responseExiste.json();
         if (responseExisteJson) { // checks if user is registered
@@ -25,7 +25,7 @@ const SessionChecker = ({ children }) => {
           }
           setIsReady(true);
         } else { // if not registered, navigate to registration page
-          navigate("/escolher-materias");
+          navigate("/escolher-papel");
         }
         // Set the state to indicate that the check is complete
       }

@@ -1,0 +1,23 @@
+.comoFunciona {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 0px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: white;
+}
+
+.video {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+}
+
+.comoFuncionaTitulo {
+    font-size: 1.5em;
+}

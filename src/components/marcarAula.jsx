@@ -1,4 +1,4 @@
-import cssPoggers from "../style/marcarAula.module.css"
+import cssPoggers from "../assets/styles/marcarAula.module.css"
 import DateTimePickerComponent from "./DateTimePickerComponent"
 import MultiTextField from "./MultiTextField"
 import BasicTextField from "./BasicTextField"
@@ -9,10 +9,6 @@ import dayjs from "dayjs"
 import { useSession } from "@supabase/auth-helpers-react"
 
 const chamaSwal = () => {
-  // talvez e só talvez, seja necessário dar um none no quadradoCinza que é o nome do campo no css
-  // que some com esse componente, tirei isso pq estava dando um erro de resize e como vai ir pra outra tela
-  // acredito que nem precise.
- 
   Swal.fire({
     icon: 'success',
     title: 'Aula solicitada',
@@ -35,7 +31,7 @@ const chamaSwal = () => {
   });
 }
 
-const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias }) => {
+const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias, disponibilidades }) => {
   const [start, setStart] = useState(dayjs()) // marcando o horário de agora apartir do Google
   const [end, setEnd] = useState(dayjs())
   const [eventName, setEventName] = useState("");
@@ -54,6 +50,7 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias }) =>
   const dataFormatada = startUTC.toISOString();
 
   async function createCalendarEvent() {
+    let foi = true;
     if (nomeProfessor != null && emailProfessor != null) {
       const bodyJsonData = {
         "professor": {
@@ -72,7 +69,8 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias }) =>
         "status": "SOLICITADO",
         "duracaoSegundos": "3600"
       }
-      fetch('http://localhost:8080/aulas', {
+      
+      const response = await fetch('http://44.217.177.131:8080/aulas', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -80,58 +78,65 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias }) =>
         },
         body: JSON.stringify(bodyJsonData)
       })
-        .then(response => {
-          console.log(bodyJsonData)
-          if (!response.ok) {
-            throw new Error('Erro na requisição');
-          }
-          return response.json();
-        })
-        .catch(error => {
-          // Lide com erros
-          console.error(error);
+      console.log(bodyJsonData)
+      console.log("Response: " + response)
+      if (!response.ok) {
+        foi = false;
+        console.log("FOI : " + foi)
+      }
+      const emailFormatado = "" + emailProfessor + "";
+      console.log("Foi 2:" + foi)
+      if (!foi) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Aula não foi marcada',
+          text: 'Verifique se a aula está sendo marcada dentro da disponibilidade.\n Caso o erro persista, entre em contato com um desenvolvedor.',
+          showCancelButton: false,
+          showConfirmButton: true,
+          confirmButtonText: 'Ok',
+          confirmButtonColor: '#FF0000',
         });
-    }
-    const emailFormatado = "" + emailProfessor + "";
-
-    const event = {
-      'summary': eventName,
-      'description': eventDescription,
-      'attendees': [
-        { 'email': emailFormatado }
-      ],
-      'start': {
-        'dateTime': start.toISOString(),
-        'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone
-      },
-      'end': {
-        'dateTime': end.toISOString(), // Date.toISOString() ->
-        'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone
-      },
-      'conferenceData': {
-        'conferenceDataVersion': 1,
-        'createRequest': {
-          'requestId': 'sample123',
-          'conferenceSolutionKey': { 'type': 'hangoutsMeet' },
-        },
+      }
+      else {     
+        const requestIdRandom = 'requestID'+ Math.floor(Math.random() * 100000);
+        const event = {
+          'summary': eventName,
+          'description': eventDescription,
+          'attendees': [
+            { 'email': emailFormatado }
+          ],
+          'start': {
+            'dateTime': start.toISOString(),
+            'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone
+          },
+          'end': {
+            'dateTime': end.toISOString(), // Date.toISOString() ->
+            'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone
+          },
+          'conferenceData': {
+            'createRequest': {
+              'requestId': requestIdRandom,
+              'conferenceSolutionKey': { 'type': 'hangoutsMeet' },
+            },
+          }
+        }
+        await fetch("https://www.googleapis.com/calendar/v3/calendars/primary/events?conferenceDataVersion=1", {     
+          method: "POST",                                                                    
+          headers: {                                                                         
+            'Authorization': 'Bearer ' + session.provider_token
+          },
+          body: JSON.stringify(event)
+        }).then((data) => {
+          return data.json();
+        }).then((data) => {
+          console.log(data);
+          console.log("eventId: "+ data.id);
+        });
+        chamaSwal();
+        fechaModal();
       }
     }
-
-    await fetch("https://www.googleapis.com/calendar/v3/calendars/primary/events", {
-      method: "POST",
-      headers: {
-        'Authorization': 'Bearer ' + session.provider_token
-      },
-      body: JSON.stringify(event)
-    }).then((data) => {
-      return data.json();
-    }).then((data) => {
-      console.log(data);
-    });
-    chamaSwal();
-    fechaModal();
   }
-
   const fechaModal = () => {
     document.getElementById("marcarAulaContainer").style.visibility = "hidden";
   }
@@ -170,6 +175,18 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias }) =>
             <MultiTextField onChange={(e) => setEventDescription(e.target.value)} />
             <button onClick={createCalendarEvent} className={cssPoggers.botaoMarcarAula}>Marcar Aula</button>
           </div>
+        </div>
+        <div className={cssPoggers.quadradinCinza}>
+          <h5>Disponibilidade:</h5>
+          {disponibilidades.map((disponibilidade, index) => {
+            return (
+              <div className={cssPoggers.disponibilidadeCont} key={index}>
+                <li>
+                  {disponibilidade.diaDaSemana} - {disponibilidade.horarioInicio} às {disponibilidade.horarioFim}
+                </li>
+              </div>
+            )
+          })}
         </div>
       </div>
     </>
