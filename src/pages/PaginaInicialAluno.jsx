@@ -13,7 +13,7 @@ const Home = () => {
     if(!isVariableInSessionStorage("usuario") || professores.length !== 0) return;
     const disciplinas = JSON.parse(sessionStorage.getItem("usuario")).disciplinas;
 
-    let urlProfessores = `http://localhost:8080/usuarios/professores-recomendados?disciplinas=${disciplinas[0].nome}`;
+    let urlProfessores = `http://44.217.177.131:8080/usuarios/professores-recomendados?disciplinas=${disciplinas[0].nome}`;
     for (let i = 1; i < disciplinas.length; i++) {
       urlProfessores += `&disciplinas=${disciplinas[i].nome}`;
     };
@@ -34,7 +34,7 @@ const Home = () => {
         }
       });
 
-    const urlAulas = `http://localhost:8080/aulas/privacidade/PUBLICA`;
+    const urlAulas = `http://44.217.177.131:8080/aulas/privacidade/PUBLICA`;
     fetch(urlAulas, {
       method: 'GET',
       headers: {

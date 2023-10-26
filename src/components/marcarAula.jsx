@@ -68,7 +68,7 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias }) =>
         "status": "SOLICITADO",
         "duracaoSegundos": "3600"
       }
-      fetch('http://localhost:8080/aulas', {
+      fetch('http://44.217.177.131:8080/aulas', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiAulas = axios.create({
-    baseURL: " http://localhost:8080/aulas",
+    baseURL: " http://44.217.177.131:8080/aulas",
 });
 
 

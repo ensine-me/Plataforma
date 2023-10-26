@@ -60,7 +60,7 @@ const EscolherMaterias = () => {
     const urlParams = new URLSearchParams(window.location.search);
     const papel = urlParams.get('papel');
 
-    const url = papel && papel === "aluno" ? "http://localhost:8080/usuarios/cadastrar" : "http://localhost:8080/usuarios/professor/cadastrar";
+    const url = papel && papel === "aluno" ? "http://44.217.177.131:8080/usuarios/cadastrar" : "http://44.217.177.131:8080/usuarios/professor/cadastrar";
 
     fetch(url, {
       method: 'POST',

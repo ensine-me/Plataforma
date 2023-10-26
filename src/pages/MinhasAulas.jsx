@@ -6,7 +6,7 @@ const MinhasAulas = () => {
   const [aulas, setAulas] = useState([]);
 
   useEffect(() => {
-    const url = `http://localhost:8080/aulas/busca-id-usuario?id=${JSON.parse(sessionStorage.getItem("usuario")).userId}`;
+    const url = `http://44.217.177.131:8080/aulas/busca-id-usuario?id=${JSON.parse(sessionStorage.getItem("usuario")).userId}`;
     const headersComToken = {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("usuario")).token

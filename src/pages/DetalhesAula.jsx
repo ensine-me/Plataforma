@@ -12,7 +12,7 @@ const DetalhesAula = () => {
     const [aula, setAula] = useState();
 
     useEffect(() => {
-        fetch('http://localhost:8080/aulas/busca-id?id=' + idAula, {
+        fetch('http://44.217.177.131:8080/aulas/busca-id?id=' + idAula, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ const DetalhesAula = () => {
 
     function entrarNaAula() {
         if (idAula) {
-            fetch(`http://localhost:8080/aulas/${idAula}/adicionar-aluno?email=${JSON.parse(sessionStorage.getItem("usuario")).email}`, {
+            fetch(`http://44.217.177.131:8080/aulas/${idAula}/adicionar-aluno?email=${JSON.parse(sessionStorage.getItem("usuario")).email}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

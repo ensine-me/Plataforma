@@ -23,7 +23,7 @@ const PerfilProfessor = () => {
     const [disponibilidades, setDisponibilidade] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:8080/usuarios/professor/busca?id=' + idProfessor, {
+        fetch('http://44.217.177.131:8080/usuarios/professor/busca?id=' + idProfessor, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
