@@ -5,6 +5,8 @@ import More from "./images/chat/more.png";
 import Messages from "./Messages";
 import Input from "./Input";
 import { ChatProvider } from "../context/ChatContext";
+import "../style/chat.css"
+
 
 const Chat = () => {
   const data  = ChatProvider();

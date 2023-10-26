@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import { ChatProvider } from "../context/ChatContext";
 import { useSession } from "@supabase/auth-helpers-react";
+import "../style/chat.css"
+
 
 const Message = ({ message }) => {
   const session = useSession();

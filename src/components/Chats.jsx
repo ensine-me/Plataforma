@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { ChatProvider } from "../context/ChatContext";
 import { db } from "../firebase";
 import { useSession } from "@supabase/auth-helpers-react";
+import "../style/chat.css";
 
 const Chats = () => {
   const [chats, setChats] = useState([]);
@@ -17,11 +18,12 @@ const Chats = () => {
 
   console.log("USSSSSSSSSSER "+currentUser.displayName)
 
-  const dispatch  = ChatProvider("dispatch");
+  const {dispatch}  = ChatProvider("dispatch");
 
   useEffect(() => {
     const getChats = () => {
       const unsub = onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
+
         setChats(doc.data());
       });
 
@@ -35,11 +37,15 @@ const Chats = () => {
 
   const handleSelect = (u) => {
     dispatch({ type: "CHANGE_USER", payload: u });
+  console.log('%c⧭', 'color: #2f00ff', "PASSEI AQ de novo ");
+
   };
+
 
   return (
     <div className="chats">
-      {Object.entries(chats)?.sort((a,b)=>b[1].date - a[1].date).map((chat) => (
+      {console.log('%c⧭', 'color: #00a3cc', chats)}
+      {Object.entries(chats || {}).sort((a, b) => b[1]?.date - a[1]?.date).map((chat) => (
         <div
           className="userChat"
           key={chat[0]}

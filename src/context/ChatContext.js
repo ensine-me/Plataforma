@@ -12,11 +12,13 @@ export function ChatProvider(arg) {
   }
   console.log("USSSSSSSSSSER"+currentUser)
   const INITIAL_STATE = {
-    chatId: "0",
+    chatId: "NULL",
     user: {},
   };
 
   const chatReducer = (state, action) => {
+  console.log('%c⧭', 'color: #ffffff', "PASSEI AQ de novo ");
+
     switch (action.type) {
       case "CHANGE_USER":
         return {
@@ -40,6 +42,7 @@ export function ChatProvider(arg) {
   }
 
   else {
+    console.log('%c⧭', 'color: #2f00ff', "PASSEI AQ no return");
     return (
       dispatch
     );
