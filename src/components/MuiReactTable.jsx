@@ -28,13 +28,13 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
+function createData(name, calories, fat, carbs) {
+  return { name, calories, fat, carbs };
 }
 
 const rows = [
   createData('Marcelo', '20/10/2023 - 19h30', 'R$20,00', 'Matemática'),
-  createData('Marcelo', '20/10/2023 - 19h30', 'R$20,00', 'Matemática'),
+  createData('Vannucchi', '20/10/2023 - 19h30', 'R$20,00', 'Matemática'),
   createData('Marcelo', '20/10/2023 - 19h30', 'R$20,00', 'Matemática'),
   createData('Marcelo', '20/10/2023 - 19h30', 'R$20,00', 'Matemática'),
   createData('Marcelo', '20/10/2023 - 19h30', 'R$20,00', 'Matemática'),

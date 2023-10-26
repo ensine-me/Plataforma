@@ -9,15 +9,24 @@ import MuiReactTable from '../components/MuiReactTable';
 
 const HomeProfessor = () => {
 
-
     // Pega o valor do parâmetro 'id' da URL
     const idProfessor = JSON.parse(sessionStorage.getItem("usuario")).userId;
     const [qtdAulas, setQtdAulas] = useState();
     const [qtdAulasConcluidas, setQtdAulasConcluidas] = useState();
     const [qtdAulasAgendadas, setQtdAulasAgendadas] = useState();
-   
+    // json aula
+    const [titulo, setTitulo] = useState();
+    const [dateT, setDateT] = useState();
+    const [valor, setValor] = useState();
+    const [materia, setMateria] = useState();
+
     console.log('idProfessor:' + idProfessor);
     console.log('session storage:' + JSON.stringify(sessionStorage));
+    console.log('Titulo: ' + titulo);
+    console.log('dateT: ' + dateT);
+    console.log('Valor: ' + valor);
+    console.log('Materia: ' + materia);
+
 
     useEffect(() => {
         // fetch('http://localhost:8080/aulas/conta-aulas-professor-id?id=' + idProfessor, {  // trocar para este após conseguir logar como professor
@@ -42,9 +51,9 @@ const HomeProfessor = () => {
                 // Lide com erros
                 console.error(error);
             });
-            
-            // 'http://localhost:8080/aulas/conta-aulas-professorid-concluida?id=' + idProfessor
-            fetch('http://localhost:8080/aulas/conta-aulas-professorid-concluida?id=1', {
+
+        // 'http://localhost:8080/aulas/conta-aulas-professorid-concluida?id=' + idProfessor
+        fetch('http://localhost:8080/aulas/conta-aulas-professorid-concluida?id=1', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -66,8 +75,8 @@ const HomeProfessor = () => {
                 console.error(error);
             });
 
-            // 'http://localhost:8080/aulas/conta-aulas-professorid-agendada?id=' + idProfessor
-            fetch('http://localhost:8080/aulas/conta-aulas-professorid-agendada?id=1', {
+        // 'http://localhost:8080/aulas/conta-aulas-professorid-agendada?id=1' + idProfessor
+        fetch('http://localhost:8080/aulas/conta-aulas-professorid-agendada?id=1', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -88,9 +97,9 @@ const HomeProfessor = () => {
                 // Lide com erros
                 console.error(error);
             });
-
-            // 'http://localhost:8080/aulas/encontra-aulas-id-professor?id=' + idProfessor
-            fetch('http://localhost:8080/aulas/encontra-aulas-id-professor?id=1', {
+        // AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        // 'http://localhost:8080/aulas/busca-professor-id-solicitado?id=' + idProfessor
+        fetch('http://localhost:8080/aulas/busca-professor-id-solicitado?id=1', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -105,15 +114,34 @@ const HomeProfessor = () => {
             })
             .then(data => {
                 // Faça algo com os dados da resposta
-                setQtdAulasAgendadas(data);
+
+                const titulos = [];
+                const dateTs = [];
+                const valores = [];
+                const materias = [];
+
+                for (let i = 0; i < data.length; i++) {
+                    titulos.push(data[i].titulo);
+                    dateTs.push(data[i].dataHora);
+                    valores.push(data[i].professor.precoHoraAula);
+                    materias.push(data[i].materia.nome);
+                }
+
+                console.log('Titulos: ', titulos);
+                console.log('DateTs: ', dateTs);
+                console.log('Valores: ', valores);
+                console.log('Materias: ', materias);
+
+                setTitulo(data[0].titulo);
+                setDateT(data[0].dataHora);
+                setValor(data[0].professor.precoHoraAula);
+                setMateria(data[0].materia.nome);
             })
             .catch(error => {
                 // Lide com erros
                 console.error(error);
             });
     }, [idProfessor]);
-
-    
 
     return (
         <>
