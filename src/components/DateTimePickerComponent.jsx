@@ -14,7 +14,7 @@ export default function ResponsiveDateTimePickers({onChange, value}) {
         ]}
       >
         <DemoItem>
-          <DateTimePicker 
+          <DateTimePicker
           onChange={onChange}
           value={value}
           />

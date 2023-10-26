@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 // FAVOR NÃO MEXER NESTE ARQUIVO DA SILVA
 // Ele é o arquivo do Login
 // Tem de colocar ele junto do login no institucional
+
 function GoogleLogin() {
   const session = useSession(); // user, quando a sessão existir temos um usuario.
   const supabase = useSupabaseClient(); // talk to supabase;
@@ -25,6 +26,26 @@ function GoogleLogin() {
       console.log(error);
     }
   }, [supabase]);
+
+  const signOut = useCallback(async () => {
+    try {
+      await fetch('http://localhost:8080/usuarios/logoff/'+ session.user.email, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("usuario")).token
+        },
+      });
+
+      // Sign out do Supabase
+      await supabase.auth.signOut();
+
+      // Redirecionando para o institucional
+      // window.location.href = "http://localhost:3001";
+    } catch (error) {
+      console.error(error);
+    }
+  }, [session, supabase]);
 
   useEffect(() => {
     if (!isLoading) {

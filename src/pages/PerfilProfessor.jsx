@@ -52,10 +52,12 @@ const PerfilProfessor = () => {
     }, [idProfessor]);
     return (
         <>
-            <MarcarAula nomeProfessor={professor && professor.nome}
+            <MarcarAula
+                nomeProfessor={professor && professor.nome}
                 idProfessor={professor && professor.id}
                 emailProfessor={professor && professor.email}
                 materias={materias}
+                disponibilidades={disponibilidades}
             />
             <div className={sPerfil.box}>
                 <div className={sPerfil.quadrados}>
