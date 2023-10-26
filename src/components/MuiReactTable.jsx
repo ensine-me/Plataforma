@@ -8,6 +8,11 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
+var array1 = JSON.parse(sessionStorage.getItem("array1"));
+var array2 = JSON.parse(sessionStorage.getItem("array2"));
+var array3 = JSON.parse(sessionStorage.getItem("array3"));
+var array4 = JSON.parse(sessionStorage.getItem("array4"));
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
