@@ -37,13 +37,10 @@ function createData(name, calories, fat, carbs) {
   return { name, calories, fat, carbs };
 }
 
-const rows = [
-  createData('Marcelo', '20/10/2023 - 19h30', 'R$20,00', 'Matemática'),
-  createData('Vannucchi', '20/10/2023 - 19h30', 'R$20,00', 'Matemática'),
-  createData('Marcelo', '20/10/2023 - 19h30', 'R$20,00', 'Matemática'),
-  createData('Marcelo', '20/10/2023 - 19h30', 'R$20,00', 'Matemática'),
-  createData('Marcelo', '20/10/2023 - 19h30', 'R$20,00', 'Matemática'),
-];
+  const rows = array1.map((_, index) => {
+    return createData(array1[index], array2[index], array3[index], array4[index]);
+  });
+  
 
 export default function CustomizedTables() {
 
