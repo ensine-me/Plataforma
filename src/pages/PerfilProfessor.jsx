@@ -54,7 +54,7 @@ const PerfilProfessor = () => {
         <>
             <MarcarAula
                 nomeProfessor={professor && professor.nome}
-                idProfessor={professor && professor.id}
+                idProfessor={professor && professor.idUsuario}
                 emailProfessor={professor && professor.email}
                 materias={materias}
                 disponibilidades={disponibilidades}

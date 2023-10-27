@@ -1,4 +1,4 @@
-import cssPoggers from "../style/homeProfessor.module.css"
+import cssPoggers from "../assets/styles/homeProfessor.module.css"
 import Swal from "sweetalert2"
 import { useEffect, useState } from "react"
 import { useSession } from "@supabase/auth-helpers-react"
@@ -29,8 +29,8 @@ const HomeProfessor = () => {
 
 
     useEffect(() => {
-        // fetch('http://localhost:8080/aulas/conta-aulas-professor-id?id=' + idProfessor, {  // trocar para este após conseguir logar como professor
-        fetch('http://localhost:8080/aulas/conta-aulas-professor-id?id=' + idProfessor, {
+        // fetch('http://44.217.177.131:8080/aulas/conta-aulas-professor-id?id=' + idProfessor, {  // trocar para este após conseguir logar como professor
+        fetch('http://44.217.177.131:8080/aulas/conta-aulas-professor-id?id=' + idProfessor, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -52,8 +52,8 @@ const HomeProfessor = () => {
                 console.error(error);
             });
 
-        // 'http://localhost:8080/aulas/conta-aulas-professorid-concluida?id=' + idProfessor
-        fetch('http://localhost:8080/aulas/conta-aulas-professorid-concluida?id=' + idProfessor, {
+        // 'http://44.217.177.131:8080/aulas/conta-aulas-professorid-concluida?id=' + idProfessor
+        fetch('http://44.217.177.131:8080/aulas/conta-aulas-professorid-concluida?id=' + idProfessor, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -75,8 +75,8 @@ const HomeProfessor = () => {
                 console.error(error);
             });
 
-        // 'http://localhost:8080/aulas/conta-aulas-professorid-agendada?id=1' + idProfessor
-        fetch('http://localhost:8080/aulas/conta-aulas-professorid-agendada?id=' + idProfessor, {
+        // 'http://44.217.177.131:8080/aulas/conta-aulas-professorid-agendada?id=1' + idProfessor
+        fetch('http://44.217.177.131:8080/aulas/conta-aulas-professorid-agendada?id=' + idProfessor, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -98,8 +98,8 @@ const HomeProfessor = () => {
                 console.error(error);
             });
         // AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        // 'http://localhost:8080/aulas/busca-professor-id-solicitado?id=' + idProfessor
-        fetch('http://localhost:8080/aulas/busca-professor-id-solicitado?id=' + idProfessor, {
+        // 'http://44.217.177.131:8080/aulas/busca-professor-id-solicitado?id=' + idProfessor
+        fetch('http://44.217.177.131:8080/aulas/busca-professor-id-solicitado?id=' + idProfessor, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

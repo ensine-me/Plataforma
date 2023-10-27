@@ -54,7 +54,7 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias, disp
     if (nomeProfessor != null && emailProfessor != null) {
       const bodyJsonData = {
         "professor": {
-          "id": idProfessor
+          "idUsuario": idProfessor
         },
         "titulo": eventName,
         "descricao": eventDescription,
@@ -64,7 +64,7 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias, disp
         "dataHora": dataFormatada,
         "limiteParticipantes": parseInt(document.getElementById("maxParticipantes").value, 10),
         "alunos": [{
-          "id": JSON.parse(sessionStorage.getItem("usuario")).userId
+          "idUsuario": JSON.parse(sessionStorage.getItem("usuario")).userId
         }],
         "status": "SOLICITADO",
         "duracaoSegundos": "3600"
@@ -79,7 +79,7 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias, disp
         body: JSON.stringify(bodyJsonData)
       })
       console.log(bodyJsonData)
-      console.log("Response: " + response)
+      console.log("Response: " + JSON.stringify(response))
       if (!response.ok) {
         foi = false;
         console.log("FOI : " + foi)

@@ -29,7 +29,7 @@ function GoogleLogin() {
 
   const signOut = useCallback(async () => {
     try {
-      await fetch('http://localhost:8080/usuarios/logoff/'+ session.user.email, {
+      await fetch('http://44.217.177.131:8080/usuarios/logoff/'+ session.user.email, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
