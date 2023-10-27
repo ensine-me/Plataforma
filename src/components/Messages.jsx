@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { ChatProvider } from "../context/ChatContext";
 import { db } from "../firebase";
 import Message from "./Message";
-import "../style/chat.css"
+import "../assets/styles/chat.module.css"
 
 const Messages = () => {
   const [messages, setMessages] = useState([]);

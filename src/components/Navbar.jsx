@@ -2,7 +2,7 @@ import React from 'react'
 import {signOut} from "firebase/auth"
 import { auth } from '../firebase'
 import { useSession } from '@supabase/auth-helpers-react';
-import "../style/chat.css"
+import "../assets/styles/chat.module.css"
 
 
 const Navbar = () => {

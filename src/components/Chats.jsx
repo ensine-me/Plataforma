@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { ChatProvider } from "../context/ChatContext";
 import { db } from "../firebase";
 import { useSession } from "@supabase/auth-helpers-react";
-import "../style/chat.css";
+import "../assets/styles/chat.module.css";
 
 const Chats = () => {
   const [chats, setChats] = useState([]);

@@ -13,7 +13,7 @@ import { db, storage } from "../firebase";
 import { v4 as uuid } from "uuid";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { useSession } from "@supabase/auth-helpers-react";
-import "../style/chat.css"
+import "../assets/styles/chat.module.css"
 
 
 const Input = () => {
