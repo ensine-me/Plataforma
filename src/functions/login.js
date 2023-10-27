@@ -1,3 +1,5 @@
+import { signInWithEmailAndPassword } from "firebase/auth"; 
+import { auth } from "../firebase";
 // como pegar os dados inseridos no session storage pelo login:
 // console.log("nome: " + JSON.parse(sessionStorage.getItem("usuario")).nome);
 // console.log("userId: " + JSON.parse(sessionStorage.getItem("usuario")).userId);
@@ -28,4 +30,13 @@ export async function login(email, senha) {
         console.log("Erro ao fazer login");
         return false;
     }
+}
+
+export async function loginFirebase(email, senha){
+    try {
+        await signInWithEmailAndPassword(auth, email, senha);
+        return true;
+      } catch (err) {
+        return false;
+      }
 }
