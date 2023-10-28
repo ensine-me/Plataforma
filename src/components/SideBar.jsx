@@ -79,6 +79,10 @@ export default function MiniDrawer() {
     open ? setOpen(false) : setOpen(true);
   };
 
+  const listaLinks = JSON.parse(sessionStorage.getItem("usuario")).professor ?
+    ['Home', 'Minhas aulas', 'Mensagens', 'Perfil'] :
+    ['Home', 'Minhas aulas', 'Mensagens', 'Perfil', 'Pesquisa'];
+
   return (
     <>
       <Drawer variant="permanent" open={open}>
@@ -90,7 +94,7 @@ export default function MiniDrawer() {
         </DrawerHeader>
         <Divider />
         <List>
-          {['Home', 'Minhas aulas', 'Mensagens', 'Perfil', 'Pesquisa'].map((text, index) => (
+          {listaLinks.map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
               <Link to={getLinkByIndex(index)}>
                 <ListItemButton

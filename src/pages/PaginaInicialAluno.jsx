@@ -4,21 +4,30 @@ import CardProfessorHome from '../components/CardProfessorHome'
 import CardAula from '../components/CardAula'
 import { useEffect, useState } from "react";
 import { isVariableInSessionStorage } from '../functions/isVariableInSessionStorage';
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [professores, setProfessores] = useState([]);
   const [aulas, setAulas] = useState([]);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     if(!isVariableInSessionStorage("usuario") || professores.length !== 0) return;
     const disciplinas = JSON.parse(sessionStorage.getItem("usuario")).disciplinas;
+
+    if(isVariableInSessionStorage("usuario") && JSON.parse(sessionStorage.getItem("usuario")).professor) {
+      console.log("penis" + JSON.parse(sessionStorage.getItem("usuario")).professor);
+      navigate("/home-professor");
+    } else {
+      console.log("não é professor")
+    }
 
     let urlProfessores = `http://44.217.177.131:8080/usuarios/professores-recomendados?disciplinas=${disciplinas[0].nome}`;
     for (let i = 1; i < disciplinas.length; i++) {
       urlProfessores += `&disciplinas=${disciplinas[i].nome}`;
     };
     urlProfessores = encodeURI(urlProfessores);
-    // console.log("urlProfessores: " + urlProfessores);
     fetch(urlProfessores, {
       method: 'GET',
       headers: {
@@ -64,13 +73,13 @@ const Home = () => {
             professores.map((professor) => {
               return (
                 <CardProfessorHome
-                  key={professor.idUsuario}
+                  key={professor.id}
                   urlFoto={professor.foto}
                   nome={professor.nome}
                   avaliacao={4.5}
                   preco={professor.precoHoraAula}
                   disciplinas={professor.materias.map(materia => materia.nome)}
-                  id={professor.idUsuario}
+                  id={professor.id}
                 />
               )
             })

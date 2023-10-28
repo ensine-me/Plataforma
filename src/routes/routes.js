@@ -25,16 +25,16 @@ const Routering = () => {
     return (
         <Router>
             <Routes>
-                <Route element={<Layout />}>
-                    <Route path="/inicial-aluno" element={<SessionChecker><PaginaInicialAluno /></SessionChecker>} />
-                    <Route path="perfil" element={<SessionChecker><PerfilAluno /></SessionChecker>} />
-                        <Route path="mensagens" element={<Mensagens />} />
-                    <Route path="professor" element={<SessionChecker><PerfilProfessor /></SessionChecker>} />
-                    <Route path="minhas-aulas" element={<SessionChecker><MinhasAulas /></SessionChecker>} />
-                    <Route path="pesquisa-aberta" element={<SessionChecker><OpenSearch /></SessionChecker>} />
-                    <Route path="pesquisa" element={<SessionChecker><ProfessorDashBoard /></SessionChecker>} />
-                    <Route path="aula" element={<DetalhesAula/>} />
-                        <Route path="home-professor" element={<HomeProfessor />} />
+                <Route element={<SessionChecker><Layout /></SessionChecker>}>
+                    <Route path="/inicial-aluno" element={<PaginaInicialAluno />} />
+                    <Route path="perfil" element={<PerfilAluno />} />
+                    <Route path="mensagens" element={<Mensagens />} />
+                    <Route path="professor" element={<PerfilProfessor />} />
+                    <Route path="minhas-aulas" element={<MinhasAulas />} />
+                    <Route path="pesquisa-aberta" element={<OpenSearch />} />
+                    <Route path="pesquisa" element={<ProfessorDashBoard />} />
+                    <Route path="aula" element={<DetalhesAula />} />
+                    <Route path="home-professor" element={<HomeProfessor />} />
                 </Route>
             </Routes>
             <Routes>
