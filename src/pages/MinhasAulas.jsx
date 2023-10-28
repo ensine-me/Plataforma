@@ -18,11 +18,20 @@ const MinhasAulas = () => {
       method: 'GET',
       headers: headersComToken
     }).then((response) => {
-      response.json().then((data) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error('Erro na requisição');
+      }
+    }).then((data) => {
+      if (Array.isArray(data)) {
         setAulas(data);
-        console.log("Aulas encontradas" + data);
-      })
-    })
+      } else {
+        console.error("A API não retornou um array");
+      }
+    }).catch((error) => {
+      console.error("Erro na requisição", error);
+    });
   }, []);
 
   return (
