@@ -10,8 +10,11 @@ const DetalhesAula = () => {
     // Pega o valor do parâmetro 'id' da URL
     const idAula = url.searchParams.get('id');
     const [aula, setAula] = useState();
+    const [participar, setParticipar] = useState(false);
+    const [aceitar, setAceitar] = useState(false);
 
     useEffect(() => {
+        // pegando detalhes da aula
         fetch('http://44.217.177.131:8080/aulas/busca-id?id=' + idAula, {
             method: 'GET',
             headers: {
@@ -33,7 +36,37 @@ const DetalhesAula = () => {
                 // Lide com erros
                 console.error(error);
             });
+
+        // const emailsDosParticipantes = aula.alunos.map((aluno) => {
+        //     aluno.email;
+        // })
+
+        // if (!JSON.parse(sessionStorage.getItem("usuario")).professor && !emailsDosParticipantes.includes(JSON.parse(sessionStorage.getItem("usuario")).email)) {
+        //     setParticipar(true);
+        // }
+
+        // if (JSON.parse(sessionStorage.getItem("usuario")).professor && JSON.parse(sessionStorage.getItem("usuario")).email === aula.professor.email && aula.status === "SOLICITADO") {
+        //     setAceitar(true);
+        // }
     }, [idAula]);
+
+    useEffect(() => {
+        if (aula) {
+            const alunos = aula.alunos;
+            const emailsDosParticipantes = alunos.map(aluno => aluno.email);
+            console.log("emails " + emailsDosParticipantes);
+    
+            if (!JSON.parse(sessionStorage.getItem("usuario")).professor && !emailsDosParticipantes.includes(JSON.parse(sessionStorage.getItem("usuario")).email)) {
+                setParticipar(true);
+                console.log("participar TRUE");
+            }
+    
+            if (JSON.parse(sessionStorage.getItem("usuario")).professor && JSON.parse(sessionStorage.getItem("usuario")).email === aula.professor.email && aula.status === "SOLICITADO") {
+                setAceitar(true);
+                console.log("aceitar TRUE");
+            }
+        }
+    }, [aula]);
 
     function entrarNaAula() {
         if (idAula) {
@@ -43,12 +76,39 @@ const DetalhesAula = () => {
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("usuario")).token
                 },
-            }).then(response => {
-                if (!response.ok) {
-                    throw new Error('Erro na requisição\n' + response);
-                }
-                alert("Você entrou na aula com sucesso!");
             })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro na requisição\n' + response);
+                    }
+                    alert("Você entrou na aula com sucesso!");
+                    window.location.reload();
+                })
+                .catch(error => {
+                    alert("Erro ao entrar na aula\n" + error)
+                });
+        }
+    }
+
+    function aceitarAula() {
+        if (idAula) {
+            fetch(`http://44.217.177.131:8080/aulas/${idAula}/mudanca-status?status=AGENDADO`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("usuario")).token
+                },
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro na requisição\n' + response);
+                    }
+                    alert("Aula aceita com sucesso!");
+                    window.location.reload();
+                })
+                .catch(error => {
+                    alert("Erro ao aceitar aula\n" + error)
+                });
         }
     }
 
@@ -78,7 +138,7 @@ const DetalhesAula = () => {
                         {
                             aula && aula.alunos.map((aluno, index) => {
                                 return (
-                                    <p>{aluno.email}</p>
+                                    <p key={index}>{aluno.email}</p>
                                 )
                             })
                         }
@@ -125,7 +185,8 @@ const DetalhesAula = () => {
                 </div>
             </div>
             <div className={styles.detalhes_aula_botao_participar_container}>
-                <button className={styles.detalhes_aula_botao_participar} onClick={entrarNaAula}>Participar</button>
+                {participar && <button className={styles.detalhes_aula_botao_participar} onClick={entrarNaAula}>Participar</button>}
+                {aceitar && <button className={styles.detalhes_aula_botao_participar} onClick={aceitarAula}>Aceitar</button>}
             </div>
 
         </div>

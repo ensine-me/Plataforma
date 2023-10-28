@@ -16,11 +16,11 @@ const Home = () => {
     if(!isVariableInSessionStorage("usuario") || professores.length !== 0) return;
     const disciplinas = JSON.parse(sessionStorage.getItem("usuario")).disciplinas;
 
-    if(isVariableInSessionStorage("usuario") && JSON.parse(sessionStorage.getItem("usuario")).professor) {
-      console.log("penis" + JSON.parse(sessionStorage.getItem("usuario")).professor);
+    if(JSON.parse(sessionStorage.getItem("usuario")).professor) {
       navigate("/home-professor");
     } else {
       console.log("não é professor")
+      console.log(sessionStorage.getItem("usuario"))
     }
 
     let urlProfessores = `http://44.217.177.131:8080/usuarios/professores-recomendados?disciplinas=${disciplinas[0].nome}`;
