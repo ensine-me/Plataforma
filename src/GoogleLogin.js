@@ -2,6 +2,7 @@ import { useSession, useSupabaseClient, useSessionContext } from '@supabase/auth
 import { useEffect, useCallback } from 'react';
 import { loginFirebase } from './functions/login';
 import { useNavigate } from "react-router-dom";
+import { isVariableInSessionStorage } from 'functions/isVariableInSessionStorage';
 
 // FAVOR NÃO MEXER NESTE ARQUIVO DA SILVA
 // Ele é o arquivo do Login
@@ -29,29 +30,9 @@ function GoogleLogin() {
     loginFirebase(session.email, session.email)
   }, [supabase]);
 
-  const signOut = useCallback(async () => {
-    try {
-      await fetch('http://44.217.177.131:8080/usuarios/logoff/'+ session.user.email, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("usuario")).token
-        },
-      });
-
-      // Sign out do Supabase
-      await supabase.auth.signOut();
-
-      // Redirecionando para o institucional
-      // window.location.href = "http://localhost:3001";
-    } catch (error) {
-      console.error(error);
-    }
-  }, [session, supabase]);
-
   useEffect(() => {
     if (!isLoading) {
-      if (session) {
+      if (session && isVariableInSessionStorage("usuario")) {
         // signOut();
         navigate('/sign-out')
       } else {
