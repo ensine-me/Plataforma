@@ -136,7 +136,7 @@ const HomeProfessor = () => {
                 sessionStorage.setItem("array2", JSON.stringify(dateTs));
                 sessionStorage.setItem("array3", JSON.stringify(valores));
                 sessionStorage.setItem("array4", JSON.stringify(materias));
-                
+
                 setTitulo(data[0].titulo);
                 setDateT(data[0].dataHora);
                 setValor(data[0].professor.precoHoraAula);

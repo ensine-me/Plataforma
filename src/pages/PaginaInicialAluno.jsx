@@ -73,13 +73,13 @@ const Home = () => {
             professores.map((professor) => {
               return (
                 <CardProfessorHome
-                  key={professor.id}
+                  key={professor.idUsuario}
                   urlFoto={professor.foto}
                   nome={professor.nome}
                   avaliacao={4.5}
                   preco={professor.precoHoraAula}
                   disciplinas={professor.materias.map(materia => materia.nome)}
-                  id={professor.id}
+                  id={professor.idUsuario}
                 />
               )
             })
