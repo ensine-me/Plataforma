@@ -93,10 +93,10 @@ const DetalhesAula = () => {
     function aceitarAula() {
         if (idAula) {
             fetch(`http://44.217.177.131:8080/aulas/${idAula}/mudanca-status?status=AGENDADO`, {
-                method: 'PATCH',
+                method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("usuario")).token
+                    'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("usuario")).token,
                 },
             })
                 .then(response => {

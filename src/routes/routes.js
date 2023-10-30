@@ -42,7 +42,7 @@ const Routering = () => {
                 <Route path="/" index element={<PaginaInicialInstitucional />} />
                 <Route path="/cadastro" element={<Cadastro />} />
                 <Route path="/cadastro/alunocad" element={<CadastroAluno />} />
-                <Route path="/cadastro/professorcad" element={<CadastroProfessor />} />
+                <Route path="/cadastro-professor" element={<CadastroProfessor />} />
                 <Route path="escolher-materias" element={<EscolherMaterias />} />
                 <Route path="escolher-papel" element={<EscolhaCadastro />} />
                 <Route path="google-login" element={<GoogleLogin />} />

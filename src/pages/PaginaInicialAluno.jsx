@@ -39,6 +39,7 @@ const Home = () => {
         if (response.status === 200) {
           response.json().then((data) => {
             setProfessores(data);
+            console.log("aulas: ", data)
           });
         }
       });
@@ -55,6 +56,7 @@ const Home = () => {
         if (response.status === 200) {
           response.json().then((data) => {
             setAulas(data);
+            console.log("aulas: ", data)
           });
         }
       });
@@ -73,13 +75,13 @@ const Home = () => {
             professores.map((professor) => {
               return (
                 <CardProfessorHome
-                  key={professor.id}
+                  key={professor.idUsuario}
                   urlFoto={professor.foto}
                   nome={professor.nome}
                   avaliacao={4.5}
                   preco={professor.precoHoraAula}
                   disciplinas={professor.materias.map(materia => materia.nome)}
-                  id={professor.id}
+                  id={professor.idUsuario}
                 />
               )
             })
