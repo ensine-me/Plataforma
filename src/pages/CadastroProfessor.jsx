@@ -1,14 +1,11 @@
 import { useState } from 'react';
 import * as React from 'react';
-import { Link } from 'react-router-dom';
-import { validarEmail, validarSenha } from 'authProvider/validadores';
-
-import sUsuariocad from '../assets/styles/cadastroUsuario.module.css';
-import sCadastro from "../assets/styles/cadastro.module.css"
+// import { Link } from 'react-router-dom';
+// import { validarEmail, validarSenha } from 'authProvider/validadores';
 import { useNavigate } from 'react-router-dom'
 
+import styles from '../assets/styles/CadastroProfessor.module.css';
 import Logo from 'components/logo';
-import googleLogo from 'assets/img/icons/googleLogo.png'
 import { Modal } from '@mui/material';
 import Box from '@mui/material/Box';
 import { useEffect } from 'react';
@@ -24,11 +21,11 @@ const Professorcad = () => {
     const handleOpenDisp = () => setOpenDisp(true);
     const handleCloseDisp = () => setOpenDisp(false);
 
-    const [loading, setLoading] = useState()
     const [form, setForm] = useState([]);
     const [disponibilidade, setDisponibilidade] = useState([]);
     const [formacao, setFormacao] = useState([]);
     const [disponibilidades, setDisponibilidades] = useState([]);
+    const [formacoes, setFormacoes] = useState([]);
     const navigate = new useNavigate()
 
     const style = {
@@ -47,42 +44,32 @@ const Professorcad = () => {
         gap: '20px'
     };
 
-    const HandleSubmit = async () => {
-        window.location.href = "http://localhost:3000"
-
-        /*
-        event.preventDefault();
-        const professor = {
-            nome: form.nome,
-            email: form.email,
-            senha: form.senha,
-            materias: []
-        }
-
-        try {
-            setLoading(false)
-            const response = await apiUsuarios.cadastro(professor)
-
-            if (response === true) {
-                navigate("/login")
-                //ir para dash
-            }
-            setLoading(true)
-        } catch (error) {
-            console.log(error)
-        } 
-        */
+    const handleSubmit = async () => {
+        sessionStorage.setItem('dadosCadastroProfessor', JSON.stringify(form));
+        navigate('/escolher-materias?papel=professor');
     }
 
     const handleChange = (event) => {
-        setForm({ ...form, [event.target.name]: event.target.value })
+        if(event.target.name === 'precoHoraAula') {
+            setForm({ ...form, [event.target.name]: parseFloat(event.target.value) })
+        } else {
+            setForm({ ...form, [event.target.name]: event.target.value })
+        }
     }
 
     const handleChangeDisponibilidade = (event) => {
-        if(event.target.name === 'horarioInicio' || event.target.name === 'horarioFim') {
+        if (event.target.name === 'horarioInicio' || event.target.name === 'horarioFim') {
             setDisponibilidade({ ...disponibilidade, [event.target.name]: event.target.value + ":00.000" })
         } else {
             setDisponibilidade({ ...disponibilidade, [event.target.name]: event.target.value })
+        }
+    }
+
+    const handleChangeFormacao = (event) => {
+        if (event.target.name === 'dtInicio' || event.target.name === 'dtTermino') {
+            setFormacao({ ...formacao, [event.target.name]: event.target.value + "T00:00:00" })
+        } else {
+            setFormacao({ ...formacao, [event.target.name]: event.target.value })
         }
     }
 
@@ -91,140 +78,205 @@ const Professorcad = () => {
         handleCloseDisp();
     }
 
-    useEffect(() => {
-        console.log("form: " + JSON.stringify(form))
-    }, [form]);
+    function cadastrarFormacao() {
+        setFormacoes([...formacoes, formacao]);
+        handleCloseFormacao();
+    }
+
+    // useEffect(() => {
+    //     console.log("form: " + JSON.stringify(form))
+    // }, [form]);
+
+    // useEffect(() => {
+    //     console.log("disponibilidade: " + JSON.stringify(disponibilidade))
+    // }, [disponibilidade]);
 
     useEffect(() => {
-        console.log("disponibilidade: " + JSON.stringify(disponibilidade))
-    }, [disponibilidade]);
-
-    useEffect(() => {
-        console.log("disponibilidades: " + JSON.stringify(disponibilidades))
+        // console.log("disponibilidades: " + JSON.stringify(disponibilidades));
+        setForm(f => ({ ...f, disponibilidades: disponibilidades }));
     }, [disponibilidades]);
 
-    const validarInput = () => {
-        return validarEmail(form.email) && validarSenha(form.senha)
-    }
+    // useEffect(() => {
+    //     console.log("formacao: " + JSON.stringify(formacao))
+    // }, [formacao]);
+
+    useEffect(() => {
+        // console.log("formacoes: " + JSON.stringify(formacoes));
+        setForm(f => ({ ...f, formacoes: formacoes }));
+    }, [formacoes]);
+
+    // const validarInput = () => {
+    //     return validarEmail(form.email) && validarSenha(form.senha)
+    // }
 
     return (
         <>
-            <div className={sUsuariocad.page}>
-                <div className={sUsuariocad.card}>
-                    <div className={[sCadastro.menuLogoContainer, sUsuariocad.me].join(' ')}>
+            <div className={styles.page}>
+                <div className={styles.container}>
+                    <div>
                         <Logo />
                     </div>
-                    <div className={sUsuariocad.formulario}>
-                        <p>
+                    <div className={styles.form}>
+                        <h2>
                             Cadastro de professor
-                        </p>
-                        <div className={sUsuariocad.titleLabel}>
-                            <div className={sUsuariocad.inputNames}>
+                        </h2>
+                        <div>
+                            <div>
                                 Descrição
                             </div>
+                            <textarea name="descricao" onChange={handleChange} style={{ width: '100%' }}></textarea>
                         </div>
-                        {/* <input className={sUsuariocad.input} placeholder='Descreva seu perfil como professor' type='text' name="descricao" onChange={handleChange}></input> */}
-                        <textarea name="descricao" onChange={handleChange} style={{ width: '100%' }}></textarea>
-                        <div className={sUsuariocad.titleLabel1}>
-                            <div className={sUsuariocad.inputNames}>
+                        {/* <input placeholder='Descreva seu perfil como professor' type='text' name="descricao" onChange={handleChange}></input> */}
+                        <div>
+                            <div>
                                 Preço Hora Aula
                             </div>
+                            <input type='number' name="precoHoraAula" onChange={handleChange}></input>
                         </div>
-                        <input className={sUsuariocad.input} type='number' name="precoHoraAula" onChange={handleChange}></input>
-                        <div className={sUsuariocad.titleLabel1}>
-                            <div className={sUsuariocad.inputNames}>
+                        <div>
+                            <div>
                                 Formações
                             </div>
+                            {
+                                formacoes.length > 0 ?
+                                    (
+                                        <table className={styles.tabela}>
+                                            <thead>
+                                                <tr>
+                                                    <th>Instituição</th>
+                                                    <th>Nome do curso</th>
+                                                    <th>Tipo de formação</th>
+                                                    <th>Data de início</th>
+                                                    <th>Data de término</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {
+                                                    formacoes.map((formacao, index) => (
+                                                        <tr key={index}>
+                                                            <td>{formacao.instituicao}</td>
+                                                            <td>{formacao.nomeCurso}</td>
+                                                            <td>{formacao.tipoFormacao}</td>
+                                                            <td>{formacao.dtInicio}</td>
+                                                            <td>{formacao.dtTermino}</td>
+                                                        </tr>
+                                                    ))
+                                                }
+                                            </tbody>
+                                        </table>
+                                    )
+                                    :
+                                    <></>
+                            }
+                            <button onClick={handleOpenFormacao}>Nova formação</button>
+                            <Modal
+                                open={openFormacao}
+                                onClose={handleCloseFormacao}
+                                aria-labelledby="modal-modal-title"
+                                aria-describedby="modal-modal-description"
+                            >
+                                <Box sx={style}>
+                                    <h1>Cadastro de Formação</h1>
+                                    <div>
+                                        Instituição
+                                    </div>
+                                    <input type='text' name="instituicao" onChange={handleChangeFormacao}></input>
+                                    <div>
+                                        Nome do curso
+                                    </div>
+                                    <input type='text' name="nomeCurso" onChange={handleChangeFormacao}></input>
+                                    <div>
+                                        Tipo de formação
+                                    </div>
+                                    <select name="tipoFormacao" id="tipoFormacao" onChange={handleChangeFormacao}>
+                                        <option value="">Escolha um tipo...</option>
+                                        <option value="BACHARELADO">Bacharelado</option>
+                                        <option value="LICENCIATURA">Licenciatura</option>
+                                        <option value="TECNOLOGO">Tecnologo</option>
+                                        <option value="SEQUENCIAL">Sequencial</option>
+                                    </select>
+                                    <div>
+                                        Data de início
+                                    </div>
+                                    <input type="date" name='dtInicio' onChange={handleChangeFormacao} />
+                                    <div>
+                                        Data de término
+                                    </div>
+                                    <input type="date" name='dtTermino' onChange={handleChangeFormacao} />
+                                    <button onClick={cadastrarFormacao}>Cadastrar formação</button>
+                                </Box>
+                            </Modal>
                         </div>
-                        <button onClick={handleOpenFormacao} className={sUsuariocad.button}>Nova formação</button>
-                        <Modal
-                            open={openFormacao}
-                            onClose={handleCloseFormacao}
-                            aria-labelledby="modal-modal-title"
-                            aria-describedby="modal-modal-description"
-                        >
-                            <Box sx={style}>
-                                <h1>Cadastro de Formação</h1>
-                                <div className={sUsuariocad.inputNames}>
-                                    Instituição
-                                </div>
-                                <input className={sUsuariocad.input} type='text' name="instituicao" onChange={handleChange}></input>
-                                <div className={sUsuariocad.inputNames}>
-                                    Nome do curso
-                                </div>
-                                <input className={sUsuariocad.input} type='text' name="nomeCurso" onChange={handleChange}></input>
-                                <div className={sUsuariocad.inputNames}>
-                                    Tipo de formação
-                                </div>
-                                <select name="tipoFormacao" id="tipoFormacao" onChange={handleChange}>
-                                    <option value="BACHARELADO">Bacharelado</option>
-                                    <option value="LICENCIATURA">Licenciatura</option>
-                                    <option value="TECNOLOGO">Tecnologo</option>
-                                    <option value="SEQUENCIAL">Sequencial</option>
-                                </select>
-                            </Box>
-                        </Modal>
 
-                        <div className={sUsuariocad.titleLabel1}>
-                            <div className={sUsuariocad.inputNames}>
-                                Disponibillidade
+                        <div>
+                            <div>
+                                Disponibillidades
                             </div>
+                            {
+                                disponibilidades.length > 0 ?
+                                    (
+                                        <table className={styles.tabela}>
+                                            <thead>
+                                                <tr>
+                                                    <th>Dia da semana</th>
+                                                    <th>Horário de início</th>
+                                                    <th>Horário de término</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {disponibilidades.map((disponibilidade, index) => (
+                                                    <tr key={index}>
+                                                        <td>{disponibilidade.diaDaSemana}</td>
+                                                        <td>{disponibilidade.horarioInicio}</td>
+                                                        <td>{disponibilidade.horarioFim}</td>
+                                                    </tr>
+                                                ))
+                                                }
+                                            </tbody>
+                                        </table>
+                                    )
+                                    :
+                                    <></>
+                            }
+                            <button onClick={handleOpenDisp}>Nova Disponibilidade</button>
+                            <Modal
+                                open={openDisp}
+                                onClose={handleCloseDisp}
+                                aria-labelledby="modal-modal-title"
+                                aria-describedby="modal-modal-description"
+                            >
+                                <Box sx={style}>
+                                    <h1>Nova Disponibilidade</h1>
+                                    <select name="diaDaSemana" id="diaDaSemana" onChange={handleChangeDisponibilidade}>
+                                        <option value="">Dia da semana</option>
+                                        <option value="DOMINGO">Domingo</option>
+                                        <option value="SEGUNDA">Segunda</option>
+                                        <option value="TERCA">Terça</option>
+                                        <option value="QUARTA">Quarta</option>
+                                        <option value="QUINTA">Quinta</option>
+                                        <option value="SEXTA">Sexta</option>
+                                        <option value="SABADO">Sábado</option>
+                                    </select>
+                                    <div>
+                                        Horário de Início
+                                    </div>
+                                    <input type="time" name='horarioInicio' onChange={handleChangeDisponibilidade} />
+                                    <div>
+                                        Horário de Término
+                                    </div>
+                                    <input type="time" name='horarioFim' onChange={handleChangeDisponibilidade} />
+                                    <button onClick={cadastrarDisponibilidade}>Cadastrar disponibilidade</button>
+                                </Box>
+                            </Modal>
                         </div>
-                        <button onClick={handleOpenDisp} className={sUsuariocad.button}>Nova Disponibilidade</button>
-                        <Modal
-                            open={openDisp}
-                            onClose={handleCloseDisp}
-                            aria-labelledby="modal-modal-title"
-                            aria-describedby="modal-modal-description"
-                        >
-                            <Box sx={style}>
-                                <h1>Nova Disponibilidade</h1>
-                                <select name="diaDaSemana" id="diaDaSemana" onChange={handleChangeDisponibilidade}>
-                                    <option value="">Dia da semana</option>
-                                    <option value="DOMINGO">Domingo</option>
-                                    <option value="SEGUNDA">Segunda</option>
-                                    <option value="TERCA">Terça</option>
-                                    <option value="QUARTA">Quarta</option>
-                                    <option value="QUINTA">Quinta</option>
-                                    <option value="SEXTA">Sexta</option>
-                                    <option value="SABADO">Sábado</option>
-                                </select>
-                                <div className={sUsuariocad.inputNames}>
-                                    Horário de Início
-                                </div>
-                                <input type="time" name='horarioInicio' onChange={handleChangeDisponibilidade} />
-                                <div className={sUsuariocad.inputNames}>
-                                    Horário de Término
-                                </div>
-                                <input type="time" name='horarioFim' onChange={handleChangeDisponibilidade} />
-                                <button onClick={cadastrarDisponibilidade}>Cadastrar disponibilidade</button>
-                            </Box>
-                        </Modal>
+                        <div className={styles.btn_cadastrar}>
+                            <button onClick={handleSubmit}>Cadastrar</button>
+                        </div>
                     </div>
 
-                    <div className={sUsuariocad.buttons}>
-                        <div className={sUsuariocad.button} onClick={HandleSubmit} disabled={loading === true || !validarInput()}>
-                            Cadastrar
-                        </div>
-                        <div className={sUsuariocad.googleButtonContainer} onClick="">
-                            <div className={sUsuariocad.googleButton} onClick={HandleSubmit} >
-                                <img src={googleLogo}></img>
-                                Cadastrar com o google
-                            </div>
-                        </div>
-                    </div>
-                    <p className={sUsuariocad.paragrafo}>
-                        <i>Ao clicar em cadastrar você aceita os nossos
-                            <a>termos de uso</a> e <a>privacidade</a></i>
+                    <p>
+                        <i>Ao clicar em cadastrar você aceita os nossos <a href='www.google.com'>termos de uso</a> e <a href='www.google.com'>privacidade</a></i>
                     </p>
-                    <div className={sUsuariocad.titleLabel2}>
-                        Já tem uma conta?
-                    </div>
-                    <div className={sUsuariocad.titleLabel3}>
-                        <Link to="../login">
-                            Faça login
-                        </Link>
-                    </div>
                 </div>
             </div>
         </>

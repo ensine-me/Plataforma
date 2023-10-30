@@ -17,7 +17,7 @@ const paginaCadastro = () => {
                         <Logo />
                     </div>
                     <div className={sCadastro.options}>
-                        <Link to="/escolher-materias?papel=professor">
+                        <Link to="/cadastro-professor">
                             <div className={sCadastro.option}>
                                 <p>
                                     <SimpleText text='Quero ser professor' size={'xlarge'} />
