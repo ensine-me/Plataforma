@@ -34,15 +34,30 @@ function createData(name, calories, fat, carbs) {
   return { name, calories, fat, carbs };
 }
 
-export default function CustomizedTables() {
+export default function CustomizedTables({
+  array1child,
+  array2child,
+  array3child,
+  array4child
+}) {
   const [rows, setRows] = useState([]);
 
   useEffect(() => {
     const updateRows = () => {
-      const array1 = JSON.parse(sessionStorage.getItem("array1"));
-      const array2 = JSON.parse(sessionStorage.getItem("array2"));
-      const array3 = JSON.parse(sessionStorage.getItem("array3"));
-      const array4 = JSON.parse(sessionStorage.getItem("array4"));
+      // const array1 = JSON.parse(sessionStorage.getItem("array1"));
+      // const array2 = JSON.parse(sessionStorage.getItem("array2"));
+      // const array3 = JSON.parse(sessionStorage.getItem("array3"));
+      // const array4 = JSON.parse(sessionStorage.getItem("array4"));
+
+      const array1 = array1child;
+      const array2 = array2child;
+      const array3 = array3child;
+      const array4 = array4child;
+
+      // console.log("array1: " + array1);
+      // console.log("array2: " + array2);
+      // console.log("array3: " + array3);
+      // console.log("array4: " + array4);
 
       let newRows = [];
       if (array1 !== null) {
@@ -61,13 +76,13 @@ export default function CustomizedTables() {
     return () => {
       window.removeEventListener("sessionStorageUpdate", updateRows);
     };
-  }, []);
+  }, [array1child, array2child, array3child, array4child]);
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 600 }} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>Solicitante</StyledTableCell>
+            <StyledTableCell>Título</StyledTableCell>
             <StyledTableCell align="left">Data</StyledTableCell>
             <StyledTableCell align="left">Valor&nbsp;</StyledTableCell>
             <StyledTableCell align="left">Materia&nbsp;</StyledTableCell>

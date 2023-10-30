@@ -1,7 +1,5 @@
 import cssPoggers from "../assets/styles/homeProfessor.module.css"
-import Swal from "sweetalert2"
 import { useEffect, useState } from "react"
-import { useSession } from "@supabase/auth-helpers-react"
 import LaptopMacIcon from '@mui/icons-material/LaptopMac';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import ScheduleIcon from '@mui/icons-material/Schedule';
@@ -14,18 +12,18 @@ const HomeProfessor = () => {
     const [qtdAulas, setQtdAulas] = useState();
     const [qtdAulasConcluidas, setQtdAulasConcluidas] = useState();
     const [qtdAulasAgendadas, setQtdAulasAgendadas] = useState();
-    // json aula
-    const [titulo, setTitulo] = useState();
-    const [dateT, setDateT] = useState();
-    const [valor, setValor] = useState();
-    const [materia, setMateria] = useState();
 
-    console.log('idProfessor:' + idProfessor);
-    console.log('session storage:' + JSON.stringify(sessionStorage));
-    console.log('Titulo: ' + titulo);
-    console.log('dateT: ' + dateT);
-    console.log('Valor: ' + valor);
-    console.log('Materia: ' + materia);
+    const [titulosState, setTitulosState] = useState([]);
+    const [dateTsState, setDateTsState] = useState([]);
+    const [valoresState, setValoresState] = useState([]);
+    const [materiasState, setMateriasState] = useState([]);
+
+    // console.log('idProfessor:' + idProfessor);
+    // console.log('session storage:' + JSON.stringify(sessionStorage));
+    // console.log('Titulo: ' + titulo);
+    // console.log('dateT: ' + dateT);
+    // console.log('Valor: ' + valor);
+    // console.log('Materia: ' + materia);
 
 
     useEffect(() => {
@@ -127,20 +125,20 @@ const HomeProfessor = () => {
                     materias.push(data[i].materia.nome);
                 }
 
-                console.log('Titulos: ', titulos);
-                console.log('DateTs: ', dateTs);
-                console.log('Valores: ', valores);
-                console.log('Materias: ', materias);
+                setTitulosState(titulos);
+                setDateTsState(dateTs);
+                setValoresState(valores);
+                setMateriasState(materias);
 
-                sessionStorage.setItem("array1", JSON.stringify(titulos));
-                sessionStorage.setItem("array2", JSON.stringify(dateTs));
-                sessionStorage.setItem("array3", JSON.stringify(valores));
-                sessionStorage.setItem("array4", JSON.stringify(materias));
-                
-                setTitulo(data[0].titulo);
-                setDateT(data[0].dataHora);
-                setValor(data[0].professor.precoHoraAula);
-                setMateria(data[0].materia.nome);
+                // console.log('Titulos: ', JSON.stringify(titulos));
+                // console.log('DateTs: ', JSON.stringify(dateTs));
+                // console.log('Valores: ', JSON.stringify(valores));
+                // console.log('Materias: ', JSON.stringify(materias));
+
+                // sessionStorage.setItem("array1", titulos);
+                // sessionStorage.setItem("array2", dateTs);
+                // sessionStorage.setItem("array3", valores);
+                // sessionStorage.setItem("array4", materias);
             })
             .catch(error => {
                 // Lide com erros
@@ -195,7 +193,7 @@ const HomeProfessor = () => {
                             </div>
                             <div id="tabela" className={cssPoggers.tabela}>
                                 <div id="tabelaMenor" className={cssPoggers.tabelaMenor}>
-                                    <MuiReactTable />
+                                    <MuiReactTable array1child={titulosState} array2child={dateTsState} array3child={valoresState} array4child={materiasState} />
                                 </div>
                             </div>
                         </div>
