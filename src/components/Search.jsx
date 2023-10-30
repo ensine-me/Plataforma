@@ -12,7 +12,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase";
 import { useSession } from '@supabase/auth-helpers-react';
-import "../assets/styles/chat.module.css";
+import "../assets/styles/chat.css";
 
 
 const Search = () => {

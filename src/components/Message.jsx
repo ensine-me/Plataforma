@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { ChatProvider } from "../context/ChatContext";
 import { useSession } from "@supabase/auth-helpers-react";
-import "../assets/styles/chat.module.css"
+import "../assets/styles/chat.css"
 
 
 const Message = ({ message }) => {

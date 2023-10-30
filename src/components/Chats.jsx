@@ -3,12 +3,14 @@ import React, { useEffect, useState } from "react";
 import { ChatProvider } from "../context/ChatContext";
 import { db } from "../firebase";
 import { useSession } from "@supabase/auth-helpers-react";
-import "../assets/styles/chat.module.css";
+import { loginFirebase } from '../functions/login';
+import "../assets/styles/chat.css";
 
 const Chats = () => {
   const [chats, setChats] = useState([]);
-
+  
   const session = useSession();
+  loginFirebase(session.email, session.email)
   
   const currentUser = {
     "displayName": session.user.user_metadata.full_name,

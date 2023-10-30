@@ -76,7 +76,7 @@ function OpenSearch() {
                                 key={index}
                                 nome={professor.nome}
                                 materias={professor.materias}
-                                id={professor.id}
+                                id={professor.idUsuario}
                                 foto={professor.foto}
                                 preco={professor.precoHoraAula}
                             />
