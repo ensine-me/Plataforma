@@ -39,7 +39,6 @@ const Home = () => {
         if (response.status === 200) {
           response.json().then((data) => {
             setProfessores(data);
-            console.log("aulas: ", data)
           });
         }
       });
@@ -56,7 +55,6 @@ const Home = () => {
         if (response.status === 200) {
           response.json().then((data) => {
             setAulas(data);
-            console.log("aulas: ", data)
           });
         }
       });
