@@ -13,7 +13,7 @@ import SessionChecker from "../components/SessionChecker";
 import Login from 'pages/Login';
 import PaginaInicialInstitucional from "pages/PaginaInicialInstitucional";
 import Cadastro from "pages/EscolhaCadastro";
-import CadastroAluno from "pages/CadastroAluno"
+// import CadastroAluno from "pages/CadastroAluno"
 import CadastroProfessor from "pages/CadastroProfessor"
 import LogOut from "pages/LogOut";
 import DetalhesAula from "../pages/DetalhesAula";
@@ -41,7 +41,7 @@ const Routering = () => {
                 <Route path="/login" element={<Login />} />
                 <Route path="/" index element={<PaginaInicialInstitucional />} />
                 <Route path="/cadastro" element={<Cadastro />} />
-                <Route path="/cadastro/alunocad" element={<CadastroAluno />} />
+                {/* <Route path="/cadastro/alunocad" element={<CadastroAluno />} /> */}
                 <Route path="/cadastro-professor" element={<CadastroProfessor />} />
                 <Route path="escolher-materias" element={<EscolherMaterias />} />
                 <Route path="escolher-papel" element={<EscolhaCadastro />} />
