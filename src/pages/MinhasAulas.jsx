@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import CardAula from '../components/CardAula'
 import styles from '../assets/styles/MinhasAulas.module.css';
+import store from "../store";
 
 const MinhasAulas = () => {
   const [aulas, setAulas] = useState([]);
 
   useEffect(() => {
-    const url = JSON.parse(sessionStorage.getItem("usuario")).professor ? `http://44.217.177.131:8080/aulas/professor/${JSON.parse(sessionStorage.getItem("usuario")).userId}` : `http://44.217.177.131:8080/aulas/busca-id-usuario?id=${JSON.parse(sessionStorage.getItem("usuario")).userId}`;
+    const url = JSON.parse(sessionStorage.getItem("usuario")).professor ? `${store.getState().backEndUrl}aulas/professor/${JSON.parse(sessionStorage.getItem("usuario")).userId}` : `${store.getState().backEndUrl}aulas/busca-id-usuario?id=${JSON.parse(sessionStorage.getItem("usuario")).userId}`;
     const headersComToken = {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("usuario")).token
