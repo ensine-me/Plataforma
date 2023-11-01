@@ -1,7 +1,8 @@
 import axios from "axios";
+import store from "../store";
 
 const apiAulas = axios.create({
-    baseURL: " http://44.217.177.131:8080/aulas",
+    baseURL: store.getState().backEndUrl + "/aulas",
 });
 
 

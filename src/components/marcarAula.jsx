@@ -7,6 +7,7 @@ import Swal from "sweetalert2"
 import { useEffect, useState } from "react"
 import dayjs from "dayjs"
 import { useSession } from "@supabase/auth-helpers-react"
+import store from "../../src/store";
 
 const chamaSwal = () => {
   Swal.fire({
@@ -70,7 +71,7 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias, disp
         "duracaoSegundos": "3600"
       }
       
-      const response = await fetch('http://44.217.177.131:8080/aulas', {
+      const response = await fetch(`${store.getState().backEndUrl}aulas`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

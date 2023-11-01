@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from "react";
 import styles from "../assets/styles/DetalhesAula.module.css";
 import FormacaoCard from "../components/FormacaoCard";
+import store from "../store";
 
 const DetalhesAula = () => {
     // Pega a URL atual
@@ -15,7 +16,7 @@ const DetalhesAula = () => {
 
     useEffect(() => {
         // pegando detalhes da aula
-        fetch('http://44.217.177.131:8080/aulas/busca-id?id=' + idAula, {
+        fetch(`${store.getState().backEndUrl}aulas/busca-id?id=` + idAula, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -70,7 +71,7 @@ const DetalhesAula = () => {
 
     function entrarNaAula() {
         if (idAula) {
-            fetch(`http://44.217.177.131:8080/aulas/${idAula}/adicionar-aluno?email=${JSON.parse(sessionStorage.getItem("usuario")).email}`, {
+            fetch(`${store.getState().backEndUrl}aulas/${idAula}/adicionar-aluno?email=${JSON.parse(sessionStorage.getItem("usuario")).email}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -92,7 +93,7 @@ const DetalhesAula = () => {
 
     function aceitarAula() {
         if (idAula) {
-            fetch(`http://44.217.177.131:8080/aulas/${idAula}/mudanca-status?status=AGENDADO`, {
+            fetch(`${store.getState().backEndUrl}aulas/${idAula}/mudanca-status?status=AGENDADO`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
