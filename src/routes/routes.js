@@ -21,6 +21,7 @@ import EscolhaCadastro from "../pages/EscolhaCadastro";
 import HomeProfessor from "../pages/homeProfessor"
 import Mensagens from "../components/Mensagens";
 
+
 const Routering = () => {
     return (
         <Router>

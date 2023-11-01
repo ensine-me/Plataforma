@@ -7,10 +7,17 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSession } from '@supabase/auth-helpers-react';
 import { login } from '../functions/login';
 import { isVariableInSessionStorage } from 'functions/isVariableInSessionStorage';
+import Add from "../components/images/chat/addAvatar.png";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth, db, storage } from "../firebase";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { doc, setDoc } from "firebase/firestore";
 
 const EscolherMaterias = () => {
   const session = useSession();
   const navigate = useNavigate();
+  const [err, setErr] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const [isCheckedMatematica, setIsCheckedMatematica] = useState(false);
   const [isCheckedPortugues, setIsCheckedPortugues] = useState(false);
@@ -58,7 +65,8 @@ const EscolherMaterias = () => {
       "email": session.user.email,
       "senha": session.user.email,
       "foto": session.user.user_metadata.avatar_url,
-      "materias": materiasFormatoJSON
+      "materias": materiasFormatoJSON,
+      "files": session.user.files
     }
       :
       {
@@ -67,11 +75,58 @@ const EscolherMaterias = () => {
         "senha": session.user.email,
         "foto": session.user.user_metadata.avatar_url,
         "materias": materiasFormatoJSON,
+        "files": session.user.files,
         "descricao": JSON.parse(sessionStorage.getItem('dadosCadastroProfessor')).descricao,
         "precoHoraAula": JSON.parse(sessionStorage.getItem('dadosCadastroProfessor')).precoHoraAula
       }
 
     const url = papel && papel === "aluno" ? "http://44.217.177.131:8080/usuarios/cadastrar" : "http://44.217.177.131:8080/usuarios/professor/cadastrar";
+
+
+    try {
+      const displayName = objUsuario.nome;
+      const email = objUsuario.email;
+      const password = objUsuario.email;
+      const files = objUsuario.files;
+
+      //Create user
+      const res = await createUserWithEmailAndPassword(auth, email, password);
+
+      //Create a unique image name
+      const date = new Date().getTime();
+      const storageRef = ref(storage, `${displayName + date}`);
+
+      await uploadBytesResumable(storageRef, files).then(() => {
+        getDownloadURL(storageRef).then(async (downloadURL) => {
+          try {
+            //Update profile
+            await updateProfile(res.user, {
+              displayName,
+              photoURL: downloadURL,
+            });
+            //create user on firestore
+            await setDoc(doc(db, "users", res.user.uid), {
+              uid: res.user.uid,
+              displayName,
+              email,
+              photoURL: downloadURL,
+            });
+
+            //create empty user chats on firestore
+            await setDoc(doc(db, "userChats", res.user.uid), {});
+            navigate("/");
+          } catch (err) {
+            console.log(err);
+            setErr(true);
+            setLoading(false);
+          }
+        });
+      });
+    } catch (err) {
+      setErr(true);
+      setLoading(false);
+    };
+
 
     fetch(url, {
       method: 'POST',
