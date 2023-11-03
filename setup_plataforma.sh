@@ -1,5 +1,5 @@
 
-#!/bin/bash
+#!/bin/bash 
 
 echo "Script de instalação do NGINX"
 echo ""
@@ -18,7 +18,7 @@ para o web server 2 utilize 'webserver-2':" nome
 echo ""
 echo "Iniciando NGINX..."
 sleep 1
-sudo service start nginx
+sudo systemctl start nginx
 sudo systemctl enable nginx
 
 #sudo systemctl stop iptables
@@ -59,11 +59,12 @@ sudo sh -c "echo '${text_webserver2}' >> ${filehosts}"
 echo ""
 echo "Iniciando configuração da plataforma"
 read -p "Essa instância será utilizada como um servidor front-end?" resposta
-if [ "$resposta" == "y" || "$resposta" == "Y" ]; then
+echo "$resposta"
+if [ "$resposta" == "y" ] || [ "$resposta" == "Y" ]; then
 	echo "Iniciando instalação do NPM"
 	sudo yum install npm
 	npm i
-	npm start &
+	nohup npm start &
 fi
 
 echo "Script finalizado"
