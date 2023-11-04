@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import '../assets/styles/contentdash.css';
 import {AulasDadas, LucroMensal , UsuariosMeses} from "./ChartsApplication";
-//import api from '../contentDashs/api'
 
 function ApplicationDash() {
 
     const [data, setData] = useState(null);
-    const token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmaWxpcGVAZW1haWwuY29tIiwiaWF0IjoxNjk4MjY4Njc4LCJleHAiOjE3MDE4Njg2Nzh9.SNOfaRzetJ4XWfk-4WwCuB49Kjr0VdEhep8cIc3vyH6pkLtj4x4Tpp6PDTiUXF0BASUSbGmvP0zT4dZ_oO9fHw';
-  
+    const [firstData, setFirstData] = useState(null);
+
     useEffect(() => {
       const fetchData = async () => {
         try {
@@ -15,7 +14,7 @@ function ApplicationDash() {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ` + JSON.parse(sessionStorage.getItem("usuario")).token,
             },
           });
   
@@ -23,9 +22,12 @@ function ApplicationDash() {
             console.error(`Error: ${response.status} - ${response.statusText}`);
             throw new Error('Erro ao buscar dados');
           }
-          
-  
+
           const jsonData = await response.json();
+
+          if (Array.isArray(jsonData) && jsonData.length > 0) {
+            setFirstData(jsonData[0]);
+          }
   
           setData(jsonData);
         } catch (error) {
@@ -34,7 +36,7 @@ function ApplicationDash() {
       };
   
       fetchData();
-    }, [token]);
+    }, [firstData]);
 
     const currentDate = new Date();
     const day = currentDate.getDate();

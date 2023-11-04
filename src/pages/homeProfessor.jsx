@@ -26,7 +26,6 @@ const HomeProfessor = () => {
     // console.log('Valor: ' + valor);
     // console.log('Materia: ' + materia);
 
-
     useEffect(() => {
         // fetch('http://44.217.177.131:8080/aulas/conta-aulas-professor-id?id=' + idProfessor, {  // trocar para este após conseguir logar como professor
         fetch(`${store.getState().backEndUrl}aulas/conta-aulas-professor-id?id=` + idProfessor, {
