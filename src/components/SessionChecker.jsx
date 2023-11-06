@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { isVariableInSessionStorage } from "../functions/isVariableInSessionStorage";
 import { login, loginFirebase } from "../functions/login";
+import store from "../../src/store";
 
 const SessionChecker = ({ children }) => {
   const { isLoading, session } = useSessionContext();
@@ -16,7 +17,7 @@ const SessionChecker = ({ children }) => {
       }
       if (!isLoading && session) {
         const email = session.user.email;
-        const urlExiste = `http://44.217.177.131:8080/usuarios/existe-por-email?emailUsuario=${email}`;
+        const urlExiste = `${store.getState().backEndUrl}usuarios/existe-por-email?emailUsuario=${email}`;
         const responseExiste = await fetch(urlExiste);
         const responseExisteJson = await responseExiste.json();
         if (responseExisteJson) { // checks if user is registered

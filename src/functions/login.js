@@ -1,5 +1,6 @@
 import { signInWithEmailAndPassword } from "firebase/auth"; 
 import { auth } from "../firebase";
+import store from "../store"
 // como pegar os dados inseridos no session storage pelo login:
 // console.log("nome: " + JSON.parse(sessionStorage.getItem("usuario")).nome);
 // console.log("userId: " + JSON.parse(sessionStorage.getItem("usuario")).userId);
@@ -7,7 +8,7 @@ import { auth } from "../firebase";
 // console.log("token: " + JSON.parse(sessionStorage.getItem("usuario")).token);
 
 export async function login(email, senha) {
-    const urlLogin = "http://44.217.177.131:8080/usuarios/login";
+    const urlLogin = `${store.getState().backEndUrl}usuarios/login`;
     const response = await fetch(urlLogin, {
         method: 'POST',
         headers: {
