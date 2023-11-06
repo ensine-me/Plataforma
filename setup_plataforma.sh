@@ -46,7 +46,7 @@ echo "Iniciando configuração da plataforma"
 read -p "Essa instância será utilizada como um servidor front-end? (y/n) " resposta
 
 # Defina o caminho para onde o EFS está montado e onde a aplicação React está localizada
-efs_mount_path="/mnt/efs"
+efs_mount_path="/mnt/efs/Plataforma"
 
 if [[ "$resposta" =~ ^[Yy]$ ]]; then
     echo "Instalando Node.js..."
