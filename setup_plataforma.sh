@@ -50,7 +50,7 @@ efs_mount_path="/mnt/efs"
 
 if [[ "$resposta" =~ ^[Yy]$ ]]; then
     echo "Instalando Node.js..."
-    sudo curl -sL https://rpm.nodesource.com/setup_16.x | sudo bash -
+    #sudo curl -sL https://rpm.nodesource.com/setup_16.x | sudo bash -
     sudo yum install -y nodejs
 
     # Navegar para o diretório onde o EFS está montado e onde a aplicação React está
