@@ -7,6 +7,7 @@ import { isVariableInSessionStorage } from '../functions/isVariableInSessionStor
 import { useNavigate } from "react-router-dom";
 import { Session, useSession } from '../../node_modules/@supabase/auth-helpers-react/dist/index';
 import { loginFirebase } from 'functions/login';
+import store from "../store";
 
 const Home = () => {
   const [professores, setProfessores] = useState([]);
@@ -28,7 +29,7 @@ const Home = () => {
       console.log(sessionStorage.getItem("usuario"))
     }
 
-    let urlProfessores = `http://44.217.177.131:8080/usuarios/professores-recomendados?disciplinas=${disciplinas[0].nome}`;
+    let urlProfessores = `${store.getState().backEndUrl}usuarios/professores-recomendados?disciplinas=${disciplinas[0].nome}`;
     for (let i = 1; i < disciplinas.length; i++) {
       urlProfessores += `&disciplinas=${disciplinas[i].nome}`;
     };
@@ -48,7 +49,7 @@ const Home = () => {
         }
       });
 
-    const urlAulas = `http://44.217.177.131:8080/aulas/privacidade/PUBLICA`;
+    const urlAulas = `${store.getState().backEndUrl}aulas/privacidade/PUBLICA`;
     fetch(urlAulas, {
       method: 'GET',
       headers: {

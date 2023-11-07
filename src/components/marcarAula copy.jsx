@@ -7,11 +7,14 @@ import Swal from "sweetalert2"
 import { useEffect, useState } from "react"
 import dayjs from "dayjs"
 import { useSession } from "@supabase/auth-helpers-react"
+import store from "../../src/store";
 
 const chamaSwal = () => {
   // talvez e só talvez, seja necessário dar um none no quadradoCinza que é o nome do campo no css
   // que some com esse componente, tirei isso pq estava dando um erro de resize e como vai ir pra outra tela
   // acredito que nem precise.
+
+  const backEndUrl = store.getState().backEndUrl;
 
   Swal.fire({
     icon: 'success',
@@ -73,7 +76,7 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias, disp
         "status": "SOLICITADO",
         "duracaoSegundos": "3600"
       }
-      const response = await fetch('http://44.217.177.131:8080/aulas', {
+      const response = await fetch(`${backEndUrl}aulas`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -6,6 +6,7 @@ import ScheduleIcon from '@mui/icons-material/Schedule';
 import MuiReactTable from '../components/MuiReactTable';
 import { loginFirebase } from "functions/login";
 import { useSession } from "../../node_modules/@supabase/auth-helpers-react/dist/index";
+import store from "../store";
 
 const HomeProfessor = () => {
 
@@ -33,7 +34,7 @@ const HomeProfessor = () => {
 
     useEffect(() => {
         // fetch('http://44.217.177.131:8080/aulas/conta-aulas-professor-id?id=' + idProfessor, {  // trocar para este após conseguir logar como professor
-        fetch('http://44.217.177.131:8080/aulas/conta-aulas-professor-id?id=' + idProfessor, {
+        fetch(`${store.getState().backEndUrl}aulas/conta-aulas-professor-id?id=` + idProfessor, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -56,7 +57,7 @@ const HomeProfessor = () => {
             });
 
         // 'http://44.217.177.131:8080/aulas/conta-aulas-professorid-concluida?id=' + idProfessor
-        fetch('http://44.217.177.131:8080/aulas/conta-aulas-professorid-concluida?id=' + idProfessor, {
+        fetch(`${store.getState().backEndUrl}aulas/conta-aulas-professorid-concluida?id=` + idProfessor, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -79,7 +80,7 @@ const HomeProfessor = () => {
             });
 
         // 'http://44.217.177.131:8080/aulas/conta-aulas-professorid-agendada?id=1' + idProfessor
-        fetch('http://44.217.177.131:8080/aulas/conta-aulas-professorid-agendada?id=' + idProfessor, {
+        fetch(`${store.getState().backEndUrl}aulas/conta-aulas-professorid-agendada?id=` + idProfessor, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -102,7 +103,7 @@ const HomeProfessor = () => {
             });
         // AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         // 'http://44.217.177.131:8080/aulas/busca-professor-id-solicitado?id=' + idProfessor
-        fetch('http://44.217.177.131:8080/aulas/busca-professor-id-solicitado?id=' + idProfessor, {
+        fetch(`${store.getState().backEndUrl}aulas/busca-professor-id-solicitado?id=` + idProfessor, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -134,16 +135,6 @@ const HomeProfessor = () => {
                 setDateTsState(dateTs);
                 setValoresState(valores);
                 setMateriasState(materias);
-
-                // console.log('Titulos: ', JSON.stringify(titulos));
-                // console.log('DateTs: ', JSON.stringify(dateTs));
-                // console.log('Valores: ', JSON.stringify(valores));
-                // console.log('Materias: ', JSON.stringify(materias));
-
-                // sessionStorage.setItem("array1", titulos);
-                // sessionStorage.setItem("array2", dateTs);
-                // sessionStorage.setItem("array3", valores);
-                // sessionStorage.setItem("array4", materias);
             })
             .catch(error => {
                 // Lide com erros

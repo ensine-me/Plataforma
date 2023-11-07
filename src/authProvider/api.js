@@ -1,7 +1,9 @@
 import axios from "axios";
 
+import store from "../store";
+
 const api = axios.create({
-    baseURL: " http://44.217.177.131:8080/usuarios",
+    baseURL: store.getState().backEndUrl + "/usuarios",
 });
 
 

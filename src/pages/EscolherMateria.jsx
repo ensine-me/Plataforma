@@ -12,6 +12,7 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db, storage } from "../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
+import store from "../store";
 
 const EscolherMaterias = () => {
   const session = useSession();
@@ -82,7 +83,7 @@ const EscolherMaterias = () => {
         "precoHoraAula": JSON.parse(sessionStorage.getItem('dadosCadastroProfessor')).precoHoraAula
       }
 
-    const url = papel && papel === "aluno" ? "http://44.217.177.131:8080/usuarios/cadastrar" : "http://44.217.177.131:8080/usuarios/professor/cadastrar";
+    const url = papel && papel === "aluno" ? `${store.getState().backEndUrl}usuarios/cadastrar` : `${store.getState().backEndUrl}usuarios/professor/cadastrar`;
 
 
     try {
@@ -138,60 +139,51 @@ const EscolherMaterias = () => {
       },
       body: JSON.stringify(objUsuario)
     }).then((response) => {
-
+      console.log("response do cadastro: ", JSON.stringify(response));
       if (response.ok) {
         //logando
-        login(session.user.email, session.user.email).then((response2) => {
-
-          if (isVariableInSessionStorage("usuario")) {
-            const idUsuario = JSON.parse(sessionStorage.getItem("usuario")).userId;
-            if (papel === "professor") {
-              console.log('Authorization: Bearer ' + JSON.parse(sessionStorage.getItem("usuario")).token);
-              console.log("dados do professor: " + JSON.stringify(JSON.parse(sessionStorage.getItem('dadosCadastroProfessor'))));
-              JSON.parse(sessionStorage.getItem('dadosCadastroProfessor')).formacoes.forEach(formacao => {
-                console.log("formacao: ", JSON.stringify(formacao));
-                fetch(`http://44.217.177.131:8080/usuarios/professor/${idUsuario}/formacao`, {
-                  method: 'POST',
-                  headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("usuario")).token
-                  },
-                  body: JSON.stringify({
-                    dtInicio: formacao.dtInicio,
-                    dtTermino: formacao.dtTermino,
-                    instituicao: formacao.instituicao,
-                    nomeCurso: formacao.nomeCurso,
-                    tipoFormacao: formacao.tipoFormacao
+        login(session.user.email, session.user.email).then((responseLogin) => {
+          if (responseLogin) {
+            if (isVariableInSessionStorage("usuario")) {
+              const idUsuario = JSON.parse(sessionStorage.getItem("usuario")).userId;
+              if (papel === "professor") {
+                JSON.parse(sessionStorage.getItem('dadosCadastroProfessor')).formacoes.forEach(formacao => {
+                  fetch(`${store.getState().backEndUrl}usuarios/professor/${idUsuario}/formacao`, {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                      'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("usuario")).token
+                    },
+                    body: JSON.stringify({
+                      dtInicio: formacao.dtInicio,
+                      dtTermino: formacao.dtTermino,
+                      instituicao: formacao.instituicao,
+                      nomeCurso: formacao.nomeCurso,
+                      tipoFormacao: formacao.tipoFormacao
+                    })
+                  }).then((responseFormacao) => {
+                    console.log("responseFormacao: ", JSON.stringify(responseFormacao));
                   })
-                }).then((response) => {
-                  console.log("response: ", JSON.stringify(response));
-                })
-              });
-              JSON.parse(sessionStorage.getItem('dadosCadastroProfessor')).disponibilidades.forEach(disponibilidade => {
-                console.log("disponibilidade: ", JSON.stringify(disponibilidade));
-                fetch(`http://44.217.177.131:8080/usuarios/professor/${idUsuario}/disponibilidade`, {
-                  method: 'POST',
-                  headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("usuario")).token
-                  },
-                  body: JSON.stringify(disponibilidade)
-                })
-              });
+                });
+                JSON.parse(sessionStorage.getItem('dadosCadastroProfessor')).disponibilidades.forEach(disponibilidade => {
+                  fetch(`${store.getState().backEndUrl}usuarios/professor/${idUsuario}/disponibilidade`, {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                      'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("usuario")).token
+                    },
+                    body: JSON.stringify(disponibilidade)
+                  })
+                });
+              }
+              navigate("/inicial-aluno");
             }
-            navigate("/inicial-aluno");
-          } else {
-            console.log("usuario nao ta no session storage");
           }
+        }).catch((error) => {
+          console.error("Erro na requisição", error);
         });
-        //indo pra home
       }
     });
-
-    console.log("url: ", url);
-    console.log("objUsuario: ", JSON.stringify(objUsuario));
-
-
   }
 
   return (

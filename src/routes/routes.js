@@ -20,6 +20,7 @@ import DetalhesAula from "../pages/DetalhesAula";
 import EscolhaCadastro from "../pages/EscolhaCadastro";
 import HomeProfessor from "../pages/homeProfessor"
 import Mensagens from "../components/Mensagens";
+import Bi from "pages/Bi";
 
 
 const Routering = () => {
@@ -36,6 +37,7 @@ const Routering = () => {
                     <Route path="pesquisa" element={<ProfessorDashBoard />} />
                     <Route path="aula" element={<DetalhesAula />} />
                     <Route path="home-professor" element={<HomeProfessor />} />
+                    <Route path="bi-pf" element={<Bi />} />
                 </Route>
             </Routes>
             <Routes>
