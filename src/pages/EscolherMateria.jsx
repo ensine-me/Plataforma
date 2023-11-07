@@ -16,6 +16,8 @@ import store from "../store";
 
 const EscolherMaterias = () => {
   const session = useSession();
+
+
   const navigate = useNavigate();
   const [err, setErr] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -89,6 +91,7 @@ const EscolherMaterias = () => {
       const email = objUsuario.email;
       const password = objUsuario.email;
       const files = objUsuario.files;
+      const foto = objUsuario.foto
 
       //Create user
       const res = await createUserWithEmailAndPassword(auth, email, password);
@@ -97,20 +100,20 @@ const EscolherMaterias = () => {
       const date = new Date().getTime();
       const storageRef = ref(storage, `${displayName + date}`);
 
-      await uploadBytesResumable(storageRef, files).then(() => {
+      await uploadBytesResumable(storageRef, foto).then(() => {
         getDownloadURL(storageRef).then(async (downloadURL) => {
           try {
             //Update profile
             await updateProfile(res.user, {
               displayName,
-              photoURL: downloadURL,
+              photoURL: foto,
             });
             //create user on firestore
             await setDoc(doc(db, "users", res.user.uid), {
               uid: res.user.uid,
               displayName,
               email,
-              photoURL: downloadURL,
+              photoURL: foto,
             });
 
             //create empty user chats on firestore

@@ -5,7 +5,7 @@ import CardAula from '../components/CardAula'
 import { useEffect, useState } from "react";
 import { isVariableInSessionStorage } from '../functions/isVariableInSessionStorage';
 import { useNavigate } from "react-router-dom";
-import { useSession } from '../../node_modules/@supabase/auth-helpers-react/dist/index';
+import { Session, useSession } from '../../node_modules/@supabase/auth-helpers-react/dist/index';
 import { loginFirebase } from 'functions/login';
 import store from "../store";
 
@@ -13,8 +13,10 @@ const Home = () => {
   const [professores, setProfessores] = useState([]);
   const [aulas, setAulas] = useState([]);
 
-  const navigate = useNavigate();
+  const session = useSession();
+  loginFirebase(session.user.email, session.user.email)
 
+  const navigate = useNavigate();
 
   useEffect(() => {
     if(!isVariableInSessionStorage("usuario") || professores.length !== 0) return;

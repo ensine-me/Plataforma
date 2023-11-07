@@ -28,7 +28,7 @@ const Input = () => {
   const { data } = useContext(ChatContext);
   console.log("DATAAAAAAAAAAAAAAAAAAAAAAAAAA "+data)
 
-  const handleSend = async () => {
+  const handleSend = async (e) => {
     if (img) {
       const storageRef = ref(storage, uuid());
 
@@ -77,9 +77,19 @@ const Input = () => {
       [data.chatId + ".date"]: serverTimestamp(),
     });
 
+    
+    
+  
+  };
+
+  const handleKey = (e) => {
+   if( e.code === "Enter" || e.code == null) {
+    handleSend(e)
     setText("");
     setImg(null);
+    };
   };
+
   return (
     <div className="input">
       <input
@@ -87,6 +97,7 @@ const Input = () => {
         placeholder="Type something..."
         onChange={(e) => setText(e.target.value)}
         value={text}
+        onKeyDown={handleKey}
       />
       <div className="send">
         <img src={Attach} alt="" />
@@ -99,10 +110,13 @@ const Input = () => {
         <label htmlFor="file">
           <img src={Img} alt="" />
         </label>
-        <button onClick={handleSend}>Send</button>
+        <button onClick={handleKey}>Enviar</button>
       </div>
     </div>
   );
 };
+
+
+
 
 export default Input;
