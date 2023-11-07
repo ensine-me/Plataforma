@@ -2,18 +2,16 @@ import React from 'react'
 import {signOut} from "firebase/auth"
 import { auth } from '../firebase'
 import { useSession } from '@supabase/auth-helpers-react';
-import "../assets/styles/chat.module.css"
+import "../assets/styles/chat.css"
+import { useContext } from 'react';
+import { AuthContext } from 'context/AuthContext';
 
 
 const Navbar = () => {
 
   const session = useSession();
 
-  const currentUser = {
-    "displayName": session.user.user_metadata.full_name,
-    "uid": session.user.id,
-    "photoURL": session.user.user_metadata.avatar_url,
-  }  
+  const { currentUser } = useContext(AuthContext)
 
   return (
     <div className='navbar'>

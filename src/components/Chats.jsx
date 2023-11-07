@@ -1,24 +1,19 @@
 import { doc, onSnapshot } from "firebase/firestore";
-import React, { useEffect, useState } from "react";
-import { ChatProvider } from "../context/ChatContext";
+import React, { useContext, useEffect, useState } from "react";
+import { ChatContext, ChatProvider } from "../context/ChatContext";
 import { db } from "../firebase";
 import { useSession } from "@supabase/auth-helpers-react";
-import "../assets/styles/chat.module.css";
+import "../assets/styles/chat.css";
+import { AuthContext } from "context/AuthContext";
 
 const Chats = () => {
   const [chats, setChats] = useState([]);
 
-  const session = useSession();
-  
-  const currentUser = {
-    "displayName": session.user.user_metadata.full_name,
-    "uid": session.user.id,
-    "photoURL": session.user.user_metadata.avatar_url,
-  }
+  const { currentUser } = useContext(AuthContext)
 
-  console.log("USSSSSSSSSSER "+currentUser.displayName)
+  console.log("USSSSSSSSSSER "+currentUser.photoURL)
 
-  const {dispatch}  = ChatProvider("dispatch");
+  const {dispatch}  = useContext(ChatContext);
 
   useEffect(() => {
     const getChats = () => {

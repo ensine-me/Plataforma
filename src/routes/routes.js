@@ -22,6 +22,7 @@ import HomeProfessor from "../pages/homeProfessor"
 import Mensagens from "../components/Mensagens";
 import Bi from "pages/Bi";
 
+
 const Routering = () => {
     return (
         <Router>

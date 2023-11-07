@@ -5,6 +5,9 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createClient } from '@supabase/supabase-js'
 import { SessionContextProvider } from '@supabase/auth-helpers-react'
+import { ChatContextProvider } from "context/ChatContext";
+import { AuthContextProvider } from 'context/AuthContext';
+
 
 
 const supabase = createClient(
@@ -17,7 +20,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <SessionContextProvider supabaseClient={supabase}>
+    <AuthContextProvider>
+    <ChatContextProvider>
       <App />
+    </ChatContextProvider>
+    </AuthContextProvider>
     </SessionContextProvider>
   </React.StrictMode>
 );

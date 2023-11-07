@@ -3,6 +3,8 @@ import { useEffect, useCallback } from 'react';
 // import { loginFirebase } from './functions/login';
 import { useNavigate } from "react-router-dom";
 import { isVariableInSessionStorage } from 'functions/isVariableInSessionStorage';
+import { loginFirebase } from 'functions/login';
+import { Session } from '../node_modules/@supabase/auth-helpers-react/dist/index';
 
 // FAVOR NÃO MEXER NESTE ARQUIVO DA SILVA
 // Ele é o arquivo do Login
@@ -27,7 +29,6 @@ function GoogleLogin() {
       alert("Error logging into the Google provider with Supabase");
       console.log(error);
     }
-    // loginFirebase(session.email, session.email)
   }, [supabase]);
 
   useEffect(() => {

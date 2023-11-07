@@ -2,7 +2,8 @@ import React from "react";
 import Navbar from "./Navbar"
 import Search from "./Search"
 import Chats from "./Chats"
-import "../assets/styles/chat.module.css"
+import "../assets/styles/chat.css"
+import { ChatContextProvider } from "context/ChatContext";
 
 
 const Sidebar = () => {

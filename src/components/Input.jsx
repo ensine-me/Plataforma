@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Img from "./images/chat/img.png";
 import Attach from "./images/chat/attach.png";
-import { ChatProvider } from "../context/ChatContext";
+import { ChatContext, ChatProvider } from "../context/ChatContext";
 import {
   arrayUnion,
   doc,
@@ -13,21 +13,19 @@ import { db, storage } from "../firebase";
 import { v4 as uuid } from "uuid";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { useSession } from "@supabase/auth-helpers-react";
-import "../assets/styles/chat.module.css"
+import "../assets/styles/chat.css"
+import { useContext } from "react";
+import { AuthContext } from "context/AuthContext";
 
 
 const Input = () => {
   const [text, setText] = useState("");
   const [img, setImg] = useState(null);
 
-  const session = useSession();
+  const { currentUser } = useContext(AuthContext)
 
-  const currentUser = {
-    "displayName": session.user.user_metadata.full_name,
-    "uid": session.user.id,
-    "photoURL": session.user.user_metadata.avatar_url,
-  }
-  const  data  = ChatProvider();
+
+  const { data } = useContext(ChatContext);
   console.log("DATAAAAAAAAAAAAAAAAAAAAAAAAAA "+data)
 
   const handleSend = async () => {
