@@ -3,15 +3,15 @@ import { getAuth } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 import { getFirestore } from "firebase/firestore";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyAaeH-1mTtcpfqWScZVTYqULTlgL6-QK6U",
-  authDomain: "ensineme-7040e.firebaseapp.com",
-  projectId: "ensineme-7040e",
-  storageBucket: "ensineme-7040e.appspot.com",
-  messagingSenderId: "899110738078",
-  appId: "1:899110738078:web:837a5bf3b468d2183c038f"
-};
 
+const firebaseConfig = {
+  apiKey: "AIzaSyBvPgoNE7OPe4vHM95zHb3RMHnpe-Ijqik",
+  authDomain: "ensine-me-b69aa.firebaseapp.com",
+  projectId: "ensine-me-b69aa",
+  storageBucket: "ensine-me-b69aa.appspot.com",
+  messagingSenderId: "1057546133611",
+  appId: "1:1057546133611:web:094ad081ea00b7585a512e"
+};
 
 
 

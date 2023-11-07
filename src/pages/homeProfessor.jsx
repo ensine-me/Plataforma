@@ -4,8 +4,13 @@ import LaptopMacIcon from '@mui/icons-material/LaptopMac';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import ScheduleIcon from '@mui/icons-material/Schedule';
 import MuiReactTable from '../components/MuiReactTable';
+import { loginFirebase } from "functions/login";
+import { useSession } from "../../node_modules/@supabase/auth-helpers-react/dist/index";
 
 const HomeProfessor = () => {
+
+    const session = useSession();
+    loginFirebase(session.user.email, session.user.email)
 
     // Pega o valor do parâmetro 'id' da URL
     const idProfessor = JSON.parse(sessionStorage.getItem("usuario")).userId;
