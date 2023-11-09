@@ -1,40 +1,35 @@
 import React, { useState, useEffect } from "react";
 import '../assets/styles/contentdash.css';
-import {AulasDadas, LucroMensal , UsuariosMeses} from "./ChartsApplication";
-//import api from '../contentDashs/api'
+import {StatusAula, AulasDadas, LucroMensal, LucroMateria, UsuariosMeses} from "./ChartsApplication";
+import store from "../store.js";
 
 function ApplicationDash() {
 
-    const [data, setData] = useState(null);
-    const token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmaWxpcGVAZW1haWwuY29tIiwiaWF0IjoxNjk4MjY4Njc4LCJleHAiOjE3MDE4Njg2Nzh9.SNOfaRzetJ4XWfk-4WwCuB49Kjr0VdEhep8cIc3vyH6pkLtj4x4Tpp6PDTiUXF0BASUSbGmvP0zT4dZ_oO9fHw';
-  
+    const [qtd, setQtd] = useState();
+
     useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const response = await fetch('http://localhost:8080/aulas/qtd-aulas-hoje', {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${token}`,
-            },
+      fetch(`${store.getState().backEndUrl}aulas/qtd-aulas-hoje`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("usuario")).token
+        },
+      })
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error('Erro na requisição');
+              }
+              return response.json();
+          })
+          .then(data => {
+              
+              setQtd(data);
+          })
+          .catch(error => {
+              
+              console.error(error);
           });
-  
-          if (!response.ok) {
-            console.error(`Error: ${response.status} - ${response.statusText}`);
-            throw new Error('Erro ao buscar dados');
-          }
-          
-  
-          const jsonData = await response.json();
-  
-          setData(jsonData);
-        } catch (error) {
-          console.error('Houve um erro ao buscar os dados:', error);
-        }
-      };
-  
-      fetchData();
-    }, [token]);
+    }, [qtd]);
 
     const currentDate = new Date();
     const day = currentDate.getDate();
@@ -44,36 +39,83 @@ function ApplicationDash() {
     const formattedDate = `${day}/${month}/${year}`;
 
     return(
-        <div className="generalDash">
-            <div className="boxesDash">
-                <div className="box">
-                    <div className="card">
-                        <h2>Aulas de Hoje</h2>
-                        <div>
-                            <strong>
-                                {formattedDate}: 
-                                {data && data.map((item, index) => (
-                                    <span key={index}>
-                                        {item[0]}
-                                    </span>
-                                ))}
-                            </strong> 
-                        </div>
-                    </div>
-                    <div className="card_dash">
-                        <AulasDadas />
-                    </div>
-                    <div className="card_dash">
-                        <UsuariosMeses />
-                    </div>
+      <div className="generalDash">
+          <table className="metrics">
+            <tr className="boxes">
+              <td className="box" style={{width: "40%"}}>
+                <div className="cardOnly">
+                  <div className="boxOnly">
+                    <h3>Aulas de Hoje</h3>
+                    <div className="divider"></div>
+                      <div>
+                        <strong>
+                          {formattedDate}: {qtd}
+                        </strong>
+                      </div>
+                    <div className="divider"></div>
+                  </div>
+                  <div className="boxOnly">
+                    <h3>Aulas dessa Semana</h3>
+                    <div className="divider"></div>
+                      <div>
+                        <strong>
+                          70
+                        </strong>
+                      </div>
+                    <div className="divider"></div>
+                  </div>
                 </div>
-                <div className="box">
-                    <div className="card_dash">
-                        <LucroMensal  />
-                    </div>
+                <div className="cardOnly">
+                  <div className="boxOnly">
+                    <h3>Aulas desse Mês</h3>
+                    <div className="divider"></div>
+                      <div>
+                        <strong>
+                          Novembro: 300
+                        </strong>
+                      </div>
+                    <div className="divider"></div> 
+                  </div>
+                  <div className="boxOnly">
+                    <h3>Média de Tempo</h3>
+                    <div className="divider"></div>
+                      <div>
+                        <strong>
+                          40h
+                        </strong>
+                      </div>
+                    <div className="divider"></div>
+                  </div>
                 </div>
-            </div>
-        </div>
+              </td>
+              <td className="box" style={{width: "60%"}}>
+                <div className="boxChart" style={{width: "50%"}}>
+                  <StatusAula/>
+                </div>
+                <div className="boxChart" style={{width: "50%"}}>
+                  <AulasDadas/>
+                </div>
+              </td>
+            </tr>
+            <tr className="boxes">
+              <td className="box" style={{width: "100%"}}>
+                <div className="boxChart" style={{width: "70%"}}>
+                  <LucroMensal/>
+                </div>
+                <div className="boxChart" style={{width: "70%"}}>
+                  <LucroMateria/>
+                </div>
+              </td>
+            </tr>
+            <tr className="boxes">
+            <td className="box" style={{width: "100%"}}>
+                <div className="boxChart" style={{width: "70%"}}>
+                  <UsuariosMeses/>
+                </div>
+              </td>
+            </tr>
+          </table>
+      </div>
     )
 }
 

@@ -31,6 +31,7 @@ const Routering = () => {
             <Routes>
                 <Route element={<LoginChecker><Layout /></LoginChecker>}>
                     <Route path="/inicial-aluno" element={<PaginaInicialAluno />} />
+
                     <Route path="/perfil" element={<PerfilAluno />} />
                     <Route path="/mensagens" element={<Mensagens />} />
                     <Route path="/professor" element={<PerfilProfessor />} />
@@ -40,7 +41,6 @@ const Routering = () => {
                     <Route path="/aula" element={<DetalhesAula />} />
                     <Route path="/home-professor" element={<HomeProfessor />} />
                     <Route path="/conectar-com-google" element={<ConectarComGoogle />} />
-                    <Route path="bi-pf" element={<Bi />} />
                 </Route>
             </Routes>
             <Routes>
@@ -48,6 +48,7 @@ const Routering = () => {
                 <Route path="/" index element={<PaginaInicialInstitucional />} />
                 <Route path="/cadastro-aluno" element={<CadastroAluno />} />
                 <Route path="/cadastro-professor" element={<CadastroProfessor />} />
+                <Route path="/bi-pf" element={<Bi />} />
                 <Route path="/escolher-materias" element={<EscolherMaterias />} />
                 <Route path="/escolher-papel" element={<EscolhaCadastro />} />
                 <Route path="/google-login" element={<GoogleLogin />} />
