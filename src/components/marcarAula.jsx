@@ -32,7 +32,7 @@ const chamaSwal = () => {
   });
 }
 
-const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias, disponibilidades }) => {
+const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, gmailProfessor, materias, disponibilidades }) => {
   const [start, setStart] = useState(dayjs()) // marcando o horário de agora apartir do Google
   const [end, setEnd] = useState(dayjs())
   const [eventName, setEventName] = useState("");
@@ -70,7 +70,7 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias, disp
         "status": "SOLICITADO",
         "duracaoSegundos": "3600"
       }
-      
+
       const response = await fetch(`${store.getState().backEndUrl}aulas`, {
         method: 'POST',
         headers: {
@@ -85,7 +85,7 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias, disp
         foi = false;
         console.log("FOI : " + foi)
       }
-      const emailFormatado = "" + emailProfessor + "";
+      // const emailFormatado = "" + emailProfessor + "";
       console.log("Foi 2:" + foi)
       if (!foi) {
         Swal.fire({
@@ -98,41 +98,48 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, materias, disp
           confirmButtonColor: '#FF0000',
         });
       }
-      else {     
-        const requestIdRandom = 'requestID'+ Math.floor(Math.random() * 100000);
-        const event = {
-          'summary': eventName,
-          'description': eventDescription,
-          'attendees': [
-            { 'email': emailFormatado }
-          ],
-          'start': {
-            'dateTime': start.toISOString(),
-            'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone
-          },
-          'end': {
-            'dateTime': end.toISOString(), // Date.toISOString() ->
-            'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone
-          },
-          'conferenceData': {
-            'createRequest': {
-              'requestId': requestIdRandom,
-              'conferenceSolutionKey': { 'type': 'hangoutsMeet' },
+      else {
+        console.log("session: " + session);
+        if (gmailProfessor && session) {
+          const gmailFormatado = "" + gmailProfessor + "";
+          const requestIdRandom = 'requestID' + Math.floor(Math.random() * 100000);
+          const event = {
+            'summary': eventName,
+            'description': eventDescription,
+            'attendees': [
+              { 'email': gmailFormatado }
+            ],
+            'start': {
+              'dateTime': start.toISOString(),
+              'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone
             },
+            'end': {
+              'dateTime': end.toISOString(), // Date.toISOString() ->
+              'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone
+            },
+            'conferenceData': {
+              'createRequest': {
+                'requestId': requestIdRandom,
+                'conferenceSolutionKey': { 'type': 'hangoutsMeet' },
+              },
+            }
           }
+          await fetch("https://www.googleapis.com/calendar/v3/calendars/primary/events?conferenceDataVersion=1", {
+            method: "POST",
+            headers: {
+              'Authorization': 'Bearer ' + session.provider_token
+            },
+            body: JSON.stringify(event)
+          }).then((data) => {
+            return data.json();
+          }).then((data) => {
+            console.log(data);
+            console.log("eventId: " + data.id);
+          });
+        } else {
+          alert(`Não marcou no Google Agenda.\nMotivo: ${!gmailProfessor ? "Professor não tem Gmail" : "Usuário não tem token do Google"}`)
         }
-        await fetch("https://www.googleapis.com/calendar/v3/calendars/primary/events?conferenceDataVersion=1", {     
-          method: "POST",                                                                    
-          headers: {                                                                         
-            'Authorization': 'Bearer ' + session.provider_token
-          },
-          body: JSON.stringify(event)
-        }).then((data) => {
-          return data.json();
-        }).then((data) => {
-          console.log(data);
-          console.log("eventId: "+ data.id);
-        });
+
         chamaSwal();
         fechaModal();
       }
