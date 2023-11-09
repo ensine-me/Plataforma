@@ -57,6 +57,7 @@ const PerfilProfessor = () => {
                 nomeProfessor={professor && professor.nome}
                 idProfessor={professor && professor.idUsuario}
                 emailProfessor={professor && professor.email}
+                gmailProfessor={professor && professor.googleEmail}
                 materias={materias}
                 disponibilidades={disponibilidades}
             />

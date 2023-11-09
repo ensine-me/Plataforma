@@ -12,7 +12,9 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase";
 import { useSession } from '@supabase/auth-helpers-react';
-import "../assets/styles/chat.module.css";
+import "../assets/styles/chat.css";
+import { AuthContext } from "context/AuthContext";
+import { useContext } from "react";
 
 
 const Search = () => {
@@ -20,13 +22,10 @@ const Search = () => {
   const [user, setUser] = useState(null);
   const [err, setErr] = useState(false);
 
-  const session = useSession();
+  const { currentUser } = useContext(AuthContext)
 
-  const currentUser = {
-    "displayName": session.user.user_metadata.full_name,
-    "uid": session.user.id,
-    "photoURL": session.user.user_metadata.avatar_url,
-  }
+  
+  console.log('%c%s', 'color: #ff0000', "USER CURENT "+ currentUser);
 
   const handleSearch = async () => {
     const q = query(

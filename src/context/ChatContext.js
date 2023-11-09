@@ -1,50 +1,44 @@
-import { useReducer } from "react";
-import { useSession } from "@supabase/auth-helpers-react";
+import {
+  createContext,
+  useContext,
+  useReducer,
+} from "react";
+import { useSession } from "../../node_modules/@supabase/auth-helpers-react/dist/index";
+import { AuthContext } from "./AuthContext";
 
+export const ChatContext = createContext();
 
-export function ChatProvider(arg) {
-  const session = useSession();
-
-  const currentUser = {
-    "displayName": session.user.user_metadata.full_name,
-    "uid": session.user.id,
-    "photoURL": session.user.user_metadata.avatar_url,
-  }
-  console.log("USSSSSSSSSSER"+currentUser)
+export const ChatContextProvider = ({ children }) => {
+  
+  const { currentUser } = useContext(AuthContext)
+  
   const INITIAL_STATE = {
-    chatId: "NULL",
+    chatId: "null",
     user: {},
   };
-
+  
   const chatReducer = (state, action) => {
-  console.log('%c⧭', 'color: #ffffff', "PASSEI AQ de novo ");
-
+    console.log('%c⧭', 'color: #ff0000', "PASSEI AQ de novo "+INITIAL_STATE.chatId);
     switch (action.type) {
       case "CHANGE_USER":
         return {
           user: action.payload,
           chatId:
-            currentUser.uid > action.payload.uid
-              ? currentUser.uid + action.payload.uid
-              : action.payload.uid + currentUser.uid,
+          currentUser.uid > action.payload.uid
+          ? currentUser.uid + action.payload.uid
+          : action.payload.uid + currentUser.uid,
         };
-
+        
       default:
         return state;
     }
   };
 
   const [state, dispatch] = useReducer(chatReducer, INITIAL_STATE);
-  if(arg == null){
-    return(
-      state
-    )
-  }
 
-  else {
-    console.log('%c⧭', 'color: #2f00ff', "PASSEI AQ no return");
-    return (
-      dispatch
-    );
-  }
+  return (
+    <ChatContext.Provider value={{ data:state, dispatch }}>
+      {children}
+    </ChatContext.Provider>
+  );
 };

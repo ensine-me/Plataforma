@@ -3,6 +3,10 @@ import { useEffect, useCallback } from 'react';
 // import { loginFirebase } from './functions/login';
 import { useNavigate } from "react-router-dom";
 import { isVariableInSessionStorage } from 'functions/isVariableInSessionStorage';
+import store from '../src/store';
+import { login } from './functions/login';
+import { loginFirebase } from 'functions/login';
+import { Session } from '../node_modules/@supabase/auth-helpers-react/dist/index';
 
 // FAVOR NÃO MEXER NESTE ARQUIVO DA SILVA
 // Ele é o arquivo do Login
@@ -16,30 +20,33 @@ function GoogleLogin() {
   const navigate = useNavigate();
 
   const googleSignIn = useCallback(async () => {
+
+    const urlRedirect = `${store.getState().frontEndUrl}check-google-login`
+
+    //fazendo o login com o Google
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
         scopes: 'https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events',
-        redirectTo: 'http://localhost:3000/inicial-aluno'
+        redirectTo: urlRedirect
       }
     });
     if (error) {
       alert("Error logging into the Google provider with Supabase");
       console.log(error);
     }
-    // loginFirebase(session.email, session.email)
   }, [supabase]);
 
   useEffect(() => {
     if (!isLoading) {
       if (session && isVariableInSessionStorage("usuario")) {
-        // signOut();
         navigate('/sign-out')
       } else {
         googleSignIn();
       }
     }
   }, [isLoading, session, googleSignIn, navigate]);
+
 
   return null;
 }
