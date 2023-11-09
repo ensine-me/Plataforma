@@ -4,7 +4,6 @@ import Logo from '../logo.jsx'
 import sMenu from '../../assets/styles/organisms/menu.module.css';
 
 import styles from '../../assets/styles/login.module.css'
-import googleLogo from 'assets/img/icons/googleLogo.png'
 
 import { Link } from "react-router-dom";
 
@@ -19,10 +18,9 @@ const Menu = () => {
                 { text: 'Depoimentos', link: '#depoimentos', size: 'large' }]}
             />
             <div className={sMenu.buttons}>
-                <div className={styles.googleButtonContainer}>
-                    <Link to="/google-login">
+                <div className={`${styles.googleButtonContainer} ${styles.button}`} style={{marginLeft : '15px'}}>
+                    <Link to="/login">
                         <div className={styles.googleButton}>
-                            <img src={googleLogo} alt="Login da Google" />
                             Acessar plataforma
                         </div>
                     </Link>

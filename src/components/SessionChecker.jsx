@@ -6,6 +6,7 @@ import { login } from "../functions/login";
 import store from "../../src/store";
 
 const SessionChecker = ({ children }) => {
+  console.log("ENTROU NO SESSION CHECKER");
   const { isLoading, session } = useSessionContext();
   const navigate = useNavigate();
   const [isReady, setIsReady] = useState(false);

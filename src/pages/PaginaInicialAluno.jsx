@@ -3,7 +3,6 @@ import styles from '../assets/styles/paginaInicialAluno.module.css'
 import CardProfessorHome from '../components/CardProfessorHome'
 import CardAula from '../components/CardAula'
 import { useEffect, useState } from "react";
-import { isVariableInSessionStorage } from '../functions/isVariableInSessionStorage';
 import { useNavigate } from "react-router-dom";
 import store from "../store";
 
@@ -13,8 +12,15 @@ const Home = () => {
 
   const navigate = useNavigate();
 
+  console.log("usuário: ", sessionStorage.getItem("usuario"));
+
+  if(JSON.parse(sessionStorage.getItem("usuario")).googleEmail) {
+    console.log("true");
+  } else {
+    console.log("false");
+  }
+
   useEffect(() => {
-    if(!isVariableInSessionStorage("usuario") || professores.length !== 0) return;
     const disciplinas = JSON.parse(sessionStorage.getItem("usuario")).disciplinas;
 
     if(JSON.parse(sessionStorage.getItem("usuario")).professor) {
@@ -59,7 +65,7 @@ const Home = () => {
           });
         }
       });
-  });
+  }, [navigate]);
 
   return (
     <div className={styles.home_container}>
