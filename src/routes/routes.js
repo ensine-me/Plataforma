@@ -36,7 +36,6 @@ const Routering = () => {
                     <Route path="pesquisa" element={<ProfessorDashBoard />} />
                     <Route path="aula" element={<DetalhesAula />} />
                     <Route path="home-professor" element={<HomeProfessor />} />
-                    <Route path="bi-pf" element={<Bi />} />
                 </Route>
             </Routes>
             <Routes>
@@ -49,6 +48,7 @@ const Routering = () => {
                 <Route path="escolher-papel" element={<EscolhaCadastro />} />
                 <Route path="google-login" element={<GoogleLogin />} />
                 <Route path="sign-out" element={<LogOut />} />
+                <Route path="bi-pf" element={<Bi />} />
             </Routes>
         </Router>
     );

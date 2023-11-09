@@ -1,53 +1,50 @@
+
 .generalDash{
-    width: 100vw;
-    height: 90vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.boxesDash{
     width: 100%;
-    height: 90%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    justify-content: space-between;
 }
 
-.boxesDash .box{
+.generalDash .metrics{
+    display: flex;
+    flex-direction: column;
     width: 100%;
-    height: 45%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    justify-content: space-evenly;
 }
 
-.card{
-    border: 1px solid rgb(158, 158, 158);
-    width: 20%;
-    height: 60%;
-    padding: 10px;
+.metrics .boxes{
+    display: flex;
+    width: 100%;
+}
+
+.boxes .box{
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
     gap: 10px;
+    padding: 10px;
 }
 
-.card div{
-    border: 1px solid green;
-    border-radius: 10px;
-    height: 90%;
-    width: 60%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.box .boxOnly{
+    border: 2px solid black;
+    width: 100%;
 }
 
-.box .card_dash{
-    width: 35%;
+.box .cardOnly{
+    width: 50%;
     height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    text-align: center;
+}
+
+.boxOnly .divider{
+    border: 1px solid green;
+    margin: 10px;
+}
+
+.box .boxChart{
+    border: 2px solid black;
+    height: 39vh;
+    padding: 10px;
 }

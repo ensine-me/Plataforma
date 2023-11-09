@@ -1,16 +1,16 @@
 import React from "react";
-import NavBarDash from "../components/NavBarDash";
+import NavBar from "../components/NavBarDash";
 import ApplicationsDashboards from "../components/ApplicationsDashboards";
 
 function Bi() {
     return (
         <div style={{
             display: "flex",
-            justifyContent: "center",
             alignItems: "center",
-            flexDirection: "column"
+            flexDirection: "column",
+            width: "100vw",
         }}>
-            <NavBarDash/>
+            <NavBar/>
             <ApplicationsDashboards/>
         </div>
     )
