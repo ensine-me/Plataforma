@@ -23,6 +23,7 @@ import Mensagens from "../components/Mensagens";
 import CadastroProfessorLocal from "pages/CadastroProfessorLocal";
 import CheckGoogleLogin from "pages/CheckGoogleLogin";
 import ConectarComGoogle from "pages/ConectarComGoogle";
+import Bi from "pages/Bi";
 
 const Routering = () => {
     return (
@@ -39,6 +40,7 @@ const Routering = () => {
                     <Route path="/aula" element={<DetalhesAula />} />
                     <Route path="/home-professor" element={<HomeProfessor />} />
                     <Route path="/conectar-com-google" element={<ConectarComGoogle />} />
+                    <Route path="bi-pf" element={<Bi />} />
                 </Route>
             </Routes>
             <Routes>

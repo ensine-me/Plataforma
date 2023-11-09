@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Img from "./images/chat/img.png";
 import Attach from "./images/chat/attach.png";
-import { ChatProvider } from "../context/ChatContext";
+import { ChatContext, ChatProvider } from "../context/ChatContext";
 import {
   arrayUnion,
   doc,
@@ -13,24 +13,22 @@ import { db, storage } from "../firebase";
 import { v4 as uuid } from "uuid";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { useSession } from "@supabase/auth-helpers-react";
-import "../assets/styles/chat.module.css"
+import "../assets/styles/chat.css"
+import { useContext } from "react";
+import { AuthContext } from "context/AuthContext";
 
 
 const Input = () => {
   const [text, setText] = useState("");
   const [img, setImg] = useState(null);
 
-  const session = useSession();
+  const { currentUser } = useContext(AuthContext)
 
-  const currentUser = {
-    "displayName": session.user.user_metadata.full_name,
-    "uid": session.user.id,
-    "photoURL": session.user.user_metadata.avatar_url,
-  }
-  const  data  = ChatProvider();
+
+  const { data } = useContext(ChatContext);
   console.log("DATAAAAAAAAAAAAAAAAAAAAAAAAAA "+data)
 
-  const handleSend = async () => {
+  const handleSend = async (e) => {
     if (img) {
       const storageRef = ref(storage, uuid());
 
@@ -79,9 +77,19 @@ const Input = () => {
       [data.chatId + ".date"]: serverTimestamp(),
     });
 
+    
+    
+  
+  };
+
+  const handleKey = (e) => {
+   if( e.code === "Enter" || e.code == null) {
+    handleSend(e)
     setText("");
     setImg(null);
+    };
   };
+
   return (
     <div className="input">
       <input
@@ -89,6 +97,7 @@ const Input = () => {
         placeholder="Type something..."
         onChange={(e) => setText(e.target.value)}
         value={text}
+        onKeyDown={handleKey}
       />
       <div className="send">
         <img src={Attach} alt="" />
@@ -101,10 +110,13 @@ const Input = () => {
         <label htmlFor="file">
           <img src={Img} alt="" />
         </label>
-        <button onClick={handleSend}>Send</button>
+        <button onClick={handleKey}>Enviar</button>
       </div>
     </div>
   );
 };
+
+
+
 
 export default Input;

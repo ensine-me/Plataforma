@@ -1,14 +1,15 @@
 import { doc, onSnapshot } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
-import { ChatProvider } from "../context/ChatContext";
+import { ChatContext, ChatProvider } from "../context/ChatContext";
 import { db } from "../firebase";
 import Message from "./Message";
-import "../assets/styles/chat.module.css"
+import "../assets/styles/chat.css"
+import { useContext } from "react";
 
 const Messages = () => {
   const [messages, setMessages] = useState([]);
-  const data = ChatProvider() ;
-  console.log("DATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT "+data.chatId)
+  const { data } = useContext(ChatContext);
+  console.log("DATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT "+data)
   
   //  console.log('%c⧭', 'color: #ff0000', );
   useEffect(() => {

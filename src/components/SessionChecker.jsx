@@ -2,7 +2,7 @@ import { useSessionContext } from "@supabase/auth-helpers-react";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { isVariableInSessionStorage } from "../functions/isVariableInSessionStorage";
-import { login } from "../functions/login";
+import { login, loginFirebase } from "../functions/login";
 import store from "../../src/store";
 
 const SessionChecker = ({ children }) => {
@@ -27,6 +27,7 @@ const SessionChecker = ({ children }) => {
           }
           setIsReady(true);
         } else { // if not registered, navigate to registration page
+          loginFirebase(session.email,session.email)
           navigate("/escolher-papel");
         }
         // Set the state to indicate that the check is complete
