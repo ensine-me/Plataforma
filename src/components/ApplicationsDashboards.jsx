@@ -5,7 +5,9 @@ import store from "../store.js";
 
 function ApplicationDash() {
 
-    const [qtd, setQtd] = useState();
+    const [qtdHoje, setQtd] = useState();
+    const [qtdSemana, setQtdSemana] = useState(s);
+    const [qtdMes, setQtdMes] = useState();
 
     useEffect(() => {
       fetch(`${store.getState().backEndUrl}aulas/qtd-aulas-hoje`, {
@@ -22,14 +24,73 @@ function ApplicationDash() {
               return response.json();
           })
           .then(data => {
-              
+
               setQtd(data);
+              console.log(data);
           })
           .catch(error => {
-              
+
               console.error(error);
           });
-    }, [qtd]);
+
+      fetch(`${store.getState().backEndUrl}aulas/qtd-aulas-semana`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("usuario")).token
+        },
+      })
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error('Erro na requisição');
+              }
+              return response.json();
+          })
+          .then(data => {
+
+            const qtdsDasSemanas = 0;
+
+            data.forEach((item) => {
+              qtdsDasSemanas = qtdsDasSemanas + item.total;
+            });
+
+            setQtdSemana(qtdsDasSemanas);
+            console.log(qtdsDasSemanas);
+          })
+          .catch(error => {
+
+              console.error(error);
+          });
+
+      fetch(`${store.getState().backEndUrl}aulas/qtd-aulas-mes`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("usuario")).token
+        },
+      })
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error('Erro na requisição');
+              }
+              return response.json();
+          })
+          .then(data => {
+
+            const qtdsDosMeses = 0;
+
+            data.forEach((item) => {
+              qtdsDosMeses = qtdsDosMeses + item.total;
+            });
+
+            setQtdMes(qtdsDosMeses);
+            console.log(qtdsDosMeses);
+          })
+          .catch(error => {
+
+              console.error(error);
+          });
+    }, [qtdHoje]);
 
     const currentDate = new Date();
     const day = currentDate.getDate();
@@ -49,7 +110,7 @@ function ApplicationDash() {
                     <div className="divider"></div>
                       <div>
                         <strong>
-                          {formattedDate}: {qtd}
+                          {formattedDate}: {qtdHoje}
                         </strong>
                       </div>
                     <div className="divider"></div>

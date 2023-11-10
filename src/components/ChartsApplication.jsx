@@ -29,12 +29,39 @@ ChartJS.register(
 );
 
 function StatusAula() {
+
+      const [getAulasConcluidas, setAulasConcluidas] = useState();
+
+      useEffect(() => {
+      fetch(`${store.getState().backEndUrl}aulas/conta-aulas-concluidas`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("usuario")).token
+        },
+      })
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error('Erro na requisição');
+              }
+              return response.json();
+          })
+          .then(data => {
+
+              setAulasConcluidas(data);
+              console.log(data);
+          })
+          .catch(error => {
+
+              console.error(error);
+          });
+    }, [getMatematica]);
   
   const chartData = {
-    labels: ['Categoria 1', 'Categoria 2', 'Categoria 3'],
+    labels: ['Concluidas', 'Agendadas', 'Canceladas'],
     datasets: [
       {
-        data: [30, 20, 50],
+        data: [getAulasConcluidas, 20, 50],
         backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
       },
     ],
@@ -66,7 +93,7 @@ function StatusAula() {
 }
 
 function AulasDadas(){
-/*
+
     const [getMatematica, setMatematica] = useState([])
     const [getGeografia, setGeografia] = useState([])
     const [getLinguaPortuguesa, setLinguaPortuguesa] = useState([])
@@ -92,7 +119,7 @@ function AulasDadas(){
             const geografia = [];
             const linguaPortuguesa = [];
             const biologia = [];
-              
+
             data.forEach((item) => {
               if (item.materiaNome === 'Matematica') {
                 matematica.push(item.total);
@@ -111,11 +138,11 @@ function AulasDadas(){
             setBiologia(biologia);
           })
           .catch(error => {
-              
+
               console.error(error);
           });
     }, [getMatematica]);
-  */
+
     const labels = ['Agosto', 'Setembro', 'Outubro'];
             
     const chartData = {
@@ -123,22 +150,22 @@ function AulasDadas(){
       datasets: [
         {
           label: 'Matemática',
-          data: [20, 15, 10],
+          data: getMatematica,
           backgroundColor: '#114a0c',
         },
         {
           label: 'Português',
-          data: [15, 20, 13],
+          data: getLinguaPortuguesa,
           backgroundColor: '#227e18',
         },
         {
           label: 'Geografia',
-          data: [25, 10, 15],
+          data: =getGeografia,
           backgroundColor: '#1a6412',
         },
         {
           label: 'Biologia',
-          data: [20, 20, 10],
+          data: getBiologia,
           backgroundColor: '#001600',
         },
       ],
@@ -174,7 +201,7 @@ function AulasDadas(){
 
 
 function LucroMensal() {
-/*
+
     const [getLucro, setLucro] = useState();
 
     useEffect(() => {
@@ -207,7 +234,7 @@ function LucroMensal() {
               console.error(error);
           });
     }, []);
-  */
+
     const chartData = {
       labels: ['Agosto', 'Setembro', 'Outubro'],
       datasets: [
