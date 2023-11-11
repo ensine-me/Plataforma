@@ -6,7 +6,7 @@ import store from "../store.js";
 function ApplicationDash() {
 
     const [qtdHoje, setQtd] = useState();
-    const [qtdSemana, setQtdSemana] = useState(s);
+    const [qtdSemana, setQtdSemana] = useState();
     const [qtdMes, setQtdMes] = useState();
 
     useEffect(() => {

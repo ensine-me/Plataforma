@@ -50,6 +50,10 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, gmailProfessor
   startUTC.setUTCHours(startUTC.getUTCHours() - 3);
   const dataFormatada = startUTC.toISOString();
 
+  const endUTC = new Date(end.toISOString());
+  endUTC.setUTCHours(endUTC.getUTCHours() - 3);
+  const dataFormatada2 = endUTC.toISOString();
+
   async function createCalendarEvent() {
     let foi = true;
     if (nomeProfessor != null && emailProfessor != null) {
@@ -63,6 +67,7 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, gmailProfessor
           "nome": document.getElementById("selectMateria").value
         },
         "dataHora": dataFormatada,
+        "dataHoraFim": dataFormatada2,
         "limiteParticipantes": parseInt(document.getElementById("maxParticipantes").value, 10),
         "alunos": [{
           "idUsuario": JSON.parse(sessionStorage.getItem("usuario")).userId
@@ -70,7 +75,8 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, gmailProfessor
         "status": "SOLICITADO",
         "duracaoSegundos": "3600"
       }
-
+      // aqui
+      // bodyJsonData
       const response = await fetch(`${store.getState().backEndUrl}aulas`, {
         method: 'POST',
         headers: {
@@ -79,7 +85,7 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, gmailProfessor
         },
         body: JSON.stringify(bodyJsonData)
       })
-      console.log(bodyJsonData)
+      console.log("HAHAHAHAHAHHAHAHAHAH "+JSON.stringify(bodyJsonData))
       console.log("Response: " + JSON.stringify(response))
       if (!response.ok) {
         foi = false;

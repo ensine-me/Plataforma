@@ -55,7 +55,7 @@ function StatusAula() {
 
               console.error(error);
           });
-    }, [getMatematica]);
+    }, [getAulasConcluidas]);
   
   const chartData = {
     labels: ['Concluidas', 'Agendadas', 'Canceladas'],
@@ -160,7 +160,7 @@ function AulasDadas(){
         },
         {
           label: 'Geografia',
-          data: =getGeografia,
+          data: getGeografia,
           backgroundColor: '#1a6412',
         },
         {
