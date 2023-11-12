@@ -30,10 +30,11 @@ ChartJS.register(
 
 function StatusAula() {
 
-      const [getAulasConcluidas, setAulasConcluidas] = useState();
+      const [getStatus, setStatus]= useState([]);
+      const [getTotais, setTotais] = useState([]);
 
       useEffect(() => {
-      fetch(`${store.getState().backEndUrl}aulas/conta-aulas-concluidas`, {
+      fetch(`${store.getState().backEndUrl}aulas/total-aulas-status`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -48,21 +49,29 @@ function StatusAula() {
           })
           .then(data => {
 
-              setAulasConcluidas(data);
-              console.log(data);
+            const status = [];
+            const total = [];
+
+            data.forEach((item) => {
+              status.push(item.status);
+              total.push(item.total);
+            });
+
+            setStatus(status);
+            setTotais(total);
           })
           .catch(error => {
 
               console.error(error);
           });
-    }, [getAulasConcluidas]);
+    }, []);
   
   const chartData = {
-    labels: ['Concluidas', 'Agendadas', 'Canceladas'],
+    labels: getStatus,
     datasets: [
       {
-        data: [getAulasConcluidas, 20, 50],
-        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+        data: getTotais,
+        backgroundColor: ['#227e18', '#001600'],
       },
     ],
   };
@@ -141,7 +150,7 @@ function AulasDadas(){
 
               console.error(error);
           });
-    }, [getMatematica]);
+    }, []);
 
     const labels = ['Agosto', 'Setembro', 'Outubro'];
             
@@ -241,7 +250,7 @@ function LucroMensal() {
         {
           fill: true,
           label: 'Dataset 2',
-          data: [1100, 1000, 1500],
+          data: getLucro,
           borderColor: '#114a0c',
           backgroundColor: '#005d00b3',
         },
@@ -275,15 +284,51 @@ function LucroMensal() {
 }
 
 function LucroMateria() {
+
+    const [getMateria, setMateria] = useState([])
+    const [getLucro, setLucro] = useState([])
+
+    useEffect(() => {
+      fetch(`${store.getState().backEndUrl}aulas/preco-total-matematica`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("usuario")).token
+        },
+      })
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error('Erro na requisição');
+              }
+              return response.json();
+          })
+          .then(data => {
+
+            const materia = [];
+            const lucro = [];
+
+            data.forEach((item) => {
+                materia.push(item[1]);
+                lucro.push(item[0]);
+            });
+
+            setMateria(materia);
+            setLucro(lucro);
+          })
+          .catch(error => {
+
+              console.error(error);
+          });
+    }, []);
   
   const chartData = {
-    labels: ['Categoria 1', 'Categoria 2', 'Categoria 3', 'Categoria 4', 'Categoria 5'],
+    labels: getMateria,
     datasets: [
       {
         label: 'Vendas Mensais',
-        data: [50, 70, 60, 80, 75],
-        backgroundColor: 'rgba(75, 192, 192, 0.6)',
-        borderColor: 'rgba(75, 192, 192, 1)',
+        data: getLucro,
+        backgroundColor: ['#1a6412', '#114a0c', '#227e18', '#001600'],
+        borderColor: '#001600',
         borderWidth: 1,
       },
     ],
