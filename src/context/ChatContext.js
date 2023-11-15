@@ -3,7 +3,6 @@ import {
   useContext,
   useReducer,
 } from "react";
-import { useSession } from "../../node_modules/@supabase/auth-helpers-react/dist/index";
 import { AuthContext } from "./AuthContext";
 
 export const ChatContext = createContext();

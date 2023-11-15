@@ -1,8 +1,7 @@
 import { doc, onSnapshot } from "firebase/firestore";
 import React, { useContext, useEffect, useState } from "react";
-import { ChatContext, ChatProvider } from "../context/ChatContext";
+import { ChatContext } from "../context/ChatContext";
 import { db } from "../firebase";
-import { useSession } from "@supabase/auth-helpers-react";
 import "../assets/styles/chat.css";
 import { AuthContext } from "context/AuthContext";
 

@@ -4,7 +4,7 @@ import CardProfessorHome from '../components/CardProfessorHome'
 import CardAula from '../components/CardAula'
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Session, useSession } from '../../node_modules/@supabase/auth-helpers-react/dist/index';
+import { useSessionContext } from '@supabase/auth-helpers-react';
 import { loginFirebase } from 'functions/login';
 import store from "../store";
 
@@ -12,8 +12,10 @@ const Home = () => {
   const [professores, setProfessores] = useState([]);
   const [aulas, setAulas] = useState([]);
 
-  const session = useSession();
-  loginFirebase(session.user.email, session.user.email)
+  const { isLoading, session } = useSessionContext();
+  if(!isLoading && session) {
+    loginFirebase(session.user.email, session.user.email)
+  }
 
   const navigate = useNavigate();
 

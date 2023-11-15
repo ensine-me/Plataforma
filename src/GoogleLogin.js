@@ -4,9 +4,6 @@ import { useEffect, useCallback } from 'react';
 import { useNavigate } from "react-router-dom";
 import { isVariableInSessionStorage } from 'functions/isVariableInSessionStorage';
 import store from '../src/store';
-import { login } from './functions/login';
-import { loginFirebase } from 'functions/login';
-import { Session } from '../node_modules/@supabase/auth-helpers-react/dist/index';
 
 // FAVOR NÃO MEXER NESTE ARQUIVO DA SILVA
 // Ele é o arquivo do Login

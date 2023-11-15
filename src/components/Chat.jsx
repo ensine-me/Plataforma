@@ -4,7 +4,7 @@ import Add from "./images/chat/add.png";
 import More from "./images/chat/more.png";
 import Messages from "./Messages";
 import Input from "./Input";
-import { ChatContext, ChatProvider } from "../context/ChatContext";
+import { ChatContext } from "../context/ChatContext";
 import "../assets/styles/chat.css"
 import { useContext } from "react";
 

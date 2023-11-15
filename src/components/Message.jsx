@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useRef } from "react";
-import { ChatContext, ChatProvider } from "../context/ChatContext";
-import { useSession } from "@supabase/auth-helpers-react";
+import { ChatContext } from "../context/ChatContext";
 import "../assets/styles/chat.css"
 import { AuthContext } from "context/AuthContext";
 
