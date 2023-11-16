@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { isVariableInSessionStorage } from 'functions/isVariableInSessionStorage';
 import store from '../src/store';
 
+
 // FAVOR NÃO MEXER NESTE ARQUIVO DA SILVA
 // Ele é o arquivo do Login
 // Tem de colocar ele junto do login no institucional
