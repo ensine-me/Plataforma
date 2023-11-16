@@ -19,7 +19,6 @@ const Login = () => {
     const [form, setForm] = useState([]);
 
     const entrar = async (event) => {
-        // window.location.href = "http://localhost:3000"
         login(form.email, form.senha).then((result) => {
             if (result) {
                 //se fez login local e não fez no Google, ve se tem conta Google. Se tiver, faz login no Google
@@ -59,7 +58,7 @@ const Login = () => {
                     </div>
                     <div className={styles.buttons} >
                         <button className={styles.button} onClick={entrar}>
-                            Login
+                            Entrar
                         </button>
                         <Link to="/google-login">
                             <div className={styles.googleButtonContainer}>

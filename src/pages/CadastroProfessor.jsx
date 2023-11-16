@@ -34,14 +34,12 @@ const Professorcad = () => {
         left: '50%',
         transform: 'translate(-50%, -50%)',
         width: 400,
-        bgcolor: 'background.paper',
-        border: '2px solid #000',
-        boxShadow: 24,
-        p: 4,
-        borderRadius: '10px',
+        bgcolor: '#f8f8f8',
+        p: 6,
+        borderRadius: '16px',
         display: 'flex',
         flexDirection: 'column',
-        gap: '20px'
+        gap: '5px',
     };
 
     const handleSubmit = async () => {
@@ -50,7 +48,7 @@ const Professorcad = () => {
     }
 
     const handleChange = (event) => {
-        if(event.target.name === 'precoHoraAula') {
+        if (event.target.name === 'precoHoraAula') {
             setForm({ ...form, [event.target.name]: parseFloat(event.target.value) })
         } else {
             setForm({ ...form, [event.target.name]: event.target.value })
@@ -113,172 +111,178 @@ const Professorcad = () => {
         <>
             <div className={styles.page}>
                 <div className={styles.container}>
-                    <div>
+                    <div className={styles.header}>
                         <Logo />
-                    </div>
-                    <div className={styles.form}>
                         <h2>
                             Cadastro de professor
                         </h2>
-                        <div>
+                    </div>
+                    <div className={styles.form}>
+                        <section className={styles.section}>
                             <div>
-                                Descrição
+                                <div>
+                                    Descrição
+                                </div>
+                                <textarea name="descricao" onChange={handleChange} style={{ width: '100%' }}></textarea>
                             </div>
-                            <textarea name="descricao" onChange={handleChange} style={{ width: '100%' }}></textarea>
-                        </div>
-                        {/* <input placeholder='Descreva seu perfil como professor' type='text' name="descricao" onChange={handleChange}></input> */}
-                        <div>
+                            {/* <input placeholder='Descreva seu perfil como professor' type='text' name="descricao" onChange={handleChange}></input> */}
                             <div>
-                                Preço Hora Aula
+                                <div>
+                                    Preço Hora Aula
+                                </div>
+                                <input type='number' name="precoHoraAula" onChange={handleChange}></input>
                             </div>
-                            <input type='number' name="precoHoraAula" onChange={handleChange}></input>
-                        </div>
-                        <div>
+                        </section>
+                        <section className={styles.section}>
                             <div>
-                                Formações
+                                <div>
+                                    Formações
+                                </div>
+                                {
+                                    formacoes.length > 0 ?
+                                        (
+                                            <table className={styles.tabela}>
+                                                <thead>
+                                                    <tr>
+                                                        <th>Instituição</th>
+                                                        <th>Nome do curso</th>
+                                                        <th>Tipo de formação</th>
+                                                        <th>Data de início</th>
+                                                        <th>Data de término</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {
+                                                        formacoes.map((formacao, index) => (
+                                                            <tr key={index}>
+                                                                <td>{formacao.instituicao}</td>
+                                                                <td>{formacao.nomeCurso}</td>
+                                                                <td>{formacao.tipoFormacao}</td>
+                                                                <td>{formacao.dtInicio}</td>
+                                                                <td>{formacao.dtTermino}</td>
+                                                            </tr>
+                                                        ))
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        )
+                                        :
+                                        <></>
+                                }
+                                <button className={styles.botaoAdicionar} onClick={handleOpenFormacao}>+</button>
+                                <Modal
+                                    open={openFormacao}
+                                    onClose={handleCloseFormacao}
+                                    aria-labelledby="modal-modal-title"
+                                    aria-describedby="modal-modal-description"
+                                >
+                                    <Box sx={style}>
+                                        <h1 className={styles.h1}>Adicionar formação</h1>
+                                        <div className={styles.tituloModal}>
+                                            Instituição
+                                        </div>
+                                        <input type='text' name="instituicao" onChange={handleChangeFormacao}></input>
+                                        <div className={styles.tituloModal}>
+                                            Nome do curso
+                                        </div>
+                                        <input type='text' name="nomeCurso" onChange={handleChangeFormacao}></input>
+                                        <div className={styles.tituloModal}>
+                                            Tipo de formação
+                                        </div>
+                                        <select name="tipoFormacao" id="tipoFormacao" onChange={handleChangeFormacao}>
+                                            <option disabled selected>Selecione</option>
+                                            <option value="BACHARELADO">Bacharelado</option>
+                                            <option value="LICENCIATURA">Licenciatura</option>
+                                            <option value="TECNOLOGO">Tecnologo</option>
+                                            <option value="SEQUENCIAL">Sequencial</option>
+                                        </select>
+                                        <div className={styles.tituloModal}>
+                                            Data de início
+                                        </div>
+                                        <input type="date" name='dtInicio' onChange={handleChangeFormacao} />
+                                        <div className={styles.tituloModal}>
+                                            Data de término
+                                        </div>
+                                        <input type="date" name='dtTermino' onChange={handleChangeFormacao} />
+                                        <button className={styles.botaoModal} onClick={cadastrarFormacao}>Adicionar</button>
+                                    </Box>
+                                </Modal>
                             </div>
-                            {
-                                formacoes.length > 0 ?
-                                    (
-                                        <table className={styles.tabela}>
-                                            <thead>
-                                                <tr>
-                                                    <th>Instituição</th>
-                                                    <th>Nome do curso</th>
-                                                    <th>Tipo de formação</th>
-                                                    <th>Data de início</th>
-                                                    <th>Data de término</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {
-                                                    formacoes.map((formacao, index) => (
+
+                            <div>
+                                <div>
+                                    Disponibillidades
+                                </div>
+                                {
+                                    disponibilidades.length > 0 ?
+                                        (
+                                            <table className={styles.tabela}>
+                                                <thead>
+                                                    <tr>
+                                                        <th>Dia da semana</th>
+                                                        <th>Horário de início</th>
+                                                        <th>Horário de término</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {disponibilidades.map((disponibilidade, index) => (
                                                         <tr key={index}>
-                                                            <td>{formacao.instituicao}</td>
-                                                            <td>{formacao.nomeCurso}</td>
-                                                            <td>{formacao.tipoFormacao}</td>
-                                                            <td>{formacao.dtInicio}</td>
-                                                            <td>{formacao.dtTermino}</td>
+                                                            <td>{disponibilidade.diaDaSemana}</td>
+                                                            <td>{disponibilidade.horarioInicio}</td>
+                                                            <td>{disponibilidade.horarioFim}</td>
                                                         </tr>
                                                     ))
-                                                }
-                                            </tbody>
-                                        </table>
-                                    )
-                                    :
-                                    <></>
-                            }
-                            <button onClick={handleOpenFormacao}>Nova formação</button>
-                            <Modal
-                                open={openFormacao}
-                                onClose={handleCloseFormacao}
-                                aria-labelledby="modal-modal-title"
-                                aria-describedby="modal-modal-description"
-                            >
-                                <Box sx={style}>
-                                    <h1>Cadastro de Formação</h1>
-                                    <div>
-                                        Instituição
-                                    </div>
-                                    <input type='text' name="instituicao" onChange={handleChangeFormacao}></input>
-                                    <div>
-                                        Nome do curso
-                                    </div>
-                                    <input type='text' name="nomeCurso" onChange={handleChangeFormacao}></input>
-                                    <div>
-                                        Tipo de formação
-                                    </div>
-                                    <select name="tipoFormacao" id="tipoFormacao" onChange={handleChangeFormacao}>
-                                        <option value="">Escolha um tipo...</option>
-                                        <option value="BACHARELADO">Bacharelado</option>
-                                        <option value="LICENCIATURA">Licenciatura</option>
-                                        <option value="TECNOLOGO">Tecnologo</option>
-                                        <option value="SEQUENCIAL">Sequencial</option>
-                                    </select>
-                                    <div>
-                                        Data de início
-                                    </div>
-                                    <input type="date" name='dtInicio' onChange={handleChangeFormacao} />
-                                    <div>
-                                        Data de término
-                                    </div>
-                                    <input type="date" name='dtTermino' onChange={handleChangeFormacao} />
-                                    <button onClick={cadastrarFormacao}>Cadastrar formação</button>
-                                </Box>
-                            </Modal>
-                        </div>
-
-                        <div>
-                            <div>
-                                Disponibillidades
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        )
+                                        :
+                                        <></>
+                                }
+                                <button className={styles.botaoAdicionar} onClick={handleOpenDisp}>+</button>
+                                <Modal
+                                    open={openDisp}
+                                    onClose={handleCloseDisp}
+                                    aria-labelledby="modal-modal-title"
+                                    aria-describedby="modal-modal-description"
+                                >
+                                    <Box sx={style}>
+                                        <h1 className={styles.h1}>Nova Disponibilidade</h1>
+                                        <div className={styles.tituloModal}>
+                                            Dia da semana
+                                        </div>
+                                        <select name="diaDaSemana" id="diaDaSemana" onChange={handleChangeDisponibilidade}>
+                                            <option disabled selected>Selecione</option>
+                                            <option value="DOMINGO">Domingo</option>
+                                            <option value="SEGUNDA">Segunda</option>
+                                            <option value="TERCA">Terça</option>
+                                            <option value="QUARTA">Quarta</option>
+                                            <option value="QUINTA">Quinta</option>
+                                            <option value="SEXTA">Sexta</option>
+                                            <option value="SABADO">Sábado</option>
+                                        </select>
+                                        <div className={styles.tituloModal}>
+                                            Horário de Início
+                                        </div>
+                                        <input type="time" name='horarioInicio' onChange={handleChangeDisponibilidade} />
+                                        <div className={styles.tituloModal}>
+                                            Horário de Término
+                                        </div>
+                                        <input type="time" name='horarioFim' onChange={handleChangeDisponibilidade} />
+                                        <button className={styles.botaoModal} onClick={cadastrarDisponibilidade}>Adicionar</button>
+                                    </Box>
+                                </Modal>
                             </div>
-                            {
-                                disponibilidades.length > 0 ?
-                                    (
-                                        <table className={styles.tabela}>
-                                            <thead>
-                                                <tr>
-                                                    <th>Dia da semana</th>
-                                                    <th>Horário de início</th>
-                                                    <th>Horário de término</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {disponibilidades.map((disponibilidade, index) => (
-                                                    <tr key={index}>
-                                                        <td>{disponibilidade.diaDaSemana}</td>
-                                                        <td>{disponibilidade.horarioInicio}</td>
-                                                        <td>{disponibilidade.horarioFim}</td>
-                                                    </tr>
-                                                ))
-                                                }
-                                            </tbody>
-                                        </table>
-                                    )
-                                    :
-                                    <></>
-                            }
-                            <button onClick={handleOpenDisp}>Nova Disponibilidade</button>
-                            <Modal
-                                open={openDisp}
-                                onClose={handleCloseDisp}
-                                aria-labelledby="modal-modal-title"
-                                aria-describedby="modal-modal-description"
-                            >
-                                <Box sx={style}>
-                                    <h1>Nova Disponibilidade</h1>
-                                    <select name="diaDaSemana" id="diaDaSemana" onChange={handleChangeDisponibilidade}>
-                                        <option value="">Dia da semana</option>
-                                        <option value="DOMINGO">Domingo</option>
-                                        <option value="SEGUNDA">Segunda</option>
-                                        <option value="TERCA">Terça</option>
-                                        <option value="QUARTA">Quarta</option>
-                                        <option value="QUINTA">Quinta</option>
-                                        <option value="SEXTA">Sexta</option>
-                                        <option value="SABADO">Sábado</option>
-                                    </select>
-                                    <div>
-                                        Horário de Início
-                                    </div>
-                                    <input type="time" name='horarioInicio' onChange={handleChangeDisponibilidade} />
-                                    <div>
-                                        Horário de Término
-                                    </div>
-                                    <input type="time" name='horarioFim' onChange={handleChangeDisponibilidade} />
-                                    <button onClick={cadastrarDisponibilidade}>Cadastrar disponibilidade</button>
-                                </Box>
-                            </Modal>
-                        </div>
-                        <div className={styles.btn_cadastrar}>
-                            <button onClick={handleSubmit}>Cadastrar</button>
-                        </div>
+                        </section>
                     </div>
-
+                    <div className={styles.btn_cadastrar}>
+                        <button className={styles.botaoFinalizar} onClick={handleSubmit}>Finalizar cadastro</button>
+                    </div>
                     <p>
                         <i>Ao clicar em cadastrar você aceita os nossos <a href='www.google.com'>termos de uso</a> e <a href='www.google.com'>privacidade</a></i>
                     </p>
                 </div>
-            </div>
+            </div >
         </>
     )
 }

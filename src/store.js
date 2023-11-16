@@ -1,7 +1,7 @@
 import { createStore } from 'redux';
 
-const environment = "local";
-// const environment = "remoto";
+// const environment = "local";
+ const environment = "remoto";
 
 const initialState = {
   backEndUrl: environment === "local" ? 'http://localhost:8080/' :

@@ -8,6 +8,7 @@
     height: 100px;
     user-select: none;
     border-radius: 10px;
+    gap: 8px;
     transition: background-color 0.3s ease, color 0.3s ease, font-size 0.3s ease;
     cursor: pointer;
 }
@@ -22,11 +23,11 @@
 }
 
 .checked {
-    background-color: rgba(63, 225, 79, 0.726);
+    background-color: var(--verde-claro);
     color: #ffffffe1;
 }
 
 .checked:hover {
-    background-color: rgba(63, 225, 79, 0.726);
+    background-color: var(--verde-claro);
     color: #ffffffe1;
 }
