@@ -31,7 +31,6 @@ const Routering = () => {
             <Routes>
                 <Route element={<LoginChecker><Layout /></LoginChecker>}>
                     <Route path="/inicial-aluno" element={<PaginaInicialAluno />} />
-
                     <Route path="/perfil" element={<PerfilAluno />} />
                     <Route path="/mensagens" element={<Mensagens />} />
                     <Route path="/professor" element={<PerfilProfessor />} />

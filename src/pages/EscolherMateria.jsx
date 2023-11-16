@@ -7,7 +7,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSession } from '@supabase/auth-helpers-react';
 import { login } from '../functions/login';
 import { isVariableInSessionStorage } from 'functions/isVariableInSessionStorage';
-import Add from "../components/images/chat/addAvatar.png";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db, storage } from "../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
@@ -19,8 +18,6 @@ const EscolherMaterias = () => {
 
 
   const navigate = useNavigate();
-  const [err, setErr] = useState(false);
-  const [loading, setLoading] = useState(false);
 
   const [isCheckedMatematica, setIsCheckedMatematica] = useState(false);
   const [isCheckedPortugues, setIsCheckedPortugues] = useState(false);
@@ -112,6 +109,7 @@ const EscolherMaterias = () => {
       }
     }
 
+    console.log("objUsuario:" + objUsuario);
     const url = papel && papel === "aluno" ? `${store.getState().backEndUrl}usuarios/cadastrar` : `${store.getState().backEndUrl}usuarios/professor/cadastrar`;
 
 
@@ -119,8 +117,7 @@ const EscolherMaterias = () => {
       const displayName = objUsuario.nome;
       const email = objUsuario.email;
       const password = objUsuario.email;
-      const files = objUsuario.files;
-      const foto = objUsuario.foto
+      const foto = objUsuario.foto;
 
       //Create user
       const res = await createUserWithEmailAndPassword(auth, email, password);
@@ -150,14 +147,15 @@ const EscolherMaterias = () => {
             navigate("/");
           } catch (err) {
             console.log(err);
-            setErr(true);
-            setLoading(false);
+            // setErr(true);
+            // setLoading(false);
           }
         });
       });
     } catch (err) {
-      setErr(true);
-      setLoading(false);
+      // setErr(true);
+      // setLoading(false);
+      alert("Erro: " + JSON.stringify(err))
     };
 
 

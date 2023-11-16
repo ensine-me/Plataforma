@@ -1,10 +1,9 @@
 import { doc, onSnapshot } from "firebase/firestore";
 import React, { useContext, useEffect, useState } from "react";
-import { ChatContext, ChatProvider } from "../context/ChatContext";
 import { db } from "../firebase";
-import { useSession } from "@supabase/auth-helpers-react";
 import "../assets/styles/chat.css";
 import { AuthContext } from "context/AuthContext";
+import { ChatContext } from "../context/ChatContext";
 
 const Chats = () => {
   const [chats, setChats] = useState([]);

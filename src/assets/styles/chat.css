@@ -203,7 +203,8 @@
     background-color: white;
     padding: 10px 20px;
     border-radius: 0px 10px 10px 10px;
-    max-width: max-content;
+    max-width: 50vw;
+    word-wrap: break-word;
 }
 
 .container .chat .messages .message .messageContent img {
@@ -214,6 +215,7 @@
     flex: 1;
     background-color: #2a4324;
     position: relative;
+    max-width: 100rem;
 }
 
 .userChat {

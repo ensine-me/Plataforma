@@ -11,7 +11,6 @@ import {
   getDoc,
 } from "firebase/firestore";
 import { db } from "../firebase";
-import { useSession } from '@supabase/auth-helpers-react';
 import "../assets/styles/chat.css";
 import { AuthContext } from "context/AuthContext";
 import { useContext } from "react";

@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { Bar, Line, Doughnut } from 'react-chartjs-2';
 import store from "../store.js"
+import React, { useState, useEffect } from "react";
+
+import { Bar, Line, Doughnut } from 'react-chartjs-2';
 import { Chart as 
     ChartJS, 
     ArcElement, 
