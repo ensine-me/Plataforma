@@ -11,7 +11,9 @@ import store from "../store";
 const HomeProfessor = () => {
 
     const session = useSession();
-    loginFirebase(session.user.email, session.user.email)
+    if(session) {
+        loginFirebase(session.user.email, session.user.email)
+    }
 
     // Pega o valor do parâmetro 'id' da URL
     const idProfessor = JSON.parse(sessionStorage.getItem("usuario")).userId;

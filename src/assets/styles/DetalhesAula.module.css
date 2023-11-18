@@ -49,6 +49,7 @@
 .detalhes_aula_botao_participar_container {
     display: flex;
     justify-content: center;
+    flex-direction: column;
 }
 
 .detalhes_aula_info_professor_foto {
@@ -67,7 +68,7 @@
     gap: 10px;
 }
 
-.detalhes_aula_botao_participar {
+.detalhes_aula_botao {
     margin-top: 20px;
     width: 100%;
     height: 50px;
@@ -77,4 +78,8 @@
     font-size: 1.5rem;
     font-weight: 700;
     cursor: pointer;
+}
+
+.detalhes_aula_botao_vermelho {
+    background-color: rgb(216, 60, 60);
 }

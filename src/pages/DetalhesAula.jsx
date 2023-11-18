@@ -13,6 +13,9 @@ const DetalhesAula = () => {
     const [aula, setAula] = useState();
     const [participar, setParticipar] = useState(false);
     const [aceitar, setAceitar] = useState(false);
+    const [cancelar, setCancelar] = useState(false);
+    const [iniciar, setIniciar] = useState(false);
+    const [concluir, setConcluir] = useState(false);
 
     useEffect(() => {
         // pegando detalhes da aula
@@ -56,15 +59,45 @@ const DetalhesAula = () => {
             const alunos = aula.alunos;
             const emailsDosParticipantes = alunos.map(aluno => aluno.email);
             console.log("emails " + emailsDosParticipantes);
-    
-            if (!JSON.parse(sessionStorage.getItem("usuario")).professor && !emailsDosParticipantes.includes(JSON.parse(sessionStorage.getItem("usuario")).email)) {
-                setParticipar(true);
-                console.log("participar TRUE");
+
+            //se eu sou professor e a aula é minha
+            if (JSON.parse(sessionStorage.getItem("usuario")).professor && JSON.parse(sessionStorage.getItem("usuario")).email === aula.professor.email) {
+                if (aula.status === "SOLICITADO") {
+                    setAceitar(true);
+                    console.log("aceitar TRUE");
+                }
+
+                if (aula.status === "AGENDADO") {
+                    setIniciar(true);
+                    console.log("iniciar TRUE");
+                }
+
+                if (aula.status === "SOLICITADO" || aula.status === "AGENDADO") {
+                    setCancelar(true);
+                    console.log("cancelar TRUE");
+                }
+
+                if (aula.status === "EM_PROGRESSO") {
+                    setConcluir(true);
+                    console.log("concluir TRUE");
+                }
+            } else { // se sou aluno
+                //se estou participando da aula
+                if (emailsDosParticipantes.includes(JSON.parse(sessionStorage.getItem("usuario")).email)) {
+                    if (aula.status === "SOLICITADO" || aula.status === "AGENDADO") {
+                        setCancelar(true);
+                        console.log("cancelar TRUE");
+                    }
+                } else {
+                    setParticipar(true);
+                    console.log("participar TRUE");
+                }
             }
-    
-            if (JSON.parse(sessionStorage.getItem("usuario")).professor && JSON.parse(sessionStorage.getItem("usuario")).email === aula.professor.email && aula.status === "SOLICITADO") {
-                setAceitar(true);
-                console.log("aceitar TRUE");
+
+            //se sou qualquer um
+            if (emailsDosParticipantes.includes(JSON.parse(sessionStorage.getItem("usuario")).email) && (aula.status === "SOLICITADO" || aula.status === "AGENDADO")) {
+                setCancelar(true);
+                console.log("cancelar TRUE");
             }
         }
     }, [aula]);
@@ -91,9 +124,9 @@ const DetalhesAula = () => {
         }
     }
 
-    function aceitarAula() {
+    function mudarStatus(novoStatus) {
         if (idAula) {
-            fetch(`${store.getState().backEndUrl}aulas/${idAula}/mudanca-status?status=AGENDADO`, {
+            fetch(`${store.getState().backEndUrl}aulas/${idAula}/mudanca-status?status=${novoStatus}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -104,7 +137,7 @@ const DetalhesAula = () => {
                     if (!response.ok) {
                         throw new Error('Erro na requisição\n' + response);
                     }
-                    alert("Aula aceita com sucesso!");
+                    alert("Sucesso!");
                     window.location.reload();
                 })
                 .catch(error => {
@@ -186,9 +219,13 @@ const DetalhesAula = () => {
                 </div>
             </div>
             <div className={styles.detalhes_aula_botao_participar_container}>
-                {participar && <button className={styles.detalhes_aula_botao_participar} onClick={entrarNaAula}>Participar</button>}
-                {aceitar && <button className={styles.detalhes_aula_botao_participar} onClick={aceitarAula}>Aceitar</button>}
+                {participar && <button className={styles.detalhes_aula_botao} onClick={() => entrarNaAula()}>Participar</button>}
+                {aceitar && <button className={styles.detalhes_aula_botao} onClick={() => mudarStatus("AGENDADO")}>Aceitar</button>}
+                {cancelar && <button className={`${styles.detalhes_aula_botao} ${styles.detalhes_aula_botao_vermelho}`} onClick={() => mudarStatus("CANCELADO")}>Cancelar</button>}
+                {iniciar && <button className={styles.detalhes_aula_botao} onClick={() => mudarStatus("EM_PROGRESSO")}>Iniciar</button>}
+                {concluir && <button className={styles.detalhes_aula_botao} onClick={() => mudarStatus("CONCLUIDA")}>Concluir</button>}
             </div>
+
 
         </div>
     )
