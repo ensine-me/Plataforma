@@ -10,19 +10,19 @@ const OferecemosSection = () => {
                 <Title text='O que oferecemos' />
                 <div className={sOferecemosSection.oQueOferecemosTextosContainer}>
                     <div className={sOferecemosSection.QueOferecemosTexto}>
-                        <SimpleText text={<b>Para o aluno</b>} size={'xlarge'} />
+                        <SimpleText text={<b>Benefícios para o Aluno</b>} size={'xlarge'} />
                         <ul>
-                            <li>Preparação gratuita para vestibulares</li>
-                            <li>Aulas direcionadas de temas escolhidos pelos alunos</li>
-                            <li>Variedade de professores e disciplinas</li>
+                            <li>Acesso de baixo custo preparação completa para vestibulares, promovendo igualdade nas oportunidades educacionais.</li>
+                            <li>Aulas personalizadas baseadas nas preferências dos alunos, garantindo um aprendizado direcionado e eficaz.</li>
+                            <li>Uma ampla seleção de professores especializados e disciplinas, proporcionando uma educação diversificada e abrangente.</li>
                         </ul>
                     </div>
                     <div className={sOferecemosSection.oQueOferecemosTexto}>
-                        <SimpleText text={<b>Para o professor</b>} size={'xlarge'} />
+                        <SimpleText text={<b>Benefícios para o Professor</b>} size={'xlarge'} />
                         <ul>
-                            <li>Chance de impactar a vida de quem mais precisa</li>
-                            <li>Ambiente para aperfeiçoamento de sua didática</li>
-                            <li>Certificado de aulas complementares</li>
+                            <li>Oportunidade de causar um impacto significativo na trajetória educacional de estudantes motivados.</li>
+                            <li>Uma plataforma para refinar e desenvolver técnicas didáticas, colaborando com uma comunidade de educadores engajados.</li>
+                            <li>Reconhecimento profissional através de certificação por contribuições de ensino, enriquecendo seu portfólio acadêmico.</li>
                         </ul>
                     </div>
                 </div>

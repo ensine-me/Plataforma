@@ -9,7 +9,7 @@
 }
 
 .quemSomosContainer {
-    padding: 5%;
+    padding: 10%;
     backdrop-filter: blur(50px);
     box-shadow: var(--shadow);
 }
@@ -18,10 +18,24 @@
     font-size: 1.5em;
 }
 
+.quemSomos h2 {
+    background-color: var(--preto);
+    padding: 1%;
+    border-radius: 16px;
+    width: fit-content;
+    color: var(--verde-claro);
+    box-shadow: var(--shadow);
+}
+
+.quemSomos p {
+    background-color: var(--cinza);
+    padding: 1%;
+    border-radius: 16px;
+    width: fit-content;
+    box-shadow: var(--shadow);
+}
+
 @media screen and (min-width: 1024px) {
-    .quemSomos {
-        padding: 5em;
-    }
     .quemSomosTitulo {
         margin-bottom: .5em;
     }

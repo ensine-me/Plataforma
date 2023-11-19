@@ -6,7 +6,6 @@ import sMenu from '../../assets/styles/organisms/menu.module.css';
 import styles from '../../assets/styles/login.module.css'
 
 import { Link } from "react-router-dom";
-import BotaoDarkMode from "components/BotaoDarkMode.jsx";
 
 const Menu = ({ isPageTermos }) => {
     return (

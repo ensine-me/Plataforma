@@ -291,7 +291,7 @@ const CadastroProfessorLocal = () => {
                         <button className={styles.botaoFinalizar} onClick={handleSubmit}>Finalizar cadastro</button>
                     </div>
                     <p>
-                        <i>Ao clicar em cadastrar você aceita os nossos <a href='www.google.com'>termos de uso</a> e <a href='www.google.com'>privacidade</a></i>
+                        <i>Ao clicar em cadastrar você aceita os nossos <a href='/termos-de-uso'>termos de uso</a> e <a href='/politica-de-privacidade'>privacidade</a></i>
                     </p>
                 </div>
             </div>
