@@ -155,7 +155,7 @@ const EscolherMaterias = () => {
     } catch (err) {
       // setErr(true);
       // setLoading(false);
-      alert("Erro: " + JSON.stringify(err))
+      // alert("Erro: " + JSON.stringify(err))
     };
 
 
