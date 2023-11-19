@@ -46,7 +46,7 @@ echo "Iniciando configuração da plataforma"
 read -p "Essa instância será utilizada como um servidor front-end? (y/n) " resposta
 
 # Defina o caminho para onde o EFS está montado e onde a aplicação React está localizada
-efs_mount_path="/mnt/efs/Plataforma"
+local_path="/home/ec2-user/Plataforma"
 
 if [[ "$resposta" =~ ^[Yy]$ ]]; then
     echo "Instalando Node.js..."
@@ -54,13 +54,16 @@ if [[ "$resposta" =~ ^[Yy]$ ]]; then
     sudo yum install -y nodejs
 
     # Navegar para o diretório onde o EFS está montado e onde a aplicação React está
-    cd "${efs_mount_path}"
+    cd "${local_path}"
 
     echo "Instalando dependências do projeto React..."
     sudo npm install
 
-    echo "Construindo aplicação React para produção..."
-    sudo npm run build
+    read -p "Deseja buildar a aplicação novamente? (y/n) (Isso pode demorar um pouco)" respostabuild
+    if [[ "$respostabuild" =~ ^[Yy]$ ]]; then
+	    echo "Construindo aplicação React para produção..."
+	    sudo npm run build
+    fi
 
     # Configurar o Nginx para servir a aplicação React do diretório de build
     sudo tee /etc/nginx/conf.d/default.conf > /dev/null <<EOL
@@ -69,7 +72,7 @@ server {
     server_name ${nome}.sublogic.net;
 
     location / {
-        root ${efs_mount_path}/build;
+        root ${local_path}/build;
         try_files \$uri /index.html;
     }
 }
