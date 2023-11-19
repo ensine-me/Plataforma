@@ -25,10 +25,20 @@
 }
 
 body {
-    background-color: var(--branco);
     font-family: 'Reem Kufi';
     font-size: 16px;
     height: 100vh;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.light-theme {
+    background-color: var(--branco);
+    color: #333;
+}
+
+.dark-theme {
+    background-color: #333;
+    color: var(--branco);
 }
 
 button {
