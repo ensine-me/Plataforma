@@ -60,7 +60,7 @@ if [[ "$resposta" =~ ^[Yy]$ ]]; then
     if [[ "$respostabuild" =~ ^[Yy]$ ]]; then
 	    echo "Instalando dependências do projeto React..."
 	    sudo npm install
-	    
+
 	    echo "Construindo aplicação React para produção..."
 	    sudo npm run build
     fi
