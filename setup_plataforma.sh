@@ -46,7 +46,7 @@ echo "Iniciando configuração da plataforma"
 read -p "Essa instância será utilizada como um servidor front-end? (y/n) " resposta
 
 # Defina o caminho para onde o EFS está montado e onde a aplicação React está localizada
-local_path="/home/ec2-user/Plataforma"
+local_path="/home/ec2-user/Plataforma/build"
 
 if [[ "$resposta" =~ ^[Yy]$ ]]; then
     echo "Instalando Node.js..."
@@ -56,26 +56,55 @@ if [[ "$resposta" =~ ^[Yy]$ ]]; then
     # Navegar para o diretório onde o EFS está montado e onde a aplicação React está
     cd "${local_path}"
 
-    echo "Instalando dependências do projeto React..."
-    sudo npm install
-
     read -p "Deseja buildar a aplicação novamente? (y/n) (Isso pode demorar um pouco)" respostabuild
     if [[ "$respostabuild" =~ ^[Yy]$ ]]; then
+	    echo "Instalando dependências do projeto React..."
+	    sudo npm install
+	    
 	    echo "Construindo aplicação React para produção..."
 	    sudo npm run build
     fi
 
     # Configurar o Nginx para servir a aplicação React do diretório de build
     sudo tee /etc/nginx/conf.d/default.conf > /dev/null <<EOL
+
+# Redirecionar todo o tráfego HTTP para HTTPS
+
 server {
     listen 80;
-    server_name ${nome}.sublogic.net;
+    listen [::]:80;
+    server_name ensineme.org www.ensineme.org;
 
-    location / {
-        root ${local_path}/build;
-        try_files \$uri /index.html;
-    }
+    return 301 https://$host$request_uri;
 }
+
+# Configuração do servidor para HTTPS
+server {
+    listen 443 ssl http2;
+    server_name ensineme.org www.ensineme.org; # Substitua com seus nomes de domínio reais
+
+    # Especificar o local do certificado SSL e da chave privada
+    ssl_certificate /root/.acme.sh/ensineme.org_ecc/fullchain.cer; # Caminho para o certificado completo
+    ssl_certificate_key /root/.acme.sh/ensineme.org_ecc/ensineme.org.key; # Caminho para a chave privada
+
+    # Recomendações de segurança e configurações SSL
+    ssl_session_timeout 1d;
+    ssl_session_cache shared:MozSSL:10m;  # about 40000 sessions
+    ssl_session_tickets off;
+
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_prefer_server_ciphers off;
+
+    # Configuração do local do servidor
+    location / {
+        root /home/ec2-user/Plataforma/build; # Substitua com o caminho do diretório do seu site
+        try_files $uri $uri/ /index.html;
+    }
+
+    # Outras configurações podem ser adicionadas aqui
+}
+
+
 EOL
 
     echo "Verificando configuração do nginx..."
