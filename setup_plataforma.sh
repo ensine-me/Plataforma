@@ -74,7 +74,7 @@ server {
 
     location / {
         root ${efs_mount_path}/build;
-        try_files \$uri /index.html;
+        try_files \$uri /index.html =404;
     }
 }
 
