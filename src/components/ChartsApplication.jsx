@@ -95,7 +95,7 @@ function StatusAula() {
         justifyContent: 'center',
         flexDirection: 'column' }}
     >
-        <strong>Aulas por Status</strong>
+        <strong>Qtd aulas por status deste mês</strong>
         <Doughnut data={chartData} options={options} />
     </div>
 )
@@ -151,8 +151,8 @@ function AulasDadas(){
               console.error(error);
           });
     }, []);
-
-    const labels = ['Agosto', 'Setembro', 'Outubro'];
+    // arrumar mock
+    const labels = ['Setembro', 'Outubro'];
             
     const chartData = {
       labels,
@@ -201,7 +201,7 @@ function AulasDadas(){
           flexDirection: 'column',
         }}
         >
-        <strong>Aulas Dadas</strong>
+        <strong>Aulas dadas ultimos 2 meses</strong>
         <Bar data={chartData} options={options} />
       </div>
         </>
@@ -245,7 +245,7 @@ function LucroMensal() {
     }, []);
 
     const chartData = {
-      labels: ['Agosto', 'Setembro', 'Outubro'],
+      labels: [ 'Setembro', 'Outubro'],
       datasets: [
         {
           fill: true,
@@ -276,7 +276,7 @@ function LucroMensal() {
             justifyContent: 'center',
             flexDirection: 'column' }}
         >
-            <strong>Lucro Mensal</strong>
+            <strong>Faturamento mensal professores</strong>
             <Line data={chartData} options={options}/>
         </div>
       </>
@@ -353,7 +353,7 @@ function LucroMateria() {
           justifyContent: 'center',
           flexDirection: 'column' }}
       >
-          <strong>Lucro Matéria</strong>
+          <strong>Faturamento por matéria: (INSERIR MES)</strong>
           <Bar data={chartData} options={options}/>
       </div>
     </>
@@ -363,7 +363,7 @@ function LucroMateria() {
 function UsuariosMeses() {
     
     const data = {
-        labels: ['Agosto', 'Setembro', 'Outubro'],
+        labels: ['Setembro', 'Outubro'],
         datasets: [
           {
             label: 'Alunos',
@@ -401,7 +401,7 @@ function UsuariosMeses() {
             justifyContent: 'center',
             flexDirection: 'column' }}
         >
-            <strong>Usuários</strong>
+            <strong>Qtd de Usuarios ultimos 2 meses</strong>
             <Line data={data} options={options} />
         </div>
     )

@@ -156,17 +156,17 @@ function ApplicationDash() {
                 </div>
                 <div className="cardOnly">
                   <div className="boxOnly">
-                    <h3>Aulas desse Mês</h3>
+                    <h3>Aulas de {mes}</h3>
                     <div className="divider"></div>
                       <div>
                         <strong>
-                          {mes}: {qtdMes}
+                          Quantidade: {qtdMes}
                         </strong>
                       </div>
                     <div className="divider"></div> 
                   </div>
                   <div className="boxOnly">
-                    <h3>Média de Tempo</h3>
+                    <h3>Média tempo aulas {mes}</h3>
                     <div className="divider"></div>
                       <div>
                         <strong>
