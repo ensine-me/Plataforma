@@ -65,29 +65,21 @@ const PerfilProfessor = () => {
                 <div className={sPerfil.quadrados}>
                     <div className={sPerfil.infosBotoes}>
                         <div className={sPerfil.quadrado}>
-                            <div style={{backgroundImage:`url(${foto})`}} className={sPerfil.fotoNivel}>
-                                
-                            </div>
+                            <div style={{ backgroundImage: `url(${foto})` }} className={sPerfil.fotoNivel}></div>
                             <div className={sPerfil.estrelas}>
                                 <h3>{professor && professor.nome}</h3>
                             </div>
                         </div>
                         <div className={sPerfil.quadrado}>
                             <div className={sPerfil.buttons}>
-                                <button onClick={chamaMarcarAula} className={sPerfil.button}>Solicitar aula</button>
+                                <button onClick={chamaMarcarAula} className={sPerfil.button}>Solicitar aula - R${preco}</button>
                                 <button className={sPerfil.button}>Entrar em contato</button>
                             </div>
-                            <div className={sPerfil.disponibilidadeContainer}>
-                                <h4>Disponibilidade</h4>
-                                {disponibilidades.map((disponibilidade, index) => {
-                                    return (
-                                        <div className={sPerfil.disponibilidadeConteudo} key={index}>
-                                            <li>
-                                                {disponibilidade.diaDaSemana} - {disponibilidade.horarioInicio} às {disponibilidade.horarioFim}
-                                            </li>
-                                        </div>
-                                    )
-                                })}
+                            <div className={sPerfil.retangulo}>
+                                <div className={sPerfil.descricao}>
+                                    <i className={sPerfil.descricaoProfessor}>"{professor && professor.descricao}"</i>
+                                </div>
+
                             </div>
                             <div className={sPerfil.horaAula}>
                                 Hora aula: R${preco}
@@ -95,9 +87,17 @@ const PerfilProfessor = () => {
                         </div>
                     </div>
                     <div className={sPerfil.retangulo}>
-                        <div className={sPerfil.descricao}>
-                            <h4>Descrição</h4>
-                            {professor && professor.descricao}
+                        <div className={sPerfil.disponibilidadeContainer}>
+                            <h4>Disponibilidade</h4>
+                            {disponibilidades.map((disponibilidade, index) => {
+                                return (
+                                    <div className={sPerfil.disponibilidadeConteudo} key={index}>
+                                        <li>
+                                            {disponibilidade.diaDaSemana} - {disponibilidade.horarioInicio} às {disponibilidade.horarioFim}
+                                        </li>
+                                    </div>
+                                )
+                            })}
                         </div>
                         <div className={sPerfil.perfilMaterias}>
                             {materias.map((disciplina, index) => {
@@ -107,9 +107,8 @@ const PerfilProfessor = () => {
                             })}
                         </div>
                     </div>
-                    <div className={sPerfil.divisor}></div>
                     <div className={sPerfil.retangulo}>
-                        <h4>Formações</h4>
+                        <h4>Esse professor já cursou</h4>
                         <div className={sPerfil.formacoes}>
                             {formacoes.map((formacao, index) => {
                                 return (

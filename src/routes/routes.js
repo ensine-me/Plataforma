@@ -62,7 +62,7 @@ const Routering = () => {
                 <Route path="/check-google-login" element={<CheckGoogleLogin />} />
                 <Route path="/politica-de-privacidade" element={<PoliticaDePrivacidade />} />
                 <Route path="/termos-de-uso" element={<TermosDeUso />} />
-                <Route path="*" element={<NotFoundPage />} />
+                <Route path="/*" element={<NotFoundPage />} />
             </Routes>
         </Router>
     );

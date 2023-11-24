@@ -6,6 +6,9 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSessionContext } from '@supabase/auth-helpers-react';
 import { loginFirebase } from 'functions/login';
+import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
+import StarIcon from '@mui/icons-material/Star';
+import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import store from "../store";
 
 const Home = () => {
@@ -13,7 +16,7 @@ const Home = () => {
   const [aulas, setAulas] = useState([]);
 
   const { isLoading, session } = useSessionContext();
-  if(!isLoading && session) {
+  if (!isLoading && session) {
     loginFirebase(session.user.email, session.user.email)
   }
 
@@ -21,7 +24,7 @@ const Home = () => {
 
   console.log("usuário: ", sessionStorage.getItem("usuario"));
 
-  if(JSON.parse(sessionStorage.getItem("usuario")).googleEmail) {
+  if (JSON.parse(sessionStorage.getItem("usuario")).googleEmail) {
     console.log("true");
   } else {
     console.log("false");
@@ -30,7 +33,7 @@ const Home = () => {
   useEffect(() => {
     const disciplinas = JSON.parse(sessionStorage.getItem("usuario")).disciplinas;
 
-    if(JSON.parse(sessionStorage.getItem("usuario")).professor) {
+    if (JSON.parse(sessionStorage.getItem("usuario")).professor) {
       navigate("/home-professor");
     } else {
       console.log("não é professor")
@@ -77,7 +80,7 @@ const Home = () => {
   return (
     <div className={styles.home_container}>
       <h1 className={styles.home_title}>
-        Professores recomendados
+        <AutoAwesomeIcon /> Professores recomendados
       </h1>
       <div className={styles.home_professores_recomendados_container}>
         {
@@ -101,7 +104,31 @@ const Home = () => {
         }
       </div>
       <h1 className={styles.home_title}>
-        Aulas abertas
+        <StarIcon /> Professores favoritos
+      </h1>
+      <div className={styles.home_professores_recomendados_container}>
+        {
+          professores.length === 0 ? (
+            <p className={styles.home_nenhum_professor}>Nenhum professor encontrado</p>
+          ) : (
+            professores.map((professor) => {
+              return (
+                <CardProfessorHome
+                  key={professor.idUsuario}
+                  urlFoto={professor.foto}
+                  nome={professor.nome}
+                  avaliacao={4.5}
+                  preco={professor.precoHoraAula}
+                  disciplinas={professor.materias.map(materia => materia.nome)}
+                  id={professor.idUsuario}
+                />
+              )
+            })
+          )
+        }
+      </div>
+      <h1 className={styles.home_title}>
+        <MeetingRoomIcon /> Aulas abertas
       </h1>
       <div className={styles.home_aulas_abertas_container}>
         {

@@ -1,11 +1,17 @@
 .home_container {
     box-sizing: border-box;
-    padding: 10px;
+    padding: 16px;
+    background-color: var(--branco);
 }
 
 .home_title {
     font-size: 2rem;
     font-weight: 700;
+    width: fit-content;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 16px;
+    background-color: var(--verde-claro);
 }
 
 .home_professores_recomendados_container {
@@ -21,6 +27,10 @@
     height: 500px;
 }
 
+.home_professores_recomendados_container::-webkit-scrollbar {
+    width: 10px;
+}
+
 .home_aulas_abertas_container {
     margin-top: 15px;
     display: flex;
@@ -29,4 +39,8 @@
     padding: 1px;
     overflow: hidden;
     overflow-x: auto;
+}
+
+.home_aulas_abertas_container::-webkit-scrollbar {
+    width: 10px;
 }
