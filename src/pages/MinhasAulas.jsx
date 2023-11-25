@@ -3,6 +3,10 @@ import CardAula from '../components/CardAula'
 import styles from '../assets/styles/MinhasAulas.module.css';
 import store from "../store";
 
+import { useNavigate } from 'react-router-dom';
+
+import HistoryEduIcon from '@mui/icons-material/HistoryEdu';
+
 const MinhasAulas = () => {
   const [aulas, setAulas] = useState([]);
 
@@ -35,12 +39,23 @@ const MinhasAulas = () => {
     });
   }, []);
 
+  const navigate = useNavigate();
+  const Voltar = () => {
+    navigate('/inicial-aluno');
+  }
+
   return (
     <div className={styles.minhas_aulas_container}>
-      <h1 className={styles.minhas_aulas_titulo}>Minhas Aulas</h1>
+      <h1 className={styles.minhas_aulas_titulo}><HistoryEduIcon /> Suas Aulas marcadas</h1>
       <div className={styles.minhas_aulas_aulas_container}>
         {aulas.length === 0 ? (
-          <p className={styles.minhas_aulas_nenhuma_aula}>Você não tem nenhuma aula marcada</p>
+          <>
+            <div>
+              <p className={styles.minhas_aulas_nenhuma_aula}>Suas aulas já aprovadas por um professor aparecem aqui. <br/>
+                Volte para a página inicial e converse com um de nossos professores recomendados caso deseje solicitar uma aula.</p>
+              <button className={styles.botaoVoltar} onClick={Voltar}>Página inicial</button>
+            </div>
+          </>
         )
           :
           (aulas.map((aula) => {
