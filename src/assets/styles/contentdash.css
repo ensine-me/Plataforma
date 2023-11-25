@@ -9,6 +9,13 @@
     width: 100%;
 }
 
+.box {
+    border: 1px solid black;
+    border-radius: 8px;
+    
+}
+
+
 .metrics .boxes{
     display: flex;
     width: 100%;
@@ -18,7 +25,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
     padding: 10px;
 }
 
@@ -43,7 +49,7 @@
     margin: 10px;
 }
 
-.box .boxChart{
-    height: 39vh;
-    padding: 10px;
+.boxArrumacao {
+    display: flex;
 }
+
