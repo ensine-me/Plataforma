@@ -82,6 +82,7 @@ const Home = () => {
       <h1 className={styles.home_title}>
         <AutoAwesomeIcon /> Professores recomendados
       </h1>
+      <i className={styles.home_subtitulo}>Professores que lecionam matérias que mais combinam com você</i>
       <div className={styles.home_professores_recomendados_container}>
         {
           professores.length === 0 ? (
@@ -106,6 +107,7 @@ const Home = () => {
       <h1 className={styles.home_title}>
         <StarIcon /> Professores favoritos
       </h1>
+      <i className={styles.home_subtitulo}>Professores mais bem avaliados da Ensine.me</i>
       <div className={styles.home_professores_recomendados_container}>
         {
           professores.length === 0 ? (
@@ -130,6 +132,7 @@ const Home = () => {
       <h1 className={styles.home_title}>
         <MeetingRoomIcon /> Aulas abertas
       </h1>
+      <i className={styles.home_subtitulo}>Aulas que você pode entrar agora</i>
       <div className={styles.home_aulas_abertas_container}>
         {
           aulas.length === 0 ? (

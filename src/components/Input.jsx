@@ -25,7 +25,7 @@ const Input = () => {
 
 
   const { data } = useContext(ChatContext);
-  console.log("DATAAAAAAAAAAAAAAAAAAAAAAAAAA "+data)
+  console.log("DATA "+data)
 
   const handleSend = async (e) => {
     if (img) {

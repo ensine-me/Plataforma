@@ -1,4 +1,4 @@
-import cssPoggers from "../styles/marcarAula.module.css"
+import sMarcarAula from "../styles/marcarAula.module.css"
 import DateTimePickerComponent from "../components/DateTimePickerComponent"
 import MultiTextField from "../components/MultiTextField"
 import Swal from "sweetalert2"
@@ -37,18 +37,18 @@ const chamaSwal = () => {
 const AceitarAula = () => {
     return (
         <>
-            <div className={cssPoggers.quadradoCinza}>
-                <div className={cssPoggers.marcarAulaColuna}>
-                    <p className={cssPoggers.paragrafoMarcarAula}>Data de Inicio:</p>
+            <div className={sMarcarAula.quadradoCinza}>
+                <div className={sMarcarAula.marcarAulaColuna}>
+                    <p className={sMarcarAula.paragrafoMarcarAula}>Data de Inicio:</p>
                     <DateTimePickerComponent />
-                    <p className={cssPoggers.paragrafoMarcarAula}>Data de Fim:</p>
+                    <p className={sMarcarAula.paragrafoMarcarAula}>Data de Fim:</p>
                     <DateTimePickerComponent />
-                    <p className={cssPoggers.paragrafoMarcarAula}>Aula Privada:</p>
+                    <p className={sMarcarAula.paragrafoMarcarAula}>Aula Privada:</p>
                     <select>
                         <option value="1">Privado</option>
                         <option value="2">Público</option>
                     </select>
-                    <p className={cssPoggers.paragrafoMarcarAula}>Máximo de participantes:</p>
+                    <p className={sMarcarAula.paragrafoMarcarAula}>Máximo de participantes:</p>
                     <select>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -57,12 +57,12 @@ const AceitarAula = () => {
                         <option value="5">5</option>
                     </select>
                 </div>
-                <div className={cssPoggers.marcarAulaColunaDireita}>
+                <div className={sMarcarAula.marcarAulaColunaDireita}>
                     <h3>{nomeAula}</h3>
                     <h4>{nomeProf}</h4>
-                    <p className={cssPoggers.paragrafoMarcarAula}>Assunto:</p>
+                    <p className={sMarcarAula.paragrafoMarcarAula}>Assunto:</p>
                     <MultiTextField/>
-                    <button onClick={chamaSwal} className={cssPoggers.botaoMarcarAula}>Aceitar Aula</button>
+                    <button onClick={chamaSwal} className={sMarcarAula.botaoMarcarAula}>Aceitar Aula</button>
                 </div>
             </div>
         </>

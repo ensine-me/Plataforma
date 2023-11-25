@@ -12,6 +12,16 @@
     padding-right: 10px;
     border-radius: 16px;
     background-color: var(--verde-claro);
+    margin-bottom: 15px;
+}
+
+.home_subtitulo {
+    width: fit-content;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 40px;
+    border-radius: 8px;
+    background-color: var(--cinza);
 }
 
 .home_professores_recomendados_container {
