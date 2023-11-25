@@ -23,7 +23,7 @@ import Mensagens from "../components/Mensagens";
 import CadastroProfessorLocal from "pages/CadastroProfessorLocal";
 import CheckGoogleLogin from "pages/CheckGoogleLogin";
 import ConectarComGoogle from "pages/ConectarComGoogle";
-import Bi from "pages/Bi";
+import ApplicationDash from "components/ApplicationsDashboards";
 
 const Routering = () => {
     return (
@@ -38,6 +38,7 @@ const Routering = () => {
                     <Route path="/minhas-aulas" element={<MinhasAulas />} />
                     <Route path="/pesquisa-aberta" element={<OpenSearch />} />
                     <Route path="/pesquisa" element={<ProfessorDashBoard />} />
+                    <Route path="/bi-pf" element={<ApplicationDash />} />
                     <Route path="/aula" element={<DetalhesAula />} />
                     <Route path="/home-professor" element={<HomeProfessor />} />
                     <Route path="/conectar-com-google" element={<ConectarComGoogle />} />
@@ -48,7 +49,6 @@ const Routering = () => {
                 <Route path="/" index element={<PaginaInicialInstitucional />} />
                 <Route path="/cadastro-aluno" element={<CadastroAluno />} />
                 <Route path="/cadastro-professor" element={<CadastroProfessor />} />
-                <Route path="/bi-pf" element={<Bi />} />
                 <Route path="/escolher-materias" element={<EscolherMaterias />} />
                 <Route path="/escolher-papel" element={<EscolhaCadastro />} />
                 <Route path="/google-login" element={<GoogleLogin />} />

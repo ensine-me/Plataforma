@@ -131,8 +131,9 @@ function ApplicationDash() {
     <div className="generalDash">
       <table className="metrics">
         <tr className="boxes">
-          <td className="box" style={{ width: "40%" }}>
-            <div className="cardOnly">
+          <td className="box">
+            <h2>Métricas KPI</h2>
+            <div className="quadradosMetricas">
               <div className="boxOnly">
                 <h3>Aulas de Hoje</h3>
                 <div className="divider"></div>
@@ -154,8 +155,6 @@ function ApplicationDash() {
                 </div>
                 <div className="divider"></div>
               </div>
-            </div>
-            <div className="cardOnly">
               <div className="boxOnly">
                 <h3>Aulas de {mes}</h3>
                 <div className="divider"></div>
@@ -178,31 +177,31 @@ function ApplicationDash() {
               </div>
             </div>
           </td>
-          <td className="box" >
-            <div className="boxArrumacao">
-              <div style={{ width: "50%" }}>
-                <StatusAula />
-              </div>
-              <div style={{ width: "50%" }}>
-                <AulasDadas />
-              </div>
-            </div>
-          </td>
         </tr>
         <tr className="boxes">
-          <td className="box" style={{ width: "100%" }}>
-            <div className="boxChart" style={{ width: "70%" }}>
+          <td className="box">
+            <div className="boxChart">
               <LucroMensal />
             </div>
-            <div className="boxChart" style={{ width: "70%" }}>
+            <div className="boxChart">
               <LucroMateria />
             </div>
           </td>
         </tr>
         <tr className="boxes">
-          <td className="box" style={{ width: "100%" }}>
-            <div className="boxChart" style={{ width: "70%" }}>
+          <td className="box">
+            <div className="boxChart">
               <UsuariosMeses />
+            </div>
+          </td>
+          <td className="box" >
+            <div className="boxArrumacao">
+              <div>
+                <StatusAula />
+              </div>
+              <div>
+                <AulasDadas />
+              </div>
             </div>
           </td>
         </tr>

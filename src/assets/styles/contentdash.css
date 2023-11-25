@@ -1,39 +1,63 @@
-
-.generalDash{
+.generalDash {
     width: 100%;
 }
 
-.generalDash .metrics{
+.generalDash .metrics {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
 
-.box {
-    border: 1px solid black;
-    border-radius: 8px;
-    
+.metrics {
+    gap: 30px;
+    padding: 30px;
 }
 
-
-.metrics .boxes{
+.boxes {
     display: flex;
-    width: 100%;
+    height: fit-content;
+    padding: 30px;
+    padding-bottom: 40px;
+    justify-content: space-evenly;
+    border-radius: 16px;
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(34, 34, 34, 0.407);
 }
 
-.boxes .box{
+.boxes .box {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
     padding: 10px;
+    height: fit-content;
 }
 
-.box .boxOnly{
+.boxOnly {
+    display: flex;
+    flex-direction: column;;
+    align-items: center;
+    text-align: center;
     border: 2px solid black;
-    width: 100%;
+    border-radius: 8px;
+    padding: 10px;
+    width: 170px;
+    height: 150px;
+    transition: 300ms;
 }
 
-.box .cardOnly{
+.boxOnly:hover {
+    filter: drop-shadow(0 0 0.75rem var(--verde-claro));
+    height: 160px;
+    width: 180px;
+    margin-top: -10px;
+    margin-left: -5px;
+    margin-right: -5px;
+}
+
+.box .cardOnly {
     width: 50%;
     height: 100%;
     display: flex;
@@ -42,14 +66,21 @@
     justify-content: space-evenly;
     flex-direction: column;
     text-align: center;
+    gap: 10px;
 }
 
-.boxOnly .divider{
-    border: 1px solid green;
-    margin: 10px;
+.boxOnly .divider {
+    border: 1px solid var(--verde-claro);
+    margin: 5px;
+    width: 80%;
 }
 
 .boxArrumacao {
     display: flex;
 }
 
+.quadradosMetricas {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}

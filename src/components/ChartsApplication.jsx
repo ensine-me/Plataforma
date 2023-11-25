@@ -393,14 +393,7 @@ function UsuariosMeses() {
     };
     
     return(
-        <div style={{ 
-            width: '100%', 
-            maxHeight: '100%', 
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'center',
-            flexDirection: 'column' }}
-        >
+        <div>
             <strong>Qtd de Usuarios ultimos 2 meses</strong>
             <Line data={data} options={options} />
         </div>
