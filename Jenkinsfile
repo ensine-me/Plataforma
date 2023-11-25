@@ -11,7 +11,7 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('git pull') {
             steps {
                 sh 'git pull'
             }
