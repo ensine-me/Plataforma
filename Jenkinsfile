@@ -13,7 +13,7 @@ pipeline {
 
         stage('git pull') {
             steps {
-                sh 'git pull'
+                sh 'git pull https://github.com/ensine-me/Plataforma.git'
             }
         }
         
