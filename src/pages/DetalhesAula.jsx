@@ -147,86 +147,84 @@ const DetalhesAula = () => {
     }
 
     return (
-        <div className={styles.detalhes_aula_container}>
-            <div className={styles.detalhes_aula_titulo}>
-                <h1>{aula && aula.titulo}</h1>
-            </div>
-            <div className={styles.detalhes_aula_info}>
-                <div className={styles.detalhes_aula_info_gerais}>
-                    <h2>Detalhes</h2>
-                    <div>
-                        <p><b>Disciplina: </b>{aula && aula.materia.nome}</p>
-                    </div>
-                    ------------------
-                    <div>
-                        <p><b>Descrição: </b>{aula && aula.descricao}</p>
-                    </div>
-                    ------------------
-                    <div>
-                        <p><b>Data: </b>{aula && aula.dataHora.split('T')[0]}</p>
-                        <p><b>Horário: </b>{aula && aula.dataHora.split('T')[1]}</p>
-                        <p><b>Duração: </b>{aula && (aula.duracaoSegundos / 60)} minutos</p>
-                    </div>
-                    ------------------
-                    <div><p><b>Participantes: </b></p>
-                        {
-                            aula && aula.alunos.map((aluno, index) => {
-                                return (
-                                    <p key={index}>{aluno.email}</p>
-                                )
-                            })
-                        }
-                    </div>
-                    ------------------
-                    <div>
-                        <p><b>Preço: </b>{aula && aula.preco}</p>
-                        <p><b>Vagas restantes: </b>{aula && (aula.limiteParticipantes - aula.alunos.length)}</p>
-                        <p><b>Status: </b>{aula && aula.status}</p>
-                        <p><b>Privacidade: </b>{aula && aula.privacidade}</p>
-                    </div>
+        <div className={styles.detalhes_aula_page}>
+            <div className={styles.detalhes_aula_container}>
+                <div className={styles.detalhes_aula_titulo}>
+                    <h1>Aula de {aula && aula.titulo}</h1>
                 </div>
-                <div className={styles.detalhes_aula_info_professor}>
-                    <h2>Professor</h2>
-                    {/* <p><b>Professor: </b> {aula && JSON.stringify(aula.professor)}</p> */}
+                <div className={styles.detalhes_aula_info}>
+                    <div className={styles.detalhes_aula_info_gerais}>
+                        <h2>Detalhes</h2>
+                        <div>
+                            <p><b>Disciplina: </b>{aula && aula.materia.nome}</p>
+                        </div>
+                        <div>
+                            <p><b>Descrição: </b>{aula && aula.descricao}</p>
+                        </div>
+                        <div>
+                            <p><b>Data: </b>{aula && aula.dataHora.split('T')[0]}</p>
+                            <p><b>Horário: </b>{aula && aula.dataHora.split('T')[1]}</p>
+                            <p><b>Duração: </b>{aula && (aula.duracaoSegundos / 60)} minutos</p>
+                        </div>
+                        <div><p><b>Participantes: </b></p>
+                            {aula && aula.alunos && aula.alunos.length > 0 ? (
+                                aula.alunos.map((aluno, index) => <p key={index}>{aluno.nome}</p>)
+                            ) : (
+                                <p>Nenhum participante</p>
+                            )}
 
-                    <h3>{aula && aula.professor.nome}</h3>
-                    <div className={styles.detalhes_aula_info_professor_foto}
-                        style={{
-                            backgroundImage: aula && aula.professor && aula.professor.foto ? `url(${aula.professor.foto})` : ''
-                        }}
-                    >
+                        </div>
+                        <div>
+                            <p><b>Preço: </b>{aula && aula.preco}</p>
+                            <p><b>Vagas restantes: </b>{aula && (aula.limiteParticipantes - aula.alunos.length)}</p>
+                            <p><b>Status: </b>{aula && aula.status}</p>
+                            <p><b>Privacidade: </b>{aula && aula.privacidade}</p>
+                        </div>
                     </div>
-                    <div></div>
-                    <div>
-                        <h4>Formações</h4>
-                        <div className={styles.detalhes_aula_formacoes_cards_container}>
-                            {
-                                aula && aula.professor.formacoes.map((formacao, index) => {
-                                    return (
-                                        <FormacaoCard
-                                            key={index}
-                                            instituicao={formacao.instituicao}
-                                            nomeCurso={formacao.nomeCurso}
-                                            tipoFormacao={formacao.tipoFormacao}
-                                            dataInicio={formacao.dtInicio}
-                                            dataTermino={formacao.dtTermino}
-                                        />
-                                    )
-                                })
-                            }
+                    <div className={styles.detalhes_aula_info_professor}>
+                        <h2>Professor</h2>
+                        {/* <p><b>Professor: </b> {aula && JSON.stringify(aula.professor)}</p> */}
+
+                        <h3>{aula && aula.professor.nome}</h3>
+                        <div className={styles.detalhes_aula_info_professor_foto}
+                            style={{
+                                backgroundImage: aula && aula.professor && aula.professor.foto ? `url(${aula.professor.foto})` : ''
+                            }}
+                        >
+                        </div>
+                        <div></div>
+                        <div>
+                            <h4>Esse professor é formado em:</h4>
+
+                            <div className={styles.detalhes_aula_formacoes_cards_container}>
+                                {
+                                    aula && aula.professor.formacoes.length === 0 ? (
+                                        <i>(Esse professor não cadastrou nenhuma formação)</i>
+                                    ) : aula && aula.professor.formacoes.map((formacao, index) => {
+                                        return (
+                                            <FormacaoCard
+                                                key={index}
+                                                instituicao={formacao.instituicao}
+                                                nomeCurso={formacao.nomeCurso}
+                                                tipoFormacao={formacao.tipoFormacao}
+                                                dataInicio={formacao.dtInicio}
+                                                dataTermino={formacao.dtTermino}
+                                            />
+                                        )
+                                    })
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div className={styles.detalhes_aula_botao_participar_container}>
+                    {participar && <button className={styles.detalhes_aula_botao} onClick={() => entrarNaAula()}>Participar</button>}
+                    {aceitar && <button className={styles.detalhes_aula_botao} onClick={() => mudarStatus("AGENDADO")}>Aceitar</button>}
+                    {cancelar && <button className={`${styles.detalhes_aula_botao} ${styles.detalhes_aula_botao_vermelho}`} onClick={() => mudarStatus("CANCELADO")}>Cancelar</button>}
+                    {iniciar && <button className={styles.detalhes_aula_botao} onClick={() => mudarStatus("EM_PROGRESSO")}>Iniciar</button>}
+                    {concluir && <button className={styles.detalhes_aula_botao} onClick={() => mudarStatus("CONCLUIDA")}>Concluir</button>}
+                </div>
             </div>
-            <div className={styles.detalhes_aula_botao_participar_container}>
-                {participar && <button className={styles.detalhes_aula_botao} onClick={() => entrarNaAula()}>Participar</button>}
-                {aceitar && <button className={styles.detalhes_aula_botao} onClick={() => mudarStatus("AGENDADO")}>Aceitar</button>}
-                {cancelar && <button className={`${styles.detalhes_aula_botao} ${styles.detalhes_aula_botao_vermelho}`} onClick={() => mudarStatus("CANCELADO")}>Cancelar</button>}
-                {iniciar && <button className={styles.detalhes_aula_botao} onClick={() => mudarStatus("EM_PROGRESSO")}>Iniciar</button>}
-                {concluir && <button className={styles.detalhes_aula_botao} onClick={() => mudarStatus("CONCLUIDA")}>Concluir</button>}
-            </div>
-
-
         </div>
     )
 }

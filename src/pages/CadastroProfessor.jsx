@@ -10,6 +10,8 @@ import { Modal } from '@mui/material';
 import Box from '@mui/material/Box';
 import { useEffect } from 'react';
 
+import InputSlider from 'components/MuiInputRange';
+
 const Professorcad = () => {
 
     const [openFormacao, setOpenFormacao] = React.useState(false);
@@ -127,10 +129,7 @@ const Professorcad = () => {
                             </div>
                             {/* <input placeholder='Descreva seu perfil como professor' type='text' name="descricao" onChange={handleChange}></input> */}
                             <div>
-                                <div>
-                                    Preço Hora Aula
-                                </div>
-                                <input type='number' name="precoHoraAula" onChange={handleChange}></input>
+                                <InputSlider onChange={handleChange} />
                             </div>
                         </section>
                         <section className={styles.section}>

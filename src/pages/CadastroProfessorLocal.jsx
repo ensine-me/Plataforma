@@ -10,6 +10,8 @@ import { Modal } from '@mui/material';
 import Box from '@mui/material/Box';
 import { useEffect } from 'react';
 
+import InputSlider from 'components/MuiInputRange';
+
 const CadastroProfessorLocal = () => {
 
     const [openFormacao, setOpenFormacao] = React.useState(false);
@@ -107,41 +109,38 @@ const CadastroProfessorLocal = () => {
                     <div className={styles.form}>
                         <section className={styles.section}>
                             <div>
-                                <div>
+                                <h4>
                                     Nome completo:
-                                </div>
+                                </h4>
                                 <input type='text' name="nome" onChange={handleChange}></input>
                             </div>
                             <div>
-                                <div>
+                                <h4>
                                     E-mail:
-                                </div>
+                                </h4>
                                 <input type='text' name="email" onChange={handleChange}></input>
                             </div>
                             <div>
-                                <div>
+                                <h4>
                                     Senha:
-                                </div>
+                                </h4>
                                 <input type='password' name="senha" onChange={handleChange}></input>
                             </div>
                             <div>
-                                <div>
+                                <h4>
                                     Data de nascimento:
-                                </div>
+                                </h4>
                                 <input type='date' name="dataNasc" onChange={handleChange}></input>
                             </div>
 
                             <div>
-                                <div>
+                                <h4>
                                     Descrição:
-                                </div>
-                                <textarea name="descricao" onChange={handleChange} style={{ width: '50%' }}></textarea>
+                                </h4>
+                                <textarea name="descricao" onChange={handleChange} style={{ width: '98%' }}></textarea>
                             </div>
                             <div>
-                                <div>
-                                    Preço Hora Aula:
-                                </div>
-                                <input type='number' name="precoHoraAula" onChange={handleChange}></input>
+                                <InputSlider onChange={handleChange} />
                             </div>
                         </section>
                         <section className={styles.section}>

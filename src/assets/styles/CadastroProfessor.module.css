@@ -192,3 +192,7 @@ select:hover {
     gap: 70px;
     color: rgb(45, 45, 45);
 }
+
+.section h4 {
+    margin-bottom: 0px;
+}

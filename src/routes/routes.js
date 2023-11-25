@@ -47,8 +47,6 @@ const Routering = () => {
                     <Route path="/home-professor" element={<HomeProfessor />} />
                     <Route path="/conectar-com-google" element={<ConectarComGoogle />} />
                 </Route>
-            </Routes>
-            <Routes>
                 <Route path="/login" element={<Login />} />
                 <Route path="/" index element={<PaginaInicialInstitucional />} />
                 <Route path="/cadastro-aluno" element={<CadastroAluno />} />
