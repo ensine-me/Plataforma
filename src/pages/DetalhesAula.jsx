@@ -3,20 +3,191 @@ import { useState, useEffect } from "react";
 import styles from "../assets/styles/DetalhesAula.module.css";
 import FormacaoCard from "../components/FormacaoCard";
 import store from "../store";
+import ReportProblemIcon from '@mui/icons-material/ReportProblem';
+import { Modal } from '@mui/material';
+import Box from '@mui/material/Box';
+import Rating from '@mui/material/Rating';
 
 const DetalhesAula = () => {
+    const insigniasEnum = {
+        BONS_EXEMPLOS: 0,
+        DIVERTIDO: 1,
+        DOMINA_ASSUNTO: 2,
+        EXPLICACAO_COMPLETA: 3,
+        PACIENTE: 4,
+        RESPOSTAS_OBJETIVAS: 5,
+        EXEMPLOS_RUINS: 6,
+        GROSSEIRO: 7,
+        NAO_DOMINA_ASSUNTO: 8,
+        RESPOSTAS_RASAS: 9,
+        IMPACIENTE: 10,
+        FUGIU_ASSUNTO: 11,
+    };
+
+    const insigniasDisplayNames = [
+        "Bons exemplos",
+        "Divertido",
+        "Domina o assunto",
+        "Explicação completa",
+        "Paciente",
+        "Respostas objetivas",
+        "Exemplos ruins",
+        "Grosseiro",
+        "Não domina o assunto",
+        "Respostas rasas",
+        "Impaciente",
+        "Fugiu do assunto"
+    ];
+
     // Pega a URL atual
     const url = new URL(window.location.href);
 
     // Pega o valor do parâmetro 'id' da URL
     const idAula = url.searchParams.get('id');
+
     const [aula, setAula] = useState();
+
+    // botões
     const [participar, setParticipar] = useState(false);
     const [aceitar, setAceitar] = useState(false);
     const [cancelar, setCancelar] = useState(false);
     const [iniciar, setIniciar] = useState(false);
     const [concluir, setConcluir] = useState(false);
+    const [avaliar, setAvaliar] = useState(false);
+    const [reportar, setReportar] = useState(false);
+    const [rejeitar, setRejeitar] = useState(false);
 
+    // variáveis de controle do modal de avaliação
+    const [openModalAvaliacao, setOpenModalAvaliacao] = useState(false);
+    const handleOpenModalAvaliacao = () => setOpenModalAvaliacao(true);
+    const handleCloseModalAvaliacao = () => setOpenModalAvaliacao(false);
+
+    // variáveis de controle do modal de report
+    const [openModalReport, setOpenModalReport] = useState(false);
+    const handleOpenModalReport = () => setOpenModalReport(true);
+    const handleCloseModalReport = () => setOpenModalReport(false);
+
+    // estilo do modal de avaliação
+    const style = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: '80vw',
+        bgcolor: 'background.paper',
+        border: '2px solid #000',
+        boxShadow: 24,
+        p: 4,
+        borderRadius: '10px',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '20px',
+        overflowY: 'scroll',
+        maxHeight: '80vh'
+    };
+
+    //lógica do modal de avaliação
+    const [ratingValue, setRatingValue] = useState(0);
+
+    const [insignias, setInsignias] = useState([]);
+    const handleInsigniaChange = (e) => {
+        const insigniaId = parseInt(e.target.id, 10);
+
+        if (e.target.checked) {
+            setInsignias(prevInsignias => [...prevInsignias, insigniaId]);
+        } else {
+            setInsignias(prevInsignias => prevInsignias.filter(id => id !== insigniaId));
+        }
+
+        // desabilita a insígnia oposta
+        let insigniaOpostaId;
+        if (insigniaId <= 5) {
+            insigniaOpostaId = insigniaId + 6;
+        } else {
+            insigniaOpostaId = insigniaId - 6;
+        }
+        const insigniaOposta = document.getElementById(insigniaOpostaId.toString());
+        if (insigniaOposta) {
+            insigniaOposta.disabled = e.target.checked;
+        }
+
+        console.log("insignias: " + insignias);
+    };
+
+    const handleSubmitAvaliacao = async (e) => {
+        e.preventDefault();
+
+        const body = {
+            nota: ratingValue,
+            insignias: insignias,
+        };
+
+        console.log("body: " + JSON.stringify(body));
+
+        fetch(`${store.getState().backEndUrl}avaliacoes/${JSON.parse(sessionStorage.getItem("usuario")).userId}/${idAula}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("usuario")).token
+            },
+            body: JSON.stringify(body),
+        }).then(response => {
+            if (response.ok) {
+                alert("Avaliação enviada com sucesso!");
+                window.location.reload();
+            }
+        }
+        );
+
+        // try {
+        //     const response = await fetch(`/avaliacoes/${idAluno}/${idAula}`, {
+        //         method: "POST",
+        //         headers: {
+        //             "Content-Type": "application/json",
+        //         },
+        //         body: JSON.stringify(body),
+        //     });
+
+        //     const data = await response.json();
+        //     // Handle successful response
+        //     console.log("Avaliacao created successfully!");
+        // } catch (error) {
+        //     console.log("Error creating avaliacao:", error);
+        // }
+    };
+
+    const handleSubmitReport = async (e) => {
+        e.preventDefault();
+
+        const body = {
+            aluno: {
+                idUsuario: JSON.parse(sessionStorage.getItem("usuario")).userId
+            },
+            aula: {
+                id: idAula
+            },
+            acontecimento: document.getElementById("acontecimentoSelect").value,
+            descricao: document.getElementById("descricao").value,
+        };
+
+        console.log("body: " + JSON.stringify(body));
+
+        fetch(`${store.getState().backEndUrl}aulas/report`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("usuario")).token
+            },
+            body: JSON.stringify(body),
+        }).then(response => {
+            if (response.ok) {
+                alert("Report enviado com sucesso!");
+                window.location.reload();
+            }
+        });
+    };
+
+    // pegando os detalhes da aula
     useEffect(() => {
         // pegando detalhes da aula
         fetch(`${store.getState().backEndUrl}aulas/busca-id?id=` + idAula, {
@@ -33,29 +204,17 @@ const DetalhesAula = () => {
                 return response.json();
             })
             .then(data => {
-                // Faça algo com os dados da resposta
                 setAula(data);
             })
             .catch(error => {
-                // Lide com erros
                 console.error(error);
             });
-
-        // const emailsDosParticipantes = aula.alunos.map((aluno) => {
-        //     aluno.email;
-        // })
-
-        // if (!JSON.parse(sessionStorage.getItem("usuario")).professor && !emailsDosParticipantes.includes(JSON.parse(sessionStorage.getItem("usuario")).email)) {
-        //     setParticipar(true);
-        // }
-
-        // if (JSON.parse(sessionStorage.getItem("usuario")).professor && JSON.parse(sessionStorage.getItem("usuario")).email === aula.professor.email && aula.status === "SOLICITADO") {
-        //     setAceitar(true);
-        // }
     }, [idAula]);
 
+    // lógica dos botões
     useEffect(() => {
         if (aula) {
+            console.log("aula " + JSON.stringify(aula));
             const alunos = aula.alunos;
             const emailsDosParticipantes = alunos.map(aluno => aluno.email);
             console.log("emails " + emailsDosParticipantes);
@@ -72,9 +231,14 @@ const DetalhesAula = () => {
                     console.log("iniciar TRUE");
                 }
 
-                if (aula.status === "SOLICITADO" || aula.status === "AGENDADO") {
+                if (aula.status === "AGENDADO") {
                     setCancelar(true);
                     console.log("cancelar TRUE");
+                }
+
+                if (aula.status === "SOLICITADO") {
+                    setRejeitar(true);
+                    console.log("rejeitar TRUE");
                 }
 
                 if (aula.status === "EM_PROGRESSO") {
@@ -88,6 +252,21 @@ const DetalhesAula = () => {
                         setCancelar(true);
                         console.log("cancelar TRUE");
                     }
+
+                    if (aula.status === "CONCLUIDA") {
+                        setReportar(true);
+                        fetch(`${store.getState().backEndUrl}avaliacoes/${JSON.parse(sessionStorage.getItem("usuario")).userId}/${idAula}`, {
+                            method: 'GET',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("usuario")).token
+                            },
+                        }).then(response => {
+                            if (response.status === 204) {
+                                setAvaliar(true);
+                            }
+                        });
+                    }
                 } else {
                     setParticipar(true);
                     console.log("participar TRUE");
@@ -100,7 +279,7 @@ const DetalhesAula = () => {
                 console.log("cancelar TRUE");
             }
         }
-    }, [aula]);
+    }, [aula, idAula]);
 
     function entrarNaAula() {
         if (idAula) {
@@ -136,9 +315,10 @@ const DetalhesAula = () => {
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Erro na requisição\n' + response);
+                    } else {
+                        alert(`Status da aula mudado para ${novoStatus}`);
+                        window.location.reload();
                     }
-                    alert("Sucesso!");
-                    window.location.reload();
                 })
                 .catch(error => {
                     alert("Erro ao aceitar aula\n" + error)
@@ -221,11 +401,102 @@ const DetalhesAula = () => {
             <div className={styles.detalhes_aula_botao_participar_container}>
                 {participar && <button className={styles.detalhes_aula_botao} onClick={() => entrarNaAula()}>Participar</button>}
                 {aceitar && <button className={styles.detalhes_aula_botao} onClick={() => mudarStatus("AGENDADO")}>Aceitar</button>}
-                {cancelar && <button className={`${styles.detalhes_aula_botao} ${styles.detalhes_aula_botao_vermelho}`} onClick={() => mudarStatus("CANCELADO")}>Cancelar</button>}
                 {iniciar && <button className={styles.detalhes_aula_botao} onClick={() => mudarStatus("EM_PROGRESSO")}>Iniciar</button>}
                 {concluir && <button className={styles.detalhes_aula_botao} onClick={() => mudarStatus("CONCLUIDA")}>Concluir</button>}
+                {avaliar && <button className={styles.detalhes_aula_botao} onClick={handleOpenModalAvaliacao}>Avaliar</button>}
+                {cancelar && <button className={`${styles.detalhes_aula_botao} ${styles.detalhes_aula_botao_vermelho}`} onClick={() => mudarStatus("CANCELADO")}>Cancelar</button>}
+                {rejeitar && <button className={`${styles.detalhes_aula_botao} ${styles.detalhes_aula_botao_vermelho}`} onClick={() => mudarStatus("REJEITADO")}>Rejeitar</button>}
+                {reportar && <button className={`${styles.detalhes_aula_botao} ${styles.detalhes_aula_botao_vermelho}`} onClick={handleOpenModalReport}><ReportProblemIcon />Reportar</button>}
             </div>
 
+            <Modal
+                open={openModalAvaliacao}
+                onClose={handleCloseModalAvaliacao}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={style}>
+                    <form onSubmit={handleSubmitAvaliacao}>
+
+                        <h2>
+                            Avaliar
+                        </h2>
+
+                        <h3>Nota</h3>
+                        <Rating
+                            precision={0.5}
+                            value={ratingValue}
+                            onChange={(event, newValue) => {
+                                setRatingValue(newValue);
+                            }}
+                        />
+
+                        <h2>Insígnias positivas</h2>
+                        {Object.values(insigniasEnum).slice(0, 6).map((insignia) => (
+                            <div style={{ display: 'flex' }}>
+                                <label htmlFor={insignia.toString()}>
+                                    <input
+                                        key={insignia}
+                                        type="checkbox"
+                                        id={insignia.toString()}
+                                        checked={insignias.includes(insignia)}
+                                        onChange={handleInsigniaChange}
+                                        style={{ width: 'auto' }}
+                                    />
+                                    {insigniasDisplayNames[insignia]}
+                                </label>
+                            </div>
+                        ))}
+
+                        <h2>Insígnias negativas</h2>
+                        {Object.values(insigniasEnum).slice(6).map((insignia) => (
+                            <div>
+                                <label htmlFor={insignia.toString()}>
+                                    <input
+                                        key={insignia}
+                                        type="checkbox"
+                                        id={insignia.toString()}
+                                        checked={insignias.includes(insignia)}
+                                        onChange={handleInsigniaChange}
+                                        style={{ width: 'auto' }}
+                                    />
+                                    {insigniasDisplayNames[insignia]}
+                                </label>
+                            </div>
+                        ))}
+                        <button type="submit">Enviar avaliação</button>
+                    </form>
+                </Box>
+            </Modal>
+
+            <Modal
+                open={openModalReport}
+                onClose={handleCloseModalReport}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={style}>
+                    <h2>
+                        Reportar aula
+                    </h2>
+                    <form onSubmit={handleSubmitReport} style={{ display: 'flex', flexDirection: 'column' }}>
+                        <label>
+                            Selecione um acontecimento:<br />
+                            <select name="acontecimento" id="acontecimentoSelect">
+                                <option value="0">Professor não compareceu para a aula</option>
+                                <option value="0">Professor se atrasou para a aula</option>
+                                <option value="0">Aula não foi do assunto combinado</option>
+                                <option value="0">Outros</option>
+                            </select>
+                        </label>
+                        <label>
+                            Descrição:<br />
+                            <textarea name="descricao" id="descricao" cols="30" rows="10"></textarea>
+                        </label>
+                        <button type="submit">Enviar report</button>
+                    </form>
+                </Box>
+            </Modal>
 
         </div>
     )
