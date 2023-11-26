@@ -149,7 +149,6 @@ function ApplicationDash() {
                 <div className="divider"></div>
                 <div>
                   <strong>
-                    8
                     {qtdSemana}
                   </strong>
                 </div>
@@ -179,7 +178,7 @@ function ApplicationDash() {
           </td>
         </tr>
         <tr className="boxes">
-          <td className="box">
+          <td className="boxMetricas1">
             <div className="boxChart">
               <LucroMensal />
             </div>
@@ -188,22 +187,16 @@ function ApplicationDash() {
             </div>
           </td>
         </tr>
-        <tr className="boxes">
-          <td className="box">
-            <div className="boxChart">
-              <UsuariosMeses />
-            </div>
-          </td>
-          <td className="box" >
-            <div className="boxArrumacao">
-              <div>
-                <StatusAula />
-              </div>
-              <div>
-                <AulasDadas />
-              </div>
-            </div>
-          </td>
+        <tr className="boxes2">
+          <div className="tamanhoMetricas">
+            <UsuariosMeses />
+          </div>
+          <div className="tamanhoMetricas">
+            <AulasDadas />
+          </div>
+          <div className="tamanhoMetricas">
+            <StatusAula />
+          </div>
         </tr>
       </table>
     </div>
