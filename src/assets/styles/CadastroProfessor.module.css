@@ -167,8 +167,8 @@ select:hover {
 
 .form {
     display: flex;
-    flex-direction: row;
-    gap: 20px;
+    flex-direction: column;
+    gap: 40px;
 }
 
 .btn_cadastrar {

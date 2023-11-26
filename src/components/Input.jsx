@@ -93,7 +93,7 @@ const Input = () => {
     <div className="input">
       <input
         type="text"
-        placeholder="Type something..."
+        placeholder="Enviar mensagem..."
         onChange={(e) => setText(e.target.value)}
         value={text}
         onKeyDown={handleKey}

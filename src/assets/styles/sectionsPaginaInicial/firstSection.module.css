@@ -1,16 +1,56 @@
 .section {
-    height: 85vh;
+    height: 80vh;
     background: url('assets/img/stock/graduation.jpg'), linear-gradient(180deg, #6FE5FF 0%, rgba(0, 209, 255, 0) 61.46%);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center bottom;
     color: var(--branco);
     text-shadow: 0px 4px 23px rgba(0, 0, 0, 1);
-    font-size: 200%;
+    font-size: 150%;
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+@keyframes rainbow-text {
+    0% { color: rgba(255, 0, 0, 0.2); } /* vermelho */
+    5% { color: rgba(255, 64, 0, 0.2); }
+    10% { color: rgba(255, 128, 0, 0.2); } /* laranja */
+    15% { color: rgba(255, 191, 0, 0.2); }
+    20% { color: rgba(255, 255, 0, 0.2); } /* amarelo */
+    25% { color: rgba(191, 255, 0, 0.2); }
+    30% { color: rgba(128, 255, 0, 0.2); }
+    35% { color: rgba(64, 255, 0, 0.2); }
+    40% { color: rgba(0, 255, 0, 0.2); } /* verde */
+    45% { color: rgba(0, 255, 64, 0.2); }
+    50% { color: rgba(0, 255, 128, 0.2); }
+    55% { color: rgba(0, 255, 191, 0.2); }
+    60% { color: rgba(0, 255, 255, 0.2); } /* azul claro */
+    65% { color: rgba(0, 191, 255, 0.2); }
+    70% { color: rgba(0, 128, 255, 0.2); } /* azul */
+    75% { color: rgba(0, 64, 255, 0.2); }
+    80% { color: rgba(0, 0, 255, 0.2); } /* índigo */
+    85% { color: rgba(64, 0, 255, 0.2); }
+    90% { color: rgba(128, 0, 255, 0.2); } /* violeta */
+    95% { color: rgba(191, 0, 255, 0.2); }
+    100% { color: rgba(255, 0, 255, 0.2); } /* rosa */
+  }
+
+.section h2 {
+    backdrop-filter: blur(8px);
+    background-color: rgba(18, 18, 18, 0.72);
+    box-shadow: 0px 4px 23px rgba(0, 0, 0, 0.779);
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 16px;
+    transition: 300ms;
+    color: var(--branco);
+    text-shadow: 0px 4px 23px rgba(255, 255, 255, 0.656);
+}
+
+.section h2:hover {
+    /*animation: rainbow-text 3s infinite;*/
 }
 
 @media screen and (max-width: 650px) {
