@@ -12,8 +12,13 @@ pipeline {
         }
 
         stage('git pull') {
+
             steps {
-                sh 'git pull'
+                sh 'git clone https://PedroHFD13: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@github.com/ensine-me/Plataforma.git'
+            }
+
+            steps {
+                sh 'git pull https://PedroHFD13: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@github.com/ensine-me/Plataforma.git'
             }
         }
         
