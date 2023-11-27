@@ -14,7 +14,7 @@ const PaginaInicial = () => {
     return (
         <>
             <Menu />
-            <FirstSection text={'Educação de qualidade a todos'} />
+            <FirstSection text={'Ai calica, funcionou'} />
             <QuemSomosSection />
             <ComoFuncionaSection />
             <OferecemosSection />
