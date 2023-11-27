@@ -10,12 +10,13 @@ pipeline {
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://PedroHFD13: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@github.com/ensine-me/Plataforma.git']]])
             }
         }
-
-        stage('git pull') {
-
-            steps {
+        stage ("git clone"){
+             steps {
                 sh 'git clone https://PedroHFD13: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@github.com/ensine-me/Plataforma.git'
             }
+        }
+
+        stage('git pull') {
 
             steps {
                 sh 'git pull https://PedroHFD13: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@github.com/ensine-me/Plataforma.git'
