@@ -12,7 +12,13 @@ pipeline {
         }
         stage ("git clone"){
              steps {
-                sh 'git clone https://PedroHFD13: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@github.com/ensine-me/Plataforma.git'
+                sh 'ssh -i "ensineme-ec2-key.pem" ec2-user@ec2-3-219-100-113.compute-1.amazonaws.com'
+            }
+            steps{
+                sh 'yes'
+            }
+            steps{
+                sh 'cd Plataforma'
             }
         }
 
