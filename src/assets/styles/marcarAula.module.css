@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: center;
     width: 90%;
-    height: 100%;
+    height: 100vh;
     backdrop-filter: blur(3px);
     position: absolute;
     visibility: hidden;
@@ -11,7 +11,6 @@
 
 .quadradoCinza {
     width: 600px;
-    height: 420px;
     background-color: #D9D9D9;
     position: absolute;
     display: flex;
@@ -22,7 +21,6 @@
 
 .quadradinCinza {
     width: 300px;
-    height: 140px;
     border: 1px solid black;
     background-color: #D9D9D9;
     position: absolute;
@@ -68,6 +66,7 @@
 
 .paragrafoMarcarAula {
     font-weight:bold;
+    margin-bottom: 0;
 }
 
 

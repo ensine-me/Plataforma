@@ -113,7 +113,7 @@ export default function MiniDrawer() {
                   >
                     <IconIndex index={index} />
                   </ListItemIcon>
-                  <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+                  <ListItemText primary={text} sx={{ opacity: open ? 1 : 0, fontFamily: 'monospace', }} />
                 </ListItemButton>
               </Link>
             </ListItem>

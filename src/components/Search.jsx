@@ -15,6 +15,7 @@ import "../assets/styles/chat.css";
 import { AuthContext } from "context/AuthContext";
 import { useContext } from "react";
 
+import SearchIcon from '@mui/icons-material/Search';
 
 const Search = () => {
   const [username, setUsername] = useState("");
@@ -89,16 +90,17 @@ const Search = () => {
   return (
     <div className="search">
       <div className="searchForm">
+        <SearchIcon color='info'/>
         <input  
           type="text"
-          placeholder="Find a user"
+          placeholder="Busca de usuário"
           onKeyDown={handleKey}
           onChange={(e) => setUsername(e.target.value)}
           value={username}
           />
           {console.log('%c⧭', 'color: #e50000',username )}
       </div>
-      {err && <span>User not found!</span>}
+      {err && <span>Usuário não encontrado!</span>}
       {user && (
         <div className="userChat" onClick={handleSelect}>
           <img src={user.photoURL} alt="" />

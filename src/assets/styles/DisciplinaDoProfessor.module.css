@@ -1,6 +1,15 @@
 .disciplina_do_professor {
-    background-color: #cecece;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     box-sizing: border-box;
-    padding: 7px;
-    border-radius: 15px;
+    padding: 5px;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    transition: 300ms;
+}
+
+.disciplina_do_professor:hover {
+    filter: brightness(0.8);
+    box-shadow: var(--shadow);
 }

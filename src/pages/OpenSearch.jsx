@@ -69,25 +69,30 @@ function OpenSearch() {
                         <SearchIcon fontSize="large" color="success" />
                     </div>
                 </div>
-                <h1>Professores</h1>
                 <div className="contentListOpenSearch">
-                    {professores.map((professor, index) => {
-                        return (
-                            <CardProfessor
-                                key={index}
-                                nome={professor.nome}
-                                materias={professor.materias}
-                                id={professor.idUsuario}
-                                foto={professor.foto}
-                                preco={professor.precoHoraAula}
-                                nota={professor.nota}
-                            />
-                        )
-                    })}
-                </div>
-            </div>
+                    {professores.length === 0 ? (
+                        <>
+                            <p>Nenhum professor encontrado</p>
+                        </>
+                    ) : (
+                        professores.map((professor, index) => {
+                            return (
+                                <CardProfessor
+                                    key={index}
+                                    nome={professor.nome}
+                                    materias={professor.materias}
+                                    id={professor.idUsuario}
+                                    foto={professor.foto}
+                                    preco={professor.precoHoraAula}
+                                    nota={professor.nota}
+                                />
+                            )
+                        })
+                    )
+                    }
+                </div >
+            </div >
         </>
-
     )
 }
 

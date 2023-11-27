@@ -3,6 +3,10 @@ import CardAula from '../components/CardAula'
 import styles from '../assets/styles/MinhasAulas.module.css';
 import store from "../store";
 
+import { useNavigate } from 'react-router-dom';
+
+import HistoryEduIcon from '@mui/icons-material/HistoryEdu';
+
 const MinhasAulas = () => {
   const [solicitado, setSolicitado] = useState([]);
   const [aguardandoPagamento, setAguardandoPagamento] = useState([]);
@@ -12,6 +16,7 @@ const MinhasAulas = () => {
   const [cancelado, setCancelado] = useState([]);
   const [rejeitado, setRejeitado] = useState([]);
   const [aguardandoAvaliacao, setAguardandoAvaliacao] = useState([]);
+  const [aulas, setAulas] = useState([]);
 
 
   useEffect(() => {
@@ -33,6 +38,7 @@ const MinhasAulas = () => {
     }).then((data) => {
       if (Array.isArray(data)) {
         const aulas = data;
+        setAulas(aulas);
         console.log("aulas: ", aulas)
         aulas.forEach(aula => {
           switch (aula.status) {
@@ -89,11 +95,24 @@ const MinhasAulas = () => {
     });
   }, [concluida]);
 
+  const navigate = useNavigate();
+  const Voltar = () => {
+    navigate('/inicial-aluno');
+  }
+
   return (
     <div className={styles.minhas_aulas_container}>
-      <h1 className={styles.minhas_aulas_titulo}>Minhas Aulas</h1>
+      <h1 className={styles.minhas_aulas_titulo}><HistoryEduIcon /> Suas Aulas marcadas</h1>
 
-      {emProgresso.length > 0 && (
+      {aulas.length === 0 ? (
+        <>
+          <div>
+            <p className={styles.minhas_aulas_nenhuma_aula}>Suas aulas já aprovadas por um professor aparecem aqui. <br />
+              Volte para a página inicial e converse com um de nossos professores recomendados caso deseje solicitar uma aula.</p>
+            <button className={styles.botaoVoltar} onClick={Voltar}>Página inicial</button>
+          </div>
+        </>
+      ) : (
         <>
           <h2 className={styles.minhas_aulas_substitulo}>Em progresso</h2>
           <div className={styles.minhas_aulas_aulas_container}>

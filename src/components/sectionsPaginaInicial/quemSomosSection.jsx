@@ -9,12 +9,11 @@ const QuemSomosSection = () => {
             <div className={sQuemSomosSection.quemSomosContainer}>
                 <Title text={'Quem somos'} />
                 <p className={sQuemSomosSection.p}>
-                    <SimpleText size={'xlarge'} text='A Ensine.me é uma organização sem fins lucrativos que leva aulas particulares ou em grupo para alunos do ensino médio de baixa renda' />
+                    <SimpleText size={'xlarge'} text='A Ensine.me é uma organização que leva aulas particulares ou em grupo para alunos do ensino médio.' />
                 </p>
                 <p className={sQuemSomosSection.p}>
-                    <SimpleText size={'xlarge'} text='Nós conectamos professores que querem fazer a diferença com alunos que querem
-                    aprender, levando educação de forma gratuita e preparando jovens de quaisquer condições econômicas para o
-                    vestibular'/>
+                    <SimpleText size={'xlarge'} text='Na Ensine.me, estabelecemos pontes entre educadores apaixonados e estudantes dedicados, democratizando o acesso à educação de alta qualidade. Nosso compromisso é oferecer recursos educacionais de custo baixo, garantindo que jovens de todas as condições econômicas estejam equipados e prontos para triunfar no vestibular e além."
+'/>
                 </p>
             </div>
         </section>

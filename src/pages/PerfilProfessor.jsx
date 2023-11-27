@@ -6,6 +6,8 @@ import DisciplinaDoProfessor from "../components/DisciplinaDoProfessor"
 import { useState } from "react"
 import store from "../store";
 
+import AnnouncementIcon from '@mui/icons-material/Announcement';
+
 const chamaMarcarAula = () => {
     document.getElementById("marcarAulaContainer").style.visibility = "visible";
 }
@@ -65,65 +67,89 @@ const PerfilProfessor = () => {
                 <div className={sPerfil.quadrados}>
                     <div className={sPerfil.infosBotoes}>
                         <div className={sPerfil.quadrado}>
-                            <div style={{backgroundImage:`url(${foto})`}} className={sPerfil.fotoNivel}>
-                                
-                            </div>
+                            <div style={{ backgroundImage: `url(${foto})` }} className={sPerfil.fotoNivel}></div>
                             <div className={sPerfil.estrelas}>
                                 <h3>{professor && professor.nome}</h3>
                             </div>
                         </div>
                         <div className={sPerfil.quadrado}>
+                            <div className={sPerfil.retangulo}>
+                                <div className={sPerfil.descricao}>
+                                    <i className={sPerfil.descricaoProfessor}>"{professor && professor.descricao}"</i>
+                                </div>
+                            </div>
                             <div className={sPerfil.buttons}>
-                                <button onClick={chamaMarcarAula} className={sPerfil.button}>Solicitar aula</button>
+                                <button onClick={chamaMarcarAula} className={sPerfil.button}>Solicitar aula - <strong className={sPerfil.precoLabel}>R${preco}</strong></button>
                                 <button className={sPerfil.button}>Entrar em contato</button>
                             </div>
                             <div className={sPerfil.disponibilidadeContainer}>
-                                <h4>Disponibilidade</h4>
-                                {disponibilidades.map((disponibilidade, index) => {
-                                    return (
-                                        <div className={sPerfil.disponibilidadeConteudo} key={index}>
-                                            <li>
-                                                {disponibilidade.diaDaSemana} - {disponibilidade.horarioInicio} às {disponibilidade.horarioFim}
-                                            </li>
-                                        </div>
+                                <h4>Você pode solicitar aula nesses dias:</h4>
+                                {
+                                    disponibilidades.length === 0 ? (
+                                        <>
+                                            <p>Esse professor não cadastrou nenhuma disponibilidade</p>
+                                            <AnnouncementIcon fontSize='large' color='warning' />
+                                        </>
+                                    ) : (
+                                        disponibilidades.map((disponibilidade, index) => {
+                                            return (
+                                                <div className={sPerfil.disponibilidadeConteudo} key={index}>
+                                                    <li>
+                                                        {disponibilidade.diaDaSemana} - {disponibilidade.horarioInicio} até {disponibilidade.horarioFim}
+                                                    </li>
+                                                </div>
+                                            )
+                                        })
                                     )
-                                })}
-                            </div>
-                            <div className={sPerfil.horaAula}>
-                                Hora aula: R${preco}
+                                }
                             </div>
                         </div>
                     </div>
                     <div className={sPerfil.retangulo}>
-                        <div className={sPerfil.descricao}>
-                            <h4>Descrição</h4>
-                            {professor && professor.descricao}
-                        </div>
                         <div className={sPerfil.perfilMaterias}>
-                            {materias.map((disciplina, index) => {
-                                return (
-                                    <DisciplinaDoProfessor key={index} disciplina={disciplina.nome} />
+                            <h4 className={sPerfil.perfilMateriasTitle}>Você pode marcar uma aula de:</h4>
+                            {
+                                materias.length === 0 ? (
+                                    <>
+                                        <p>Esse professor não cadastrou nenhuma matéria</p>
+                                        <AnnouncementIcon fontSize='large' color='warning' />
+                                    </>
+                                ) : (
+                                    materias.map((disciplina, index) => {
+                                        return (
+                                            <DisciplinaDoProfessor key={index} disciplina={disciplina.nome} />
+                                        )
+                                    })
                                 )
-                            })}
+                            }
                         </div>
                     </div>
-                    <div className={sPerfil.divisor}></div>
                     <div className={sPerfil.retangulo}>
-                        <h4>Formações</h4>
-                        <div className={sPerfil.formacoes}>
-                            {formacoes.map((formacao, index) => {
-                                return (
-                                    <FormacaoCard
-                                        key={index}
-                                        instituicao={formacao.instituicao}
-                                        nomeCurso={formacao.nomeCurso}
-                                        tipoFormacao={formacao.tipoFormacao}
-                                        dataInicio={formacao.dtInicio}
-                                        dataTermino={formacao.dtTermino}
-                                    />
-                                )
-                            })}
-                        </div>
+                        <h4>Esse professor já cursou:</h4>
+                        {
+                            formacoes.length === 0 ? (
+                                <>
+                                    <p>Esse professor não cadastrou nenhuma formação</p>
+                                    <AnnouncementIcon fontSize='large' color='warning' />
+                                </>
+                            ) : (
+                                <div className={sPerfil.formacoes}>
+                                    {formacoes.map((formacao, index) => {
+                                        return (
+                                            <FormacaoCard
+                                                key={index}
+                                                instituicao={formacao.instituicao}
+                                                nomeCurso={formacao.nomeCurso}
+                                                tipoFormacao={formacao.tipoFormacao}
+                                                dataInicio={formacao.dtInicio}
+                                                dataTermino={formacao.dtTermino}
+                                            />
+                                        )
+                                    })}
+                                </div>
+                            )
+                        }
+
                     </div>
                 </div>
             </div>
