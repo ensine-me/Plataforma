@@ -3,9 +3,9 @@
 }
 
 .minhas_aulas_titulo {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     font-weight: 600;
-    margin-bottom: 1rem;
+    /* margin-bottom: 0.5rem; */
 }
 
 .minhas_aulas_aulas_container {
@@ -16,5 +16,12 @@
     overflow-y: auto;
     flex-wrap: wrap;
     box-sizing: border-box;
-    padding-bottom: 1rem;
+    padding: 0.3rem 0;
+}
+
+.minhas_aulas_substitulo {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.1rem;
+    margin-top: 1.5rem;
 }

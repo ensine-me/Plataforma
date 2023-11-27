@@ -7,6 +7,7 @@ import ReportProblemIcon from '@mui/icons-material/ReportProblem';
 import { Modal } from '@mui/material';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
+import Swal from "sweetalert2";
 
 const DetalhesAula = () => {
     const insigniasEnum = {
@@ -138,22 +139,6 @@ const DetalhesAula = () => {
             }
         }
         );
-
-        // try {
-        //     const response = await fetch(`/avaliacoes/${idAluno}/${idAula}`, {
-        //         method: "POST",
-        //         headers: {
-        //             "Content-Type": "application/json",
-        //         },
-        //         body: JSON.stringify(body),
-        //     });
-
-        //     const data = await response.json();
-        //     // Handle successful response
-        //     console.log("Avaliacao created successfully!");
-        // } catch (error) {
-        //     console.log("Error creating avaliacao:", error);
-        // }
     };
 
     const handleSubmitReport = async (e) => {
@@ -316,12 +301,51 @@ const DetalhesAula = () => {
                     if (!response.ok) {
                         throw new Error('Erro na requisição\n' + response);
                     } else {
-                        alert(`Status da aula mudado para ${novoStatus}`);
-                        window.location.reload();
+                        Swal.fire({
+                            icon: 'success',
+                            title: `Status da aula mudado para ${novoStatus}`,
+                            showCancelButton: false,
+                            showConfirmButton: true,
+                            confirmButtonText: 'Ok',
+                            confirmButtonColor: '#28a745',
+                        }).then((result) => {
+                            window.location.reload();
+                        });
                     }
                 })
                 .catch(error => {
-                    alert("Erro ao aceitar aula\n" + error)
+                    alert("Erro ao mudar status da aula\n" + error)
+                });
+        }
+    }
+
+    function finalizarAula() {
+        if (idAula) {
+            fetch(`${store.getState().backEndUrl}aulas/finalizar-aula?id=${idAula}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("usuario")).token,
+                },
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro na requisição\n' + response);
+                    } else {
+                        Swal.fire({
+                            icon: 'success',
+                            title: `Aula finalizada com sucesso!`,
+                            showCancelButton: false,
+                            showConfirmButton: true,
+                            confirmButtonText: 'Ok',
+                            confirmButtonColor: '#28a745',
+                        }).then(() => {
+                            window.location.reload();
+                        })
+                    }
+                })
+                .catch(error => {
+                    alert("Erro ao finalizar aula\n" + JSON.stringify(error));
                 });
         }
     }
@@ -402,7 +426,7 @@ const DetalhesAula = () => {
                 {participar && <button className={styles.detalhes_aula_botao} onClick={() => entrarNaAula()}>Participar</button>}
                 {aceitar && <button className={styles.detalhes_aula_botao} onClick={() => mudarStatus("AGENDADO")}>Aceitar</button>}
                 {iniciar && <button className={styles.detalhes_aula_botao} onClick={() => mudarStatus("EM_PROGRESSO")}>Iniciar</button>}
-                {concluir && <button className={styles.detalhes_aula_botao} onClick={() => mudarStatus("CONCLUIDA")}>Concluir</button>}
+                {concluir && <button className={styles.detalhes_aula_botao} onClick={finalizarAula}>Concluir</button>}
                 {avaliar && <button className={styles.detalhes_aula_botao} onClick={handleOpenModalAvaliacao}>Avaliar</button>}
                 {cancelar && <button className={`${styles.detalhes_aula_botao} ${styles.detalhes_aula_botao_vermelho}`} onClick={() => mudarStatus("CANCELADO")}>Cancelar</button>}
                 {rejeitar && <button className={`${styles.detalhes_aula_botao} ${styles.detalhes_aula_botao_vermelho}`} onClick={() => mudarStatus("REJEITADO")}>Rejeitar</button>}
