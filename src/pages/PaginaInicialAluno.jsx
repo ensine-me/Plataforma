@@ -10,6 +10,7 @@ import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import StarIcon from '@mui/icons-material/Star';
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import store from "../store";
+import Swal from "sweetalert2";
 
 const Home = () => {
   const [professores, setProfessores] = useState([]);
@@ -73,6 +74,35 @@ const Home = () => {
           response.json().then((data) => {
             setAulas(data);
           });
+        }
+      });
+
+    const urlAvalPendentes = `${store.getState().backEndUrl}avaliacoes/visualizada/aluno/${JSON.parse(sessionStorage.getItem("usuario")).userId}`;
+    fetch(urlAvalPendentes, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("usuario")).token
+      }
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          Swal.fire({
+            icon: 'info',
+            title: 'Você possui aulas aguardando sua avaliação',
+            showCancelButton: true,
+            showConfirmButton: true,
+            confirmButtonText: 'Ver minhas aulas',
+            cancelButtonText: 'Fechar',
+            confirmButtonColor: '#28a745',
+        }).then((result) => {
+            // Redirecione ou adicione ação do botão "Ver minhas aulas" aqui
+            if (result.isConfirmed) {
+                navigate("/minhas-aulas");
+            }
+        });
+        } else {
+          console.log("response das visualizadas: " + response.status);
         }
       });
   }, [navigate]);

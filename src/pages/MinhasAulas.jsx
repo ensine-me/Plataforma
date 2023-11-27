@@ -8,7 +8,15 @@ import { useNavigate } from 'react-router-dom';
 import HistoryEduIcon from '@mui/icons-material/HistoryEdu';
 
 const MinhasAulas = () => {
-  const [aulas, setAulas] = useState([]);
+  const [solicitado, setSolicitado] = useState([]);
+  const [aguardandoPagamento, setAguardandoPagamento] = useState([]);
+  const [agendado, setAgendado] = useState([]);
+  const [emProgresso, setEmProgresso] = useState([]);
+  const [concluida, setConcluida] = useState([]);
+  const [cancelado, setCancelado] = useState([]);
+  const [rejeitado, setRejeitado] = useState([]);
+  const [aguardandoAvaliacao, setAguardandoAvaliacao] = useState([]);
+
 
   useEffect(() => {
     const url = JSON.parse(sessionStorage.getItem("usuario")).professor ? `${store.getState().backEndUrl}aulas/professor/${JSON.parse(sessionStorage.getItem("usuario")).userId}` : `${store.getState().backEndUrl}aulas/busca-id-usuario?id=${JSON.parse(sessionStorage.getItem("usuario")).userId}`;
@@ -17,8 +25,6 @@ const MinhasAulas = () => {
       'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("usuario")).token
     }
 
-    // console.log("url: " + url);
-    // console.log("headers: " + headersComToken);
     fetch(url, {
       method: 'GET',
       headers: headersComToken
@@ -30,7 +36,35 @@ const MinhasAulas = () => {
       }
     }).then((data) => {
       if (Array.isArray(data)) {
-        setAulas(data);
+        const aulas = data;
+        console.log("aulas: ", aulas)
+        aulas.forEach(aula => {
+          switch (aula.status) {
+            case 'SOLICITADO':
+              setSolicitado(prevState => { if (!prevState.some(item => item.id === aula.id)) { return [...prevState, aula]; } else { return prevState; } });
+              break;
+            case 'AGUARDANDO_PAGAMENTO':
+              setAguardandoPagamento(prevState => { if (!prevState.some(item => item.id === aula.id)) { return [...prevState, aula]; } else { return prevState; } });
+              break;
+            case 'AGENDADO':
+              setAgendado(prevState => { if (!prevState.some(item => item.id === aula.id)) { return [...prevState, aula]; } else { return prevState; } });
+              break;
+            case 'EM_PROGRESSO':
+              setEmProgresso(prevState => { if (!prevState.some(item => item.id === aula.id)) { return [...prevState, aula]; } else { return prevState; } });
+              break;
+            case 'CONCLUIDA':
+              setConcluida(prevState => { if (!prevState.some(item => item.id === aula.id)) { return [...prevState, aula]; } else { return prevState; } });
+              break;
+            case 'CANCELADO':
+              setCancelado(prevState => { if (!prevState.some(item => item.id === aula.id)) { return [...prevState, aula]; } else { return prevState; } });
+              break;
+            case 'REJEITADO':
+              setRejeitado(prevState => { if (!prevState.some(item => item.id === aula.id)) { return [...prevState, aula]; } else { return prevState; } });
+              break;
+            default:
+              break;
+          }
+        });
       } else {
         console.error("A API não retornou um array");
       }
@@ -38,6 +72,26 @@ const MinhasAulas = () => {
       console.error("Erro na requisição", error);
     });
   }, []);
+
+  useEffect(() => {
+    if (concluida.length === 0) return;
+
+    const headersComToken = {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("usuario")).token
+    }
+
+    concluida.forEach(aula => {
+      fetch(`${store.getState().backEndUrl}avaliacoes/${JSON.parse(sessionStorage.getItem("usuario")).userId}/${aula.id}`, {
+        method: 'GET',
+        headers: headersComToken
+      }).then((response) => {
+        if (response.status === 204) {
+          setAguardandoAvaliacao(prevState => [...prevState, aula]);
+        }
+      });
+    });
+  }, [concluida]);
 
   const navigate = useNavigate();
   const Voltar = () => {
