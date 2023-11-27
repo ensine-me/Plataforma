@@ -1,4 +1,4 @@
-import cssPoggers from "../assets/styles/homeProfessor.module.css"
+import sHomeProfessor from "../assets/styles/homeProfessor.module.css"
 import { useEffect, useState } from "react"
 import LaptopMacIcon from '@mui/icons-material/LaptopMac';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
@@ -102,7 +102,6 @@ const HomeProfessor = () => {
                 // Lide com erros
                 console.error(error);
             });
-        // AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         // 'http://44.217.177.131:8080/aulas/busca-professor-id-solicitado?id=' + idProfessor
         fetch(`${store.getState().backEndUrl}aulas/busca-professor-id-solicitado?id=` + idProfessor, {
             method: 'GET',
@@ -145,37 +144,37 @@ const HomeProfessor = () => {
 
     return (
         <>
-            <div id="homeProfessorContainer" className={cssPoggers.box}>
-                <div id="colunaEsquerda" className={cssPoggers.colunaEsquerda}>
-                    <div id="objetosAcima" className={cssPoggers.objetosEsquerdaAcima}>
-                        <div id="quadradoAcimaEsquerda" className={cssPoggers.quadradoAcimaEsquerda}>
-                            <div id="tituloEstatisticas" className={cssPoggers.tituloEstatisticas}>
+            <div id="homeProfessorContainer" className={sHomeProfessor.box}>
+                <div id="colunaEsquerda" className={sHomeProfessor.colunaEsquerda}>
+                    <div id="objetosAcima" className={sHomeProfessor.objetosEsquerdaAcima}>
+                        <div id="quadradoAcimaEsquerda" className={sHomeProfessor.quadradoAcimaEsquerda}>
+                            <div id="tituloEstatisticas" className={sHomeProfessor.tituloEstatisticas}>
                                 <h3>Estatisticas:</h3>
                             </div>
-                            <div id="estatisticasQuadrados" className={cssPoggers.estatisticasQuadrados}>
-                                <div id="primeiroQuadrado" className={cssPoggers.quadrado}>
-                                    <div id="quadradoEsquerda" className={cssPoggers.quadradoDentroEsquerda}>
-                                        <LaptopMacIcon sx={{ fontSize: 80 }} className={cssPoggers.iconLaptop} />
+                            <div id="estatisticasQuadrados" className={sHomeProfessor.estatisticasQuadrados}>
+                                <div id="primeiroQuadrado" className={sHomeProfessor.quadrado}>
+                                    <div id="quadradoEsquerda" className={sHomeProfessor.quadradoDentroEsquerda}>
+                                        <LaptopMacIcon sx={{ fontSize: 80 }} className={sHomeProfessor.iconLaptop} />
                                     </div>
-                                    <div id="quadradoDireita" className={cssPoggers.quadradoDentroDireita}>
+                                    <div id="quadradoDireita" className={sHomeProfessor.quadradoDentroDireita}>
                                         <p>Total de aulas</p>
                                         <h3>{qtdAulas}</h3>
                                     </div>
                                 </div>
-                                <div id="segundoQuadrado" className={cssPoggers.quadrado}>
-                                    <div id="quadradoEsquerda" className={cssPoggers.quadradoDentroEsquerda}>
-                                        <CalendarMonthIcon sx={{ fontSize: 80 }} className={cssPoggers.iconLaptop} />
+                                <div id="segundoQuadrado" className={sHomeProfessor.quadrado}>
+                                    <div id="quadradoEsquerda" className={sHomeProfessor.quadradoDentroEsquerda}>
+                                        <CalendarMonthIcon sx={{ fontSize: 80 }} className={sHomeProfessor.iconLaptop} />
                                     </div>
-                                    <div id="quadradoDireita" className={cssPoggers.quadradoDentroDireita}>
+                                    <div id="quadradoDireita" className={sHomeProfessor.quadradoDentroDireita}>
                                         <p>Aulas Feitas</p>
                                         <h3>{qtdAulasConcluidas}</h3>
                                     </div>
                                 </div>
-                                <div id="terceiroQuadrado" className={cssPoggers.quadrado}>
-                                    <div id="quadradoEsquerda" className={cssPoggers.quadradoDentroEsquerda}>
-                                        <ScheduleIcon sx={{ fontSize: 80 }} className={cssPoggers.iconLaptop} />
+                                <div id="terceiroQuadrado" className={sHomeProfessor.quadrado}>
+                                    <div id="quadradoEsquerda" className={sHomeProfessor.quadradoDentroEsquerda}>
+                                        <ScheduleIcon sx={{ fontSize: 80 }} className={sHomeProfessor.iconLaptop} />
                                     </div>
-                                    <div id="quadradoDireita" className={cssPoggers.quadradoDentroDireita}>
+                                    <div id="quadradoDireita" className={sHomeProfessor.quadradoDentroDireita}>
                                         <p>Aulas Marcadas</p>
                                         <h3>{qtdAulasAgendadas}</h3>
                                     </div>
@@ -183,46 +182,46 @@ const HomeProfessor = () => {
                             </div>
                         </div>
                     </div>
-                    <div id="objetosAbaixo" className={cssPoggers.objetosEsquerdaAbaixo}>
-                        <div id="quadradoAbaixoEsquerda" className={cssPoggers.quadradoAbaixoEsquerda}>
-                            <div id="tituloProxAula" className={cssPoggers.tituloProxAula}>
+                    <div id="objetosAbaixo" className={sHomeProfessor.objetosEsquerdaAbaixo}>
+                        <div id="quadradoAbaixoEsquerda" className={sHomeProfessor.quadradoAbaixoEsquerda}>
+                            <div id="tituloProxAula" className={sHomeProfessor.tituloProxAula}>
                                 <h3>Próximas aulas solicitadas</h3>
                             </div>
-                            <div id="tabela" className={cssPoggers.tabela}>
-                                <div id="tabelaMenor" className={cssPoggers.tabelaMenor}>
+                            <div id="tabela" className={sHomeProfessor.tabela}>
+                                <div id="tabelaMenor" className={sHomeProfessor.tabelaMenor}>
                                     <MuiReactTable array1child={titulosState} array2child={dateTsState} array3child={valoresState} array4child={materiasState} />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div id="colunaDireita" className={cssPoggers.colunaDireita}>
-                    <div id="quadradoDireita" className={cssPoggers.quadradoDireita}>
-                        <div id="tituloRankingSemanal" className={cssPoggers.tituloRankingSemanal}>
+                <div id="colunaDireita" className={sHomeProfessor.colunaDireita}>
+                    <div id="quadradoDireita" className={sHomeProfessor.quadradoDireita}>
+                        <div id="tituloRankingSemanal" className={sHomeProfessor.tituloRankingSemanal}>
                             <h2>Ranking Semanal</h2>
                         </div>
-                        <div id="seuRanking" className={cssPoggers.seuRanking}>
-                            <div id="posicaoAtual" className={cssPoggers.posicaoAtual}>Posição Atual - 10º</div>
+                        <div id="seuRanking" className={sHomeProfessor.seuRanking}>
+                            <div id="posicaoAtual" className={sHomeProfessor.posicaoAtual}>Posição Atual - 10º</div>
                         </div>
-                        <div id="pequenoEspaco" className={cssPoggers.pequenoEspaco}></div>
-                        <div id="posicionamento" className={cssPoggers.posicionamento}>
-                            <div id="primeiraPosicao" className={cssPoggers.primeiraPosicao}>
+                        <div id="pequenoEspaco" className={sHomeProfessor.pequenoEspaco}></div>
+                        <div id="posicionamento" className={sHomeProfessor.posicionamento}>
+                            <div id="primeiraPosicao" className={sHomeProfessor.primeiraPosicao}>
                                 <p>1º - Filipe Filipus Guiraldini</p>
                                 <p>Pontuação: 2500</p>
                             </div>
-                            <div id="primeiraPosicao" className={cssPoggers.primeiraPosicao}>
+                            <div id="primeiraPosicao" className={sHomeProfessor.primeiraPosicao}>
                                 <p>2º - João Vitor Sales Santos Santana</p>
                                 <p>Pontuação: 2500</p>
                             </div>
-                            <div id="primeiraPosicao" className={cssPoggers.primeiraPosicao}>
+                            <div id="primeiraPosicao" className={sHomeProfessor.primeiraPosicao}>
                                 <p>3º - Josias</p>
                                 <p>Pontuação: 2500</p>
                             </div>
-                            <div id="primeiraPosicao" className={cssPoggers.primeiraPosicao}>
+                            <div id="primeiraPosicao" className={sHomeProfessor.primeiraPosicao}>
                                 <p>4º - Josias</p>
                                 <p>Pontuação: 2500</p>
                             </div>
-                            <div id="primeiraPosicao" className={cssPoggers.primeiraPosicao}>
+                            <div id="primeiraPosicao" className={sHomeProfessor.primeiraPosicao}>
                                 <p>5º - Josias</p>
                                 <p>Pontuação: 2500</p>
                             </div>

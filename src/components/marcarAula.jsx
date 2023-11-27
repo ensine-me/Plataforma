@@ -1,4 +1,4 @@
-import cssPoggers from "../assets/styles/marcarAula.module.css"
+import sMarcarAula from "../assets/styles/marcarAula.module.css"
 import DateTimePickerComponent from "./DateTimePickerComponent"
 import MultiTextField from "./MultiTextField"
 import BasicTextField from "./BasicTextField"
@@ -85,7 +85,7 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, gmailProfessor
         },
         body: JSON.stringify(bodyJsonData)
       })
-      console.log("HAHAHAHAHAHHAHAHAHAH "+JSON.stringify(bodyJsonData))
+      console.log("HAHAHAHAHAHHAHAHAHAH " + JSON.stringify(bodyJsonData))
       console.log("Response: " + JSON.stringify(response))
       if (!response.ok) {
         foi = false;
@@ -157,15 +157,16 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, gmailProfessor
 
   return (
     <>
-      <div id="marcarAulaContainer" className={cssPoggers.marcarAulaContainer}>
-        <div className={cssPoggers.closeIcon} onClick={fechaModal}><CloseIcon sx={{ color: "#fff" }} /></div>
-        <div id="quadradoCinza" className={cssPoggers.quadradoCinza}>
-          <div className={cssPoggers.marcarAulaColuna}>
-            <p className={cssPoggers.paragrafoMarcarAula}>Data de Inicio:</p>
+      <div id="marcarAulaContainer" className={sMarcarAula.marcarAulaContainer}>
+        <div className={sMarcarAula.closeIcon} onClick={fechaModal}><CloseIcon sx={{ color: "#fff" }} /></div>
+        <div id="quadradoCinza" className={sMarcarAula.quadradoCinza}>
+          <div className={sMarcarAula.marcarAulaColuna}>
+            <h5>AULA FODA</h5>
+            <p className={sMarcarAula.paragrafoMarcarAula}>Data de Inicio:</p>
             <DateTimePickerComponent value={start} onChange={(newValue) => setStart(newValue)} />
-            <p className={cssPoggers.paragrafoMarcarAula}>Data de Fim:</p>
+            <p className={sMarcarAula.paragrafoMarcarAula}>Data de Fim:</p>
             <DateTimePickerComponent value={end} onChange={(newValue) => setEnd(newValue)} />
-            <p className={cssPoggers.paragrafoMarcarAula}>Disciplina da aula:</p>
+            <p className={sMarcarAula.paragrafoMarcarAula}>Disciplina da aula:</p>
             <select id="selectMateria">
               {materias.map((materia, index) => {
                 return (
@@ -173,7 +174,7 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, gmailProfessor
                 )
               })}
             </select>
-            <p className={cssPoggers.paragrafoMarcarAula}>Máximo de participantes:</p>
+            <p className={sMarcarAula.paragrafoMarcarAula}>Máximo de participantes:</p>
             <select id="maxParticipantes">
               <option value="1">1</option>
               <option value="2">2</option>
@@ -182,19 +183,19 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, gmailProfessor
               <option value="5">5</option>
             </select>
           </div>
-          <div className={cssPoggers.marcarAulaColunaDireita}>
-            <p className={cssPoggers.paragrafoMarcarAula}>Titulo da aula:</p>
+          <div className={sMarcarAula.marcarAulaColunaDireita}>
+            <p className={sMarcarAula.paragrafoMarcarAula}>Titulo da aula:</p>
             <BasicTextField onChange={(e) => setEventName(e.target.value)} />
             <h4>{nomeProfessor}</h4>
             <MultiTextField onChange={(e) => setEventDescription(e.target.value)} />
-            <button onClick={createCalendarEvent} className={cssPoggers.botaoMarcarAula}>Marcar Aula</button>
+            <button onClick={createCalendarEvent} className={sMarcarAula.botaoMarcarAula}>Marcar Aula</button>
           </div>
         </div>
-        <div className={cssPoggers.quadradinCinza}>
+        <div className={sMarcarAula.quadradinCinza}>
           <h5>Disponibilidade:</h5>
           {disponibilidades.map((disponibilidade, index) => {
             return (
-              <div className={cssPoggers.disponibilidadeCont} key={index}>
+              <div className={sMarcarAula.disponibilidadeCont} key={index}>
                 <li>
                   {disponibilidade.diaDaSemana} - {disponibilidade.horarioInicio} às {disponibilidade.horarioFim}
                 </li>

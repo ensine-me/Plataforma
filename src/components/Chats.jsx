@@ -10,9 +10,9 @@ const Chats = () => {
 
   const { currentUser } = useContext(AuthContext)
 
-  console.log("USSSSSSSSSSER "+currentUser.photoURL)
+  console.log("USER " + currentUser.photoURL)
 
-  const {dispatch}  = useContext(ChatContext);
+  const { dispatch } = useContext(ChatContext);
 
   useEffect(() => {
     const getChats = () => {
@@ -31,7 +31,7 @@ const Chats = () => {
 
   const handleSelect = (u) => {
     dispatch({ type: "CHANGE_USER", payload: u });
-  console.log('%c⧭', 'color: #2f00ff', "PASSEI AQ de novo ");
+    console.log('%c⧭', 'color: #2f00ff', "PASSEI AQ de novo ");
 
   };
 

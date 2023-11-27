@@ -2,6 +2,7 @@
     min-height: 100vh;
     width: 100%;
     box-sizing: border-box;
+    background-color: var(--branco);
 }
 
 .layout_search_box_container {
@@ -11,7 +12,7 @@
     height: 3.5rem;
     box-sizing: border-box;
     border-bottom: 1px solid black;
-    background-color: #fff;
+    background-color: var(--branco);
 }
 
 .layout_content_container {
@@ -19,4 +20,5 @@
     box-sizing: border-box;
     padding-left: 80px;
     padding-top: 10px;
+    background-color: var(--branco);
 }

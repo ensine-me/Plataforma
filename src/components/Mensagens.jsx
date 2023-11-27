@@ -17,7 +17,6 @@ const Mensagens = () => {
   return (
     <div className='home'>
       <div className="container">
-        <Sidebar/>
         <SidebarChat />
         <Chat/>
       </div>

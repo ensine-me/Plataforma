@@ -3,6 +3,10 @@ import CardAula from '../components/CardAula'
 import styles from '../assets/styles/MinhasAulas.module.css';
 import store from "../store";
 
+import { useNavigate } from 'react-router-dom';
+
+import HistoryEduIcon from '@mui/icons-material/HistoryEdu';
+
 const MinhasAulas = () => {
   const [solicitado, setSolicitado] = useState([]);
   const [aguardandoPagamento, setAguardandoPagamento] = useState([]);
@@ -89,193 +93,42 @@ const MinhasAulas = () => {
     });
   }, [concluida]);
 
+  const navigate = useNavigate();
+  const Voltar = () => {
+    navigate('/inicial-aluno');
+  }
+
   return (
     <div className={styles.minhas_aulas_container}>
-      <h1 className={styles.minhas_aulas_titulo}>Minhas Aulas</h1>
-
-      {emProgresso.length > 0 && (
-        <>
-          <h2 className={styles.minhas_aulas_substitulo}>Em progresso</h2>
-          <div className={styles.minhas_aulas_aulas_container}>
-            {emProgresso.map((aula) => {
-              return (
-                <CardAula
-                  key={aula.id}
-                  id={aula.id}
-                  disciplina={aula.materia.nome}
-                  alunosCadastrados={aula.alunos.length}
-                  maxAlunos={aula.limiteParticipantes}
-                  assunto={aula.titulo}
-                  data={aula.dataHora.split("T")[0].split("-").reverse().join("/")}
-                  nomeProfessor={aula.professor.nome}
-                  urlFotoProfessor={aula.professor.foto}
-                />
-              )
-            })}
-          </div>
-        </>
-      )}
-
-      {aguardandoPagamento.length > 0 && (
-        <>
-          <h2 className={styles.minhas_aulas_substitulo}>Aguardando Pagamento</h2>
-          <div className={styles.minhas_aulas_aulas_container}>
-            {aguardandoPagamento.map((aula) => {
-              return (
-                <CardAula
-                  key={aula.id}
-                  id={aula.id}
-                  disciplina={aula.materia.nome}
-                  alunosCadastrados={aula.alunos.length}
-                  maxAlunos={aula.limiteParticipantes}
-                  assunto={aula.titulo}
-                  data={aula.dataHora.split("T")[0].split("-").reverse().join("/")}
-                  nomeProfessor={aula.professor.nome}
-                  urlFotoProfessor={aula.professor.foto}
-                />
-              )
-            })}
-          </div>
-        </>
-      )}
-
-      {aguardandoAvaliacao.length > 0 && !JSON.parse(sessionStorage.getItem("usuario")).professor && (
-        <>
-          <h2 className={styles.minhas_aulas_substitulo}>Aguardando avaliação</h2>
-          <div className={styles.minhas_aulas_aulas_container}>
-            {aguardandoAvaliacao.map((aula) => {
-              return (
-                <CardAula
-                  key={aula.id}
-                  id={aula.id}
-                  disciplina={aula.materia.nome}
-                  alunosCadastrados={aula.alunos.length}
-                  maxAlunos={aula.limiteParticipantes}
-                  assunto={aula.titulo}
-                  data={aula.dataHora.split("T")[0].split("-").reverse().join("/")}
-                  nomeProfessor={aula.professor.nome}
-                  urlFotoProfessor={aula.professor.foto}
-                />
-              )
-            })}
-          </div>
-        </>
-      )}
-
-      {agendado.length > 0 && (
-        <>
-          <h2 className={styles.minhas_aulas_substitulo}>Agendadas</h2>
-          <div className={styles.minhas_aulas_aulas_container}>
-            {agendado.map((aula) => {
-              return (
-                <CardAula
-                  key={aula.id}
-                  id={aula.id}
-                  disciplina={aula.materia.nome}
-                  alunosCadastrados={aula.alunos.length}
-                  maxAlunos={aula.limiteParticipantes}
-                  assunto={aula.titulo}
-                  data={aula.dataHora.split("T")[0].split("-").reverse().join("/")}
-                  nomeProfessor={aula.professor.nome}
-                  urlFotoProfessor={aula.professor.foto}
-                />
-              )
-            })}
-          </div>
-        </>
-      )}
-
-      {solicitado.length > 0 && (
-        <>
-          <h2 className={styles.minhas_aulas_substitulo}>Solicitadas</h2>
-          <div className={styles.minhas_aulas_aulas_container}>
-            {solicitado.map((aula) => {
-              return (
-                <CardAula
-                  key={aula.id}
-                  id={aula.id}
-                  disciplina={aula.materia.nome}
-                  alunosCadastrados={aula.alunos.length}
-                  maxAlunos={aula.limiteParticipantes}
-                  assunto={aula.titulo}
-                  data={aula.dataHora.split("T")[0].split("-").reverse().join("/")}
-                  nomeProfessor={aula.professor.nome}
-                  urlFotoProfessor={aula.professor.foto}
-                />
-              )
-            })}
-          </div>
-        </>
-      )}
-
-      {rejeitado.length > 0 && (
-        <>
-          <h2 className={styles.minhas_aulas_substitulo}>Rejeitadas</h2>
-          <div className={styles.minhas_aulas_aulas_container}>
-            {rejeitado.map((aula) => {
-              return (
-                <CardAula
-                  key={aula.id}
-                  id={aula.id}
-                  disciplina={aula.materia.nome}
-                  alunosCadastrados={aula.alunos.length}
-                  maxAlunos={aula.limiteParticipantes}
-                  assunto={aula.titulo}
-                  data={aula.dataHora.split("T")[0].split("-").reverse().join("/")}
-                  nomeProfessor={aula.professor.nome}
-                  urlFotoProfessor={aula.professor.foto}
-                />
-              )
-            })}
-          </div>
-        </>
-      )}
-
-      {concluida.length > 0 && (
-        <>
-          <h2 className={styles.minhas_aulas_substitulo}>Concluídas</h2>
-          <div className={styles.minhas_aulas_aulas_container}>
-            {concluida.map((aula) => {
-              return (
-                <CardAula
-                  key={aula.id}
-                  id={aula.id}
-                  disciplina={aula.materia.nome}
-                  alunosCadastrados={aula.alunos.length}
-                  maxAlunos={aula.limiteParticipantes}
-                  assunto={aula.titulo}
-                  data={aula.dataHora.split("T")[0].split("-").reverse().join("/")}
-                  nomeProfessor={aula.professor.nome}
-                  urlFotoProfessor={aula.professor.foto}
-                />
-              )
-            })}
-          </div>
-        </>
-      )}
-
-      {cancelado.length > 0 && (
-        <>
-          <h2 className={styles.minhas_aulas_substitulo}>Canceladas</h2>
-          <div className={styles.minhas_aulas_aulas_container}>
-            {cancelado.map((aula) => {
-              return (
-                <CardAula
-                  key={aula.id}
-                  id={aula.id}
-                  disciplina={aula.materia.nome}
-                  alunosCadastrados={aula.alunos.length}
-                  maxAlunos={aula.limiteParticipantes}
-                  assunto={aula.titulo}
-                  data={aula.dataHora.split("T")[0].split("-").reverse().join("/")}
-                  nomeProfessor={aula.professor.nome}
-                  urlFotoProfessor={aula.professor.foto}
-                />
-              )
-            })}
-          </div>
-        </>
-      )}
+      <h1 className={styles.minhas_aulas_titulo}><HistoryEduIcon /> Suas Aulas marcadas</h1>
+      <div className={styles.minhas_aulas_aulas_container}>
+        {aulas.length === 0 ? (
+          <>
+            <div>
+              <p className={styles.minhas_aulas_nenhuma_aula}>Suas aulas já aprovadas por um professor aparecem aqui. <br/>
+                Volte para a página inicial e converse com um de nossos professores recomendados caso deseje solicitar uma aula.</p>
+              <button className={styles.botaoVoltar} onClick={Voltar}>Página inicial</button>
+            </div>
+          </>
+        )
+          :
+          (aulas.map((aula) => {
+            return (
+              <CardAula
+                key={aula.id}
+                id={aula.id}
+                disciplina={aula.materia.nome}
+                alunosCadastrados={aula.alunos.length}
+                maxAlunos={aula.limiteParticipantes}
+                assunto={aula.titulo}
+                data={aula.dataHora.split("T")[0].split("-").reverse().join("/")}
+                nomeProfessor={aula.professor.nome}
+                urlFotoProfessor={aula.professor.foto}
+              />
+            )
+          }
+          ))}
+      </div>
     </div>
   )
 }

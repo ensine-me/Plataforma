@@ -1,5 +1,4 @@
 import React from "react";
-import NavBar from "../components/NavBarDash";
 import ApplicationsDashboards from "../components/ApplicationsDashboards";
 
 function Bi() {
@@ -10,7 +9,6 @@ function Bi() {
             flexDirection: "column",
             width: "100vw",
         }}>
-            <NavBar/>
             <ApplicationsDashboards/>
         </div>
     )
