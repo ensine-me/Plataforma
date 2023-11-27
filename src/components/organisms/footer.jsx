@@ -25,6 +25,11 @@ const Footer = () => {
                     </a>
                 </div>
             </div>
+            <div className={sFooter.privacidadeTermosContato}>
+                <a href="/politica-de-privacidade">Política de privacidade</a><br />
+                <a href="mailto:contato@ensineme.org">Contato</a>
+                <a href="/termos-de-uso">Termos de uso</a>
+            </div>
             <div className={sFooter.footerCopyright}>
                 <SimpleText color={'white'} text='Ensine.me ©️ 2023 - Todos os direitos reservados' />
             </div>

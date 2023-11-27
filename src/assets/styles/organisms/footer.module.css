@@ -43,3 +43,23 @@
     padding-right: 10px;
     padding-bottom: 5px;
 }
+
+.privacidadeTermosContato {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 10px;
+    margin-left: -20px;
+}
+
+.privacidadeTermosContato a {
+    color: var(--verde-claro);
+    text-decoration: none;
+    transition: 200ms;
+    margin-left: 20px;
+}
+
+.privacidadeTermosContato a:hover {
+    text-decoration: underline;
+    color: var(--branco);
+}

@@ -2,6 +2,7 @@ import React from 'react'
 import "../assets/styles/chat.css"
 import { useContext } from 'react';
 import { AuthContext } from 'context/AuthContext';
+import Logo from './logo';
 
 
 const Navbar = () => {
@@ -10,9 +11,9 @@ const Navbar = () => {
 
   return (
     <div className='navbar'>
-      <span className="logo">Ensine.me</span>
+      <Logo />
       <div className="user">
-        <img src={currentUser.photoURL} alt="" />
+        <img src={currentUser.photoURL} alt="Foto de perfil do usuário" />
         <span>{currentUser.displayName}</span>
       </div>
     </div>

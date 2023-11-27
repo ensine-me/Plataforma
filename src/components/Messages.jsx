@@ -9,12 +9,10 @@ import { useContext } from "react";
 const Messages = () => {
   const [messages, setMessages] = useState([]);
   const { data } = useContext(ChatContext);
-  console.log("DATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT "+data)
-  
-  //  console.log('%c⧭', 'color: #ff0000', );
+  console.log("DATA " + data)
   useEffect(() => {
     const unSub = onSnapshot(doc(db, "chats", data.chatId), (doc) => {
-      console.log("DOOOOOOOOOOOOOOOOOOOOOOC "+doc.get)
+      console.log("DOC " + doc.get)
       doc.exists() && setMessages(doc.data().messages);
     });
 
