@@ -14,12 +14,7 @@ pipeline {
              steps {
                 sh 'ssh -i "ensineme-ec2-key.pem" ec2-user@ec2-3-219-100-113.compute-1.amazonaws.com'
             }
-            steps{
-                sh 'yes'
-            }
-            steps{
-                sh 'cd Plataforma'
-            }
+            
         }
 
         stage('git pull') {
