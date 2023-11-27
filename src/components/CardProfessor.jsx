@@ -2,57 +2,37 @@ import React from "react";
 import "../assets/styles/cardprofessor.css"
 import Avatar from '@mui/material/Avatar';
 import Rating from '@mui/material/Rating';
-import Chip from '@mui/material/Chip';
-import Stack from '@mui/material/Stack';
 import DisciplinaDoProfessor from './DisciplinaDoProfessor';
 import { Link } from "react-router-dom";
 
-const LevelUser = () => {
-    return (
-        <Stack direction="row" spacing={1}>
-          <Chip 
-            label="Nível: 16" 
-            color="success"
-            variant="outlined"
-          />
-        </Stack>
-      );
-}
 
-const RatingUser = () => {
-    const [value] = React.useState(3)
+function CardProfessor({ nome, materias, preco, id, foto, nota }) {
+    console.log("nome: ", nome);
+    console.log("nota: ", nota);
+
+    const notaValue = nota || 0;
 
     return (
-        <div>
-            <Rating 
-            name="read-only" 
-            value={value} 
-            readOnly
-            size="small"
-            />
-        </div>
-    );
-}
-
-
-function CardProfessor({nome, materias, preco, id, foto}) {
-    return(
-        <div className="carProfessor">
-            <Link to={'/professor?id=' + id}>
+        <Link to={'/professor?id=' + id}>
+            <div className="carProfessor">
                 <div className="apresetationUser">
                     <div>
                         <Avatar
-                            sx={{ width: 90, height: 90 }} 
-                            src={foto} 
+                            sx={{ width: 90, height: 90 }}
+                            src={foto}
                             variant="rounded"
                         />
                     </div>
-                    <RatingUser/>
+                    <Rating
+                        name="avaliacao-professor"
+                        value={notaValue}
+                        precision={0.5}
+                        readOnly
+                    />
                 </div>
                 <div className="boxesInfoUser">
                     <div className="box">
                         <strong>{nome}</strong>
-                        <LevelUser/>
                     </div>
                     <div className="box">
                         {materias.map((disciplina, index) => {
@@ -65,9 +45,9 @@ function CardProfessor({nome, materias, preco, id, foto}) {
                         <span><b>Hora Aula: R${preco}</b></span>
                     </div>
                 </div>
-                
-            </Link>
-        </div>
+            </div>
+        </Link>
+
     )
 }
 

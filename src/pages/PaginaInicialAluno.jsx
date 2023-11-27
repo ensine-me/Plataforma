@@ -120,7 +120,7 @@ const Home = () => {
                   key={professor.idUsuario}
                   urlFoto={professor.foto}
                   nome={professor.nome}
-                  avaliacao={4.5}
+                  avaliacao={professor.nota}
                   preco={professor.precoHoraAula}
                   disciplinas={professor.materias.map(materia => materia.nome)}
                   id={professor.idUsuario}

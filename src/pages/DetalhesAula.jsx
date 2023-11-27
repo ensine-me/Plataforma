@@ -134,8 +134,16 @@ const DetalhesAula = () => {
             body: JSON.stringify(body),
         }).then(response => {
             if (response.ok) {
-                alert("Avaliação enviada com sucesso!");
-                window.location.reload();
+                Swal.fire({
+                    icon: 'success',
+                    title: `Avaliação enviada com sucesso!`,
+                    showCancelButton: false,
+                    showConfirmButton: true,
+                    confirmButtonText: 'Ok',
+                    confirmButtonColor: '#28a745',
+                }).then(() => {
+                    window.location.reload();
+                });
             }
         }
         );
@@ -166,8 +174,17 @@ const DetalhesAula = () => {
             body: JSON.stringify(body),
         }).then(response => {
             if (response.ok) {
-                alert("Report enviado com sucesso!");
-                window.location.reload();
+                Swal.fire({
+                    icon: 'success',
+                    title: `Aula reportada com sucesso!`,
+                    text: `Nosso time irá avaliar o report e tomar as medidas necessárias.`,
+                    showCancelButton: false,
+                    showConfirmButton: true,
+                    confirmButtonText: 'Ok',
+                    confirmButtonColor: '#28a745',
+                }).then(() => {
+                    window.location.reload();
+                });
             }
         });
     };
