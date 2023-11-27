@@ -90,6 +90,7 @@ const Home = () => {
             showCancelButton: true,
             showConfirmButton: true,
             confirmButtonText: 'Ver minhas aulas',
+            cancelButtonText: 'Fechar',
             confirmButtonColor: '#28a745',
         }).then((result) => {
             // Redirecione ou adicione ação do botão "Ver minhas aulas" aqui
