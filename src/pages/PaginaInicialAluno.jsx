@@ -7,13 +7,14 @@ import { useNavigate } from "react-router-dom";
 import { useSessionContext } from '@supabase/auth-helpers-react';
 import { loginFirebase } from 'functions/login';
 import store from "../store";
+import Swal from "sweetalert2";
 
 const Home = () => {
   const [professores, setProfessores] = useState([]);
   const [aulas, setAulas] = useState([]);
 
   const { isLoading, session } = useSessionContext();
-  if(!isLoading && session) {
+  if (!isLoading && session) {
     loginFirebase(session.user.email, session.user.email)
   }
 
@@ -21,7 +22,7 @@ const Home = () => {
 
   console.log("usuário: ", sessionStorage.getItem("usuario"));
 
-  if(JSON.parse(sessionStorage.getItem("usuario")).googleEmail) {
+  if (JSON.parse(sessionStorage.getItem("usuario")).googleEmail) {
     console.log("true");
   } else {
     console.log("false");
@@ -30,7 +31,7 @@ const Home = () => {
   useEffect(() => {
     const disciplinas = JSON.parse(sessionStorage.getItem("usuario")).disciplinas;
 
-    if(JSON.parse(sessionStorage.getItem("usuario")).professor) {
+    if (JSON.parse(sessionStorage.getItem("usuario")).professor) {
       navigate("/home-professor");
     } else {
       console.log("não é professor")
@@ -70,6 +71,35 @@ const Home = () => {
           response.json().then((data) => {
             setAulas(data);
           });
+        }
+      });
+
+    const urlAvalPendentes = `${store.getState().backEndUrl}avaliacoes/visualizada/aluno/${JSON.parse(sessionStorage.getItem("usuario")).userId}`;
+    fetch(urlAvalPendentes, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem("usuario")).token
+      }
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          Swal.fire({
+            icon: 'info',
+            title: 'Você possui aulas aguardando sua avaliação',
+            showCancelButton: true,
+            showConfirmButton: true,
+            confirmButtonText: 'Ver minhas aulas',
+            cancelButtonText: 'Fechar',
+            confirmButtonColor: '#28a745',
+        }).then((result) => {
+            // Redirecione ou adicione ação do botão "Ver minhas aulas" aqui
+            if (result.isConfirmed) {
+                navigate("/minhas-aulas");
+            }
+        });
+        } else {
+          console.log("response das visualizadas: " + response.status);
         }
       });
   }, [navigate]);
