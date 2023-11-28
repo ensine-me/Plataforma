@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Img from "./images/chat/img.png";
 import Attach from "./images/chat/attach.png";
-import { ChatContext, ChatProvider } from "../context/ChatContext";
+import { ChatContext } from "../context/ChatContext";
 import {
   arrayUnion,
   doc,
@@ -12,7 +12,6 @@ import {
 import { db, storage } from "../firebase";
 import { v4 as uuid } from "uuid";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
-import { useSession } from "@supabase/auth-helpers-react";
 import "../assets/styles/chat.css"
 import { useContext } from "react";
 import { AuthContext } from "context/AuthContext";
@@ -26,7 +25,7 @@ const Input = () => {
 
 
   const { data } = useContext(ChatContext);
-  console.log("DATAAAAAAAAAAAAAAAAAAAAAAAAAA "+data)
+  console.log("DATA "+data)
 
   const handleSend = async (e) => {
     if (img) {
@@ -94,7 +93,7 @@ const Input = () => {
     <div className="input">
       <input
         type="text"
-        placeholder="Type something..."
+        placeholder="Enviar mensagem..."
         onChange={(e) => setText(e.target.value)}
         value={text}
         onKeyDown={handleKey}

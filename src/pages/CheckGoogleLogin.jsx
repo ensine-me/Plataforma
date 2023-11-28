@@ -29,7 +29,7 @@ const CheckGoogleLogin = () => {
                     } else {
                         redirectTo = `/escolher-papel`;
                     }
-                    if (redirectTo) {
+                    if (redirectTo !== '') {
                         navigate(redirectTo);
                     }
                 })

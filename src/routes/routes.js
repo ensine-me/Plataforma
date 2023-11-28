@@ -1,30 +1,37 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import PoliticaDePrivacidade from "../pages/PoliticaDePrivacidade";
 import OpenSearch from "../pages/OpenSearch";
 import ProfessorDashBoard from "pages/ProfessorDashBoard";
-import GoogleLogin from "../GoogleLogin";
 import PerfilAluno from "../pages/PerfilAluno"
 import PerfilProfessor from "pages/PerfilProfessor";
 import EscolherMaterias from "../pages/EscolherMateria";
 import PaginaInicialAluno from "../pages/PaginaInicialAluno";
 import Layout from "../components/Layout";
 import MinhasAulas from "../pages/MinhasAulas"
-// import SessionChecker from "../components/SessionChecker";
-import LoginChecker from "components/LoginChecker";
-import Login from 'pages/Login';
 import PaginaInicialInstitucional from "pages/PaginaInicialInstitucional";
 import CadastroAluno from "pages/CadastroAluno"
 import CadastroProfessor from "pages/CadastroProfessor"
-import LogOut from "pages/LogOut";
 import DetalhesAula from "../pages/DetalhesAula";
 import EscolhaCadastro from "../pages/EscolhaCadastro";
 import HomeProfessor from "../pages/homeProfessor"
 import Mensagens from "../components/Mensagens";
 import CadastroProfessorLocal from "pages/CadastroProfessorLocal";
+import Bi from "pages/Bi";
+import Login from 'pages/Login';
+import NotFoundPage from "pages/NotFoundPage";
+
+import LogOut from "pages/LogOut";
 import CheckGoogleLogin from "pages/CheckGoogleLogin";
 import ConectarComGoogle from "pages/ConectarComGoogle";
 import ApplicationDash from "components/ApplicationsDashboards";
 import Reports from "components/Reports";
+import GoogleLogin from "../GoogleLogin";
+import LoginChecker from "components/LoginChecker";
+import TermosDeUso from "pages/TermosDeUso";
+
+// import SessionChecker from "../components/SessionChecker";
 
 const Routering = () => {
     return (
@@ -32,7 +39,6 @@ const Routering = () => {
             <Routes>
                 <Route element={<LoginChecker><Layout /></LoginChecker>}>
                     <Route path="/inicial-aluno" element={<PaginaInicialAluno />} />
-
                     <Route path="/perfil" element={<PerfilAluno />} />
                     <Route path="/mensagens" element={<Mensagens />} />
                     <Route path="/professor" element={<PerfilProfessor />} />
@@ -46,8 +52,6 @@ const Routering = () => {
                     <Route path="/home-professor" element={<HomeProfessor />} />
                     <Route path="/conectar-com-google" element={<ConectarComGoogle />} />
                 </Route>
-            </Routes>
-            <Routes>
                 <Route path="/login" element={<Login />} />
                 <Route path="/" index element={<PaginaInicialInstitucional />} />
                 <Route path="/cadastro-aluno" element={<CadastroAluno />} />
@@ -58,6 +62,9 @@ const Routering = () => {
                 <Route path="/sign-out" element={<LogOut />} />
                 <Route path="/cadastro-professor-local" element={<CadastroProfessorLocal />} />
                 <Route path="/check-google-login" element={<CheckGoogleLogin />} />
+                <Route path="/politica-de-privacidade" element={<PoliticaDePrivacidade />} />
+                <Route path="/termos-de-uso" element={<TermosDeUso />} />
+                <Route path="/*" element={<NotFoundPage />} />
             </Routes>
         </Router>
     );

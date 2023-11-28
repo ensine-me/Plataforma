@@ -46,7 +46,12 @@ const PerfilAluno = () => {
                         <div className={sPerfil.buttons}>
                             <button className={sPerfil.button}>Conquistas</button>
                             <button className={sPerfil.button}>Ranking</button>
-                            <button className={sPerfil.button} onClick={conectarComGoogle}>Conectar com Google</button>
+                            {
+                                JSON.parse(sessionStorage.getItem("usuario")).googleEmail ?
+                                    <button className={sPerfil.button}>Desconectar conta Google</button>
+                                    :
+                                    <button className={sPerfil.button} onClick={conectarComGoogle}>Conectar conta Google</button>
+                            }
                             <button className={sPerfil.button}>Sair</button>
                         </div>
                     </div>

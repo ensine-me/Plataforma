@@ -1,7 +1,7 @@
 .container_card_aula {
     width: 300px;
     height: 180px;
-    border: 1px solid #E5E5E5;
+    border: 1px solid var(--branco);
     box-shadow: var(--shadow);
     display: flex;
     flex-direction: column;
@@ -11,6 +11,13 @@
     cursor: pointer;
     border-radius: 15px;
     flex-shrink: 0;
+    transition: 300ms;
+}
+
+.container_card_aula:hover {
+    height: 190px;
+    margin-bottom: -10px;
+    border: solid 1px var(--preto);
 }
 
 .container_card_aula h1,
@@ -63,9 +70,7 @@
     left: 0;
     right: 0;
     height: 2px;
-    /* Adjust the height of the borders as needed */
-    background-color: #077533;
-    /* Adjust the color as needed */
+    background-color: var(--preto);
 }
 
 .card_aula_assunto::before {

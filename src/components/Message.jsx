@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useRef } from "react";
-import { ChatContext, ChatProvider } from "../context/ChatContext";
-import { useSession } from "@supabase/auth-helpers-react";
+import { ChatContext } from "../context/ChatContext";
 import "../assets/styles/chat.css"
 import { AuthContext } from "context/AuthContext";
 
@@ -28,9 +27,8 @@ const Message = ({ message }) => {
               ? currentUser.photoURL
               : data.user.photoURL
           }
-          alt=""
+          alt="Imagem do usuário"
         />
-        <span>just now</span>
       </div>
       <div className="messageContent">
         <p>{message.text}</p>

@@ -1,19 +1,18 @@
 import { doc, onSnapshot } from "firebase/firestore";
 import React, { useContext, useEffect, useState } from "react";
-import { ChatContext, ChatProvider } from "../context/ChatContext";
 import { db } from "../firebase";
-import { useSession } from "@supabase/auth-helpers-react";
 import "../assets/styles/chat.css";
 import { AuthContext } from "context/AuthContext";
+import { ChatContext } from "../context/ChatContext";
 
 const Chats = () => {
   const [chats, setChats] = useState([]);
 
   const { currentUser } = useContext(AuthContext)
 
-  console.log("USSSSSSSSSSER "+currentUser.photoURL)
+  console.log("USER " + currentUser.photoURL)
 
-  const {dispatch}  = useContext(ChatContext);
+  const { dispatch } = useContext(ChatContext);
 
   useEffect(() => {
     const getChats = () => {
@@ -32,7 +31,7 @@ const Chats = () => {
 
   const handleSelect = (u) => {
     dispatch({ type: "CHANGE_USER", payload: u });
-  console.log('%c⧭', 'color: #2f00ff', "PASSEI AQ de novo ");
+    console.log('%c⧭', 'color: #2f00ff', "PASSEI AQ de novo ");
 
   };
 

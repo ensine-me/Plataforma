@@ -1,0 +1,67 @@
+/* Estilos padrão */
+.page {
+    background-color: #FFF;
+    color: #333;
+    padding: 100px;
+    padding-top: 0px;
+}
+
+/* Estilos para o tema escuro */
+.page.dark-mode {
+    background-color: #333;
+    color: #FFF;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    margin-top: 70px;
+    padding: 20px;
+    padding-top: 0px;
+    background-color: var(--branco);
+    font-size: larger;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+    color: var(--preto);
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.sectionTitle {
+    color: var(--verde-logo);
+    margin-top: 50px;
+}
+
+.text {
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.contact {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 18px;
+}
+
+.contact a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.contact a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+}
