@@ -1,0 +1,54 @@
+.general{
+    width: 98%;
+    height: 95vh;
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.reports{
+    background-color: #EFEFEEF;
+    border: 1px solid black;
+    width: 80%;
+    height: 75%;
+    border-radius: 16px;
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(34, 34, 34, 0.407);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: scroll;
+    padding: 20px;
+    gap: 15px;
+}
+
+
+.card{
+    height: 17vh;
+    width: 95%;
+    border: 1px solid black;
+    border-radius: 16px;
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(34, 34, 34, 0.407);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.data{
+    color: green;
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    justify-content: space-between;
+    align-items: center;
+}

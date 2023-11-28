@@ -37,6 +37,8 @@
 
 .boxMetricas1 {
     display: flex;
+    align-items: center;
+    gap: 50px;
 }
 .boxChart {
     width: 440px;

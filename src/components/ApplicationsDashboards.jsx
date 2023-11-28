@@ -188,15 +188,17 @@ function ApplicationDash() {
           </td>
         </tr>
         <tr className="boxes2">
-          <div className="tamanhoMetricas">
-            <UsuariosMeses />
-          </div>
-          <div className="tamanhoMetricas">
-            <AulasDadas />
-          </div>
-          <div className="tamanhoMetricas">
-            <StatusAula />
-          </div>
+          <td className="boxMetricas1">
+            <div className="boxChart">
+              <UsuariosMeses />
+            </div>
+            <div className="boxChart">
+              <AulasDadas />
+            </div>
+            <div className="tamanhoMetricas">
+              <StatusAula />
+            </div>
+          </td>
         </tr>
       </table>
     </div>
