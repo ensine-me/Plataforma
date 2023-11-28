@@ -25,6 +25,8 @@ import NotFoundPage from "pages/NotFoundPage";
 import LogOut from "pages/LogOut";
 import CheckGoogleLogin from "pages/CheckGoogleLogin";
 import ConectarComGoogle from "pages/ConectarComGoogle";
+import ApplicationDash from "components/ApplicationsDashboards";
+import Reports from "components/Reports";
 import GoogleLogin from "../GoogleLogin";
 import LoginChecker from "components/LoginChecker";
 import TermosDeUso from "pages/TermosDeUso";
@@ -43,6 +45,9 @@ const Routering = () => {
                     <Route path="/minhas-aulas" element={<MinhasAulas />} />
                     <Route path="/pesquisa-aberta" element={<OpenSearch />} />
                     <Route path="/pesquisa" element={<ProfessorDashBoard />} />
+                    <Route path="/pesquisa" element={<ProfessorDashBoard />} />
+                    <Route path="/bi-pf" element={<ApplicationDash />} />
+                    <Route path="/reports" element={<Reports />} />
                     <Route path="/aula" element={<DetalhesAula />} />
                     <Route path="/home-professor" element={<HomeProfessor />} />
                     <Route path="/conectar-com-google" element={<ConectarComGoogle />} />
@@ -51,7 +56,6 @@ const Routering = () => {
                 <Route path="/" index element={<PaginaInicialInstitucional />} />
                 <Route path="/cadastro-aluno" element={<CadastroAluno />} />
                 <Route path="/cadastro-professor" element={<CadastroProfessor />} />
-                <Route path="/bi-pf" element={<Bi />} />
                 <Route path="/escolher-materias" element={<EscolherMaterias />} />
                 <Route path="/escolher-papel" element={<EscolhaCadastro />} />
                 <Route path="/google-login" element={<GoogleLogin />} />
