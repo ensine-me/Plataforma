@@ -47,22 +47,39 @@ read -p "Essa instância será utilizada como um servidor front-end? (y/n) " res
 
 # Defina o caminho para onde o EFS está montado e onde a aplicação React está localizada
 efs_mount_path="/mnt/efs/Plataforma"
+local_path="/home/ec2-user/Plataforma"
+
 
 if [[ "$resposta" =~ ^[Yy]$ ]]; then
     echo "Instalando Node.js..."
     #sudo curl -sL https://rpm.nodesource.com/setup_16.x | sudo bash -
     sudo yum install -y nodejs
 
-    # Navegar para o diretório onde o EFS está montado e onde a aplicação React está
-    cd "${local_path}"
-
     read -p "Deseja buildar a aplicação novamente? (y/n) (Isso pode demorar um pouco)" respostabuild
-    if [[ "$respostabuild" =~ ^[Yy]$ ]]; then
+    if [[ "$respostabuild" =~ [[Yy]$ ]]; then
+
 	    echo "Instalando dependências do projeto React..."
 	    sudo npm install
 
 	    echo "Construindo aplicação React para produção..."
 	    sudo npm run build
+	    
+	    read -p "Deseja rodar a plataforma localmente? (y/n)" respostadir
+	    if [[ "$respostadir" =~ [[Yy]$ ]]; then
+		    plataforma_path="$local_path"
+		    echo "$plataforma_path"
+		    echo "A plataforma rodará localmente na ec2..."
+		    sleep 1
+	    else
+		    plataforma_path="/home/ec2-user/Plataforma"
+		    echo "A plataforma rodará no efs..."
+		    sleep 1
+		    
+		    echo "Sincronizando arquivos com o efs"
+		    sleep 1
+		    sudo rsync -av --delete /home/ec2-user/Plataforma/ /mnt/efs/Plataforma/
+	    fi
+
     fi
 
     # Configurar o Nginx para servir a aplicação React do diretório de build
@@ -73,8 +90,8 @@ server {
     server_name ${nome}.sublogic.net;
 
     location / {
-        root ${efs_mount_path}/build;
-        try_files \$uri /index.html =404;
+	root ${plataforma_path}/build;
+        try_files \$uri \$uri/ /index.html =404;
     }
 }
 
