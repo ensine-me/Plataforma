@@ -9,6 +9,8 @@ import dayjs from "dayjs"
 import { useSession } from "@supabase/auth-helpers-react"
 import store from "../../src/store";
 
+import AnnouncementIcon from '@mui/icons-material/Announcement';
+
 const chamaSwal = () => {
   Swal.fire({
     icon: 'success',
@@ -161,7 +163,6 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, gmailProfessor
         <div className={sMarcarAula.closeIcon} onClick={fechaModal}><CloseIcon sx={{ color: "#fff" }} /></div>
         <div id="quadradoCinza" className={sMarcarAula.quadradoCinza}>
           <div className={sMarcarAula.marcarAulaColuna}>
-            <h5>AULA FODA</h5>
             <p className={sMarcarAula.paragrafoMarcarAula}>Data de Inicio:</p>
             <DateTimePickerComponent value={start} onChange={(newValue) => setStart(newValue)} />
             <p className={sMarcarAula.paragrafoMarcarAula}>Data de Fim:</p>
@@ -186,22 +187,29 @@ const MarcarAula = ({ idProfessor, nomeProfessor, emailProfessor, gmailProfessor
           <div className={sMarcarAula.marcarAulaColunaDireita}>
             <p className={sMarcarAula.paragrafoMarcarAula}>Titulo da aula:</p>
             <BasicTextField onChange={(e) => setEventName(e.target.value)} />
-            <h4>{nomeProfessor}</h4>
+            <h4>Marcando aula com {nomeProfessor}</h4>
             <MultiTextField onChange={(e) => setEventDescription(e.target.value)} />
             <button onClick={createCalendarEvent} className={sMarcarAula.botaoMarcarAula}>Marcar Aula</button>
           </div>
         </div>
         <div className={sMarcarAula.quadradinCinza}>
           <h5>Disponibilidade:</h5>
-          {disponibilidades.map((disponibilidade, index) => {
-            return (
-              <div className={sMarcarAula.disponibilidadeCont} key={index}>
-                <li>
-                  {disponibilidade.diaDaSemana} - {disponibilidade.horarioInicio} às {disponibilidade.horarioFim}
-                </li>
-              </div>
-            )
-          })}
+          {disponibilidades.length === 0 ? (
+            <>
+              <p>Esse professor não cadastrou nenhuma disponibilidade</p>
+              <AnnouncementIcon fontSize='large' color='warning' />
+            </>
+          ) : (
+            disponibilidades.map((disponibilidade, index) => {
+              return (
+                <div className={sMarcarAula.disponibilidadeCont} key={index}>
+                  <li>
+                    {disponibilidade.diaDaSemana} - {disponibilidade.horarioInicio} às {disponibilidade.horarioFim}
+                  </li>
+                </div>
+              );
+            })
+          )}
         </div>
       </div>
     </>

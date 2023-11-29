@@ -104,8 +104,6 @@
      border: solid 1px var(--preto);
  }
 
- .precoLabel {}
-
  .disponibilidadeContainer {
      display: flex;
      flex-direction: column;
@@ -136,7 +134,7 @@
  .horaAula {
      display: flex;
      justify-content: center;
-     background-color: white;
+     background-color: var(--branco);
      border: 1px dashed var(--verdeEscuro);
      padding: 5px;
      border-radius: 8px;

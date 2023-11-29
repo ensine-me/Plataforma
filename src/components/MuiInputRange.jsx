@@ -16,6 +16,7 @@ export default function InputSlider({ onChange }) {
 
     const handleSliderChange = (event, newValue) => {
         setValue(newValue);
+        onChange({ target: { name: "precoHoraAula", value: newValue } });
     };
 
     const handleInputChange = (event) => {
