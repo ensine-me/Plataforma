@@ -16,9 +16,9 @@ import ColorLensIcon from '@mui/icons-material/ColorLens';
 const disciplinaCores = {
   Matematica: '#f19a3e',
   'Lingua Portuguesa': '#ff99c9',
-  Inglês: '#fdfd96',
+  'Lingua Inglesa': '#fdfd96',
   Fisica: '#fdba9b',
-  Química: '#f4c2c2',
+  Quimica: '#f4c2c2',
   Biologia: '#c3a6cb',
   Historia: '#d5bda5',
   Geografia: '#9bc4e2',
@@ -33,11 +33,11 @@ const renderIcon = (disciplina) => {
       return <FunctionsIcon />;
     case 'Lingua Portuguesa':
       return <CreateIcon />;
-    case 'Ingles':
+    case 'Lingua Inglesa':
       return <LanguageIcon />;
     case 'Fisica':
       return <BoltIcon />;
-    case 'Química':
+    case 'Quimica':
       return <ScienceIcon />;
     case 'Biologia':
       return <SpaIcon />;

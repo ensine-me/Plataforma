@@ -1,7 +1,7 @@
 import { createStore } from 'redux';
 
- const environment = "local";
-// const environment = "remoto";
+// const environment = "local";
+const environment = "remoto";
 // const environment = "privado-ec2";
 
  const initialState = {
@@ -9,7 +9,8 @@ import { createStore } from 'redux';
               environment === "remoto" ? 'http://44.217.177.131:8080/' :
               environment === "privado-ec2" ? '10.0.0.24:8080/' : '',
   frontEndUrl: environment === "local" ? 'http://localhost:3000/' :
-               environment === "remoto" ? 'https://ensineme.org/' : ''
+               environment === "remoto" ? 'https://ensineme.org/' :
+               environment === "privado-ec2" ? 'https://ensineme.org/' : ''
 };
 
 
