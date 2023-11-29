@@ -17,20 +17,28 @@
     flex-direction: row;
     padding: 10px;
     border-radius: 16px;
+    box-shadow: var(--shadow);
 }
 
 .quadradinCinza {
-    width: 300px;
-    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
     background-color: #D9D9D9;
     position: absolute;
     display: flex;
     padding: 10px;
     margin-top: 620px;
     border-radius: 16px;
-    flex-direction: column;
-    
+    transition: 300ms;
+    box-shadow: var(--shadow);
 }
+
+.quadradinCinza:hover {
+    background-color: var(--branco);
+    border: solid 1px var(--preto);
+}
+
 .quadradinCinza h5 {
     margin: 0;
     padding: 0;
@@ -85,16 +93,22 @@
     width: 75%;
     height: 40px;
     color: white;
-    background-color: #077533;
+    background-color: var(--verdeEscuro);
     border-radius: 8px;
     border: 0;
     margin-top: 11%;
     cursor: pointer;
+    transition: 300ms;
+    box-shadow: var(--shadow);
+    font-size: large;
 }
 
 .botaoMarcarAula:hover{
-    background-color: #07692e
-    ;
+    background-color: var(--verde-claro);
+    color: var(--preto);
+    height: 50px;
+    width: 80%;
+    border: solid 1px var(--preto);
 }
 
 .nomeAula {

@@ -5,12 +5,12 @@ import { getFirestore } from "firebase/firestore";
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBvPgoNE7OPe4vHM95zHb3RMHnpe-Ijqik",
-  authDomain: "ensine-me-b69aa.firebaseapp.com",
-  projectId: "ensine-me-b69aa",
-  storageBucket: "ensine-me-b69aa.appspot.com",
-  messagingSenderId: "1057546133611",
-  appId: "1:1057546133611:web:094ad081ea00b7585a512e"
+  apiKey: "AIzaSyBxYZSoRGmfLhBhW6y7LiaUrUQjhqV07co",
+  authDomain: "ensineme-4aa3f.firebaseapp.com",
+  projectId: "ensineme-4aa3f",
+  storageBucket: "ensineme-4aa3f.appspot.com",
+  messagingSenderId: "68703253337",
+  appId: "1:68703253337:web:58fda22fc0dbd102c29248"
 };
 
 
