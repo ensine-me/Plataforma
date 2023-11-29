@@ -68,6 +68,7 @@ const EscolherMaterias = () => {
         objUsuario = {
           "nome": JSON.parse(sessionStorage.getItem('dadosCadastroAluno')).nome,
           "email": JSON.parse(sessionStorage.getItem('dadosCadastroAluno')).email,
+          "foto": 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqEdjObQlFk57DJp5nZDb45UuAJG_TMlFJ_pgWX2VwWA&s',
           "senha": JSON.parse(sessionStorage.getItem('dadosCadastroAluno')).senha,
           "dataNasc": JSON.parse(sessionStorage.getItem('dadosCadastroAluno')).dataNasc,
           "materias": materiasFormatoJSON
@@ -76,6 +77,7 @@ const EscolherMaterias = () => {
         objUsuario = {
           "nome": JSON.parse(sessionStorage.getItem('dadosCadastroProfessor')).nome,
           "email": JSON.parse(sessionStorage.getItem('dadosCadastroProfessor')).email,
+          "foto": 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqEdjObQlFk57DJp5nZDb45UuAJG_TMlFJ_pgWX2VwWA&s',
           "senha": JSON.parse(sessionStorage.getItem('dadosCadastroProfessor')).senha,
           "dataNasc": JSON.parse(sessionStorage.getItem('dadosCadastroProfessor')).dataNasc,
           "materias": materiasFormatoJSON,
@@ -109,7 +111,6 @@ const EscolherMaterias = () => {
       }
     }
 
-    console.log("objUsuario:" + objUsuario);
     const url = papel && papel === "aluno" ? `${store.getState().backEndUrl}usuarios/cadastrar` : `${store.getState().backEndUrl}usuarios/professor/cadastrar`;
 
 
@@ -144,7 +145,7 @@ const EscolherMaterias = () => {
 
             //create empty user chats on firestore
             await setDoc(doc(db, "userChats", res.user.uid), {});
-            navigate("/");
+            // navigate("/");
           } catch (err) {
             console.log(err);
             // setErr(true);

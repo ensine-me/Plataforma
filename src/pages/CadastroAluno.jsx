@@ -11,7 +11,7 @@ import { useEffect } from 'react';
 const CadastroAluno = () => {
 
     const [form, setForm] = useState([]);
-    const navigate = new useNavigate()
+    const navigate = useNavigate();
 
     const handleSubmit = async () => {
         sessionStorage.setItem('dadosCadastroAluno', JSON.stringify(form));

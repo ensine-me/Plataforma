@@ -7,10 +7,8 @@ import { Link } from "react-router-dom";
 
 
 function CardProfessor({ nome, materias, preco, id, foto, nota }) {
-    console.log("nome: ", nome);
-    console.log("nota: ", nota);
 
-    const notaValue = nota || 0;
+    const notaValue = nota === null || nota === 0 ? 0 : nota;
 
     return (
         <Link to={'/professor?id=' + id}>

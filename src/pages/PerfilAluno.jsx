@@ -37,9 +37,6 @@ const PerfilAluno = () => {
                             <p>{JSON.parse(sessionStorage.getItem("usuario")).nome}</p>
                         </div>
                     </div>
-                    <div className={sPerfil.retangulo}>
-                        retangulo
-                    </div>
                 </div>
                 <div className={sPerfil.quadrados}>
                     <div className={sPerfil.quadrado}>
@@ -54,9 +51,6 @@ const PerfilAluno = () => {
                             }
                             <button className={sPerfil.button}>Sair</button>
                         </div>
-                    </div>
-                    <div className={sPerfil.retangulo}>
-                        retangulo
                     </div>
                 </div>
             </div>
