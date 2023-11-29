@@ -104,7 +104,7 @@ const MinhasAulas = () => {
     <div className={styles.minhas_aulas_container}>
       <h1 className={styles.minhas_aulas_titulo}><HistoryEduIcon /> Suas Aulas marcadas</h1>
 
-      {aulas.length === 0 ? (
+      {aulas.length === 0 && (
         <>
           <div>
             <p className={styles.minhas_aulas_nenhuma_aula}>Suas aulas já aprovadas por um professor aparecem aqui. <br />
@@ -112,7 +112,10 @@ const MinhasAulas = () => {
             <button className={styles.botaoVoltar} onClick={Voltar}>Página inicial</button>
           </div>
         </>
-      ) : (
+      )
+    }
+
+      {emProgresso.length > 0 && (
         <>
           <h2 className={styles.minhas_aulas_substitulo}>Em progresso</h2>
           <div className={styles.minhas_aulas_aulas_container}>

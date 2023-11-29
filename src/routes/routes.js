@@ -18,7 +18,7 @@ import EscolhaCadastro from "../pages/EscolhaCadastro";
 import HomeProfessor from "../pages/homeProfessor"
 import Mensagens from "../components/Mensagens";
 import CadastroProfessorLocal from "pages/CadastroProfessorLocal";
-import Bi from "pages/Bi";
+// import Bi from "pages/Bi";
 import Login from 'pages/Login';
 import NotFoundPage from "pages/NotFoundPage";
 

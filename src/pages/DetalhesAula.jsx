@@ -331,7 +331,7 @@ const DetalhesAula = () => {
                     }
                 })
                 .catch(error => {
-                    alert("Erro ao mudar status da aula\n" + error)
+                    alert("Erro ao mudar status da aula\n" + JSON.stringify(error));
                 });
         }
     }
