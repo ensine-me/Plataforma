@@ -4,15 +4,18 @@ import FormacaoCard from "../components/FormacaoCard"
 import MarcarAula from "../components/marcarAula"
 import DisciplinaDoProfessor from "../components/DisciplinaDoProfessor"
 import { useState } from "react"
+import { useNavigate } from "react-router-dom";
 import store from "../store";
 
 import AnnouncementIcon from '@mui/icons-material/Announcement';
+
 
 const chamaMarcarAula = () => {
     document.getElementById("marcarAulaContainer").style.visibility = "visible";
 }
 
 const PerfilProfessor = () => {
+    const navigate = useNavigate();
     // Pega a URL atual
     const url = new URL(window.location.href);
 
@@ -53,6 +56,11 @@ const PerfilProfessor = () => {
                 console.error(error);
             });
     }, [idProfessor]);
+    const EntrarEmContato = () => {
+        const nomeProfessor = professor && professor.nome
+        alert("Entrar em contato com " + nomeProfessor);
+        navigate('/mensagens', { state: { nomeProfessor } });
+    };
     return (
         <>
             <MarcarAula
@@ -80,7 +88,7 @@ const PerfilProfessor = () => {
                             </div>
                             <div className={sPerfil.buttons}>
                                 <button onClick={chamaMarcarAula} className={sPerfil.button}>Solicitar aula - <strong className={sPerfil.precoLabel}>R${preco}</strong></button>
-                                <button className={sPerfil.button}>Entrar em contato</button>
+                                <button onClick={EntrarEmContato} className={sPerfil.button}>Entrar em contato</button>
                             </div>
                             <div className={sPerfil.disponibilidadeContainer}>
                                 <h4>Você pode solicitar aula nesses dias:</h4>

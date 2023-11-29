@@ -127,10 +127,18 @@
 
 .container .chat .input .send button {
     border: none;
+    border-radius: 8px;
     padding: 10px 15px;
-    color: white;
-    background-color: #567d4b;
+    color: var(--branco);
+    background-color: var(--verdeEscuro);
     cursor: pointer;
+    transition: 300ms;
+}
+
+.container .chat .input .send button:hover {
+    background-color: var(--verde-claro);
+    color: var(--preto);
+    border-radius: 16px;
 }
 
 .container .chat .chatInfo {
@@ -223,18 +231,23 @@
 }
 
 .userChat {
+    display: flex;
     padding: 10px;
     padding-left: 30px;
-    display: flex;
     align-items: center;
     gap: 20px;
-    color: white;
+    color: var(--branco);
     cursor: pointer;
-    transition: 200ms;
-
+    margin-top: 10px;
+    transition: 300ms;
+    
     &:hover {
         background-color: #2f2d52ba;
     }
+}
+
+.userChat:hover {
+    box-shadow: var(--shadow);
 }
 
 .userChat .userChatInfo {
@@ -262,6 +275,10 @@
 }
 
 .container .sidebar .search {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     padding: 20px;
 }
 
@@ -274,10 +291,11 @@
     background-color: var(--preto);
     box-shadow: var(--shadow);
     transition: 300ms;
+    width: 90%;
 }
 
 .container .sidebar .search .searchForm:hover {
-    background-color: var(--cinza);
+    width: 100%;
 }
 
 .container .sidebar .search .searchForm input {

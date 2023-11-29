@@ -31,14 +31,11 @@ const Chats = () => {
 
   const handleSelect = (u) => {
     dispatch({ type: "CHANGE_USER", payload: u });
-    console.log('%c⧭', 'color: #2f00ff', "PASSEI AQ de novo ");
-
   };
 
 
   return (
     <div className="chats">
-      {console.log('%c⧭', 'color: #00a3cc', chats)}
       {Object.entries(chats || {}).sort((a, b) => b[1]?.date - a[1]?.date).map((chat) => (
         <div
           className="userChat"
