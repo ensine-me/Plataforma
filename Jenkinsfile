@@ -6,17 +6,15 @@ pipeline {
         nodejs "Node 18.16.0" 
     }
     
-    stages {
-        stage('Git Pull') {
-            steps {
-                script {
-                    checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'bora', url: 'https://github.com/ensine-me/Plataforma']])
-                }
+    stage('Git Pull') {
+       steps {
+            script {
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'bora', url: 'https://github.com/ensine-me/Plataforma']])
             }
-            steps{
-                sh "npm install"
-                sh "npm run build"
-            }
+        }
+        steps{
+            sh "npm install"
+            sh "npm run build"
         }
     }
 }
